@@ -35,14 +35,14 @@ export default function TenthSection() {
       });
 
       gsap.set(".tenth-hanging-group", {
-        rotate: -2.2,
+        rotate: -5.5,
         transformOrigin: "50% 0%",
       });
 
       gsap.to(".tenth-hanging-group", {
-        rotate: 3.8,
-        x: 6,
-        duration: 5.8,
+        rotate: 7,
+        x: 12,
+        duration: 4.8,
         yoyo: true,
         repeat: -1,
         ease: "sine.inOut",
@@ -311,33 +311,35 @@ export default function TenthSection() {
         }
         .tenth-hanging-group {
           position: absolute;
-          top: 333px;
+          top: 322px;
           left: 50%;
           z-index: 4;
-          width: 158px;
-          height: 128px;
-          margin-left: -79px;
+          width: 186px;
+          height: 156px;
+          margin-left: -93px;
           will-change: transform;
         }
         .tenth-string {
           position: absolute;
           left: 50%;
-          bottom: 74px;
+          bottom: 88px;
           width: 1px;
-          height: 218px;
+          height: 230px;
           background: linear-gradient(180deg, rgba(211, 223, 250, 0.02), rgba(211, 223, 250, 0.16), rgba(211, 223, 250, 0.08));
           transform-origin: bottom center;
         }
         .tenth-logo-orb {
           position: absolute;
-          left: 18px;
-          top: 6px;
-          width: 122px;
-          height: 122px;
+          left: 17px;
+          top: 0;
+          width: 152px;
+          height: 152px;
           object-fit: contain;
           filter:
-            drop-shadow(0 0 28px rgba(103, 169, 255, 0.74))
-            drop-shadow(0 16px 24px rgba(0, 0, 0, 0.26));
+            drop-shadow(0 0 38px rgba(103, 169, 255, 0.88))
+            drop-shadow(0 18px 28px rgba(0, 0, 0, 0.3));
+          animation: tenthLogoBob 3.9s ease-in-out infinite;
+          will-change: transform;
         }
         .tenth-footer-left {
           position: absolute;
@@ -405,6 +407,21 @@ export default function TenthSection() {
           display: flex;
           justify-content: space-between;
         }
+        .tenth-giant-word span {
+          display: inline-block;
+          color: rgba(125, 159, 255, 0.3);
+          text-shadow:
+            0 0 10px rgba(109, 159, 255, 0.62),
+            0 0 24px rgba(85, 137, 255, 0.42),
+            0 0 46px rgba(242, 110, 53, 0.26);
+          animation: tenthLetterGlow 4.6s ease-in-out infinite;
+        }
+        .tenth-giant-word span:nth-child(2n) {
+          animation-delay: -1.2s;
+        }
+        .tenth-giant-word span:nth-child(3n) {
+          animation-delay: -2.4s;
+        }
         .tenth-copyright {
           position: absolute;
           z-index: 3;
@@ -418,6 +435,26 @@ export default function TenthSection() {
         @keyframes tenthTape {
           0%, 100% { transform: rotate(-1.4deg) translateY(0); }
           50% { transform: rotate(1.2deg) translateY(-2px); }
+        }
+        @keyframes tenthLetterGlow {
+          0%, 100% {
+            opacity: 0.74;
+            text-shadow:
+              0 0 9px rgba(109, 159, 255, 0.48),
+              0 0 22px rgba(85, 137, 255, 0.34),
+              0 0 42px rgba(242, 110, 53, 0.18);
+          }
+          50% {
+            opacity: 1;
+            text-shadow:
+              0 0 14px rgba(150, 186, 255, 0.78),
+              0 0 34px rgba(92, 148, 255, 0.58),
+              0 0 62px rgba(242, 110, 53, 0.34);
+          }
+        }
+        @keyframes tenthLogoBob {
+          0%, 100% { transform: translateY(0) scale(1); }
+          50% { transform: translateY(-7px) scale(1.04); }
         }
         @media (min-width: 900px) {
           .tenth-section {
@@ -471,7 +508,7 @@ export default function TenthSection() {
             font-size: 10px;
           }
           .tenth-hanging-group {
-            top: 374px;
+            top: 364px;
           }
           .tenth-footer-left {
             top: 580px;
@@ -553,19 +590,19 @@ export default function TenthSection() {
             font-size: 10px;
           }
           .tenth-hanging-group {
-            top: 360px;
-            width: 136px;
-            height: 112px;
-            margin-left: -68px;
+            top: 344px;
+            width: 158px;
+            height: 132px;
+            margin-left: -79px;
           }
           .tenth-string {
-            bottom: 66px;
-            height: 172px;
+            bottom: 78px;
+            height: 188px;
           }
           .tenth-logo-orb {
-            left: 14px;
-            width: 108px;
-            height: 108px;
+            left: 12px;
+            width: 134px;
+            height: 134px;
           }
           .tenth-footer-left,
           .tenth-contact,
@@ -620,7 +657,7 @@ export default function TenthSection() {
             font-size: 27px;
           }
           .tenth-hanging-group {
-            top: 350px;
+            top: 338px;
           }
           .tenth-footer-left,
           .tenth-wordmark {

@@ -1,16 +1,94 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 export default function PageFooter() {
   const pathname = usePathname();
+  const footerRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (pathname === "/" || !footerRef.current) return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const ctx = gsap.context(() => {
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      if (reduceMotion) {
+        gsap.set(".page-footer-bg-motion, .page-footer-reveal, .page-footer-logo, .page-footer-giant span", {
+          autoAlpha: 1,
+          clearProps: "transform,filter",
+        });
+        return;
+      }
+
+      gsap.set(".page-footer-reveal", { autoAlpha: 0, y: 24, filter: "blur(8px)" });
+      gsap.set(".page-footer-logo", { autoAlpha: 0 });
+      gsap.set(".page-footer-giant span", { autoAlpha: 0, yPercent: 42 });
+
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top 78%",
+            once: true,
+          },
+          defaults: { ease: "power3.out" },
+        })
+        .to(".page-footer-bg-motion", { autoAlpha: 1, duration: 0.4 }, 0)
+        .to(".page-footer-logo", { autoAlpha: 1, duration: 0.5 }, 0.05)
+        .to(".page-footer-reveal", {
+          autoAlpha: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 0.75,
+          stagger: 0.08,
+        }, 0.12)
+        .to(".page-footer-giant span", {
+          autoAlpha: 1,
+          yPercent: 0,
+          duration: 0.82,
+          stagger: 0.035,
+        }, 0.22);
+
+      gsap.fromTo(
+        ".page-footer-bg-motion",
+        { yPercent: -6, scale: 1.08 },
+        {
+          yPercent: 5,
+          scale: 1.14,
+          ease: "none",
+          scrollTrigger: {
+            trigger: footerRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.1,
+          },
+        }
+      );
+
+      gsap.to(".page-footer-giant span", {
+        yPercent: -7,
+        duration: 3.8,
+        stagger: 0.08,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+    }, footerRef);
+
+    return () => ctx.revert();
+  }, [pathname]);
 
   if (pathname === "/") return null;
 
   return (
-    <footer className="page-footer" aria-label="Site footer">
+    <footer ref={footerRef} className="page-footer" aria-label="Site footer">
       <style>{`
         .page-footer {
           --footer-ink: #111a31;
@@ -42,7 +120,7 @@ export default function PageFooter() {
             radial-gradient(circle at 50% 16%, rgba(255, 255, 255, 0.7), transparent 18%);
           pointer-events: none;
         }
-        .page-footer-bg {
+        .page-footer-bg-wrap {
           position: absolute;
           z-index: 0;
           left: 0;
@@ -50,6 +128,21 @@ export default function PageFooter() {
           bottom: -1px;
           width: 100%;
           height: 78%;
+          pointer-events: none;
+          -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.2) 10%, rgba(0, 0, 0, 0.78) 24%, #000 38%);
+          mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.2) 10%, rgba(0, 0, 0, 0.78) 24%, #000 38%);
+        }
+        .page-footer-bg-motion {
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          transform-origin: 50% 100%;
+          will-change: transform, opacity;
+        }
+        .page-footer-bg {
+          display: block;
+          width: 100%;
+          height: 100%;
           object-fit: cover;
           object-position: center bottom;
           pointer-events: none;
@@ -64,7 +157,18 @@ export default function PageFooter() {
           transform: translateX(-50%);
           display: block;
           text-decoration: none;
-          animation: pageFooterFloat 5.6s ease-in-out infinite;
+          will-change: opacity;
+        }
+        .page-footer-logo::before {
+          content: "";
+          position: absolute;
+          left: 50%;
+          bottom: 72%;
+          width: 1px;
+          height: clamp(44px, 6vw, 82px);
+          transform: translateX(-50%);
+          background: linear-gradient(180deg, transparent, rgba(17, 26, 49, 0.12), rgba(17, 26, 49, 0.04));
+          pointer-events: none;
         }
         .page-footer-logo img {
           display: block;
@@ -72,6 +176,9 @@ export default function PageFooter() {
           height: 100%;
           object-fit: contain;
           filter: drop-shadow(0 12px 18px rgba(242, 110, 53, 0.18));
+          transform-origin: 50% 8%;
+          animation: pageFooterWindSwing 4.9s ease-in-out infinite;
+          will-change: transform;
         }
         .page-footer-inner {
           position: absolute;
@@ -153,15 +260,20 @@ export default function PageFooter() {
           line-height: 120%;
           letter-spacing: 0;
         }
-        @keyframes pageFooterFloat {
-          0%, 100% { transform: translateX(-50%) translateY(0) rotate(-2deg); }
-          50% { transform: translateX(-50%) translateY(-5px) rotate(2deg); }
+        .page-footer-reveal,
+        .page-footer-giant span {
+          will-change: transform, opacity, filter;
+        }
+        @keyframes pageFooterWindSwing {
+          0%, 100% { transform: translate3d(-3px, 0, 0) rotate(-5deg); }
+          35% { transform: translate3d(4px, -6px, 0) rotate(4deg); }
+          70% { transform: translate3d(-1px, -3px, 0) rotate(-2deg); }
         }
         @media (max-width: 900px) {
           .page-footer {
             min-height: 560px;
           }
-          .page-footer-bg {
+          .page-footer-bg-wrap {
             height: 68%;
             object-position: center bottom;
           }
@@ -201,7 +313,7 @@ export default function PageFooter() {
           .page-footer::before {
             background-size: 25% 100%;
           }
-          .page-footer-bg {
+          .page-footer-bg-wrap {
             height: 64%;
             width: 150%;
             max-width: none;
@@ -247,32 +359,35 @@ export default function PageFooter() {
         }
       `}</style>
 
-      <Image
-        className="page-footer-bg"
-        src="/images/image 9.png"
-        width={1920}
-        height={493}
-        alt=""
-        aria-hidden="true"
-      />
+      <div className="page-footer-bg-wrap" aria-hidden="true">
+        <div className="page-footer-bg-motion">
+          <Image
+            className="page-footer-bg"
+            src="/images/image 9.png"
+            width={1920}
+            height={493}
+            alt=""
+          />
+        </div>
+      </div>
 
       <Link className="page-footer-logo" href="/" aria-label="StratSkye home">
-        <Image src="/images/footer-stratskye-logo.png" width={160} height={160} alt="" />
+        <Image className="page-footer-logo-orb" src="/images/footer-stratskye-logo.png" width={160} height={160} alt="" />
       </Link>
 
       <div className="page-footer-inner">
-        <p className="page-footer-tagline">
+        <p className="page-footer-tagline page-footer-reveal">
           Stop duct-taping your
           <br />
           marketing together.
         </p>
 
         <div className="page-footer-right">
-          <div className="page-footer-contact">
+          <div className="page-footer-contact page-footer-reveal">
             <a href="tel:+923316547886">+92 331 6547886</a>
             <a href="mailto:admin@stratskye.com">admin@stratskye.com</a>
           </div>
-          <div className="page-footer-social">
+          <div className="page-footer-social page-footer-reveal">
             <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
               instagram
             </a>
@@ -289,7 +404,7 @@ export default function PageFooter() {
         ))}
       </div>
 
-      <p className="page-footer-copyright">
+      <p className="page-footer-copyright page-footer-reveal">
         Copyright 2026 StratSkye. All rights reserved.
       </p>
     </footer>
