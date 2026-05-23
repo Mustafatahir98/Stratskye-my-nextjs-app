@@ -1,5 +1,5 @@
 const GRAPHQL_ENDPOINT =
-  process.env.WORDPRESS_GRAPHQL_ENDPOINT || "https://stratskye-my-nextjs-app.vercel.app/graphql"
+  process.env.WORDPRESS_GRAPHQL_ENDPOINT || "https://stratskye-my-nextjs-app.vercel.app/blog/graphql"
 
 export async function fetchGraphQL<T = any>(
   query: string,
