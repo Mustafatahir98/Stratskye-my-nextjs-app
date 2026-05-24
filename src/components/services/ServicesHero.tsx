@@ -210,7 +210,7 @@ export default function ServicesHero() {
         <div className="services-hero-media-row">
           <Image
             className="services-hero-image"
-            src="/images/Rectangle 4310.png"
+            src="/images/service-main.png"
             width={1093}
             height={434}
             alt="Team collaborating around a laptop in a bright office"

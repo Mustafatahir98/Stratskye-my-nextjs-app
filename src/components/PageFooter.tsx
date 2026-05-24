@@ -152,8 +152,8 @@ export default function PageFooter() {
           z-index: 4;
           top: clamp(46px, 8.2vw, 104px);
           left: 50%;
-          width: clamp(52px, 5.8vw, 92px);
-          height: clamp(52px, 5.8vw, 92px);
+          width: clamp(104px, 11.6vw, 184px);
+          height: clamp(104px, 11.6vw, 184px);
           transform: translateX(-50%);
           display: block;
           text-decoration: none;
@@ -279,8 +279,8 @@ export default function PageFooter() {
           }
           .page-footer-logo {
             top: 76px;
-            width: 82px;
-            height: 82px;
+            width: 164px;
+            height: 164px;
           }
           .page-footer-inner {
             bottom: 126px;
@@ -323,8 +323,8 @@ export default function PageFooter() {
           }
           .page-footer-logo {
             top: 86px;
-            width: 76px;
-            height: 76px;
+            width: 152px;
+            height: 152px;
           }
           .page-footer-inner {
             bottom: 132px;

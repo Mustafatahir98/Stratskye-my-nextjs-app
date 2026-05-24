@@ -57,13 +57,80 @@ export default function AboutPage() {
           line-height: 120%;
           letter-spacing: -2.4px;
         }
-        .about-hero-image {
+        .about-hero-media {
+          position: relative;
           display: block;
           width: 100%;
           margin-top: 24px;
           border-radius: 20px;
-          object-fit: cover;
+          overflow: hidden;
           aspect-ratio: 1120 / 585;
+          background: var(--blue);
+        }
+        .about-hero-image {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .about-hero-momentum {
+          position: absolute;
+          z-index: 2;
+          left: 0;
+          right: 0;
+          bottom: -12px;
+          overflow: hidden;
+          pointer-events: none;
+        }
+        .about-hero-momentum::before,
+        .about-hero-momentum::after {
+          content: "";
+          position: absolute;
+          top: -42px;
+          bottom: -24px;
+          width: min(30vw, 330px);
+          z-index: 2;
+          opacity: 0.74;
+          filter: blur(24px);
+          mix-blend-mode: screen;
+        }
+        .about-hero-momentum::before {
+          left: -12vw;
+          background:
+            radial-gradient(ellipse at left bottom, rgba(68, 151, 255, 0.48), rgba(68, 151, 255, 0.18) 42%, transparent 72%),
+            linear-gradient(90deg, rgba(7, 17, 44, 0.58), transparent 72%);
+        }
+        .about-hero-momentum::after {
+          right: -12vw;
+          background:
+            radial-gradient(ellipse at right bottom, rgba(68, 151, 255, 0.48), rgba(68, 151, 255, 0.18) 42%, transparent 72%),
+            linear-gradient(270deg, rgba(7, 17, 44, 0.58), transparent 72%);
+        }
+        .about-hero-momentum-track {
+          display: flex;
+          width: max-content;
+          animation: aboutHeroMomentumMarquee 28s linear infinite;
+          -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+        }
+        .about-hero-momentum-text {
+          color: #F7F2EE;
+          font-family: "Google Sans Flex";
+          font-size: clamp(92px, 12.5vw, 190px);
+          font-style: normal;
+          font-weight: 400;
+          line-height: 100%;
+          letter-spacing: -4px;
+          white-space: nowrap;
+          padding-right: 62px;
+          transform: translateY(12px);
+          text-shadow:
+            0 0 18px rgba(247, 242, 238, 0.18),
+            0 0 42px rgba(68, 151, 255, 0.18);
+        }
+        @keyframes aboutHeroMomentumMarquee {
+          0% { transform: translateX(-5%); }
+          100% { transform: translateX(-55%); }
         }
         .about-content-grid {
           display: grid;
@@ -188,13 +255,18 @@ export default function AboutPage() {
           grid-template-columns: 118px minmax(0, 1fr);
           column-gap: clamp(28px, 5vw, 76px);
           align-items: start;
+          background: var(--post-shutter-bg);
+          color: #f5f7ff;
+          border-radius: clamp(18px, 2vw, 32px);
+          overflow: hidden;
+          padding: clamp(38px, 5vw, 72px) clamp(28px, 4vw, 58px) clamp(84px, 9vw, 140px);
         }
         .about-outcome-content {
           min-width: 0;
         }
         .about-outcome-title {
           max-width: 780px;
-          color: var(--blue);
+          color: #f5f7ff;
           font-family: "Google Sans Flex";
           font-size: clamp(44px, 5.2vw, 64px);
           font-style: normal;
@@ -205,7 +277,7 @@ export default function AboutPage() {
         .about-outcome-copy {
           max-width: 520px;
           margin-top: 60px;
-          color: rgba(13, 22, 47, 0.60);
+          color: rgba(229, 236, 255, 0.62);
           font-family: "Google Sans Flex";
           font-size: 24px;
           font-style: normal;
@@ -225,13 +297,13 @@ export default function AboutPage() {
           width: 100%;
           border-radius: 10px;
           object-fit: cover;
-          box-shadow: 0 14px 30px rgba(13, 22, 47, 0.07);
+          box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
         }
         .about-outcome-statement {
           grid-column: 1 / -1;
           max-width: 760px;
           margin: clamp(90px, 12vw, 150px) auto 0;
-          color: rgba(13, 22, 47, 0.78);
+          color: rgba(245, 247, 255, 0.88);
           text-align: center;
           font-family: "Google Sans Flex";
           font-size: clamp(44px, 5vw, 64px);
@@ -242,7 +314,7 @@ export default function AboutPage() {
           text-transform: uppercase;
         }
         .about-outcome-statement span {
-          color: rgba(13, 22, 47, 0.28);
+          color: rgba(245, 247, 255, 0.36);
         }
         @media (prefers-reduced-motion: reduce) {
           .about-reveal,
@@ -310,9 +382,22 @@ export default function AboutPage() {
             line-height: 112%;
             letter-spacing: -1.2px;
           }
-          .about-hero-image {
+          .about-hero-media {
             border-radius: 14px;
             aspect-ratio: 4 / 3;
+          }
+          .about-hero-momentum {
+            bottom: 0;
+            overflow: visible;
+          }
+          .about-hero-momentum-track {
+            animation-duration: 22s;
+          }
+          .about-hero-momentum-text {
+            font-size: clamp(58px, 17vw, 86px);
+            letter-spacing: 0;
+            padding-right: 28px;
+            transform: translateY(10px);
           }
           .about-copy h2 {
             font-size: 30px;
@@ -344,6 +429,7 @@ export default function AboutPage() {
           }
           .about-outcome-section {
             margin-top: 92px;
+            padding: 34px 18px 78px;
           }
           .about-outcome-title {
             font-size: 38px;
@@ -371,11 +457,20 @@ export default function AboutPage() {
           <span>growth decisions</span>
         </h1>
 
-        <img
-          className="about-hero-image about-reveal"
-          src="/images/Rectangle 4303.png"
-          alt="Modern office workspace with people collaborating"
-        />
+        <div className="about-hero-media about-reveal">
+          <img
+            className="about-hero-image"
+            src="/images/About-main.png"
+            alt="Modern office workspace with people collaborating"
+          />
+          <div className="about-hero-momentum" aria-hidden="true">
+            <div className="about-hero-momentum-track">
+              <div className="about-hero-momentum-text">About us is momentum.</div>
+              <div className="about-hero-momentum-text">About us is momentum.</div>
+              <div className="about-hero-momentum-text">About us is momentum.</div>
+            </div>
+          </div>
+        </div>
 
         <div className="about-content-grid">
           <div className="about-kicker about-reveal">[about]</div>
