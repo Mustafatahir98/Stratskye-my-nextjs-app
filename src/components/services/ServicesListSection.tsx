@@ -93,10 +93,15 @@ export default function ServicesListSection() {
       <style>{`
         .services-list-section {
           --blue: #0D162F;
+          --service-ink: #F5F7FF;
+          --service-muted: rgba(229, 236, 255, 0.62);
+          --service-border: rgba(229, 236, 255, 0.08);
           --orange: #F26E35;
-          background: #f7f2ee;
-          color: var(--blue);
+          background: var(--post-shutter-bg);
+          color: var(--service-ink);
           font-family: "Google Sans Flex";
+          border-radius: clamp(18px, 2vw, 32px);
+          overflow: hidden;
           padding: clamp(28px, 4vw, 72px) clamp(28px, 4vw, 72px) clamp(80px, 10vw, 150px);
         }
         .services-list-shell {
@@ -120,7 +125,7 @@ export default function ServicesListSection() {
           column-gap: clamp(28px, 5vw, 88px);
           align-items: start;
           padding: clamp(36px, 5vw, 68px) 0;
-          border-top: 1px solid rgba(13, 22, 47, 0.08);
+          border-top: 1px solid var(--service-border);
           transition: opacity 240ms ease;
         }
         .service-item:first-of-type {
@@ -152,7 +157,7 @@ export default function ServicesListSection() {
           border: 0;
           padding: 0;
           background: transparent;
-          color: var(--blue);
+          color: var(--service-ink);
           text-align: left;
           font-family: "Google Sans Flex";
           font-size: clamp(34px, 4.2vw, 64px);
@@ -189,7 +194,7 @@ export default function ServicesListSection() {
         .service-description {
           max-width: 575px;
           margin-top: 24px;
-          color: rgba(13, 22, 47, 0.62);
+          color: var(--service-muted);
           font-family: "Google Sans Flex";
           font-size: 16px;
           font-style: normal;
@@ -205,7 +210,7 @@ export default function ServicesListSection() {
           list-style: none;
         }
         .service-points li {
-          color: var(--blue);
+          color: var(--service-ink);
           font-family: "Google Sans Flex";
           font-size: 11px;
           font-style: normal;
@@ -231,7 +236,7 @@ export default function ServicesListSection() {
         .service-item:hover .service-image,
         .service-item:focus-within .service-image {
           transform: scale(1.035);
-          box-shadow: 0 18px 34px rgba(13, 22, 47, 0.12);
+          box-shadow: 0 18px 34px rgba(0, 0, 0, 0.22);
         }
         @media (hover: none) {
           .services-list-shell:has(.service-item:hover) .service-item:not(:hover) {

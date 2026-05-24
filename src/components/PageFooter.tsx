@@ -347,10 +347,11 @@ export default function PageFooter() {
             gap: 6px;
           }
           .page-footer-giant {
-            left: -10vw;
-            right: -10vw;
-            bottom: 10px;
-            font-size: clamp(44px, 17vw, 76px);
+            left: 12px;
+            right: 12px;
+            bottom: 54px;
+            font-size: clamp(38px, 13vw, 68px);
+            line-height: 0.9;
           }
           .page-footer-copyright {
             bottom: 42px;
