@@ -29,6 +29,7 @@ export default function SeventhSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLImageElement>(null);
+  const moonGroupRef = useRef<HTMLDivElement>(null);
   const haloRef = useRef<HTMLDivElement>(null);
   const raysRef = useRef<HTMLDivElement>(null);
   const moonRef = useRef<HTMLImageElement>(null);
@@ -62,16 +63,15 @@ export default function SeventhSection() {
 
           gsap.set(panelRef.current, { transformOrigin: "50% 50%" });
           gsap.set(bgRef.current, { autoAlpha: 0, scale: 1.04 });
+          gsap.set(moonGroupRef.current, {
+            autoAlpha: 0,
+            yPercent: isMobile ? 10 : 8,
+            scale: isMobile ? 0.94 : 0.9,
+            transformOrigin: "50% 50%",
+          });
           gsap.set([haloRef.current, raysRef.current], {
             autoAlpha: 0,
             scale: isMobile ? 0.96 : 0.92,
-            transformOrigin: "50% 24%",
-          });
-          gsap.set(moonRef.current, {
-            autoAlpha: 0,
-            xPercent: -50,
-            yPercent: isMobile ? 10 : 8,
-            scale: isMobile ? 0.94 : 0.9,
             transformOrigin: "50% 50%",
           });
           gsap.set(mountainRef.current, {
@@ -122,7 +122,7 @@ export default function SeventhSection() {
               0.03
             )
             .to(
-              moonRef.current,
+              moonGroupRef.current,
               { autoAlpha: 1, yPercent: 0, scale: 1, duration: 1.45, ease: "power3.out" },
               0.05
             )
@@ -170,9 +170,11 @@ export default function SeventhSection() {
     <section id="social-proof" ref={sectionRef} className="seventh-section post-shutter-section">
       <div ref={panelRef} className="social-proof-panel">
         <img ref={bgRef} className="proof-bg" src="/images/moon-bg.png" alt="" aria-hidden="true" />
-        <div ref={haloRef} className="proof-moon-halo" aria-hidden="true" />
-        <div ref={raysRef} className="proof-moon-rays" aria-hidden="true" />
-        <img ref={moonRef} className="proof-moon" src="/images/Moon.png" alt="" aria-hidden="true" />
+        <div ref={moonGroupRef} className="proof-moon-group" aria-hidden="true">
+          <div ref={haloRef} className="proof-moon-halo" />
+          <div ref={raysRef} className="proof-moon-rays" />
+          <img ref={moonRef} className="proof-moon" src="/images/Moon.png" alt="" />
+        </div>
         <img
           ref={mountainCoverRef}
           className="proof-mountain-cover"
@@ -257,9 +259,7 @@ export default function SeventhSection() {
           isolation: isolate;
         }
         .proof-bg,
-        .proof-moon-halo,
-        .proof-moon-rays,
-        .proof-moon,
+        .proof-moon-group,
         .proof-mountain-cover,
         .proof-mountain,
         .proof-stars,
@@ -281,42 +281,67 @@ export default function SeventhSection() {
           filter: invert(1) brightness(0.92) contrast(1.08);
           mix-blend-mode: soft-light;
         }
-        .proof-moon-halo {
-          z-index: 1;
-          left: 50%;
-          top: -17%;
-          width: min(84%, 900px);
-          aspect-ratio: 1 / 1;
-          border-radius: 999px;
-          transform: translateX(-50%);
-          background:
-            radial-gradient(circle, rgba(255, 255, 255, 0.36) 0 16%, rgba(207, 222, 250, 0.19) 34%, transparent 54%),
-            radial-gradient(circle, transparent 57%, rgba(255, 255, 255, 0.34) 58.2%, rgba(197, 216, 249, 0.18) 61.5%, transparent 65%);
-          overflow: hidden;
-          filter: blur(4px);
-          mix-blend-mode: screen;
-        }
-        .proof-moon-rays {
-          z-index: 1;
-          left: 50%;
-          top: -17%;
-          width: min(84%, 900px);
-          aspect-ratio: 1 / 1;
-          transform: translateX(-50%);
-          opacity: 0.32;
-          border-radius: 999px;
-          background:
-            conic-gradient(from 205deg at 50% 50%, transparent 0deg, rgba(255, 255, 255, 0.18) 18deg, transparent 36deg, rgba(185, 210, 255, 0.14) 76deg, transparent 104deg, rgba(255, 255, 255, 0.16) 154deg, transparent 192deg, rgba(255, 255, 255, 0.11) 244deg, transparent 282deg, rgba(201, 220, 255, 0.13) 318deg, transparent 360deg),
-            radial-gradient(circle, transparent 0 48%, rgba(255, 255, 255, 0.19) 54%, transparent 69%);
-          overflow: hidden;
-          filter: blur(7px);
-          mix-blend-mode: screen;
-        }
-        .proof-moon {
-          z-index: 2;
+        .proof-moon-group {
+          z-index: 3;
           left: 50%;
           top: -14%;
           width: min(84%, 920px);
+          transform: translateX(-50%);
+          isolation: isolate;
+        }
+        .proof-moon-halo,
+        .proof-moon-rays {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 100%;
+          aspect-ratio: 1 / 1;
+          border-radius: 999px;
+          transform: translate(-50%, -50%);
+          pointer-events: none;
+        }
+        .proof-moon-halo {
+          z-index: 0;
+          background: radial-gradient(
+            circle at 50% 44%,
+            rgba(255, 255, 255, 0.62) 0%,
+            rgba(228, 238, 255, 0.34) 28%,
+            rgba(196, 214, 255, 0.14) 46%,
+            transparent 58%
+          );
+          filter: blur(14px);
+          opacity: 0.9;
+          -webkit-mask-image: radial-gradient(circle at 50% 42%, #000 0%, #000 46%, transparent 62%);
+          mask-image: radial-gradient(circle at 50% 42%, #000 0%, #000 46%, transparent 62%);
+        }
+        .proof-moon-rays {
+          z-index: 0;
+          opacity: 0.38;
+          background:
+            conic-gradient(
+              from 205deg at 50% 50%,
+              transparent 0deg,
+              rgba(255, 255, 255, 0.2) 18deg,
+              transparent 36deg,
+              rgba(185, 210, 255, 0.14) 76deg,
+              transparent 104deg,
+              rgba(255, 255, 255, 0.16) 154deg,
+              transparent 192deg,
+              rgba(255, 255, 255, 0.1) 244deg,
+              transparent 282deg,
+              rgba(201, 220, 255, 0.12) 318deg,
+              transparent 360deg
+            ),
+            radial-gradient(circle at 50% 44%, transparent 0 44%, rgba(255, 255, 255, 0.22) 52%, transparent 64%);
+          filter: blur(8px);
+          -webkit-mask-image: radial-gradient(circle at 50% 42%, #000 0%, #000 44%, transparent 60%);
+          mask-image: radial-gradient(circle at 50% 42%, #000 0%, #000 44%, transparent 60%);
+        }
+        .proof-moon {
+          position: relative;
+          z-index: 1;
+          display: block;
+          width: 100%;
           height: auto;
           object-fit: contain;
           opacity: 0.68;
@@ -605,21 +630,18 @@ export default function SeventhSection() {
             opacity: 0.6;
             filter: invert(1) brightness(0.9) contrast(1.08);
           }
-          .proof-moon-halo {
-            top: 1.8%;
-            width: min(170%, 690px);
-            filter: blur(5px);
-          }
-          .proof-moon-rays {
-            top: 1.8%;
-            width: min(170%, 690px);
-            opacity: 0.28;
-            filter: blur(8px);
-          }
-          .proof-moon {
-            left: 50%;
+          .proof-moon-group {
             top: 1.8%;
             width: min(178%, 720px);
+          }
+          .proof-moon-halo {
+            filter: blur(16px);
+          }
+          .proof-moon-rays {
+            opacity: 0.34;
+            filter: blur(10px);
+          }
+          .proof-moon {
             opacity: 0.64;
           }
           .proof-mountain {

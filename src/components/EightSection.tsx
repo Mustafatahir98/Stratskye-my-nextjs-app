@@ -280,7 +280,7 @@ export default function EightSection() {
                     margin-bottom: 2rem;
                     width: calc(100% - 32px);
                     max-width: 420px;
-                    padding-inline: 0;
+                    padding-inline: 24px;
                     gap: 18px;
                     font-size: 8px;
                     letter-spacing: 0.16em;
@@ -335,7 +335,7 @@ export default function EightSection() {
                         top: 15%;
                         width: 100%;
                         max-width: none;
-                        padding-inline: 0;
+                        padding-inline: 2.8%;
                         margin-bottom: 0;
                         gap: 0;
                         font-size: 9px;
@@ -347,14 +347,14 @@ export default function EightSection() {
                     .heading-container {
                         position: absolute;
                         top: 13.5%;
-                        padding-inline: 0;
+                        padding-inline: 2.8%;
                         margin-bottom: 0;
                     }
                     .cards-main-container {
                         display: block;
                         position: relative;
-                        width: w-full;
-                        height: w-full;
+                        width: 100%;
+                        height: 100%;
                         padding-inline: 0;
                         pointer-events: none;
                         max-width: none;
