@@ -278,6 +278,22 @@ export default function EightSection() {
                 }
                 .eyebrow-container {
                     margin-bottom: 2rem;
+                    width: calc(100% - 32px);
+                    max-width: 420px;
+                    padding-inline: 0;
+                    gap: 18px;
+                    font-size: 8px;
+                    letter-spacing: 0.16em;
+                    line-height: 1;
+                }
+                .glow-eyebrow {
+                    min-width: 0;
+                    gap: 8px;
+                    white-space: nowrap;
+                }
+                .eyebrow-container > span {
+                    flex-shrink: 0;
+                    white-space: nowrap;
                 }
                 .heading-container {
                     margin-bottom: 3.5rem;
@@ -317,8 +333,16 @@ export default function EightSection() {
                     .eyebrow-container {
                         position: absolute;
                         top: 15%;
+                        width: 100%;
+                        max-width: none;
                         padding-inline: 0;
                         margin-bottom: 0;
+                        gap: 0;
+                        font-size: 9px;
+                        letter-spacing: 0.22em;
+                    }
+                    .glow-eyebrow {
+                        gap: 12px;
                     }
                     .heading-container {
                         position: absolute;
