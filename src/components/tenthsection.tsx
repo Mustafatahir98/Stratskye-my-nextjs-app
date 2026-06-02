@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const ductTape = "/images/8 1.png";
-const hangingLogo = "/images/ChatGPT Image Jan 22, 2026, 05_35_04 PM 1 1 (1).png";
+const hangingLogo = "/images/stratskye-animate.png";
 const sectionBg = "/images/footer-landing.png";
 const wordmarkIcon = "/images/Union-logo.svg";
 const wordmarkText = "/images/Text (1).png";
@@ -50,10 +50,10 @@ export default function TenthSection() {
 
       gsap.fromTo(
         ".tenth-bg-image",
-        { yPercent: -5, scale: 1.08 },
+        { yPercent: -2, scale: 1.04 },
         {
-          yPercent: 6,
-          scale: 1.14,
+          yPercent: 2,
+          scale: 1.08,
           ease: "none",
           scrollTrigger: {
             trigger: sectionRef.current,
@@ -97,7 +97,10 @@ export default function TenthSection() {
             marketing together.
           </h2>
           <p>StratSkye can build the professional growth machine your tech deserves.</p>
-          <a href="#contact">LETS CONNECT</a>
+          <a href="/contact-form" className="tenth-cta">
+            <span className="tenth-cta-text">LETS CONNECT</span>
+            <span className="tenth-cta-arrow" aria-hidden="true" />
+          </a>
         </div>
 
         <div
@@ -106,7 +109,8 @@ export default function TenthSection() {
           }}
           className="tenth-hanging-group"
         >
-          <span className="tenth-string" aria-hidden="true" />
+          <span className="tenth-connector tenth-connector-left" aria-hidden="true" />
+          <span className="tenth-connector tenth-connector-right" aria-hidden="true" />
           <img src={hangingLogo} alt="StratSkye hanging logo" className="tenth-logo-orb" />
         </div>
 
@@ -116,7 +120,7 @@ export default function TenthSection() {
           }}
           className="tenth-footer-left"
         >
-          Stop duct-taping your
+          Stop <span>duct-taping</span> your
           <br />
           marketing together.
         </div>
@@ -137,7 +141,7 @@ export default function TenthSection() {
           }}
           className="tenth-contact"
         >
-          <span>+92 331 6547856</span>
+          <span>+92 331 6547886</span>
           <span>admin@stratskye.com</span>
         </div>
 
@@ -168,7 +172,7 @@ export default function TenthSection() {
 
       <style>{`
         .tenth-section {
-          min-height: 558px;
+          min-height: 760px;
           background: var(--post-shutter-bg);
           margin-top: -1px;
         }
@@ -179,13 +183,13 @@ export default function TenthSection() {
           right: 0;
           bottom: -1px;
           width: 100%;
-          height: 43%;
+          height: 44%;
           object-fit: cover;
-          object-position: center bottom;
+          object-position: center top;
           pointer-events: none;
           opacity: 0.98;
-          -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.16) 12%, rgba(0, 0, 0, 0.72) 24%, #000 38%);
-          mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.16) 12%, rgba(0, 0, 0, 0.72) 24%, #000 38%);
+          -webkit-mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.42) 8%, #000 20%);
+          mask-image: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.42) 8%, #000 20%);
           will-change: transform;
         }
         .tenth-bg-dim {
@@ -193,7 +197,7 @@ export default function TenthSection() {
           z-index: 1;
           inset: 0;
           background:
-            linear-gradient(180deg, rgba(13, 23, 47, 0) 0%, rgba(13, 23, 47, 0) 54%, rgba(13, 23, 47, 0.12) 74%, rgba(13, 23, 47, 0.26) 100%);
+            linear-gradient(180deg, rgba(6, 15, 34, 0.02) 0%, rgba(6, 15, 34, 0) 50%, rgba(6, 15, 34, 0.22) 69%, rgba(6, 15, 34, 0.12) 100%);
           pointer-events: none;
         }
         .tenth-grid {
@@ -207,6 +211,8 @@ export default function TenthSection() {
         .tenth-canvas {
           z-index: 3;
           transform-origin: top center;
+          height: 760px;
+          max-width: none;
         }
         .tenth-canvas::before {
           content: "";
@@ -225,129 +231,184 @@ export default function TenthSection() {
         .tenth-canvas::after {
           content: "";
           position: absolute;
-          z-index: 1;
-          left: 50%;
-          bottom: -82px;
-          width: 455px;
-          height: 220px;
-          transform: translateX(-50%);
-          border-radius: 999px 999px 0 0;
-          background:
-            radial-gradient(ellipse at 50% 86%, rgba(255, 224, 112, 0.62), rgba(255, 128, 35, 0.42) 35%, rgba(255, 128, 35, 0.14) 62%, transparent 78%);
-          filter: blur(18px);
+          z-index: 3;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 48%;
+          background: linear-gradient(180deg, transparent 0%, rgba(6, 15, 34, 0.12) 30%, rgba(6, 15, 34, 0.3) 100%);
           pointer-events: none;
         }
         .tenth-tape-wrap {
           position: absolute;
-          top: 78px;
+          top: 56px;
           left: 50%;
-          width: 126px;
-          height: 96px;
-          margin-left: -63px;
+          z-index: 6;
+          width: 154px;
+          height: 76px;
+          margin-left: -77px;
           transform-origin: 50% 0%;
         }
         .tenth-top-string {
           position: absolute;
           left: 50%;
-          top: -28px;
+          top: -54px;
           width: 1px;
-          height: 38px;
-          background: linear-gradient(180deg, transparent, rgba(211, 223, 250, 0.17), rgba(211, 223, 250, 0.08));
+          height: 62px;
+          background: linear-gradient(180deg, transparent, rgba(211, 223, 250, 0.2), rgba(211, 223, 250, 0.06));
         }
         .tenth-tape {
           position: absolute;
           left: 0;
-          top: 39px;
-          width: 126px;
+          top: 0;
+          width: 154px;
           height: auto;
-          filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.22));
+          filter: drop-shadow(0 16px 22px rgba(0, 0, 0, 0.24));
           animation: tenthTape 4.6s ease-in-out infinite;
         }
         .tenth-copy {
           position: absolute;
-          top: 188px;
+          top: 150px;
           left: 50%;
-          width: 330px;
+          z-index: 7;
+          width: min(560px, 92vw);
           transform: translateX(-50%);
           text-align: center;
         }
         .tenth-copy h2 {
+          margin: 0;
           color: #f5f7ff;
-          font-size: 25px;
-          font-weight: 600;
+          font-size: clamp(34px, 2.35vw, 44px);
+          font-weight: 650;
           line-height: 0.98;
           letter-spacing: 0;
+          white-space: nowrap;
         }
         .tenth-copy h2 span {
-          color: rgba(245, 247, 255, 0.46);
+          color: rgba(245, 247, 255, 0.48);
           font-weight: 400;
         }
         .tenth-copy p {
-          margin: 20px auto 0;
-          width: 190px;
-          color: rgba(229, 236, 255, 0.52);
-          font-size: 8px;
-          line-height: 1.35;
+          margin: 24px auto 0;
+          width: min(238px, 76vw);
+          color: rgba(229, 236, 255, 0.68);
+          font-size: clamp(9px, 1.25vw, 11px);
+          line-height: 1.12;
         }
-        .tenth-copy a {
-          display: inline-block;
-          margin-top: 29px;
-          color: rgba(245, 247, 255, 0.66);
-          font-size: 7px;
-          font-weight: 700;
-          letter-spacing: 0.16em;
-          text-decoration: underline;
-          text-underline-offset: 3px;
+        .tenth-copy .tenth-cta {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 11px;
+          margin-top: 42px;
+          color: #B6BED4;
+          leading-trim: both;
+          text-edge: cap;
+          font-family: "MONTECH V.02", "Google Sans Flex", sans-serif;
+          font-size: clamp(10px, 0.92vw, 14px);
+          font-style: normal;
+          font-weight: 500;
+          line-height: 140%;
+          letter-spacing: 2.35px;
+          text-decoration: none;
+          text-transform: uppercase;
+          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.34);
         }
-        .tenth-copy a::after {
+        .tenth-cta-text {
+          text-decoration-line: underline;
+          text-decoration-style: solid;
+          text-decoration-skip-ink: auto;
+          text-decoration-thickness: auto;
+          text-underline-offset: auto;
+          text-underline-position: from-font;
+        }
+        .tenth-cta-arrow {
+          position: relative;
+          width: 19px;
+          height: 19px;
+          flex: 0 0 19px;
+          transform: translateY(-2px);
+        }
+        .tenth-cta-arrow::before {
           content: "";
-          display: inline-block;
-          width: 5px;
-          height: 5px;
-          margin-left: 5px;
-          border-top: 1px solid #ff7a35;
-          border-right: 1px solid #ff7a35;
-          transform: translateY(-1px) rotate(45deg);
+          position: absolute;
+          inset: 0;
+          border-top: 2px solid #FF6B28;
+          border-right: 2px solid #FF6B28;
+        }
+        .tenth-cta-arrow::after {
+          content: "";
+          position: absolute;
+          right: 1px;
+          top: 1px;
+          width: 27px;
+          height: 2px;
+          background: #FF6B28;
+          transform: rotate(-45deg);
+          transform-origin: right center;
+        }
+        .tenth-copy .tenth-cta:hover .tenth-cta-arrow,
+        .tenth-copy .tenth-cta:focus-visible .tenth-cta-arrow {
+          transform: translate(3px, -5px);
         }
         .tenth-hanging-group {
           position: absolute;
-          top: 322px;
+          top: 386px;
           left: 50%;
-          z-index: 4;
-          width: 186px;
-          height: 156px;
-          margin-left: -93px;
+          z-index: 6;
+          width: 78px;
+          height: 78px;
+          margin-left: -39px;
           will-change: transform;
         }
-        .tenth-string {
+        .tenth-connector {
           position: absolute;
-          left: 50%;
-          bottom: 88px;
+          bottom: 72%;
           width: 1px;
-          height: 230px;
-          background: linear-gradient(180deg, rgba(211, 223, 250, 0.02), rgba(211, 223, 250, 0.16), rgba(211, 223, 250, 0.08));
+          height: 280px;
+          background: linear-gradient(180deg, rgba(211, 223, 250, 0.02), rgba(211, 223, 250, 0.22) 48%, rgba(211, 223, 250, 0.07));
           transform-origin: bottom center;
+          animation: tenthStringSway 4.8s ease-in-out infinite;
+          pointer-events: none;
+        }
+        .tenth-connector-left {
+          left: 47.8%;
+          transform: rotate(-0.8deg);
+        }
+        .tenth-connector-right {
+          left: 52.2%;
+          transform: rotate(0.8deg);
+          animation-delay: -1.1s;
         }
         .tenth-logo-orb {
           position: absolute;
-          left: 17px;
+          left: 0;
           top: 0;
-          width: 152px;
-          height: 152px;
+          width: 100%;
+          height: 100%;
           object-fit: contain;
-          filter:
-            drop-shadow(0 0 38px rgba(103, 169, 255, 0.88))
-            drop-shadow(0 18px 28px rgba(0, 0, 0, 0.3));
+          filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.26));
           animation: tenthLogoBob 3.9s ease-in-out infinite;
           will-change: transform;
         }
         .tenth-footer-left {
           position: absolute;
-          left: 24px;
-          top: 454px;
-          color: #f4f7ff;
-          font-size: 8px;
-          line-height: 1.12;
+          z-index: 7;
+          left: clamp(32px, 4vw, 74px);
+          top: 72.5%;
+          color: #FFF;
+          leading-trim: both;
+          text-edge: cap;
+          font-family: "Google Sans Flex";
+          font-size: clamp(20px, 1.75vw, 28px);
+          font-style: normal;
+          font-weight: 400;
+          line-height: 120%;
+          letter-spacing: -0.84px;
+          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.58);
+        }
+        .tenth-footer-left span {
+          color: rgba(245, 247, 255, 0.48);
         }
         .tenth-wordmark {
           position: absolute;
@@ -371,37 +432,49 @@ export default function TenthSection() {
         }
         .tenth-contact {
           position: absolute;
-          left: 414px;
-          top: 454px;
+          z-index: 7;
+          left: min(66vw, 1010px);
+          top: 72.5%;
           display: flex;
           flex-direction: column;
-          gap: 3px;
-          color: rgba(245, 247, 255, 0.54);
-          font-size: 6px;
-          line-height: 1.1;
+          gap: 7px;
+          color: rgba(255, 255, 255, 0.92);
+          font-family: "Google Sans Flex";
+          font-size: clamp(11px, 0.86vw, 14px);
+          font-weight: 500;
+          line-height: 1.18;
+          letter-spacing: 0;
+          text-shadow: 0 2px 7px rgba(0, 0, 0, 0.58);
         }
         .tenth-social {
           position: absolute;
-          left: 567px;
-          top: 454px;
+          z-index: 7;
+          left: auto;
+          right: clamp(32px, 4vw, 74px);
+          top: 72.5%;
           display: flex;
           flex-direction: column;
-          gap: 3px;
-          color: rgba(245, 247, 255, 0.54);
-          font-size: 6px;
-          line-height: 1.1;
+          gap: 7px;
+          color: rgba(255, 255, 255, 0.92);
+          font-family: "Google Sans Flex";
+          font-size: clamp(11px, 0.86vw, 14px);
+          font-weight: 500;
+          line-height: 1.18;
+          letter-spacing: 0;
+          text-shadow: 0 2px 7px rgba(0, 0, 0, 0.58);
         }
         .tenth-giant-word {
           position: absolute;
-          z-index: 1;
-          left: 0;
+          z-index: 2;
+          left: -0.8vw;
+          right: -0.8vw;
           bottom: -8px;
-          width: 100%;
-          color: rgba(65, 99, 190, 0.34);
-          font-size: 58px;
-          font-weight: 800;
+          width: auto;
+          color: rgba(185, 206, 255, 0.19);
+          font-size: clamp(82px, 11.8vw, 190px);
+          font-weight: 750;
           letter-spacing: 0;
-          line-height: 1;
+          line-height: 0.72;
           white-space: nowrap;
           pointer-events: none;
           display: flex;
@@ -409,28 +482,24 @@ export default function TenthSection() {
         }
         .tenth-giant-word span {
           display: inline-block;
-          color: rgba(125, 159, 255, 0.3);
-          text-shadow:
-            0 0 10px rgba(109, 159, 255, 0.62),
-            0 0 24px rgba(85, 137, 255, 0.42),
-            0 0 46px rgba(242, 110, 53, 0.26);
-          animation: tenthLetterGlow 4.6s ease-in-out infinite;
-        }
-        .tenth-giant-word span:nth-child(2n) {
-          animation-delay: -1.2s;
-        }
-        .tenth-giant-word span:nth-child(3n) {
-          animation-delay: -2.4s;
+          color: rgba(185, 206, 255, 0.19);
+          text-shadow: none;
+          animation: none;
         }
         .tenth-copyright {
           position: absolute;
-          z-index: 3;
+          z-index: 8;
           left: 50%;
-          bottom: 13px;
+          bottom: 22px;
           transform: translateX(-50%);
-          color: rgba(33, 35, 45, 0.66);
-          font-size: 5px;
+          color: #FFF;
+          font-family: "Google Sans Flex";
+          font-size: clamp(10px, 0.74vw, 12px);
+          font-weight: 500;
+          line-height: 120%;
+          letter-spacing: -0.12px;
           white-space: nowrap;
+          text-shadow: 0 2px 8px rgba(0, 0, 0, 0.68);
         }
         @keyframes tenthTape {
           0%, 100% { transform: rotate(-1.4deg) translateY(0); }
@@ -454,21 +523,25 @@ export default function TenthSection() {
         }
         @keyframes tenthLogoBob {
           0%, 100% { transform: translateY(0) scale(1); }
-          50% { transform: translateY(-7px) scale(1.04); }
+          50% { transform: translateY(-5px) scale(1.03); }
+        }
+        @keyframes tenthStringSway {
+          0%, 100% { opacity: 0.62; }
+          50% { opacity: 0.95; }
         }
         @media (min-width: 900px) {
           .tenth-section {
-            min-height: max(100vh, 905px);
-            padding-block: 0 max(28px, calc((100vh - 905px) / 2));
+            min-height: 760px;
+            padding-block: 0;
           }
           .tenth-canvas {
-            transform: scale(1.62);
+            transform: none;
+            width: 100%;
+            max-width: none;
+            height: 760px;
           }
-          .tenth-giant-word {
-            left: 50%;
-            width: calc(100vw / 1.62);
-            transform: translateX(-50%);
-            font-size: clamp(44px, 5.95vw, 86px);
+          .tenth-wordmark {
+            display: none;
           }
         }
 
@@ -579,6 +652,7 @@ export default function TenthSection() {
           .tenth-copy h2 {
             font-size: clamp(28px, 8.5vw, 36px);
             line-height: 0.98;
+            white-space: normal;
           }
           .tenth-copy p {
             margin-top: 18px;
