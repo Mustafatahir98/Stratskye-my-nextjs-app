@@ -10,6 +10,27 @@ const frames = [
   "/images/work-with-us-3.png",
 ];
 
+const mobileWays = [
+  {
+    label: "01",
+    title: "Strategy Sprint",
+    body: "Fast alignment on offer, audience, positioning, and the launch path before design starts.",
+    tag: "Plan",
+  },
+  {
+    label: "02",
+    title: "Brand + Web Build",
+    body: "A focused identity and website system built to look sharp, convert clearly, and scale cleanly.",
+    tag: "Create",
+  },
+  {
+    label: "03",
+    title: "Growth Partner",
+    body: "Ongoing creative, content, and digital support for teams that need consistent execution.",
+    tag: "Scale",
+  },
+];
+
 export default function WorkWithUsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const copyRef = useRef<HTMLDivElement>(null);
@@ -270,22 +291,76 @@ export default function WorkWithUsSection() {
             position: relative;
             min-height: 0;
             overflow: hidden;
-            border: 1px solid rgba(233, 237, 247, 0.13);
+            display: grid;
+            grid-template-columns: 44px minmax(0, 1fr);
+            grid-template-rows: auto minmax(0, 1fr) auto;
+            column-gap: 14px;
+            row-gap: 8px;
+            padding: clamp(14px, 3.4vw, 20px);
+            border: 1px solid rgba(233, 237, 247, 0.14);
             border-radius: 6px;
-            background: rgba(8, 18, 42, 0.42);
-            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.16);
+            background:
+              linear-gradient(135deg, rgba(233, 237, 247, 0.09), rgba(233, 237, 247, 0.025)),
+              rgba(8, 18, 42, 0.46);
+            box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
             will-change: transform, opacity, filter;
           }
-          .work-mobile-card img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: center bottom;
+          .work-mobile-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(90deg, rgba(242, 110, 53, 0.9), transparent 34%);
+            opacity: 0.22;
+            height: 2px;
+            pointer-events: none;
           }
-          .work-mobile-card--3 img {
-            width: 96.5104167%;
-            margin-left: auto;
+          .work-mobile-card-number {
+            grid-row: 1 / 4;
+            display: grid;
+            place-items: center;
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(242, 110, 53, 0.42);
+            border-radius: 999px;
+            color: #F26E35;
+            font-family: "Google Sans Flex";
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 1;
+          }
+          .work-mobile-card-kicker {
+            width: fit-content;
+            color: rgba(233, 237, 247, 0.58);
+            font-family: "Google Sans Flex";
+            font-size: 9px;
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+          }
+          .work-mobile-card-title {
+            min-width: 0;
+            color: #F6F7FC;
+            font-family: "Google Sans Flex";
+            font-size: clamp(17px, 4.3vw, 22px);
+            font-weight: 650;
+            line-height: 1.04;
+            letter-spacing: 0;
+          }
+          .work-mobile-card-body {
+            min-width: 0;
+            max-width: 34em;
+            color: rgba(233, 237, 247, 0.66);
+            font-family: "Google Sans Flex";
+            font-size: clamp(11px, 2.7vw, 13px);
+            font-weight: 500;
+            line-height: 1.22;
+            letter-spacing: 0;
+          }
+          .work-mobile-card:nth-child(2) {
+            background:
+              linear-gradient(135deg, rgba(242, 110, 53, 0.12), rgba(233, 237, 247, 0.025)),
+              rgba(8, 18, 42, 0.5);
           }
         }
         @media (max-width: 560px) {
@@ -313,6 +388,25 @@ export default function WorkWithUsSection() {
           }
           .work-mobile-card {
             border-radius: 5px;
+            grid-template-columns: 38px minmax(0, 1fr);
+            column-gap: 12px;
+            row-gap: 6px;
+            padding: 13px 12px;
+          }
+          .work-mobile-card-number {
+            width: 38px;
+            height: 38px;
+            font-size: 10px;
+          }
+          .work-mobile-card-kicker {
+            font-size: 8px;
+          }
+          .work-mobile-card-title {
+            font-size: clamp(16px, 4.9vw, 19px);
+          }
+          .work-mobile-card-body {
+            font-size: clamp(10.5px, 3.05vw, 12px);
+            line-height: 1.18;
           }
         }
         @media (max-width: 560px) and (max-height: 740px) {
@@ -326,6 +420,20 @@ export default function WorkWithUsSection() {
             top: 184px;
             bottom: 10px;
             gap: 6px;
+          }
+          .work-mobile-card {
+            padding: 11px 10px;
+            grid-template-columns: 34px minmax(0, 1fr);
+          }
+          .work-mobile-card-number {
+            width: 34px;
+            height: 34px;
+          }
+          .work-mobile-card-title {
+            font-size: clamp(15px, 4.5vw, 18px);
+          }
+          .work-mobile-card-body {
+            font-size: clamp(10px, 2.8vw, 11px);
           }
         }
       `}</style>
@@ -359,16 +467,19 @@ export default function WorkWithUsSection() {
         ))}
       </div>
 
-      <div className="work-mobile-cards" aria-hidden="true">
-        {frames.map((src, index) => (
+      <div className="work-mobile-cards" aria-label="Ways to work with StratSkye">
+        {mobileWays.map((way, index) => (
           <div
-            key={`mobile-${src}-${index}`}
+            key={way.title}
             ref={(el) => {
               mobileCardRefs.current[index] = el;
             }}
             className={`work-mobile-card work-mobile-card--${index + 1}`}
           >
-            <img src={src} alt="" />
+            <span className="work-mobile-card-number">{way.label}</span>
+            <span className="work-mobile-card-kicker">{way.tag}</span>
+            <h3 className="work-mobile-card-title">{way.title}</h3>
+            <p className="work-mobile-card-body">{way.body}</p>
           </div>
         ))}
       </div>
