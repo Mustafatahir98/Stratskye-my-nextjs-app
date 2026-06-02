@@ -11,6 +11,9 @@ type CapTrimStyle = CSSProperties & {
 
 export default function FifthSection() {
     const containerRef = useRef<HTMLDivElement>(null);
+    const shutterGradientRef = useRef<HTMLDivElement>(null);
+    const shutterLeftRef = useRef<HTMLDivElement>(null);
+    const shutterRightRef = useRef<HTMLDivElement>(null);
     const solutionStageRef = useRef<HTMLDivElement>(null);
     const topRingRef = useRef<HTMLImageElement>(null);
     const solutionTextRef = useRef<HTMLDivElement>(null);
@@ -38,6 +41,12 @@ export default function FifthSection() {
             });
 
             // INITIAL STATES
+            gsap.set([shutterLeftRef.current, shutterRightRef.current], {
+                xPercent: 0,
+                autoAlpha: 1,
+                force3D: true,
+            });
+            gsap.set(shutterGradientRef.current, { autoAlpha: 1 });
             gsap.set(solutionStageRef.current, { opacity: 1 });
             gsap.set(".fs-energy-field", { xPercent: -50, yPercent: -50, rotation: -18, opacity: 0, scale: 0.74, transformOrigin: "50% 50%" });
             gsap.set(".fs-stage-halo", { opacity: 0, scale: 0.76, transformOrigin: "50% 50%" });
@@ -55,7 +64,10 @@ export default function FifthSection() {
             gsap.set(logoGlowRef.current, { opacity: 0, scale: 0.52, rotation: -36 });
 
             // SEQUENCE
-            tl.to(".fs-energy-field", { opacity: 0.92, scale: 1, rotation: 0, duration: 1.05, ease: "power3.out" })
+            tl.to(shutterLeftRef.current, { xPercent: -100, duration: 0.95, ease: "power3.inOut" }, 0)
+                .to(shutterRightRef.current, { xPercent: 100, duration: 0.95, ease: "power3.inOut" }, 0)
+                .to([shutterLeftRef.current, shutterRightRef.current, shutterGradientRef.current], { autoAlpha: 0, duration: 0.24, ease: "power2.out" }, 0.82)
+                .to(".fs-energy-field", { opacity: 0.92, scale: 1, rotation: 0, duration: 1.05, ease: "power3.out" }, 0.7)
                 .to(".fs-stage-halo", { opacity: 1, scale: 1, duration: 0.9, ease: "power2.out" }, "<")
                 .to(topRingRef.current, { rotation: -8, opacity: 1, scale: 0.6, filter: "blur(0px)", duration: 1.15, ease: "expo.out" }, "<+=0.12")
                 .to(".fs-orbit-spark", { autoAlpha: 1, scale: 1, duration: 0.58, stagger: 0.045, ease: "power2.out" }, "-=0.54")
@@ -98,6 +110,36 @@ export default function FifthSection() {
             <style>{`
         .fifth-section {
           background: var(--post-shutter-bg);
+          isolation: isolate;
+        }
+        .fifth-shutter-gradient {
+          position: absolute;
+          inset: 0;
+          z-index: 30;
+          background: var(--post-shutter-bg);
+          will-change: opacity;
+          pointer-events: none;
+        }
+        .fifth-shutter {
+          position: absolute;
+          inset: 0;
+          z-index: 31;
+          overflow: hidden;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: 100% 100%;
+          backface-visibility: hidden;
+          mix-blend-mode: screen;
+          will-change: transform, opacity;
+          pointer-events: none;
+        }
+        .fifth-shutter-left {
+          background-image: url("/images/left-shutter.png");
+          transform-origin: left center;
+        }
+        .fifth-shutter-right {
+          background-image: url("/images/right-shutter.png");
+          transform-origin: right center;
         }
         .fs-crosshair::before,
         .fs-crosshair::after {
@@ -249,6 +291,9 @@ export default function FifthSection() {
           mix-blend-mode: screen;
         }
       `}</style>
+            <div ref={shutterGradientRef} className="fifth-shutter-gradient" aria-hidden="true" />
+            <div ref={shutterLeftRef} className="fifth-shutter fifth-shutter-left" aria-hidden="true" />
+            <div ref={shutterRightRef} className="fifth-shutter fifth-shutter-right" aria-hidden="true" />
             <div className="absolute inset-0 fs-crosshair opacity-80 pointer-events-none" />
             <div className="fs-corner-glow fs-corner-glow-left" aria-hidden="true" />
             <div className="fs-corner-glow fs-corner-glow-right" aria-hidden="true" />

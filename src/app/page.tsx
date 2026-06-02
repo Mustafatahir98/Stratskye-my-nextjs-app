@@ -1,7 +1,6 @@
 import HeroSection from "@/components/HeroSection";
 import StorySection from "@/components/StorySection";
 import ThirdSection from "@/components/ThirdSection";
-import FourthSection from "@/components/FourthSection";
 import FifthSection from "@/components/FifthSection";
 import SixthSection from "@/components/SixthSection";
 import SeventhSection from "@/components/SeventhSection";
@@ -21,7 +20,6 @@ export default function Home() {
         <StorySection />
       </div>
       <ThirdSection />
-      <FourthSection />
       <FifthSection />
       <div id="services">
         <SixthSection />
