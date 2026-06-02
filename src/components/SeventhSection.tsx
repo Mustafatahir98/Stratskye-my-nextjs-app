@@ -285,29 +285,31 @@ export default function SeventhSection() {
           z-index: 1;
           left: 50%;
           top: -17%;
-          width: min(88%, 940px);
+          width: min(84%, 900px);
           aspect-ratio: 1 / 1;
           border-radius: 999px;
           transform: translateX(-50%);
           background:
             radial-gradient(circle, rgba(255, 255, 255, 0.36) 0 16%, rgba(207, 222, 250, 0.19) 34%, transparent 54%),
             radial-gradient(circle, transparent 57%, rgba(255, 255, 255, 0.34) 58.2%, rgba(197, 216, 249, 0.18) 61.5%, transparent 65%);
-          filter: blur(5px);
+          overflow: hidden;
+          filter: blur(4px);
           mix-blend-mode: screen;
         }
         .proof-moon-rays {
           z-index: 1;
           left: 50%;
           top: -17%;
-          width: min(88%, 940px);
+          width: min(84%, 900px);
           aspect-ratio: 1 / 1;
           transform: translateX(-50%);
-          opacity: 0.42;
+          opacity: 0.32;
           border-radius: 999px;
           background:
             conic-gradient(from 205deg at 50% 50%, transparent 0deg, rgba(255, 255, 255, 0.18) 18deg, transparent 36deg, rgba(185, 210, 255, 0.14) 76deg, transparent 104deg, rgba(255, 255, 255, 0.16) 154deg, transparent 192deg, rgba(255, 255, 255, 0.11) 244deg, transparent 282deg, rgba(201, 220, 255, 0.13) 318deg, transparent 360deg),
             radial-gradient(circle, transparent 0 48%, rgba(255, 255, 255, 0.19) 54%, transparent 69%);
-          filter: blur(9px);
+          overflow: hidden;
+          filter: blur(7px);
           mix-blend-mode: screen;
         }
         .proof-moon {
@@ -328,9 +330,9 @@ export default function SeventhSection() {
           width: 112%;
           height: 90%;
           object-fit: fill;
-          opacity: 0.74;
+          opacity: 0.92;
           mix-blend-mode: normal;
-          filter: brightness(0.82) saturate(1.2) contrast(1.08);
+          filter: brightness(0.72) saturate(1.28) contrast(1.12);
         }
         .proof-mountain {
           z-index: 8;
@@ -470,7 +472,7 @@ export default function SeventhSection() {
         }
         .proof-card-cyber {
           left: 19.4%;
-          top: 36.4%;
+          top: 38.2%;
         }
         .proof-card-fintech {
           left: 56.5%;
@@ -482,7 +484,7 @@ export default function SeventhSection() {
           width: clamp(258px, 32.5vw, 360px);
         }
         .proof-anchor-cyber .proof-card-line {
-          height: clamp(50px, 6vw, 68px);
+          height: clamp(72px, 8.1vw, 92px);
         }
         .proof-anchor-fintech .proof-card-line {
           height: clamp(30px, 4.3vw, 49px);
@@ -605,13 +607,14 @@ export default function SeventhSection() {
           }
           .proof-moon-halo {
             top: 1.8%;
-            width: min(178%, 720px);
-            filter: blur(6px);
+            width: min(170%, 690px);
+            filter: blur(5px);
           }
           .proof-moon-rays {
             top: 1.8%;
-            width: min(178%, 720px);
-            filter: blur(10px);
+            width: min(170%, 690px);
+            opacity: 0.28;
+            filter: blur(8px);
           }
           .proof-moon {
             left: 50%;
@@ -631,7 +634,7 @@ export default function SeventhSection() {
             bottom: 0;
             width: 236%;
             height: 80%;
-            opacity: 0.78;
+            opacity: 0.92;
           }
           .proof-stars {
             height: 68%;
@@ -652,7 +655,7 @@ export default function SeventhSection() {
           }
           .proof-card-cyber {
             left: 0.4%;
-            top: 42.8%;
+            top: 44.2%;
           }
           .proof-card-fintech {
             left: auto;
@@ -671,7 +674,7 @@ export default function SeventhSection() {
             height: 9px;
           }
           .proof-anchor-cyber .proof-card-line {
-            height: 63px;
+            height: 82px;
           }
           .proof-anchor-fintech .proof-card-line {
             height: 46px;
@@ -701,7 +704,7 @@ export default function SeventhSection() {
             width: 52.4%;
           }
           .proof-card-cyber {
-            top: 42.2%;
+            top: 43.5%;
           }
           .proof-card-fintech {
             top: 41.9%;
@@ -711,7 +714,7 @@ export default function SeventhSection() {
           }
           .proof-anchor-cyber .proof-card-line,
           .proof-anchor-fintech .proof-card-line {
-            height: 58px;
+            height: 76px;
           }
         }
       `}</style>
