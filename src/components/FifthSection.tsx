@@ -29,6 +29,8 @@ export default function FifthSection() {
         gsap.registerPlugin(ScrollTrigger);
 
         const ctx = gsap.context(() => {
+            const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: containerRef.current,
@@ -63,11 +65,22 @@ export default function FifthSection() {
             gsap.set(animateLogoRef.current, { opacity: 0, rotation: -180, filter: "grayscale(100%) blur(5px)", scale: 0.46 });
             gsap.set(logoGlowRef.current, { opacity: 0, scale: 0.52, rotation: -36 });
 
-            // SEQUENCE
-            tl.to(shutterLeftRef.current, { xPercent: -100, duration: 0.95, ease: "power3.inOut" }, 0)
+            const shutterTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: containerRef.current,
+                    start: isMobile ? "top 82%" : "top 72%",
+                    end: "top top",
+                    scrub: 0.8,
+                    invalidateOnRefresh: true,
+                },
+            });
+
+            shutterTl.to(shutterLeftRef.current, { xPercent: -100, duration: 0.95, ease: "power3.inOut" }, 0)
                 .to(shutterRightRef.current, { xPercent: 100, duration: 0.95, ease: "power3.inOut" }, 0)
-                .to([shutterLeftRef.current, shutterRightRef.current, shutterGradientRef.current], { autoAlpha: 0, duration: 0.24, ease: "power2.out" }, 0.82)
-                .to(".fs-energy-field", { opacity: 0.92, scale: 1, rotation: 0, duration: 1.05, ease: "power3.out" }, 0.7)
+                .to([shutterLeftRef.current, shutterRightRef.current, shutterGradientRef.current], { autoAlpha: 0, duration: 0.24, ease: "power2.out" }, 0.82);
+
+            // SEQUENCE
+            tl.to(".fs-energy-field", { opacity: 0.92, scale: 1, rotation: 0, duration: 1.05, ease: "power3.out" }, 0.12)
                 .to(".fs-stage-halo", { opacity: 1, scale: 1, duration: 0.9, ease: "power2.out" }, "<")
                 .to(topRingRef.current, { rotation: -8, opacity: 1, scale: 0.6, filter: "blur(0px)", duration: 1.15, ease: "expo.out" }, "<+=0.12")
                 .to(".fs-orbit-spark", { autoAlpha: 1, scale: 1, duration: 0.58, stagger: 0.045, ease: "power2.out" }, "-=0.54")
