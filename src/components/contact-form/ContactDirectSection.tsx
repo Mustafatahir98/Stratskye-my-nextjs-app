@@ -170,11 +170,10 @@ export default function ContactDirectSection() {
 
         <div className="contact-direct-content">
           <h2 id="contact-direct-title" className="contact-direct-title">
-            Forms aren&apos;t your thing? Contact us directly and let&apos;s make it simple.
+           Don't love filling out forms? Contact us directly and let's make it simple.
           </h2>
           <p className="contact-direct-copy">
-            Some conversations are better without forms. If you&apos;d rather keep it
-            simple, give us a call or send over an email, we&apos;re ready when you are.
+          Some conversations are better without a form. If you'd rather skip the fields, get a hold of us on whichever channel feels natural.
           </p>
 
           <div className="contact-direct-cards">

@@ -3,38 +3,50 @@ import Image from "next/image";
 const formFields = [
   {
     id: "name",
-    label: "Name*",
-    placeholder: "Enter you name please",
+    label: "Name",
+    placeholder: "Enter your name",
     type: "text",
   },
   {
     id: "company",
     label: "Company",
-    placeholder: "Enter you company name",
+    placeholder: "Enter your company name",
+    type: "text",
+  },
+  {
+    id: "position",
+    label: "Position",
+    placeholder: "Enter your position or role",
+    type: "text",
+  },
+  {
+    id: "industry",
+    label: "Industry",
+    placeholder: "Enter your industry",
     type: "text",
   },
   {
     id: "email",
-    label: "Email*",
-    placeholder: "Enter you email",
+    label: "Email Address",
+    placeholder: "Enter your email address",
     type: "email",
   },
   {
     id: "phone",
-    label: "Phone number",
+    label: "Phone Number",
     placeholder: "Enter your phone number",
     type: "tel",
   },
   {
     id: "budget",
-    label: "Budget*",
-    placeholder: "Please describe your budget",
+    label: "Budget",
+    placeholder: "Enter your budget range",
     type: "text",
   },
   {
     id: "project-description",
-    label: "Project description*",
-    placeholder: "Please describe your project description",
+    label: "Project Description",
+    placeholder: "Describe your project",
     type: "text",
   },
 ];
@@ -241,8 +253,7 @@ export default function ContactFormHero() {
       <div className="contact-form-shell">
         <div className="contact-form-top">
           <h1 id="contact-form-title" className="contact-form-title">
-            Contact us &amp; start the Conversation That{" "}
-            <span>Changes Everything</span>
+           Contact Us
           </h1>
 
           <Image
@@ -256,8 +267,8 @@ export default function ContactFormHero() {
         </div>
 
         <p className="contact-form-intro">
-          Tell us about your business, your ambitions, and the roadblocks in the
-          way, we&apos;ll bring the clarity, direction, and execution to help you grow.
+         Tell us what you are building, what is getting in the way, and we will look at it properly and show you what actually needs to change.
+
         </p>
 
         <form className="contact-form">

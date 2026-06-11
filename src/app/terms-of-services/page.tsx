@@ -1,58 +1,74 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Services | StratSkye",
-  description: "Terms for using StratSkye services.",
+  title: "Terms of Service | StratSkye",
+  description: "Terms for using the Stratskye website and services.",
 };
 
 const termsSections = [
   {
-    title: "Introduction",
-    copy: "By accessing or using StratSkye's website and services, you agree to comply with and be bound by these Terms of Services. If you do not agree with any part of these terms, please discontinue use of our services and website.",
+    title: "Terms of Service",
+    copy: "By accessing the Stratskye website or engaging with any of our services, you agree to the terms outlined below. Please review this document thoroughly before proceeding.",
   },
   {
-    title: "Services",
-    copy: "StratSkye provides branding, website development, marketing, strategy, and growth-related services for businesses and organizations. All project scopes, timelines, and deliverables are agreed upon separately through proposals, contracts, or written communication.",
+    title: "Acceptance of Terms",
+    copy: "Continued use of this website, submission of any inquiry, or engagement with Stratskye services constitutes full acceptance of these Terms of Service alongside our Privacy Policy. Individuals who do not accept these terms should refrain from using this website or its associated services.",
   },
   {
-    title: "Client Responsibilities",
-    copy: "Clients agree to provide accurate information, timely feedback, approvals, and all necessary materials required to complete the project. Delays in communication or approvals may affect timelines and delivery schedules.",
+    title: "About Stratskye",
+    copy: "Stratskye is a B2B marketing agency delivering strategic marketing programmes, brand positioning, demand generation, content development, paid media, SEO, and email marketing to technology companies operating in competitive markets.",
   },
   {
-    title: "Payments & Billing",
-    copy: "All payments must be completed according to the agreed payment schedule outlined in the proposal or invoice. Late payments may result in paused work, delayed delivery, or additional fees where applicable.",
+    title: "Use of Website",
+    copy: "This website is provided for lawful business purposes only. Users are prohibited from engaging in fraudulent activity through this platform, seeking unauthorised access to any system or data associated with this website, reproducing or distributing proprietary content without written authorisation, and providing false or misleading information through any submission channel.",
   },
   {
     title: "Intellectual Property",
-    copy: "Upon final payment, clients receive ownership of the final approved deliverables unless otherwise stated in writing. StratSkye reserves the right to showcase completed work in portfolios, marketing materials, and case studies unless restricted by agreement.",
+    copy: "All materials published on this website, including written content, visual assets, brand elements, and strategic frameworks, are the sole property of Stratskye. Written authorisation is required before any content is reproduced, modified, or distributed in any form.",
   },
   {
-    title: "Revisions & Scope Changes",
-    copy: "Projects include a defined number of revisions as outlined in the project agreement. Additional revisions or requests outside the agreed scope may require additional billing and timeline adjustments.",
+    title: "Service Agreements",
+    copy: "Paid engagements with Stratskye are governed by a dedicated client agreement specifying scope, deliverables, timelines, and commercial terms. The terms outlined on this page apply to general website usage and do not replace or modify any separately executed client contract.",
   },
   {
-    title: "Confidentiality",
-    copy: "Both parties agree to keep confidential information private and not disclose sensitive business information shared during the course of the project.",
+    title: "Payments and Fees",
+    copy: "Fee structures and payment schedules are documented within individual client agreements or invoices. Stratskye reserves the right to revise its pricing with appropriate notice. Payments rendered for services are non-refundable except where a signed agreement explicitly provides otherwise.",
+  },
+  {
+    title: "Third-Party Platforms",
+    copy: "Service delivery at Stratskye may incorporate third-party platforms including advertising networks, analytics systems, CRM tools, and social media channels. Stratskye bears no responsibility for disruptions, policy revisions, additional fees, or performance changes originating from third-party providers outside our direct control.",
+  },
+  {
+    title: "No Guarantees",
+    copy: "Stratskye applies rigorous methodology and established practice across every engagement. Specific outcomes including traffic volume, lead acquisition, revenue figures, or search rankings cannot be guaranteed, as results are subject to factors including market conditions, competitive activity, budget parameters, and client involvement.",
   },
   {
     title: "Limitation of Liability",
-    copy: "StratSkye is not liable for indirect, incidental, or consequential damages arising from the use of our services, websites, or deliverables. We do not guarantee specific business outcomes, revenue growth, or performance results.",
+    copy: "Stratskye shall not be held liable, to the extent permitted by law, for indirect, incidental, or consequential losses arising from use of this website or delivery of services. This encompasses financial loss, lost business opportunities, data loss, and loss of anticipated revenue.",
   },
   {
-    title: "Third-Party Services",
-    copy: "Projects may involve third-party tools, software, platforms, or services. StratSkye is not responsible for issues, downtime, pricing changes, or policies related to third-party providers.",
+    title: "Confidentiality",
+    copy: "All proprietary or sensitive information exchanged between Stratskye and its clients during an engagement is treated with strict confidentiality. Neither party is permitted to share such information with external parties without prior written consent, except where disclosure is required by law.",
   },
   {
     title: "Termination",
-    copy: "Either party may terminate a project or service agreement with written notice. Clients remain responsible for payment for work completed up to the termination date.",
+    copy: "Stratskye reserves the right to restrict or terminate website access and service delivery where these terms have been breached, where misuse has been identified, or where continued engagement is deemed contrary to the interests of Stratskye or its clients.",
   },
   {
-    title: "Updates to Terms",
-    copy: "We reserve the right to update or modify these Terms of Service at any time. Continued use of our website or services after changes are published constitutes acceptance of the revised terms.",
+    title: "Links to Other Websites",
+    copy: "References or hyperlinks to external websites are included for informational purposes only. Stratskye does not endorse, control, or accept responsibility for the content, accuracy, or data practices of any linked third-party site.",
   },
   {
-    title: "Contact",
-    copy: "For questions regarding these Terms of Service, please contact StratSkye directly through our website or official communication channels.",
+    title: "Changes to These Terms",
+    copy: "These Terms of Service are subject to revision at Stratskye's discretion. Amendments will be reflected on this page with a revised effective date. Ongoing use of the website following any update constitutes acceptance of the modified terms.",
+  },
+  {
+    title: "Governing Law",
+    copy: "These Terms of Service are subject to and shall be interpreted in accordance with the applicable laws of the jurisdiction in which Stratskye is incorporated and operates.",
+  },
+  {
+    title: "Contact Us",
+    copy: "Enquiries regarding these Terms of Service may be directed to Stratskye through the following: Contact Page",
   },
 ];
 
@@ -163,8 +179,8 @@ export default function TermsOfServicesPage() {
       <section className="terms-shell" aria-labelledby="terms-title">
         <div className="terms-hero">
           <h1 id="terms-title" className="terms-title">
-            <span className="terms-title-main">Terms for Using</span>
-            <span>Our Services</span>
+            <span className="terms-title-main">Terms of</span>
+            <span>Service</span>
           </h1>
 
           <div className="terms-content">
@@ -176,7 +192,7 @@ export default function TermsOfServicesPage() {
             ))}
           </div>
 
-          <p className="terms-date">Last Updated: 11/05/2026</p>
+          <p className="terms-date">Last Updated: 11/06/2026</p>
         </div>
       </section>
     </main>

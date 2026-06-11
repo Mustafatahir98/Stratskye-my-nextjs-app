@@ -3,8 +3,8 @@ import ContactDirectSection from "@/components/contact-form/ContactDirectSection
 import ContactFormHero from "@/components/contact-form/ContactFormHero";
 
 export const metadata: Metadata = {
-  title: "Contact Form | StratSkye",
-  description: "Start a conversation with StratSkye about your growth goals.",
+  title: "Contact Us | StratSkye",
+  description: "Tell StratSkye what you are building and what is getting in the way.",
 };
 
 export default function ContactFormPage() {
