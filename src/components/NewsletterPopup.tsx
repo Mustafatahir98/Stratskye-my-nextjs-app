@@ -187,6 +187,9 @@ export default function NewsletterPopup() {
           }
           .newsletter-title {
             max-width: 340px;
+            white-space: nowrap;
+            font-size: clamp(25px, 7.4vw, 32px);
+            letter-spacing: -0.9px;
           }
           .newsletter-fields {
             padding: 22px 18px 18px;
