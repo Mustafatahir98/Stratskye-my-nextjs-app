@@ -1,0 +1,228 @@
+[browser] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <HotReload globalError={[...]} webSocket={WebSocket} staticIndicatorState={{pathname:null, ...}}>
+      <AppDevOverlayErrorBoundary globalError={[...]}>
+        <ReplaySsrOnlyErrors>
+        <DevRootHTTPAccessFallbackBoundary>
+          <HTTPAccessFallbackBoundary notFound={<NotAllowedRootHTTPFallbackError>}>
+            <HTTPAccessFallbackErrorBoundary pathname="/terms-of-..." notFound={<NotAllowedRootHTTPFallbackError>} ...>
+              <RedirectBoundary>
+                <RedirectErrorBoundary router={{...}}>
+                  <Head headCacheNode={{rsc:{...}, ...}}>
+                    <__next_viewport_boundary__>
+                    <MetadataWrapper>
+                      <div
+                        hidden={true}
+-                       bis_skin_checked="1"
+                      >
+                    ...
+                  <__next_root_layout_boundary__>
+                    <SegmentViewNode type="layout" pagePath="layout.tsx">
+                      <SegmentTrieNode>
+                      <link>
+                      <script>
+                      <script>
+                      <script>
+                      <RootLayout>
+                        <html lang="en" suppressHydrationWarning={true}>
+                          <body className="google_san..." suppressHydrationWarning={true}>
+                            <SiteHeader>
+                              <style>
+                              <div
+                                className="noise-overlay"
+-                               bis_skin_checked="1"
+                              >
+                              <nav>
+                              <div id="site-menu" className={"menu-ove..."} aria-hidden={true}>
+                                <div>
+                                <div className="menu-panel">
+                                  <ul className="menu-list">
+                                    <li>
+                                    <li>
+                                      <LinkComponent className={"menu-link "} href="/work" onClick={function onClick}>
+                                        <a
+                                          className={"menu-link "}
+                                          ref={function}
+                                          onClick={function onClick}
+                                          onMouseEnter={function onMouseEnter}
+                                          onTouchStart={function onTouchStart}
+                                          href="/work"
+-                                         bis_skin_checked="1"
+                                        >
++                                         Work
+                                    <li>
+                                      <LinkComponent className={"menu-link "} href="/services" onClick={function onClick}>
+                                        <a
+                                          className={"menu-link "}
+                                          ref={function}
+                                          onClick={function onClick}
+                                          onMouseEnter={function onMouseEnter}
+                                          onTouchStart={function onTouchStart}
+                                          href="/services"
+-                                         bis_skin_checked="1"
+                                        >
++                                         Services
+                                    <li>
+                                      <LinkComponent className={"menu-link "} href="/blog" onClick={function onClick}>
+                                        <a
+                                          className={"menu-link "}
+                                          ref={function}
+                                          onClick={function onClick}
+                                          onMouseEnter={function onMouseEnter}
+                                          onTouchStart={function onTouchStart}
+                                          href="/blog"
+-                                         bis_skin_checked="1"
+                                        >
++                                         Articles
+                                    <li>
+                                      <LinkComponent className={"menu-link "} href="/about" onClick={function onClick}>
+                                        <a
+                                          className={"menu-link "}
+                                          ref={function}
+                                          onClick={function onClick}
+                                          onMouseEnter={function onMouseEnter}
+                                          onTouchStart={function onTouchStart}
+                                          href="/about"
+-                                         bis_skin_checked="1"
+                                        >
++                                         About
+                                    <li>
+                                      <LinkComponent className={"menu-link "} href="/contact-form" ...>
+                                        <a
+                                          className={"menu-link "}
+                                          ref={function}
+                                          onClick={function onClick}
+                                          onMouseEnter={function onMouseEnter}
+                                          onTouchStart={function onTouchStart}
+                                          href="/contact-form"
+-                                         bis_skin_checked="1"
+                                        >
++                                         Contact
+                                  <nav className="menu-social" aria-label="Social links">
+                                    <ul className="menu-socia...">
+                                      <li>
+                                        <LinkComponent className="menu-socia..." href="https://ww..." ...>
+                                          <a
+                                            className="menu-social-link"
+                                            ref={function}
+                                            onClick={function onClick}
+                                            onMouseEnter={function onMouseEnter}
+                                            onTouchStart={function onTouchStart}
+                                            href="https://www.instagram.com/stratskye/"
+-                                           bis_skin_checked="1"
+                                          >
++                                           Instagram
+                                      <li>
+                                        <LinkComponent className="menu-socia..." href="https://ww..." ...>
+                                          <a
+                                            className="menu-social-link"
+                                            ref={function}
+                                            onClick={function onClick}
+                                            onMouseEnter={function onMouseEnter}
+                                            onTouchStart={function onTouchStart}
+                                            href="https://www.linkedin.com/company/stratskye/"
+-                                           bis_skin_checked="1"
+                                          >
++                                           LinkedIn
+                                      <li>
+                                        <LinkComponent className="menu-socia..." href="/terms-of-..." ...>
+                                          <a
+                                            className="menu-social-link"
+                                            ref={function}
+                                            onClick={function onClick}
+                                            onMouseEnter={function onMouseEnter}
+                                            onTouchStart={function onTouchStart}
+                                            href="/terms-of-services"
+-                                           bis_skin_checked="1"
+                                          >
++                                           Terms of Service
+                                      <li>
+                                        <LinkComponent className="menu-socia..." href="/privacy-p..." ...>
+                                          <a
+                                            className="menu-social-link"
+                                            ref={function}
+                                            onClick={function onClick}
+                                            onMouseEnter={function onMouseEnter}
+                                            onTouchStart={function onTouchStart}
+                                            href="/privacy-policy"
+-                                           bis_skin_checked="1"
+                                          >
++                                           Privacy Policy
+                            ...
+                              <footer ref={{current:null}} className="page-footer" aria-label="Site footer">
+                                <img>
+                                <div>
+                                <div>
+                                <div className="page-foote...">
+                                  <div>
+                                  <div ref={function PageFooter[<div>.ref]} className="page-foote...">
+                                    <h2>
+                                    <p>
+                                    <LinkComponent href="/contact-form" className="page-foote...">
+                                      <a
+                                        className="page-footer-cta"
+                                        ref={function}
+                                        onClick={function onClick}
+                                        onMouseEnter={function onMouseEnter}
+                                        onTouchStart={function onTouchStart}
+                                        href="/contact-form"
+-                                       bis_skin_checked="1"
+                                      >
+                                  <div>
+                                  <div>
+                                  <LinkComponent>
+                                  <div ref={function PageFooter[<div>.ref]} className="page-foote...">
+                                    <a
+                                      href="tel:+923316547886"
+-                                     bis_skin_checked="1"
+                                    >
++                                     +92 331 6547886
+                                    <a
+                                      href="mailto:admin@stratskye.com"
+-                                     bis_skin_checked="1"
+                                    >
++                                     admin@stratskye.com
+                                  <div ref={function PageFooter[<div>.ref]} className="page-foote...">
+                                    <a
+                                      href="https://www.instagram.com/"
+                                      target="_blank"
+                                      rel="noreferrer"
+-                                     bis_skin_checked="1"
+                                    >
++                                     instagram
+                                    <a
+                                      href="https://www.linkedin.com/"
+                                      target="_blank"
+                                      rel="noreferrer"
+-                                     bis_skin_checked="1"
+                                    >
++                                     linkedin
+                                  ...
+                                ...
+                  ...
+ 
+    at <unknown> (file://C:/Users/Mustafa Tahir/stratskye/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:3439:25)
+    at runWithFiberInDEV (file://C:/Users/Mustafa Tahir/stratskye/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:74)
+    at emitPendingHydrationWarnings (file://C:/Users/Mustafa Tahir/stratskye/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:3438:13)
+    at completeWork (file://C:/Users/Mustafa Tahir/stratskye/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:6885:102)
+    at runWithFiberInDEV (file://C:/Users/Mustafa Tahir/stratskye/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:965:131)
+    at completeUnitOfWork (file://C:/Users/Mustafa Tahir/stratskye/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9622:23)
+    at performUnitOfWork (file://C:/Users/Mustafa Tahir/stratskye/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9557:28)
+    at workLoopConcurrentByScheduler (file://C:/Users/Mustafa Tahir/stratskye/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9551:58)
+    at renderRootConcurrent (file://C:/Users/Mustafa Tahir/stratskye/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9534:71)
+    at performWorkOnRoot (file://C:/Users/Mustafa Tahir/stratskye/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:9061:150)
+    at performWorkOnRootViaSchedulerTask (file://C:/Users/Mustafa Tahir/stratskye/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:10255:9)
+    at MessagePort.performWorkUntilDeadline (file://C:/Users/Mustafa Tahir/stratskye/.next/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js:2647:64) (file://C:/Users/Mustafa Tahir/stratskye/.next/dev/static/chunks/node_modules_next_dist_compiled_react-dom_058-ah~._.js:3439:25)
+[browser] Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior (file://C:/Users/Mustafa Tahir/stratskye/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)
+[browser] Image with src "/images/8 1.png" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio. (file://C:/Users/Mustafa Tahir/stratskye/.next/dev/static/chunks/node_modules_next_dist_115brz8._.js:2431:13)

@@ -1,0 +1,15 @@
+
+> stratskye@0.1.0 dev
+> next dev --port 3000
+
+▲ Next.js 16.2.4 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.56.1:3000
+✓ Ready in 1137ms
+Creating turbopack project { dir: 'C:\\Users\\Mustafa Tahir\\stratskye', testMode: true }
+
+○ Compiling /terms-of-services ...
+ GET /terms-of-services 200 in 7.5s (next.js: 6.6s, application-code: 883ms)
+ GET /privacy-policy 200 in 845ms (next.js: 647ms, application-code: 198ms)
+ GET /privacy-policy 200 in 122ms (next.js: 6ms, application-code: 115ms)
+ GET /privacy-policy 200 in 123ms (next.js: 10ms, application-code: 113ms)
