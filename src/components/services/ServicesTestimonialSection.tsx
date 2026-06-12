@@ -60,7 +60,6 @@ export default function ServicesTestimonialSection() {
           font-weight: 600;
           line-height: 100%;
           letter-spacing: -2.16px;
-          text-transform: uppercase;
           background: linear-gradient(180deg, #0D162F 0%, rgba(13, 22, 47, 0.20) 56.28%);
           background-clip: text;
           -webkit-background-clip: text;
@@ -79,7 +78,6 @@ export default function ServicesTestimonialSection() {
           font-weight: 600;
           line-height: 120%;
           letter-spacing: 1.1px;
-          text-transform: uppercase;
         }
         .services-testimonial-cta {
           display: grid;
@@ -123,7 +121,6 @@ export default function ServicesTestimonialSection() {
           font-weight: 700;
           line-height: 120%;
           letter-spacing: 1.1px;
-          text-transform: uppercase;
         }
         .services-testimonial-link span:last-child {
           font-size: 16px;
@@ -196,7 +193,7 @@ export default function ServicesTestimonialSection() {
 
       <div className="services-testimonial-shell">
         <div className="services-testimonial-top">
-          <div className="services-testimonial-kicker">(Happy Client)</div>
+          <div className="services-testimonial-kicker">CLIENT FEEDBACK</div>
 
           <div className="services-testimonial-portrait-wrap">
             <Image
@@ -215,27 +212,26 @@ export default function ServicesTestimonialSection() {
           id="services-testimonial-title"
           className="services-testimonial-quote"
         >
-          “Working with StratSkye felt like adding a true growth partner to our
-          team. They were proactive, strategic, and helped us improve everything
-          from our brand positioning to our digital presence. Highly recommend
-          them to any tech company serious about scaling.”
+          &ldquo;I&rsquo;ve worked with agencies before, but this is the first time I
+          felt true transparency and accountability. Clear reporting, proactive
+          ideas, and results that spoke for themselves.&rdquo;
         </blockquote>
 
         <div className="services-testimonial-meta" aria-label="Client details">
-          <span>Huzefeh Bin Ali</span>
-          <span>Head of Design - Hontech</span>
+          <span>Amira K.</span>
         </div>
 
         <div className="services-testimonial-cta">
-          <h2>Let&apos;s work together</h2>
+          <h2>LET&apos;S FIGURE OUT WHERE TO START</h2>
 
           <div className="services-testimonial-cta-copy">
             <p>
-              Work with us if blending in was never the goal. Bring the vision,
-              we&apos;ll build the momentum.
+              Most conversations begin with one specific problem and expand from
+              there. Tell us where marketing feels stuck right now and we&apos;ll
+              be direct about whether we can help.
             </p>
             <Link className="services-testimonial-link" href="/#contact">
-              <span>You can say hello!</span>
+              <span>Start the Conversation</span>
               <span aria-hidden="true">-&gt;</span>
             </Link>
           </div>

@@ -24,14 +24,14 @@ export default function ServicesHero() {
           align-items: start;
         }
         .services-hero-title {
-          max-width: 520px;
+          max-width: 820px;
           color: var(--blue);
           font-family: "Google Sans Flex";
-          font-size: 80px;
+          font-size: clamp(58px, 5.9vw, 80px);
           font-style: normal;
           font-weight: 500;
           line-height: 100%;
-          letter-spacing: -2.4px;
+          letter-spacing: 0;
           font-optical-sizing: auto;
           font-variation-settings: "opsz" 96, "wdth" 104, "GRAD" 0, "ROND" 0;
           text-rendering: geometricPrecision;
@@ -40,11 +40,11 @@ export default function ServicesHero() {
         .services-hero-title span {
           color: var(--orange);
           font-family: "Google Sans Flex";
-          font-size: 80px;
+          font-size: clamp(58px, 5.9vw, 80px);
           font-style: normal;
           font-weight: 500;
           line-height: 100%;
-          letter-spacing: -2.4px;
+          letter-spacing: 0;
         }
         .services-scroll-note {
           width: min(100%, 430px);
@@ -77,7 +77,7 @@ export default function ServicesHero() {
           font-style: normal;
           font-weight: 600;
           line-height: 120%;
-          letter-spacing: -0.96px;
+          letter-spacing: 0;
         }
         .services-hero-intro p {
           margin-top: 18px;
@@ -86,8 +86,8 @@ export default function ServicesHero() {
           font-size: 16px;
           font-style: normal;
           font-weight: 400;
-          line-height: 125%;
-          letter-spacing: -0.32px;
+          line-height: 145%;
+          letter-spacing: 0;
         }
         .services-hero-copy-row {
           display: grid;
@@ -103,7 +103,7 @@ export default function ServicesHero() {
           font-style: normal;
           font-weight: 500;
           line-height: 120%;
-          letter-spacing: -0.22px;
+          letter-spacing: 0;
           text-transform: uppercase;
         }
         .services-hero-copy {
@@ -113,33 +113,49 @@ export default function ServicesHero() {
           font-size: 16px;
           font-style: normal;
           font-weight: 400;
-          line-height: 125%;
-          letter-spacing: -0.32px;
+          line-height: 145%;
+          letter-spacing: 0;
+        }
+        .services-hero-durability {
+          margin-top: clamp(104px, 11vw, 156px);
+          display: grid;
+          grid-template-columns: minmax(0, 0.95fr) minmax(280px, 0.72fr);
+          gap: clamp(28px, 6vw, 92px);
+          align-items: end;
         }
         .services-hero-statement {
-          max-width: 860px;
-          margin-top: clamp(104px, 11vw, 156px);
           color: var(--blue);
           font-family: "Google Sans Flex";
-          font-size: 64px;
+          font-size: clamp(44px, 4.7vw, 64px);
           font-style: normal;
           font-weight: 600;
           line-height: 100%;
-          letter-spacing: -1.92px;
+          letter-spacing: 0;
         }
         .services-hero-statement span {
           color: var(--orange);
           font-family: "Google Sans Flex";
-          font-size: 64px;
+          font-size: clamp(44px, 4.7vw, 64px);
           font-style: normal;
           font-weight: 600;
           line-height: 100%;
-          letter-spacing: -1.92px;
+          letter-spacing: 0;
+        }
+        .services-hero-durability p {
+          max-width: 470px;
+          color: rgba(13, 22, 47, 0.62);
+          font-family: "Google Sans Flex";
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 145%;
+          letter-spacing: 0;
         }
         @media (max-width: 980px) {
           .services-hero-top,
           .services-hero-media-row,
-          .services-hero-copy-row {
+          .services-hero-copy-row,
+          .services-hero-durability {
             grid-template-columns: 1fr;
           }
           .services-scroll-note {
@@ -153,12 +169,12 @@ export default function ServicesHero() {
           .services-hero-title,
           .services-hero-title span {
             font-size: clamp(48px, 9vw, 72px);
-            letter-spacing: -1.8px;
+            letter-spacing: 0;
           }
           .services-hero-statement,
           .services-hero-statement span {
             font-size: clamp(42px, 7vw, 58px);
-            letter-spacing: -1.55px;
+            letter-spacing: 0;
           }
         }
         @media (max-width: 620px) {
@@ -168,7 +184,7 @@ export default function ServicesHero() {
           .services-hero-title,
           .services-hero-title span {
             font-size: clamp(38px, 12vw, 52px);
-            letter-spacing: -1.2px;
+            letter-spacing: 0;
           }
           .services-hero-media-row {
             margin-top: 30px;
@@ -178,7 +194,7 @@ export default function ServicesHero() {
           }
           .services-hero-intro h2 {
             font-size: 26px;
-            letter-spacing: -0.72px;
+            letter-spacing: 0;
           }
           .services-hero-copy-row {
             margin-top: 58px;
@@ -187,7 +203,7 @@ export default function ServicesHero() {
           .services-hero-statement,
           .services-hero-statement span {
             font-size: 36px;
-            letter-spacing: -1.08px;
+            letter-spacing: 0;
           }
         }
       `}</style>
@@ -195,7 +211,7 @@ export default function ServicesHero() {
       <div className="services-hero-shell">
         <div className="services-hero-top">
           <h1 id="services-hero-title" className="services-hero-title">
-            Turning bold ideas into real market <span>momentum</span>
+            Good marketing should bring deals in. <span>Let&apos;s make sure yours does.</span>
           </h1>
           <Image
             className="services-scroll-note"
@@ -219,33 +235,38 @@ export default function ServicesHero() {
 
           <div className="services-hero-intro">
             <h2>
-              Part strategy, part execution, fully focused on helping brands grow
-              with confidence.
+              Stratskye works with B2B companies that have a strong product and a
+              pipeline that should be fuller than it is.
             </h2>
             <p>
-              From perception to conversion, everything we do is built to move
-              business forward.
+              We build the marketing around what you already have and make it work
+              properly.
             </p>
           </div>
         </div>
 
         <div className="services-hero-copy-row">
-          <div className="services-hero-kicker">(Launch. Scale. Repeat)</div>
+          <div className="services-hero-kicker">Where thinking meets doing</div>
           <p className="services-hero-copy">
-            Great tech deserves more than visibility. It deserves trust, traction,
-            and momentum. At StratSkye, we don&apos;t just offer marketing services,
-            we build growth systems. Branding. Websites. Social authority. Lead
-            generation. Whether you need a stronger presence, a website that
-            actually converts, or a brand people instantly trust, we step in where
-            it matters most. Everything works together with one goal: moving your
-            business forward. Built to earn attention. Designed to close deals.
+            A lot of agencies are good at one or the other. Strategy sessions that
+            produce decks nobody executes, or execution teams running campaigns
+            without a clear reason behind them. Stratskye runs both under the same
+            roof, so the plan and the work stay connected from week one.
           </p>
         </div>
 
-        <h2 className="services-hero-statement">
-          Growth doesn&apos;t happen by accident. It&apos;s built{" "}
-          <span>strategically, consistently and intentionally</span>
-        </h2>
+        <div className="services-hero-durability">
+          <h2 className="services-hero-statement">
+            Built to last past <span>month three</span>
+          </h2>
+          <p>
+            Most marketing programs plateau after an initial burst because they
+            were built for momentum, not for consistency. Every engagement
+            Stratskye runs is structured to produce compounding results, where
+            month six outperforms month two because the system behind it keeps
+            improving. Short-term wins matter. Sustained pipeline matters more.
+          </p>
+        </div>
       </div>
     </section>
   );

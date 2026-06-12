@@ -7,18 +7,18 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 const services = [
     {
         image: "/images/Group 513054.png",
-        title: "Performance Websites",
-        description: "Blazing-fast, conversion-optimized sites that act as your 24/7 top-performing salesperson.",
+        title: "High-Octane Branding",
+        description: "Positioning that makes you look like the category leader, not a startup"
     },
     {
         image: "/images/Group 513058.png",
-        title: "Lead Generation",
-        description: "We manage your presence to ensure you're the loudest, most trusted voice in the industry.",
+        title: "Performance Websites",
+        description: "Blazing-fast, conversion-optimized sites that act as your 24/7 top-performing salesperson",
     },
     {
         image: "/images/Group 513059.png",
-        title: "Growth Systems",
-        description: "Campaigns, automation, and sales assets built to keep qualified demand moving.",
+        title: "Authority Socials",
+        description: " We manage your presence to ensure you’re the loudest, most trusted voice in the industry.",
     },
 ];
 

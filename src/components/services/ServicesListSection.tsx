@@ -2,87 +2,87 @@ import Image from "next/image";
 
 const services = [
   {
-    label: "01/service",
+    label: "01 /",
     title: "Demand Generation",
     description:
-      "We build demand generation systems that attract the right audience, convert prospects into qualified leads, and support long-term revenue growth. Our approach combines data-driven campaigns with continuous optimization to make your demand engine customer acquisition performance.",
+      "The goal here is simple: get the right people into your pipeline and give your team qualified conversations to close. We build the systems that make that happen on a predictable schedule rather than a lucky week.",
     points: [
       "Lead generation and lead nurturing",
       "Conversion rate optimization",
-      "Landing pages, strategy and direction",
+      "Landing page strategy and direction",
       "Paid search marketing",
-      "Funnel strategy and appointment",
+      "Funnel strategy and appointment setting",
       "Marketing analytics and reporting",
     ],
   },
   {
-    label: "02/service",
-    title: "Content & Thought Leadership",
+    label: "02 /",
+    title: "Content and Thought Leadership",
     description:
-      "Strong brands lead conversation, not just campaigns. We create high-value content that positions your company as an authority your audience trusts, educates, engages, and converts your audience across multiple channels.",
+      "Buyers form an opinion about you before they ever send a message. The content sitting on your website and LinkedIn either builds that case or weakens it. We create content that puts the right impression in front of the right people at the right stage of their decision.",
     points: [
-      "B2B pitch and lead magnet content",
-      "Webinars, ebooks, and resource reports",
-      "Executive thought leadership content",
-      "Case studies and customer success stories",
-      "Video marketing and podcast production",
-      "Content strategy and distribution",
+      "Long-form content and SEO blogs",
+      "Executive and founder-led content",
+      "Whitepapers and industry reports",
+      "Video scripts and short-form content",
+      "LinkedIn content strategy",
+      "Content calendars and editorial planning",
     ],
   },
   {
-    label: "03/service",
+    label: "03 /",
     title: "Account Based Marketing",
     description:
-      "For companies targeting high-value accounts, our ABM strategies create personalized experiences that improve engagement, shorten sales cycles, and strengthen relationships with decision makers.",
+      "When the accounts you want are specific and high-value, broad campaigns waste the budget. ABM lets you go after the companies that actually move the needle, with outreach and content built around their specific context rather than a general audience brief.",
     points: [
-      "Targeted paid demand campaigns",
-      "Personalized outreach sequences",
-      "Account segmentation and buyer persona",
-      "Sales enablement assets",
-      "LinkedIn and email based ABM campaigns",
-      "CRM and intent data integration",
+      "Target account identification and list building",
+      "Personalized outreach campaigns",
+      "Multi-channel account engagement",
+      "Sales and marketing alignment",
+      "ABM reporting and account tracking",
+      "Enterprise-focused content and sales assets",
     ],
   },
   {
-    label: "04/service",
-    title: "Brand & Positioning Strategy",
+    label: "04 /",
+    title: "Brand and Positioning Strategy",
     description:
-      "Your brand is more than visuals. It is how your audience perceives your value. We help businesses refine their positioning, clarify messaging, and build a strong, credible presence that resonates with the right market.",
+      "Founders often know their product better than anyone in their market and still struggle to explain why a buyer should choose them over a competitor. Positioning strategy closes that gap by finding the angle that is both genuinely true and genuinely compelling to the people making purchase decisions.",
     points: [
-      "Brand messaging and differentiation",
-      "Positioning strategy",
-      "Brand identity and visual system",
-      "Website messaging and UX optimization",
-      "Competitor market analysis",
-      "Brand guidelines and content direction",
+      "Brand identity and messaging frameworks",
+      "Competitive positioning analysis",
+      "Value proposition development",
+      "Audience and persona research",
+      "Brand voice and tone guidelines",
+      "Pitch decks and sales narrative support",
     ],
   },
   {
-    label: "05/service",
-    title: "Digital & Growth Marketing",
+    label: "05 /",
+    title: "Digital and Growth Marketing",
     description:
-      "We combine organic growth strategies with performance-driven execution to help brands increase visibility, build communities, and scale sustainably across digital channels.",
+      "Organic visibility built on a solid technical foundation compounds in a way paid channels cannot replicate. We handle the SEO, site performance, and conversion infrastructure so your digital presence keeps pulling in qualified traffic without requiring more budget every month to maintain it.",
     points: [
-      "SEO and organic growth strategies",
-      "Social media marketing and community building",
-      "Paid advertising campaigns",
-      "Marketing automation and CRM integration",
-      "Analytics and growth reporting",
-      "Multi-channel campaign management",
+      "SEO strategy and technical optimization",
+      "Website performance improvements",
+      "Organic traffic and keyword growth",
+      "Conversion path optimization",
+      "Growth campaign planning",
+      "Performance tracking and reporting",
     ],
   },
   {
-    label: "06/service",
+    label: "06 /",
     title: "Email Marketing",
     description:
-      "Email remains one of the highest performing marketing channels when executed strategically. We create personalized email campaigns that improve engagement, nurture leads, and drive customer retention.",
+      "An email list is one of the few marketing assets a company fully owns, and most B2B businesses are barely using theirs. We build the sequences and workflows that turn subscriber lists into active, converting audiences rather than contacts sitting in a CRM going cold.",
     points: [
-      "Campaign strategy and execution",
-      "Drip campaigns and nurture sequences",
-      "Newsletter creation and publishing",
-      "A/B testing and performance optimization",
-      "Audience segmentation and automation",
-      "Email copywriting and design",
+      "Nurture sequences and drip campaigns",
+      "Newsletter strategy and production",
+      "Segmentation and audience targeting",
+      "Automated workflow setup",
+      "Subject line and copy testing",
+      "Campaign performance analysis",
     ],
   },
 ];
@@ -109,15 +109,16 @@ export default function ServicesListSection() {
           margin: 0 auto;
         }
         .services-list-heading {
-          position: absolute;
-          width: 1px;
-          height: 1px;
-          padding: 0;
-          margin: -1px;
-          overflow: hidden;
-          clip: rect(0, 0, 0, 0);
-          white-space: nowrap;
-          border: 0;
+          max-width: 620px;
+          margin: 0 0 clamp(44px, 6vw, 86px);
+          color: var(--service-ink);
+          font-family: "Google Sans Flex";
+          font-size: clamp(38px, 5vw, 72px);
+          font-style: normal;
+          font-weight: 600;
+          line-height: 100%;
+          letter-spacing: 0;
+          text-transform: uppercase;
         }
         .service-item {
           display: grid;
@@ -143,7 +144,7 @@ export default function ServicesListSection() {
           font-style: normal;
           font-weight: 500;
           line-height: 120%;
-          letter-spacing: -0.22px;
+          letter-spacing: 0;
           text-transform: uppercase;
           padding-top: 10px;
         }
@@ -164,7 +165,7 @@ export default function ServicesListSection() {
           font-style: normal;
           font-weight: 600;
           line-height: 100%;
-          letter-spacing: -1.92px;
+          letter-spacing: 0;
           cursor: default;
         }
         .service-title-button:focus-visible {
@@ -181,7 +182,7 @@ export default function ServicesListSection() {
         .service-item:first-of-type .service-details,
         .service-item:hover .service-details,
         .service-item:focus-within .service-details {
-          max-height: 420px;
+          max-height: 560px;
           opacity: 1;
           transform: translateY(0);
         }
@@ -199,8 +200,8 @@ export default function ServicesListSection() {
           font-size: 16px;
           font-style: normal;
           font-weight: 400;
-          line-height: 125%;
-          letter-spacing: -0.32px;
+          line-height: 145%;
+          letter-spacing: 0;
         }
         .service-points {
           display: grid;
@@ -216,7 +217,7 @@ export default function ServicesListSection() {
           font-style: normal;
           font-weight: 700;
           line-height: 140%;
-          letter-spacing: 0.72px;
+          letter-spacing: 0;
           text-transform: uppercase;
         }
         .service-media {
@@ -289,7 +290,7 @@ export default function ServicesListSection() {
           }
           .service-title-button {
             font-size: 34px;
-            letter-spacing: -1.02px;
+            letter-spacing: 0;
           }
           .service-description {
             margin-top: 18px;
@@ -305,7 +306,7 @@ export default function ServicesListSection() {
 
       <div className="services-list-shell">
         <h2 id="services-list-title" className="services-list-heading">
-          Services
+          THE PART WHERE YOU PICK WHAT YOU NEED
         </h2>
 
         {services.map((service) => (
