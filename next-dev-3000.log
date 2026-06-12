@@ -120,3 +120,8 @@ Creating turbopack project { dir: 'C:\\Users\\Mustafa Tahir\\stratskye', testMod
  GET /about 200 in 450ms (next.js: 6ms, application-code: 444ms)
  GET /about 200 in 273ms (next.js: 8ms, application-code: 265ms)
  GET /about 200 in 274ms (next.js: 139ms, application-code: 135ms)
+✓ Compiled in 84ms
+ GET /about 200 in 723ms (next.js: 253ms, application-code: 471ms)
+ GET /about 200 in 336ms (next.js: 5ms, application-code: 332ms)
+ GET /about 200 in 248ms (next.js: 8ms, application-code: 240ms)
+ GET /about 200 in 248ms (next.js: 146ms, application-code: 102ms)

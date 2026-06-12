@@ -736,7 +736,7 @@ export default function AboutPage() {
 
       <section className="about-section about-animate-section" aria-labelledby="about-founders-title">
         <div className="about-section-label about-reveal">
-          01 / Who built this company and why it matters
+          Who built this company and why it matters
         </div>
         <div>
           <h2 id="about-founders-title" className="about-section-title about-reveal">
@@ -759,7 +759,7 @@ export default function AboutPage() {
 
       <section className="about-dark-section about-animate-section" aria-labelledby="about-problem-title">
         <div className="about-section-label about-reveal">
-          02 / The problem most technical founders run into
+          The problem most technical founders run into
         </div>
         <div>
           <h2 id="about-problem-title" className="about-section-title about-reveal">
@@ -771,7 +771,7 @@ export default function AboutPage() {
 
       <section className="about-section about-animate-section" aria-labelledby="about-growth-title">
         <div className="about-section-label about-reveal">
-          03 / How Stratskye turns technical expertise into repeatable growth
+          How Stratskye turns technical expertise into repeatable growth
         </div>
         <div>
           <h2 id="about-growth-title" className="about-section-title about-reveal">
@@ -783,7 +783,7 @@ export default function AboutPage() {
 
       <section className="about-dark-section about-animate-section" aria-labelledby="about-built-title">
         <div className="about-section-label about-reveal">
-          04 / What Stratskye has built since 2019
+          What Stratskye has built since 2019
         </div>
         <div>
           <h2 id="about-built-title" className="about-section-title about-reveal">
@@ -825,7 +825,7 @@ export default function AboutPage() {
 
       <section className="about-client-section about-animate-section">
         <div className="about-client-panel about-reveal">
-          <div className="about-eyebrow">05 / The work, documented in full</div>
+          <div className="about-eyebrow">The work, documented in full</div>
           <h2>The work, documented in full</h2>
           <p>
             Stratskye publishes detailed case studies covering the full scope of
@@ -841,7 +841,7 @@ export default function AboutPage() {
         </div>
 
         <div className="about-client-panel about-reveal">
-          <div className="about-eyebrow">09 / See the work in action</div>
+          <div className="about-eyebrow">See the work in action</div>
           <h2>See the work in action</h2>
           <p>
             Stratskye publishes detailed case studies covering the full scope of
@@ -858,7 +858,7 @@ export default function AboutPage() {
 
       <section className="about-section about-animate-section" aria-labelledby="about-discretion-title">
         <div className="about-section-label about-reveal">
-          06 / Discretion as a working principle
+          Discretion as a working principle
         </div>
         <div>
           <h2 id="about-discretion-title" className="about-section-title about-reveal">
@@ -870,7 +870,7 @@ export default function AboutPage() {
 
       <section className="about-dark-section about-animate-section" aria-labelledby="about-fit-title">
         <div className="about-section-label about-reveal">
-          07 / Who Stratskye works with
+          Who Stratskye works with
         </div>
         <div>
           <h2 id="about-fit-title" className="about-section-title about-reveal">
@@ -882,7 +882,7 @@ export default function AboutPage() {
 
       <section className="about-section about-animate-section" aria-labelledby="about-team-title">
         <div className="about-section-label about-reveal">
-          08 / The team
+          The team
         </div>
         <div>
           <h2 id="about-team-title" className="about-section-title about-reveal">
@@ -918,7 +918,7 @@ export default function AboutPage() {
 
       <section className="about-faq-section about-animate-section" aria-labelledby="about-faq-title">
         <div className="about-section-label about-reveal">
-          10 / Frequently asked questions
+          Frequently asked questions
         </div>
         <div>
           <h2 id="about-faq-title" className="about-section-title about-reveal">
