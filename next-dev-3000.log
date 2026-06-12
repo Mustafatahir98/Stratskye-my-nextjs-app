@@ -125,3 +125,14 @@ Creating turbopack project { dir: 'C:\\Users\\Mustafa Tahir\\stratskye', testMod
  GET /about 200 in 336ms (next.js: 5ms, application-code: 332ms)
  GET /about 200 in 248ms (next.js: 8ms, application-code: 240ms)
  GET /about 200 in 248ms (next.js: 146ms, application-code: 102ms)
+  Reload env: .env.local
+ GET / 200 in 39.7s (next.js: 14.2s, application-code: 25.5s)
+ GET / 200 in 298ms (next.js: 231ms, application-code: 66ms)
+ GET / 200 in 961ms (next.js: 891ms, application-code: 70ms)
+ GET / 200 in 71ms (next.js: 25ms, application-code: 47ms)
+ GET /contact-form 200 in 3.2s (next.js: 3.1s, application-code: 104ms)
+ GET /contact-form 200 in 97ms (next.js: 7ms, application-code: 90ms)
+ GET /contact-form 200 in 908ms (next.js: 835ms, application-code: 73ms)
+ GET /contact-form 200 in 137ms (next.js: 70ms, application-code: 66ms)
+✓ Finished writing to filesystem cache in 17.5s
+[?25h

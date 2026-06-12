@@ -1,4 +1,9 @@
+"use client";
+
+import type { ChangeEvent, FormEvent } from "react";
+import { useMemo, useState, useTransition } from "react";
 import Image from "next/image";
+import { sendContactEmail } from "@/app/actions/email";
 
 const formFields = [
   {
@@ -44,14 +49,191 @@ const formFields = [
     type: "text",
   },
   {
-    id: "project-description",
+    id: "message",
     label: "Project Description",
     placeholder: "Describe your project",
     type: "text",
   },
-];
+] as const;
+
+type ContactFieldId = (typeof formFields)[number]["id"];
+type ContactFormValues = Record<ContactFieldId, string>;
+type ContactFieldWarnings = Partial<Record<ContactFieldId, string>>;
+
+const initialFormValues: ContactFormValues = {
+  name: "",
+  company: "",
+  position: "",
+  industry: "",
+  email: "",
+  phone: "",
+  budget: "",
+  message: "",
+};
+
+const numericFieldIds = new Set<ContactFieldId>(["phone", "budget"]);
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const numberPattern = /^\d+$/;
+const maxPhoneDigits = 15;
+const minPhoneDigits = 10;
+const maxBudgetDigits = 10;
+
+function getFieldValidationMessage(
+  fieldId: ContactFieldId,
+  value: string
+) {
+  if (!value.trim()) {
+    return "";
+  }
+
+  if (fieldId === "email" && !emailPattern.test(value)) {
+    return "Enter a valid email address.";
+  }
+
+  if (fieldId === "phone") {
+    if (!numberPattern.test(value)) {
+      return "Phone number can contain numbers only.";
+    }
+
+    if (value.length < minPhoneDigits) {
+      return `Phone number must be at least ${minPhoneDigits} digits.`;
+    }
+
+    if (value.length > maxPhoneDigits) {
+      return `Phone number cannot be more than ${maxPhoneDigits} digits.`;
+    }
+  }
+
+  if (fieldId === "budget") {
+    if (!numberPattern.test(value)) {
+      return "Budget can contain numbers only.";
+    }
+
+    if (value.length > maxBudgetDigits) {
+      return `Budget cannot be more than ${maxBudgetDigits} digits.`;
+    }
+  }
+
+  return "";
+}
+
+function getBudgetDisplayValue(value: string) {
+  return value ? `$${value}` : "";
+}
 
 export default function ContactFormHero() {
+  const [formValues, setFormValues] =
+    useState<ContactFormValues>(initialFormValues);
+  const [fieldWarnings, setFieldWarnings] = useState<ContactFieldWarnings>({});
+  const [status, setStatus] = useState<{
+    type: "success" | "error" | "idle";
+    message: string;
+  }>({ type: "idle", message: "" });
+  const [isPending, startTransition] = useTransition();
+  const isFormValid = useMemo(() => {
+    const allFieldsFilled = formFields.every(
+      (field) => formValues[field.id].trim().length > 0
+    );
+    const hasFieldWarnings = Object.values(fieldWarnings).some(Boolean);
+
+    return (
+      allFieldsFilled &&
+      !hasFieldWarnings &&
+      formFields.every(
+        (field) => !getFieldValidationMessage(field.id, formValues[field.id])
+      )
+    );
+  }, [fieldWarnings, formValues]);
+
+  function handleInputChange(
+    fieldId: ContactFieldId,
+    event: ChangeEvent<HTMLInputElement>
+  ) {
+    const rawValue = event.target.value;
+    let nextValue = rawValue;
+    let warning = "";
+
+    if (fieldId === "phone") {
+      const digits = rawValue.replace(/\D/g, "");
+      const hasNonDigits = /\D/.test(rawValue);
+      const hasTooManyDigits = digits.length > maxPhoneDigits;
+
+      nextValue = digits.slice(0, maxPhoneDigits);
+
+      if (hasNonDigits) {
+        warning = "Phone number can contain numbers only.";
+      } else if (hasTooManyDigits) {
+        warning = `Phone number cannot be more than ${maxPhoneDigits} digits.`;
+      } else {
+        warning = getFieldValidationMessage(fieldId, nextValue);
+      }
+    } else if (fieldId === "budget") {
+      const valueWithoutLeadingDollar = rawValue.startsWith("$")
+        ? rawValue.slice(1)
+        : rawValue;
+      const digits = rawValue.replace(/\D/g, "");
+      const hasInvalidCharacters = /[^\d]/.test(valueWithoutLeadingDollar);
+      const hasTooManyDigits = digits.length > maxBudgetDigits;
+
+      nextValue = digits.slice(0, maxBudgetDigits);
+
+      if (hasInvalidCharacters) {
+        warning = "Budget can contain numbers only.";
+      } else if (hasTooManyDigits) {
+        warning = `Budget cannot be more than ${maxBudgetDigits} digits.`;
+      } else {
+        warning = getFieldValidationMessage(fieldId, nextValue);
+      }
+    } else {
+      warning = getFieldValidationMessage(fieldId, nextValue);
+    }
+
+    setFormValues((currentValues) => ({
+      ...currentValues,
+      [fieldId]: nextValue,
+    }));
+    setFieldWarnings((currentWarnings) => ({
+      ...currentWarnings,
+      [fieldId]: warning,
+    }));
+
+    if (status.type === "error") {
+      setStatus({ type: "idle", message: "" });
+    }
+  }
+
+  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (!isFormValid) {
+      setStatus({
+        type: "error",
+        message:
+          "Please fill all fields with a valid email, phone number, and budget.",
+      });
+      return;
+    }
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+
+    setStatus({ type: "idle", message: "" });
+
+    startTransition(async () => {
+      const result = await sendContactEmail(formData);
+
+      if (result.ok) {
+        form.reset();
+        setFormValues(initialFormValues);
+        setFieldWarnings({});
+        setStatus({ type: "success", message: result.message });
+        return;
+      }
+
+      setStatus({ type: "error", message: result.message });
+    });
+  }
+
   return (
     <section className="contact-form-hero" aria-labelledby="contact-form-title">
       <style>{`
@@ -167,6 +349,19 @@ export default function ContactFormHero() {
         .contact-field input:focus {
           border-bottom-color: var(--orange);
         }
+        .contact-field input[aria-invalid="true"] {
+          border-bottom-color: #b42318;
+        }
+        .contact-field-error {
+          margin-top: 12px;
+          color: #b42318;
+          font-family: "Google Sans Flex";
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 140%;
+          letter-spacing: 0;
+        }
         .contact-form-submit {
           width: 100%;
           min-height: 70px;
@@ -191,6 +386,27 @@ export default function ContactFormHero() {
           border-color: rgba(242, 110, 53, 0.36);
           box-shadow: 0 18px 32px rgba(13, 22, 47, 0.12);
           outline: none;
+        }
+        .contact-form-submit:disabled {
+          cursor: not-allowed;
+          opacity: 0.68;
+          transform: none;
+        }
+        .contact-form-status {
+          margin-top: 22px;
+          color: rgba(13, 22, 47, 0.68);
+          font-family: "Google Sans Flex";
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 140%;
+          letter-spacing: 0;
+        }
+        .contact-form-status[data-state="success"] {
+          color: #167a3f;
+        }
+        .contact-form-status[data-state="error"] {
+          color: #b42318;
         }
         @media (max-width: 980px) {
           .contact-form-top {
@@ -271,32 +487,83 @@ export default function ContactFormHero() {
 
         </p>
 
-        <form className="contact-form">
+        <form className="contact-form" onSubmit={handleSubmit}>
           <div className="contact-form-grid">
-            {formFields.map((field) => (
-              <div
-                className={`contact-field ${
-                  field.id === "budget" || field.id === "project-description"
-                    ? "contact-field-wide"
-                    : ""
-                }`}
-                key={field.id}
-              >
-                <label htmlFor={field.id}>{field.label}</label>
-                <input
-                  id={field.id}
-                  name={field.id}
-                  type={field.type}
-                  placeholder={field.placeholder}
-                  autoComplete="off"
-                />
-              </div>
-            ))}
+            {formFields.map((field) => {
+              const warning = fieldWarnings[field.id];
+
+              return (
+                <div
+                  className={`contact-field ${
+                    field.id === "budget" || field.id === "message"
+                      ? "contact-field-wide"
+                      : ""
+                  }`}
+                  key={field.id}
+                >
+                  <label htmlFor={field.id}>{field.label}</label>
+                  <input
+                    id={field.id}
+                    name={field.id}
+                    type={field.type}
+                    value={
+                      field.id === "budget"
+                        ? getBudgetDisplayValue(formValues.budget)
+                        : formValues[field.id]
+                    }
+                    onChange={(event) => handleInputChange(field.id, event)}
+                    placeholder={field.placeholder}
+                    autoComplete="off"
+                    inputMode={
+                      numericFieldIds.has(field.id) ? "numeric" : undefined
+                    }
+                    pattern={
+                      field.id === "phone"
+                        ? "[0-9]*"
+                        : field.id === "budget"
+                          ? "\\$?[0-9]*"
+                          : undefined
+                    }
+                    title={
+                      field.id === "phone"
+                        ? "Use numbers only"
+                        : field.id === "budget"
+                          ? "Budget is formatted with $ and accepts numbers only"
+                          : undefined
+                    }
+                    maxLength={
+                      field.id === "phone"
+                        ? maxPhoneDigits
+                        : field.id === "budget"
+                          ? maxBudgetDigits + 1
+                          : undefined
+                    }
+                    aria-invalid={Boolean(warning)}
+                    aria-describedby={warning ? `${field.id}-error` : undefined}
+                    required
+                  />
+                  {warning ? (
+                    <p className="contact-field-error" id={`${field.id}-error`}>
+                      {warning}
+                    </p>
+                  ) : null}
+                </div>
+              );
+            })}
           </div>
 
-          <button className="contact-form-submit" type="submit">
-            Submit
+          <button
+            className="contact-form-submit"
+            type="submit"
+            disabled={isPending || !isFormValid}
+          >
+            {isPending ? "Sending..." : "Submit"}
           </button>
+          {status.message ? (
+            <p className="contact-form-status" data-state={status.type}>
+              {status.message}
+            </p>
+          ) : null}
         </form>
       </div>
     </section>
