@@ -16,7 +16,7 @@ const menuItems = [
 
 const socialItems = [
   { label: "Instagram", href: "https://www.instagram.com/stratskye/" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/stratskye/" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/stratskye/?viewAsMember=true" },
   { label: "Terms of Service", href: "/terms-of-services" },
   { label: "Privacy Policy", href: "/privacy-policy" },
 ];

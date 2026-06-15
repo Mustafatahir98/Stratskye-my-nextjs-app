@@ -187,7 +187,7 @@ export default function PageFooter() {
           <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
             instagram
           </a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">
+          <a href="https://www.linkedin.com/company/stratskye/?viewAsMember=true" target="_blank" rel="noreferrer">
             linkedin
           </a>
         </div>
