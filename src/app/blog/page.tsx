@@ -292,7 +292,7 @@ export default function BlogPage() {
 
             <div className="blog-mark-wrap">
               <img
-                src="/images/we%E2%80%99ve%20got%20you%20coverd.png"
+                src="/images/weve got you coverd.png"
                 alt="we've got you covered"
                 className="blog-mark"
               />
