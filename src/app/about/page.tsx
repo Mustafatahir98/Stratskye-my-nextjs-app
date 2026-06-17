@@ -4,9 +4,9 @@ import Link from "next/link";
 import AboutAnimations from "@/components/AboutAnimations";
 
 export const metadata: Metadata = {
-  title: "About | StratSkye",
+  title: "About Stratskye - B2B Tech Marketing Agency",
   description:
-    "Stratskye is a B2B growth marketing agency built by engineers for technical founders and complex products.",
+    "Stratskye is a B2B tech marketing agency for SaaS and AI startups, building demand gen, ABM, content, SEO and RevOps systems.",
 };
 
 const founderStory = [

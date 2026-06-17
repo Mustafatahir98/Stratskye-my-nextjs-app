@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import HeroSection from "@/components/HeroSection";
 import StorySection from "@/components/StorySection";
 import ThirdSection from "@/components/ThirdSection";
@@ -9,6 +10,12 @@ import EightSection from "@/components/EightSection";
 import NinethSection from "@/components/NinethSection";
 import NewsletterPopup from "@/components/NewsletterPopup";
 import TenthSection from "@/components/tenthsection";
+
+export const metadata: Metadata = {
+  title: "B2B Tech Marketing Agency for SaaS & AI Growth",
+  description:
+    "B2B tech marketing for SaaS and AI startups: demand gen, lead gen, ABM, content, SEO, and RevOps for pipeline growth.",
+};
 
 export default function Home() {
   return (

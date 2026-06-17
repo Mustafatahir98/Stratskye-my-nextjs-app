@@ -4,8 +4,9 @@ import ServicesListSection from "@/components/services/ServicesListSection";
 import ServicesTestimonialSection from "@/components/services/ServicesTestimonialSection";
 
 export const metadata: Metadata = {
-  title: "Services | StratSkye",
-  description: "Strategy, creative execution, and growth systems for tech brands.",
+  title: "B2B Tech Marketing Services for SaaS & AI",
+  description:
+    "B2B tech marketing services for SaaS and AI startups: demand gen, lead gen, ABM, content, SEO, automation, paid media and RevOps.",
 };
 
 export default function ServicesPage() {

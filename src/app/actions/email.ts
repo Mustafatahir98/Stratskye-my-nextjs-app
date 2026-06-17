@@ -9,7 +9,7 @@ type SendContactEmailResult = {
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const recipientEmail = "mustafatahir14.mt@gmail.com";
+const recipientEmail = "admin@stratskye.com";
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const numberPattern = /^\d+$/;
 const maxPhoneDigits = 15;
@@ -114,7 +114,7 @@ export async function sendContactEmail(
   ]
     .filter(Boolean)
     .join("\n");
-
+    
   const html = `
     <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #0D162F;">
       <h2 style="margin: 0 0 16px;">New StratSkye contact form submission</h2>
