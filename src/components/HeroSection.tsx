@@ -1,15 +1,41 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { preload } from "react-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+const HERO_VIDEO_SRC = "/images/HeroSection-video.mp4";
+const HERO_POSTER_SRC = "/images/image 5.webp";
 
 export default function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
   const heroBgRef = useRef<HTMLVideoElement>(null);
 
+  preload(HERO_VIDEO_SRC, {
+    as: "video",
+    type: "video/mp4",
+  });
+  preload(HERO_POSTER_SRC, {
+    as: "image",
+    fetchPriority: "high",
+    type: "image/webp",
+  });
+
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
+
+    const video = heroBgRef.current;
+    if (video) {
+      video.defaultMuted = true;
+      video.muted = true;
+      video.playsInline = true;
+      video.preload = "auto";
+      video.load();
+      void video.play().catch(() => {
+        // Browser autoplay policy can still block in edge cases.
+      });
+    }
     
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -338,16 +364,15 @@ export default function HeroSection() {
       <video
         ref={heroBgRef}
         className="hero-bg-video"
-        poster="/images/image 5.webp"
+        src={HERO_VIDEO_SRC}
+        poster={HERO_POSTER_SRC}
         autoPlay
         muted
         loop
         playsInline
         preload="auto"
         aria-hidden="true"
-      >
-        <source src="/images/HeroSection-video.mp4" type="video/mp4" />
-      </video>
+      />
       
       <p className="hero-lead hero-lead-left">
         <span className="hero-reveal">You build.</span>

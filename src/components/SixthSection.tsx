@@ -48,8 +48,7 @@ export default function SixthSection() {
                     scrollTrigger: {
                         trigger: containerRef.current,
                         start: "top top",
-                        // Mobile par scroll depth kam ki hai taake 3rd card k baad khali scroll na ho
-                        end: isMobile ? "+=380%" : "+=560%",
+                        end: isMobile ? "+=170%" : "+=210%",
                         scrub: 1,
                         pin: true,
                         anticipatePin: 1,
@@ -64,45 +63,35 @@ export default function SixthSection() {
                 tl.to(outerRingRef.current, { opacity: 0.42, rotation: 0, scale: 1, duration: 1.2, ease: "power2.out" }, 0)
                     .to(dottedRingRef.current, { opacity: 0.9, rotation: 0, scale: 1, duration: 1.2, ease: "power2.out" }, 0);
 
-                tl.to(dottedRingRef.current, { rotateZ: -32, duration: 5.8, ease: "none" }, 0.8);
+                tl.to(dottedRingRef.current, { rotateZ: -18, duration: 1.8, ease: "none" }, 0.55);
 
-                // Individual Card Sequence (Desktop + Mobile both)
-                cards.forEach((card, index) => {
-                    const start = 0.7 + index * 1.45;
-
-                    tl.set(cards, { autoAlpha: 0, zIndex: 0 }, start)
-                        .set(card, { zIndex: 2 }, start)
-                        .to(card, { autoAlpha: 1, xPercent: 0, y: 0, scale: isMobile ? 0.9 : 1, rotateX: 0, duration: 0.52, ease: "back.out(1.35)" }, start)
-                        .to(card, { y: -8, scale: isMobile ? 0.95 : 1.04, duration: 0.38, ease: "sine.inOut" }, start + 0.52)
-                        .to(card, { y: 0, scale: isMobile ? 0.9 : 1, duration: 0.38, ease: "sine.inOut" }, start + 0.9)
-                        .to(card, { autoAlpha: 0, y: -26, scale: 0.82, rotateX: 12, duration: 0.45, ease: "power2.in" }, start + 1.18);
-                });
-
-                // Final display where all 3 cards show together - ONLY FOR DESKTOP
-                if (!isMobile) {
-                    const finalPositions = [
-                        { xPercent: -66, y: 8, scale: 0.68 },
-                        { xPercent: 0, y: -12, scale: 0.68 },
-                        { xPercent: 66, y: 8, scale: 0.68 },
+                const finalPositions = isMobile
+                    ? [
+                        { xPercent: 0, y: -142, scale: 0.52 },
+                        { xPercent: 0, y: 8, scale: 0.52 },
+                        { xPercent: 0, y: 158, scale: 0.52 },
+                    ]
+                    : [
+                        { xPercent: -76, y: 0, scale: 0.72 },
+                        { xPercent: 0, y: 0, scale: 0.72 },
+                        { xPercent: 76, y: 0, scale: 0.72 },
                     ];
 
-                    tl.set(cards, { autoAlpha: 0, xPercent: 0, y: 30, scale: 0.6, rotateX: -10, zIndex: 3 }, 5.25);
+                tl.set(cards, { autoAlpha: 0, xPercent: 0, y: isMobile ? 20 : 30, scale: isMobile ? 0.44 : 0.6, rotateX: -10, zIndex: 3 }, 0.4);
 
-                    // Show all cards together smoothly
-                    cards.forEach((card, index) => {
-                        tl.to(card, {
-                            autoAlpha: 1,
-                            xPercent: finalPositions[index].xPercent,
-                            y: finalPositions[index].y,
-                            scale: finalPositions[index].scale,
-                            rotateX: 0,
-                            duration: 0.52,
-                            ease: "back.out(1.25)",
-                        }, 5.35 + index * 0.22);
-                    });
+                cards.forEach((card, index) => {
+                    tl.to(card, {
+                        autoAlpha: 1,
+                        xPercent: finalPositions[index].xPercent,
+                        y: finalPositions[index].y,
+                        scale: finalPositions[index].scale,
+                        rotateX: 0,
+                        duration: 0.6,
+                        ease: "back.out(1.25)",
+                    }, 0.72);
+                });
 
-                    tl.to(cards, { y: "+=4", duration: 0.8, ease: "sine.inOut" }, 6.2);
-                }
+                tl.to(cards, { y: "+=4", duration: 0.7, ease: "sine.inOut" }, 1.35);
             });
 
         }, containerRef);
@@ -151,7 +140,7 @@ export default function SixthSection() {
           margin-top: clamp(14px, 2vh, 24px);
         }
         .sixth-card-image {
-          width: clamp(265px, 30vw, 390px);
+          width: clamp(285px, 32vw, 430px);
           height: auto;
           object-fit: contain;
           filter: drop-shadow(0 0 32px rgba(242,110,53,0.28));
@@ -191,7 +180,7 @@ export default function SixthSection() {
         /* --- MOBILE SPECIFIC OVERRIDES --- */
         @media (max-width: 760px) {
           .sixth-card-image {
-            width: clamp(210px, 55vw, 280px);
+            width: clamp(225px, 60vw, 305px);
           }
           .sixth-service-title {
             font-size: 21px;
