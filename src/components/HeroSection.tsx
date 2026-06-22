@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { preload } from "react-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -22,19 +22,53 @@ export default function HeroSection() {
     type: "image/webp",
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const video = heroBgRef.current;
+    let cleanupVideoPlayback = () => {};
+
     if (video) {
       video.defaultMuted = true;
       video.muted = true;
       video.playsInline = true;
       video.preload = "auto";
+      video.setAttribute("muted", "");
+      video.setAttribute("autoplay", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
+
+      const startVideo = () => {
+        if (video.paused || video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
+          void video.play().catch(() => {
+            // Mobile browsers may wait for first user interaction.
+          });
+        }
+      };
+
+      const startOnVisible = () => {
+        if (!document.hidden) {
+          startVideo();
+        }
+      };
+
       video.load();
-      void video.play().catch(() => {
-        // Browser autoplay policy can still block in edge cases.
-      });
+      startVideo();
+      requestAnimationFrame(startVideo);
+
+      video.addEventListener("loadeddata", startVideo);
+      video.addEventListener("canplay", startVideo);
+      document.addEventListener("visibilitychange", startOnVisible);
+      window.addEventListener("touchstart", startVideo, { once: true, passive: true });
+      window.addEventListener("pointerdown", startVideo, { once: true });
+
+      cleanupVideoPlayback = () => {
+        video.removeEventListener("loadeddata", startVideo);
+        video.removeEventListener("canplay", startVideo);
+        document.removeEventListener("visibilitychange", startOnVisible);
+        window.removeEventListener("touchstart", startVideo);
+        window.removeEventListener("pointerdown", startVideo);
+      };
     }
     
     const ctx = gsap.context(() => {
@@ -64,7 +98,10 @@ export default function HeroSection() {
 
     }, heroRef);
 
-    return () => ctx.revert();
+    return () => {
+      cleanupVideoPlayback();
+      ctx.revert();
+    };
   }, []);
 
   return (
