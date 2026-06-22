@@ -346,14 +346,15 @@ export default function HeroSection() {
         preload="auto"
         aria-hidden="true"
       >
-        <source src="/images/hero-vide.mp4" type="video/mp4" />
+        <source src="/images/HeroSection-video.mp4" type="video/mp4" />
       </video>
       
-      <h1 className="hero-lead hero-lead-left">
+      <p className="hero-lead hero-lead-left">
         <span className="hero-reveal">You build.</span>
-      </h1>
+      </p>
       <p className="hero-lead hero-lead-right">
-        <span className="hero-reveal">We drive</span>
+        <span className="hero-reveal">We drive
+</span>
       </p>
 
       <div className="hero-desc">

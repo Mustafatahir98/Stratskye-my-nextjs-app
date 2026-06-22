@@ -7,6 +7,11 @@ type SendContactEmailResult = {
   message: string;
 };
 
+type SendNewsletterSignupEmailResult = {
+  ok: boolean;
+  message: string;
+};
+
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const recipientEmail = "admin@stratskye.com";
@@ -157,6 +162,80 @@ export async function sendContactEmail(
       ok: false,
       message:
         error instanceof Error ? error.message : "Email could not be sent.",
+    };
+  }
+}
+
+export async function sendNewsletterSignupEmail(
+  formData: FormData
+): Promise<SendNewsletterSignupEmailResult> {
+  const name = getField(formData, "name");
+  const email = getField(formData, "email");
+
+  if (!process.env.RESEND_API_KEY) {
+    return {
+      ok: false,
+      message: "Email service is not configured yet.",
+    };
+  }
+
+  if (!name) {
+    return {
+      ok: false,
+      message: "Please enter your name.",
+    };
+  }
+
+  if (!emailPattern.test(email)) {
+    return {
+      ok: false,
+      message: "Please enter a valid email address.",
+    };
+  }
+
+  const plainText = [
+    "New StratSkye newsletter signup",
+    "",
+    `Name: ${name}`,
+    `Email: ${email}`,
+  ].join("\n");
+
+  const html = `
+    <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #0D162F;">
+      <h2 style="margin: 0 0 16px;">New StratSkye newsletter signup</h2>
+      <p><strong>Name:</strong> ${escapeHtml(name)}</p>
+      <p><strong>Email:</strong> ${escapeHtml(email)}</p>
+    </div>
+  `;
+
+  try {
+    const { error } = await resend.emails.send({
+      from: "StratSkye Website <onboarding@resend.dev>",
+      to: recipientEmail,
+      replyTo: email,
+      subject: `New newsletter signup from ${name}`,
+      text: plainText,
+      html,
+    });
+
+    if (error) {
+      return {
+        ok: false,
+        message: error.message || "Newsletter signup could not be sent.",
+      };
+    }
+
+    return {
+      ok: true,
+      message: "Thank you. You are subscribed.",
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      message:
+        error instanceof Error
+          ? error.message
+          : "Newsletter signup could not be sent.",
     };
   }
 }

@@ -1,16 +1,21 @@
 "use client";
 
-import { type FormEvent, useEffect, useState } from "react";
+import { type FormEvent, useEffect, useState, useTransition } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
+import { sendNewsletterSignupEmail } from "@/app/actions/email";
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function NewsletterPopup() {
-  const [isMounted, setIsMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [status, setStatus] = useState<{
+    type: "success" | "error" | "idle";
+    message: string;
+  }>({ type: "idle", message: "" });
+  const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
-    setIsMounted(true);
-
     const timer = window.setTimeout(() => {
       setIsOpen(true);
     }, 5000);
@@ -40,10 +45,45 @@ export default function NewsletterPopup() {
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setIsOpen(false);
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const name = formData.get("name");
+    const email = formData.get("email");
+
+    if (typeof name !== "string" || !name.trim()) {
+      setStatus({ type: "error", message: "Please enter your name." });
+      return;
+    }
+
+    if (
+      typeof email !== "string" ||
+      !emailPattern.test(email.trim())
+    ) {
+      setStatus({
+        type: "error",
+        message: "Please enter a valid email address.",
+      });
+      return;
+    }
+
+    setStatus({ type: "idle", message: "" });
+
+    startTransition(async () => {
+      const result = await sendNewsletterSignupEmail(formData);
+
+      if (result.ok) {
+        form.reset();
+        setStatus({ type: "success", message: result.message });
+        window.setTimeout(() => setIsOpen(false), 1800);
+        return;
+      }
+
+      setStatus({ type: "error", message: result.message });
+    });
   };
 
-  if (!isMounted || !isOpen) {
+  if (!isOpen) {
     return null;
   }
 
@@ -168,11 +208,29 @@ export default function NewsletterPopup() {
           box-shadow: 0 13px 24px rgba(17, 25, 46, 0.12);
           outline: none;
         }
+        .newsletter-submit:disabled {
+          cursor: not-allowed;
+          opacity: 0.68;
+          transform: none;
+        }
         .newsletter-note {
           margin: 13px 0 0;
           color: #747c90;
           font-size: 12px;
           line-height: 1.45;
+        }
+        .newsletter-status {
+          margin: 12px 0 0;
+          color: #747c90;
+          font-size: 12px;
+          font-weight: 500;
+          line-height: 1.45;
+        }
+        .newsletter-status[data-state="success"] {
+          color: #167a3f;
+        }
+        .newsletter-status[data-state="error"] {
+          color: #b42318;
         }
         @media (max-width: 560px) {
           .newsletter-popup {
@@ -225,9 +283,14 @@ export default function NewsletterPopup() {
               <input id="newsletter-email" name="email" type="email" placeholder="Enter you Email" autoComplete="email" required />
             </div>
           </div>
-          <button className="newsletter-submit" type="submit">
-            Submit
+          <button className="newsletter-submit" type="submit" disabled={isPending}>
+            {isPending ? "Submitting..." : "Submit"}
           </button>
+          {status.message ? (
+            <p className="newsletter-status" data-state={status.type}>
+              {status.message}
+            </p>
+          ) : null}
         </form>
 
         <p className="newsletter-note">Weekly growth ideas, zero clutter. Opt out whenever you want.</p>
