@@ -346,7 +346,7 @@ export default function HeroSection() {
         preload="auto"
         aria-hidden="true"
       >
-        <source src="/images/HeroSection-video.mp4" type="video/mp4" />
+        <source src="/images/Hero-Stratskye.mp4" type="video/mp4" />
       </video>
       
       <p className="hero-lead hero-lead-left">
