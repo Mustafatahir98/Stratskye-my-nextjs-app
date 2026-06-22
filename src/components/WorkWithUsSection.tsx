@@ -500,7 +500,7 @@ export default function WorkWithUsSection() {
         ))}
       </div>
 
-      <div className="work-mobile-cards" aria-label="Ways to work with StratSkye">
+      <div className="work-mobile-cards" role="list" aria-label="Ways to work with StratSkye">
         {mobileWays.map((way, index) => (
           <div
             key={way.label}
@@ -508,6 +508,7 @@ export default function WorkWithUsSection() {
               mobileCardRefs.current[index] = el;
             }}
             className={`work-mobile-card work-mobile-card--${index + 1}`}
+            role="listitem"
           >
             <span className="work-mobile-card-number">{way.label}</span>
             <span className="work-mobile-card-kicker">{way.tag}</span>

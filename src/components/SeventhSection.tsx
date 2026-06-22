@@ -198,7 +198,7 @@ export default function SeventhSection() {
           <span>SOCIAL PROOF</span>
         </div>
 
-        <div className="proof-card-layer" aria-label="Client outcomes">
+        <div className="proof-card-layer" role="list" aria-label="Client outcomes">
           {proofCards.map((card, index) => (
             <div
               key={card.src}
@@ -206,6 +206,7 @@ export default function SeventhSection() {
                 cardRefs.current[index] = node;
               }}
               className={`proof-card-wrap ${card.className}`}
+              role="listitem"
             >
               <img src={card.src} alt={card.alt} className="proof-card-img" />
               <span
