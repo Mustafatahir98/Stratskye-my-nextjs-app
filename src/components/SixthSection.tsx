@@ -48,7 +48,7 @@ export default function SixthSection() {
                     scrollTrigger: {
                         trigger: containerRef.current,
                         start: "top top",
-                        end: isMobile ? "+=170%" : "+=210%",
+                        end: isMobile ? "+=300%" : "+=210%",
                         scrub: 1,
                         pin: true,
                         anticipatePin: 1,
@@ -65,13 +65,22 @@ export default function SixthSection() {
 
                 tl.to(dottedRingRef.current, { rotateZ: -18, duration: 1.8, ease: "none" }, 0.55);
 
-                const finalPositions = isMobile
-                    ? [
-                        { xPercent: 0, y: -142, scale: 0.52 },
-                        { xPercent: 0, y: 8, scale: 0.52 },
-                        { xPercent: 0, y: 158, scale: 0.52 },
-                    ]
-                    : [
+                if (isMobile) {
+                    cards.forEach((card, index) => {
+                        const start = 0.7 + index * 0.92;
+
+                        tl.set(cards, { autoAlpha: 0, zIndex: 0 }, start)
+                            .set(card, { zIndex: 2 }, start)
+                            .to(card, { autoAlpha: 1, xPercent: 0, y: 0, scale: 0.94, rotateX: 0, duration: 0.42, ease: "back.out(1.3)" }, start)
+                            .to(card, { y: -6, scale: 0.98, duration: 0.28, ease: "sine.inOut" }, start + 0.42)
+                            .to(card, { y: 0, scale: 0.94, duration: 0.28, ease: "sine.inOut" }, start + 0.7)
+                            .to(card, { autoAlpha: 0, y: -24, scale: 0.82, rotateX: 10, duration: 0.34, ease: "power2.in" }, start + 0.92);
+                    });
+
+                    return;
+                }
+
+                const finalPositions = [
                         { xPercent: -76, y: 0, scale: 0.72 },
                         { xPercent: 0, y: 0, scale: 0.72 },
                         { xPercent: 76, y: 0, scale: 0.72 },
