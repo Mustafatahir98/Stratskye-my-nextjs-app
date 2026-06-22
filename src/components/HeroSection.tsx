@@ -1,75 +1,15 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
-import { preload } from "react-dom";
+import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-const HERO_VIDEO_SRC = "/images/HeroSection-video.mp4";
-const HERO_POSTER_SRC = "/images/image 5.webp";
 
 export default function HeroSection() {
   const heroRef = useRef<HTMLDivElement>(null);
   const heroBgRef = useRef<HTMLVideoElement>(null);
 
-  preload(HERO_VIDEO_SRC, {
-    as: "video",
-    type: "video/mp4",
-  });
-  preload(HERO_POSTER_SRC, {
-    as: "image",
-    fetchPriority: "high",
-    type: "image/webp",
-  });
-
-  useLayoutEffect(() => {
+  useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-
-    const video = heroBgRef.current;
-    let cleanupVideoPlayback = () => {};
-
-    if (video) {
-      video.defaultMuted = true;
-      video.muted = true;
-      video.playsInline = true;
-      video.preload = "auto";
-      video.setAttribute("muted", "");
-      video.setAttribute("autoplay", "");
-      video.setAttribute("playsinline", "");
-      video.setAttribute("webkit-playsinline", "");
-
-      const startVideo = () => {
-        if (video.paused || video.readyState < HTMLMediaElement.HAVE_CURRENT_DATA) {
-          void video.play().catch(() => {
-            // Mobile browsers may wait for first user interaction.
-          });
-        }
-      };
-
-      const startOnVisible = () => {
-        if (!document.hidden) {
-          startVideo();
-        }
-      };
-
-      video.load();
-      startVideo();
-      requestAnimationFrame(startVideo);
-
-      video.addEventListener("loadeddata", startVideo);
-      video.addEventListener("canplay", startVideo);
-      document.addEventListener("visibilitychange", startOnVisible);
-      window.addEventListener("touchstart", startVideo, { once: true, passive: true });
-      window.addEventListener("pointerdown", startVideo, { once: true });
-
-      cleanupVideoPlayback = () => {
-        video.removeEventListener("loadeddata", startVideo);
-        video.removeEventListener("canplay", startVideo);
-        document.removeEventListener("visibilitychange", startOnVisible);
-        window.removeEventListener("touchstart", startVideo);
-        window.removeEventListener("pointerdown", startVideo);
-      };
-    }
     
     const ctx = gsap.context(() => {
       gsap.fromTo(
@@ -98,10 +38,7 @@ export default function HeroSection() {
 
     }, heroRef);
 
-    return () => {
-      cleanupVideoPlayback();
-      ctx.revert();
-    };
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -401,15 +338,16 @@ export default function HeroSection() {
       <video
         ref={heroBgRef}
         className="hero-bg-video"
-        src={HERO_VIDEO_SRC}
-        poster={HERO_POSTER_SRC}
+        poster="/images/image 5.webp"
         autoPlay
         muted
         loop
         playsInline
         preload="auto"
         aria-hidden="true"
-      />
+      >
+        <source src="/images/HeroSection-video.mp4" type="video/mp4" />
+      </video>
       
       <p className="hero-lead hero-lead-left">
         <span className="hero-reveal">You build.</span>
