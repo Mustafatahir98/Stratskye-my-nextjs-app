@@ -326,42 +326,48 @@ export default function FifthSection() {
         }
         @media (max-width: 767px) {
           .fs-energy-field {
-            width: min(80vw, 360px);
-            height: min(80vw, 360px);
+            width: min(108vw, 500px);
+            height: min(108vw, 500px);
           }
           .fs-solution-stage {
-            width: min(76vw, 350px);
-            height: min(76vw, 350px);
+            width: min(104vw, 500px);
+            height: min(104vw, 500px);
             min-width: 0;
             min-height: 0;
           }
           .fs-bottom-stage {
-            width: min(76vw, 350px);
-            height: min(76vw, 350px);
+            width: min(104vw, 500px);
+            height: min(104vw, 500px);
             min-width: 0;
             min-height: 0;
           }
           .fs-bottom-ring-inner {
-            inset: 12%;
-            width: 76%;
-            height: 76%;
+            inset: 14%;
+            width: 72%;
+            height: 72%;
           }
+          .fs-orbit-spark-1 { --fs-orbit-x: 0%; --fs-orbit-y: -31%; }
+          .fs-orbit-spark-2 { --fs-orbit-x: 26.85%; --fs-orbit-y: -15.5%; }
+          .fs-orbit-spark-3 { --fs-orbit-x: 26.85%; --fs-orbit-y: 15.5%; }
+          .fs-orbit-spark-4 { --fs-orbit-x: 0%; --fs-orbit-y: 31%; }
+          .fs-orbit-spark-5 { --fs-orbit-x: -26.85%; --fs-orbit-y: 15.5%; }
+          .fs-orbit-spark-6 { --fs-orbit-x: -26.85%; --fs-orbit-y: -15.5%; }
           .fs-center-copy {
-            width: min(58vw, 248px);
-            gap: 10px;
+            width: min(58vw, 270px);
+            gap: 16px;
           }
           .fs-main-text {
-            font-size: clamp(15px, 4.35vw, 19px);
-            line-height: 1.12;
-            letter-spacing: -0.25px;
+            font-size: clamp(17px, 4.65vw, 22px);
+            line-height: 1.1;
+            letter-spacing: -0.28px;
           }
           .fs-main-text .accent {
-            letter-spacing: -0.25px;
+            letter-spacing: -0.28px;
           }
           .fs-sub-text {
-            max-width: min(52vw, 220px);
-            font-size: clamp(10px, 2.8vw, 12px);
-            line-height: 1.35;
+            max-width: min(54vw, 250px);
+            font-size: clamp(11px, 3vw, 13px);
+            line-height: 1.34;
           }
         }
       `}</style>

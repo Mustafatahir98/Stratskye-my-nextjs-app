@@ -349,10 +349,11 @@ export default function ThirdSection() {
             overflow: hidden;
             border: 1px solid rgba(9, 21, 50, 0.08);
             border-radius: 18px;
-            background:
-              linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 250, 244, 0.94)),
-              #fffaf4;
+            background: #fff;
             box-shadow: 0 18px 42px rgba(9, 21, 50, 0.14);
+          }
+          .ts-card-shell::before {
+            content: none;
           }
           .ts-card-icon {
             width: 54px;
@@ -371,9 +372,7 @@ export default function ThirdSection() {
             letter-spacing: 0;
           }
           .ts-card-bg {
-            border-radius: 18px;
-            opacity: 0.11;
-            filter: saturate(0.9);
+            display: none;
           }
           .ts-card-1,
           .ts-card-2,
