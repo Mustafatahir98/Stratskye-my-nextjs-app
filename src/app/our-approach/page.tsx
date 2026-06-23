@@ -333,6 +333,9 @@ export default function OurApproachPage() {
           font-weight: 500;
           line-height: 1;
         }
+        .approach-closing .approach-copy {
+          color: rgba(245, 247, 255, 0.76);
+        }
         @media (max-width: 860px) {
           .approach-shell {
             width: min(100% - 32px, 1180px);

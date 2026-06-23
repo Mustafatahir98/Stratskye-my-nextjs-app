@@ -193,6 +193,14 @@ export default function SiteHeader() {
     };
   }, [menuOpen]);
 
+  const handleMenuItemClick = (href: string) => {
+    setMenuOpen(false);
+
+    if (href === "/" && pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <>
       <style>{`
@@ -294,7 +302,7 @@ export default function SiteHeader() {
                   <Link
                     className={`menu-link ${isActive ? "is-active" : ""}`}
                     href={item.href}
-                    onClick={() => setMenuOpen(false)}
+                    onClick={() => handleMenuItemClick(item.href)}
                   >
                     {item.label}
                   </Link>

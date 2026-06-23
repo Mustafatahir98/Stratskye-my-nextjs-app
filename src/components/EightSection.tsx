@@ -52,7 +52,7 @@ export default function EightSection() {
                         x: 0,
                         autoAlpha: 1,
                         scale: 1,
-                        duration: 1.2,
+                        duration: 0.8,
                         ease: "power2.out",
                         scrollTrigger: {
                             trigger: cards[0],
@@ -69,7 +69,7 @@ export default function EightSection() {
                         x: 0,
                         autoAlpha: 1,
                         scale: 1,
-                        duration: 1.2,
+                        duration: 0.8,
                         ease: "power2.out",
                         scrollTrigger: {
                             trigger: cards[1],
@@ -86,7 +86,7 @@ export default function EightSection() {
                         x: 0,
                         autoAlpha: 1,
                         scale: 1,
-                        duration: 1.2,
+                        duration: 0.8,
                         ease: "power2.out",
                         scrollTrigger: {
                             trigger: cards[2],
@@ -130,8 +130,8 @@ export default function EightSection() {
                     scrollTrigger: {
                         trigger: sectionRef.current,
                         start: "top top",
-                        end: "+=170%",
-                        scrub: 1,
+                        end: "+=115%",
+                        scrub: 0.55,
                         pin: true,
                         anticipatePin: 1,
                     },
@@ -144,7 +144,7 @@ export default function EightSection() {
                         y: () => -getFanY(),
                         rotationZ: -33,
                         scale: 1,
-                        duration: 1.15,
+                        duration: 0.78,
                         ease: "power3.inOut",
                     }, "spread")
                     .to(cards[1], {
@@ -152,7 +152,7 @@ export default function EightSection() {
                         y: 0,
                         rotationZ: 0,
                         scale: 1,
-                        duration: 1.15,
+                        duration: 0.78,
                         ease: "power3.inOut",
                     }, "spread")
                     .to(cards[2], {
@@ -161,7 +161,7 @@ export default function EightSection() {
                         y: () => getFanY(),
                         rotationZ: -31,
                         scale: 1,
-                        duration: 1.15,
+                        duration: 0.78,
                         ease: "power3.inOut",
                     }, "spread")
                     .addLabel("row")
@@ -169,21 +169,21 @@ export default function EightSection() {
                         x: () => -getRowOffset(),
                         y: () => window.innerHeight * 0.08,
                         rotationZ: 0,
-                        duration: 0.9,
+                        duration: 0.58,
                         ease: "power3.inOut",
-                    }, "row+=0.18")
+                    }, "row+=0.08")
                     .to(cards[1], {
                         y: () => window.innerHeight * 0.08,
-                        duration: 0.9,
+                        duration: 0.58,
                         ease: "power3.inOut",
-                    }, "row+=0.18")
+                    }, "row+=0.08")
                     .to(cards[2], {
                         x: () => getRowOffset(),
                         y: () => window.innerHeight * 0.08,
                         rotationZ: 0,
-                        duration: 0.9,
+                        duration: 0.58,
                         ease: "power3.inOut",
-                    }, "row+=0.18");
+                    }, "row+=0.08");
             });
 
         }, sectionRef);

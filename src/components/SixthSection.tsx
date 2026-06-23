@@ -63,8 +63,6 @@ export default function SixthSection() {
                 tl.to(outerRingRef.current, { opacity: 0.42, rotation: 0, scale: 1, duration: 1.2, ease: "power2.out" }, 0)
                     .to(dottedRingRef.current, { opacity: 0.9, rotation: 0, scale: 1, duration: 1.2, ease: "power2.out" }, 0);
 
-                tl.to(dottedRingRef.current, { rotateZ: -18, duration: 1.8, ease: "none" }, 0.55);
-
                 if (isMobile) {
                     cards.forEach((card, index) => {
                         const start = 0.7 + index * 0.92;
