@@ -17,15 +17,12 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     let refreshFrame = 0;
     let ratioQuery: MediaQueryList | null = null;
     let removeRatioListener: (() => void) | null = null;
+    let lastViewportWidth = window.innerWidth;
+    let lastPixelRatio = window.devicePixelRatio;
 
     const runRefresh = () => {
       lenis.stop();
       lenis.resize();
-
-      ScrollTrigger.getAll().forEach((trigger) => {
-        trigger.animation?.invalidate();
-      });
-
       ScrollTrigger.refresh(true);
       ScrollTrigger.update();
       lenis.start();
@@ -67,15 +64,31 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
         ratioQuery?.removeEventListener("change", handleRatioChange);
       };
     };
-    const handleViewportChange = () => refreshLayout();
+    const handleViewportChange = () => {
+      const widthChanged = Math.abs(window.innerWidth - lastViewportWidth) > 1;
+      const ratioChanged = window.devicePixelRatio !== lastPixelRatio;
+
+      if (!widthChanged && !ratioChanged) {
+        return;
+      }
+
+      lastViewportWidth = window.innerWidth;
+      lastPixelRatio = window.devicePixelRatio;
+      refreshLayout();
+    };
+
+    const handleOrientationChange = () => {
+      lastViewportWidth = window.innerWidth;
+      lastPixelRatio = window.devicePixelRatio;
+      refreshLayout(320);
+    };
 
     lenis.on("scroll", updateScrollTrigger);
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
 
     window.addEventListener("resize", handleViewportChange);
-    window.addEventListener("orientationchange", handleViewportChange);
-    window.visualViewport?.addEventListener("resize", handleViewportChange);
+    window.addEventListener("orientationchange", handleOrientationChange);
     watchDevicePixelRatio();
     window.requestAnimationFrame(() => refreshLayout(0));
 
@@ -88,8 +101,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       }
 
       window.removeEventListener("resize", handleViewportChange);
-      window.removeEventListener("orientationchange", handleViewportChange);
-      window.visualViewport?.removeEventListener("resize", handleViewportChange);
+      window.removeEventListener("orientationchange", handleOrientationChange);
       removeRatioListener?.();
       gsap.ticker.remove(tick);
       lenis.off("scroll", updateScrollTrigger);
