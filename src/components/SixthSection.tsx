@@ -145,7 +145,16 @@ export default function SixthSection() {
           transform-style: flat;
         }
         .sixth-heading {
-          margin-top: clamp(14px, 2vh, 24px);
+          margin-top: clamp(96px, 12vh, 126px);
+        }
+        .sixth-heading h2 {
+          margin: 0;
+          color: #fff;
+          font-family: "Google Sans Flex";
+          font-size: clamp(36px, 4.05vw, 58px);
+          font-weight: 500;
+          line-height: 0.96;
+          letter-spacing: -0.04em;
         }
         .sixth-card-image {
           width: clamp(285px, 32vw, 430px);
@@ -187,6 +196,9 @@ export default function SixthSection() {
 
         /* --- MOBILE SPECIFIC OVERRIDES --- */
         @media (max-width: 760px) {
+          .sixth-heading {
+            margin-top: clamp(44px, 8vh, 76px);
+          }
           .sixth-card-image {
             width: clamp(225px, 60vw, 305px);
           }
@@ -201,7 +213,9 @@ export default function SixthSection() {
             width: 70vw; 
           }
           .sixth-heading h2 {
-            font-size: clamp(32px, 8vw, 42px) !important;
+            font-size: clamp(34px, 9vw, 46px);
+            line-height: 0.96;
+            letter-spacing: -0.04em;
           }
         }
       `}</style>
@@ -210,15 +224,12 @@ export default function SixthSection() {
             <div className="absolute inset-0 sixth-crosshair opacity-80 pointer-events-none" />
 
             <div className="sixth-heading relative z-20 text-center">
-                <h2
-                    className="text-white text-[clamp(34px,3.9vw,56px)] font-normal leading-[0.98] tracking-[-1.4px]"
-                    style={{ fontFamily: '"Google Sans Flex"' }}
-                >
+                <h2>
                     What we do<br />for you
                 </h2>
             </div>
 
-            <div className="absolute left-1/2 top-[51%] w-[138vw] max-w-[1540px] min-w-[940px] pointer-events-none sixth-ring-plane z-[1]">
+            <div className="absolute left-1/2 top-[56%] w-[138vw] max-w-[1540px] min-w-[940px] pointer-events-none sixth-ring-plane z-[1]">
                 <img
                     ref={outerRingRef}
                     src="/images/flat-liner.png"

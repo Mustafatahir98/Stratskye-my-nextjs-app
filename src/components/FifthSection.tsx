@@ -48,16 +48,16 @@ export default function FifthSection() {
                 autoAlpha: 1,
                 force3D: true,
             });
-            gsap.set(shutterGradientRef.current, { autoAlpha: 1 });
+            gsap.set(shutterGradientRef.current, { autoAlpha: 0 });
             gsap.set(solutionStageRef.current, { opacity: 1 });
-            gsap.set(".fs-energy-field", { xPercent: -50, yPercent: -50, rotation: -18, opacity: 0, scale: 0.74, transformOrigin: "50% 50%" });
-            gsap.set(".fs-stage-halo", { opacity: 0, scale: 0.76, transformOrigin: "50% 50%" });
+            gsap.set(".fs-energy-field", { xPercent: -50, yPercent: -50, rotation: -6, opacity: 0.72, scale: 0.92, transformOrigin: "50% 50%" });
+            gsap.set(".fs-stage-halo", { opacity: 0.62, scale: 0.92, transformOrigin: "50% 50%" });
             gsap.set(".fs-ring-flare", { opacity: 0, scale: 0.86, transformOrigin: "50% 50%" });
-            gsap.set(".fs-orbit-sparks", { rotation: -18, scale: 0.6, transformOrigin: "50% 50%", force3D: true });
-            gsap.set(".fs-orbit-spark", { autoAlpha: 0, scale: 0.35, transformOrigin: "50% 50%" });
+            gsap.set(".fs-orbit-sparks", { rotation: -6, scale: 1, transformOrigin: "50% 50%", force3D: true });
+            gsap.set(".fs-orbit-spark", { autoAlpha: 1, scale: 1, transformOrigin: "50% 50%" });
             gsap.set(".fs-text-aura", { opacity: 0, scale: 0.82, transformOrigin: "50% 50%" });
-            gsap.set(topRingRef.current, { rotation: -160, opacity: 0, scale: 0.46, filter: "blur(7px)", transformOrigin: "50% 50%" });
-            gsap.set(solutionTextRef.current, { opacity: 0, y: 10, scale: 0.68, filter: "blur(5px)" });
+            gsap.set(topRingRef.current, { rotation: -8, opacity: 1, scale: 0.64, filter: "blur(0px)", transformOrigin: "50% 50%" });
+            gsap.set(solutionTextRef.current, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" });
             gsap.set(lineRef.current, { scaleY: 0, opacity: 0, transformOrigin: "top center" });
             gsap.set(bottomRingOuterRef.current, { rotation: 135, opacity: 0, scale: 0.76, filter: "blur(8px)", transformOrigin: "50% 50%" });
             gsap.set(bottomRingInnerRef.current, { rotation: -175, opacity: 0, scale: 0.72, filter: "blur(8px)", transformOrigin: "50% 50%" });
@@ -77,14 +77,14 @@ export default function FifthSection() {
 
             shutterTl.to(shutterLeftRef.current, { xPercent: -100, duration: 0.95, ease: "power3.inOut" }, 0)
                 .to(shutterRightRef.current, { xPercent: 100, duration: 0.95, ease: "power3.inOut" }, 0)
-                .to([shutterLeftRef.current, shutterRightRef.current, shutterGradientRef.current], { autoAlpha: 0, duration: 0.24, ease: "power2.out" }, 0.82);
+                .to([shutterLeftRef.current, shutterRightRef.current], { autoAlpha: 0, duration: 0.18, ease: "power2.out" }, 0.72);
 
             // SEQUENCE
-            tl.to(".fs-energy-field", { opacity: 0.92, scale: 1, rotation: 0, duration: 1.05, ease: "power3.out" }, 0.12)
-                .to(".fs-stage-halo", { opacity: 1, scale: 1, duration: 0.9, ease: "power2.out" }, "<")
-                .to(topRingRef.current, { rotation: -8, opacity: 1, scale: 0.64, filter: "blur(0px)", duration: 1.15, ease: "expo.out" }, "<+=0.12")
-                .to(".fs-orbit-spark", { autoAlpha: 1, scale: 1, duration: 0.58, stagger: 0.045, ease: "power2.out" }, "-=0.54")
-                .to(solutionTextRef.current, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.72, ease: "back.out(1.7)" }, "-=0.32")
+            tl.to(".fs-energy-field", { opacity: 0.92, scale: 1, rotation: 0, duration: 0.7, ease: "power3.out" }, 0)
+                .to(".fs-stage-halo", { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, "<")
+                .to(topRingRef.current, { rotation: -8, opacity: 1, scale: 0.64, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, "<")
+                .to(".fs-orbit-spark", { autoAlpha: 1, scale: 1, duration: 0.3, stagger: 0.025, ease: "power2.out" }, "<")
+                .to(solutionTextRef.current, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.3, ease: "back.out(1.7)" }, "<")
                 .to(".fs-ring-flare", { opacity: 0.92, scale: 1.04, duration: 0.42, ease: "power2.out" }, "<")
                 .to(".fs-ring-flare", { opacity: 0, scale: 1.22, duration: 0.58, ease: "power2.out" })
                 .to(topRingRef.current, { rotation: 44, scale: 1.2, duration: 1.7, ease: "sine.inOut" }, "-=0.2")

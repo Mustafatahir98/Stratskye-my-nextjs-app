@@ -99,6 +99,7 @@ export default function SiteHeader() {
   const [time, setTime] = useState("LOADING...");
   const [locationLabel, setLocationLabel] = useState("DETECTING...");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -193,6 +194,19 @@ export default function SiteHeader() {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    const updateScrolled = () => {
+      setHasScrolled(window.scrollY > 24);
+    };
+
+    updateScrolled();
+    window.addEventListener("scroll", updateScrolled, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", updateScrolled);
+    };
+  }, []);
+
   const handleMenuItemClick = (href: string) => {
     setMenuOpen(false);
 
@@ -207,11 +221,16 @@ export default function SiteHeader() {
         *, *::before, *::after { box-sizing: border-box; }
         html, body { scroll-behavior: smooth; scroll-padding-top: 92px; }
         .noise-overlay { position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); opacity: 0.15; pointer-events: none; z-index: 60; mix-blend-mode: overlay; }
-        .navbar { position: fixed; top: 0; left: 0; right: 0; height: 80px; z-index: 120; display: flex; align-items: center; }
-        .navbar-bg { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(13,19,38,0.9), transparent); z-index: -1; pointer-events: none; }
-        .logo { position: absolute; left: 10%; display: flex; align-items: center; text-decoration: none; padding-left: 10px; z-index: 10; }
+        .navbar { position: fixed; top: 0; left: 0; right: 0; height: 80px; z-index: 120; display: flex; align-items: center; transition: padding 0.28s ease, height 0.28s ease; }
+        .navbar-bg { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(13,19,38,0.9), transparent); z-index: -1; pointer-events: none; transition: background 0.28s ease, backdrop-filter 0.28s ease; }
+        .logo { position: absolute; left: 10%; display: flex; align-items: center; text-decoration: none; padding-left: 10px; z-index: 10; transition: left 0.28s ease, padding 0.28s ease; }
         .logo-image { width: clamp(118px, 10vw, 156px); height: auto; display: block; object-fit: contain; filter: drop-shadow(0 8px 18px rgba(0,0,0,0.18)); }
-        .nav-center { position: absolute; left: 32%; right: 32%; height: 100%; display: flex; align-items: center; justify-content: center; gap: 18px; font-size: 11px; font-weight: 600; font-family: "Google Sans Flex"; letter-spacing: 0.15em; color: rgba(255, 255, 255, 0.95); text-transform: uppercase; mix-blend-mode: difference; white-space: nowrap; }
+        .nav-links { flex: 1 1 auto; display: none; align-items: center; justify-content: center; gap: clamp(14px, 1.55vw, 25px); min-width: 0; }
+        .nav-link { position: relative; color: rgba(255,255,255,0.76); font-family: "Google Sans Flex"; font-size: clamp(10px, 0.74vw, 12px); font-weight: 600; line-height: 1; letter-spacing: 0.14em; text-decoration: none; text-transform: uppercase; white-space: nowrap; transition: color 0.2s ease, transform 0.2s ease; }
+        .nav-link:hover, .nav-link:focus-visible, .nav-link.is-active { color: #fff; outline: none; }
+        .nav-link:hover, .nav-link:focus-visible { transform: translateY(-1px); }
+        .nav-link.is-active::after { content: ""; position: absolute; left: 50%; bottom: -10px; width: 5px; height: 5px; border-radius: 999px; background: #f26e35; transform: translateX(-50%); box-shadow: 0 0 12px rgba(242,110,53,0.85); }
+        .nav-center { position: absolute; left: 32%; right: 32%; height: 100%; display: flex; align-items: center; justify-content: center; gap: 18px; font-size: 11px; font-weight: 600; font-family: "Google Sans Flex"; letter-spacing: 0.15em; color: rgba(255, 255, 255, 0.95); text-transform: uppercase; mix-blend-mode: difference; white-space: nowrap; transition: opacity 0.22s ease; }
         .nav-location { max-width: 190px; overflow: hidden; text-overflow: ellipsis; }
         .nav-time { display: inline-flex; align-items: center; gap: 8px; color: rgb(254 215 170); }
         .nav-time svg { flex: 0 0 auto; }
@@ -247,10 +266,52 @@ export default function SiteHeader() {
         .menu-social-list { list-style: none; display: grid; gap: 4px; margin: 0; padding: 0; }
         .menu-social-link { color: #6f7283; font-size: 20px; font-weight: 500; line-height: 1.12; text-decoration: underline; text-underline-offset: 2px; transition: color 0.2s ease; }
         .menu-social-link:hover, .menu-social-link:focus-visible { color: #0a1128; outline: none; }
-        @media (max-width: 900px) {
-          .logo { left: 20px; }
-          .nav-menu { right: 16px; }
+        .navbar.is-scrolled {
+          height: 82px;
+          padding: 0 clamp(28px, 4vw, 74px);
+          gap: clamp(18px, 2.4vw, 38px);
+        }
+        .navbar.is-scrolled .navbar-bg {
+          background: linear-gradient(180deg, rgba(8,14,32,0.88) 0%, rgba(8,14,32,0.62) 68%, rgba(8,14,32,0.08) 100%);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+        }
+        .navbar.is-scrolled .logo {
+          position: static;
+          left: auto;
+          padding-left: 0;
+          flex: 0 0 auto;
+        }
+        .navbar.is-scrolled .nav-links {
+          display: flex;
+        }
+        .navbar.is-scrolled .nav-center {
+          position: static;
+          flex: 0 0 auto;
+          min-width: 186px;
+          justify-content: flex-end;
+          gap: 12px;
+          font-size: 10px;
+          letter-spacing: 0.12em;
+          mix-blend-mode: normal;
+          color: rgba(255, 255, 255, 0.82);
+        }
+        .navbar.is-scrolled .nav-menu {
+          display: none;
+        }
+        @media (max-width: 1180px) {
+          .navbar.is-scrolled .nav-center { display: none; }
+        }
+        @media (max-width: 980px) {
+          .navbar { height: 80px; padding: 0 20px; }
+          .logo { left: 20px; padding-left: 0; }
+          .nav-links { display: none; }
+          .nav-menu { display: grid; right: 16px; }
           .nav-center { display: none; }
+          .navbar.is-scrolled { height: 80px; padding: 0 20px; }
+          .navbar.is-scrolled .logo { position: absolute; left: 20px; }
+          .navbar.is-scrolled .nav-links { display: none; }
+          .navbar.is-scrolled .nav-menu { display: grid; }
           .nav-menu.is-open { right: 16px; top: 12px; }
           .menu-panel { inset: 0; width: 100%; min-height: 100dvh; border: 0; border-radius: 0; padding: max(96px, env(safe-area-inset-top)) 28px max(30px, env(safe-area-inset-bottom)); transform: translateY(-18px); }
           .menu-list { gap: clamp(4px, 1.2vh, 10px); padding-right: 56px; }
@@ -262,11 +323,27 @@ export default function SiteHeader() {
 
       <div className="noise-overlay" />
 
-      <nav className="navbar px-8">
+      <nav className={`navbar px-8 ${hasScrolled ? "is-scrolled" : ""}`}>
         <div className="navbar-bg" />
         <Link className="logo" href="/" onClick={() => setMenuOpen(false)} aria-label="StratSkye home">
           <img className="logo-image" src="/images/Logo Container.png" alt="StratSkye" />
         </Link>
+        <div className="nav-links" aria-label="Primary navigation">
+          {menuItems.map((item) => {
+            const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+
+            return (
+              <Link
+                key={item.href}
+                className={`nav-link ${isActive ? "is-active" : ""}`}
+                href={item.href}
+                onClick={() => handleMenuItemClick(item.href)}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
+        </div>
         <div className="nav-center">
           <span className="nav-location" title={locationLabel}>{locationLabel}</span>
           <div className="nav-separator" />
