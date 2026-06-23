@@ -65,14 +65,15 @@ export default function SixthSection() {
 
                 if (isMobile) {
                     cards.forEach((card, index) => {
-                        const start = 0.7 + index * 0.92;
+                        const start = 0.7 + index * 1.18;
 
                         tl.set(cards, { autoAlpha: 0, zIndex: 0 }, start)
                             .set(card, { zIndex: 2 }, start)
                             .to(card, { autoAlpha: 1, xPercent: 0, y: 0, scale: 0.94, rotateX: 0, duration: 0.42, ease: "back.out(1.3)" }, start)
                             .to(card, { y: -6, scale: 0.98, duration: 0.28, ease: "sine.inOut" }, start + 0.42)
                             .to(card, { y: 0, scale: 0.94, duration: 0.28, ease: "sine.inOut" }, start + 0.7)
-                            .to(card, { autoAlpha: 0, y: -24, scale: 0.82, rotateX: 10, duration: 0.34, ease: "power2.in" }, start + 0.92);
+                            .to(card, { autoAlpha: 0, y: -24, scale: 0.82, rotateX: 10, duration: 0.22, ease: "power2.in" }, start + 0.9)
+                            .set(card, { autoAlpha: 0, zIndex: 0 }, start + 1.12);
                     });
 
                     return;
