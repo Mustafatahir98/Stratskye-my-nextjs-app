@@ -78,6 +78,7 @@ export default function WorkWithUsSection() {
             scrub: 0.9,
             pin: true,
             anticipatePin: 1,
+            invalidateOnRefresh: true,
           },
         });
 
@@ -126,19 +127,17 @@ export default function WorkWithUsSection() {
       mm.add("(max-width: 860px)", () => {
         gsap.set(frameItems, { autoAlpha: 0 });
         gsap.set(copyRef.current, { autoAlpha: 0, y: 18, filter: "blur(6px)" });
-        gsap.set(mobileCards, { autoAlpha: 1, xPercent: 116, y: 0, scale: 1, filter: "blur(0px)" });
-        gsap.set(mobileCards[0], { zIndex: 1 });
-        gsap.set(mobileCards[1], { zIndex: 2 });
-        gsap.set(mobileCards[2], { zIndex: 3 });
+        gsap.set(mobileCards, { autoAlpha: 0, xPercent: 60, scale: 0.96, filter: "blur(4px)" });
 
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top top",
-            end: "+=260%",
+            end: "+=280%",
             scrub: 0.85,
             pin: true,
             anticipatePin: 1,
+            invalidateOnRefresh: true,
           },
         });
 
@@ -150,20 +149,29 @@ export default function WorkWithUsSection() {
           ease: "power3.out",
         })
           .to(mobileCards[0], {
+            autoAlpha: 1,
             xPercent: 0,
+            scale: 1,
+            filter: "blur(0px)",
             duration: 0.9,
             ease: "power3.out",
           })
-          .to({}, { duration: 0.28 })
+          .to({}, { duration: 0.18 })
           .to(mobileCards[1], {
+            autoAlpha: 1,
             xPercent: 0,
-            duration: 0.95,
+            scale: 1,
+            filter: "blur(0px)",
+            duration: 0.9,
             ease: "power3.out",
           })
-          .to({}, { duration: 0.28 })
+          .to({}, { duration: 0.18 })
           .to(mobileCards[2], {
+            autoAlpha: 1,
             xPercent: 0,
-            duration: 0.95,
+            scale: 1,
+            filter: "blur(0px)",
+            duration: 0.9,
             ease: "power3.out",
           })
           .to({}, { duration: 0.45 });
@@ -263,7 +271,7 @@ export default function WorkWithUsSection() {
         }
         @media (max-width: 860px) {
           .work-copy {
-            top: clamp(42px, 7svh, 74px);
+            top: 92px;
             left: 26px;
           }
           .work-heading {
@@ -275,49 +283,41 @@ export default function WorkWithUsSection() {
           }
           .work-mobile-cards {
             position: absolute;
-            right: 0;
-            bottom: clamp(66px, 9svh, 98px);
-            top: clamp(230px, 33svh, 292px);
-            width: 100vw;
+            left: 16px;
+            right: 16px;
+            top: clamp(220px, 30svh, 270px);
+            bottom: 18px;
+            width: auto;
             z-index: 8;
-            display: block;
-            pointer-events: none;
-          }
-          .work-mobile-card {
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: var(--work-mobile-offset, 0px);
-            overflow-y: auto;
-            overflow-x: hidden;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            gap: clamp(10px, 2.2svh, 18px);
-            padding: clamp(24px, 5.5vw, 34px) clamp(18px, 5vw, 30px) clamp(30px, 5.5svh, 52px);
-            border-radius: 18px 0 0 18px;
-            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.26);
-            transform-origin: right center;
-            will-change: transform;
-            scrollbar-width: none;
+            gap: 10px;
+            pointer-events: none;
+            overflow: hidden;
           }
-          .work-mobile-card::-webkit-scrollbar {
-            display: none;
-          }
-          .work-mobile-card--2 {
-            --work-mobile-offset: 42px;
-          }
-          .work-mobile-card--3 {
-            --work-mobile-offset: 84px;
+          .work-mobile-card {
+            position: relative;
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 4px;
+            padding: 14px 18px 14px 56px;
+            border-radius: 14px;
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+            overflow: hidden;
+            transform-origin: center right;
+            will-change: transform, opacity, filter;
           }
           .work-mobile-card::before {
             content: "";
             position: absolute;
             inset: 0;
+            border-radius: inherit;
             background:
-              linear-gradient(135deg, rgba(0, 0, 0, 0) 0 43%, rgba(255, 255, 255, 0.08) 43% 43.6%, rgba(0, 0, 0, 0) 43.6%),
-              radial-gradient(circle at 62% 28%, rgba(255, 255, 255, 0.12), transparent 28%);
+              linear-gradient(135deg, rgba(0, 0, 0, 0) 0 43%, rgba(255, 255, 255, 0.07) 43% 43.6%, rgba(0, 0, 0, 0) 43.6%),
+              radial-gradient(circle at 72% 22%, rgba(255, 255, 255, 0.1), transparent 32%);
             mix-blend-mode: soft-light;
             pointer-events: none;
           }
@@ -327,9 +327,9 @@ export default function WorkWithUsSection() {
             z-index: 1;
             left: -22%;
             right: -22%;
-            top: 37%;
-            height: clamp(92px, 19svh, 150px);
-            background: rgba(255, 255, 255, 0.16);
+            top: 20%;
+            height: 80%;
+            background: rgba(255, 255, 255, 0.08);
             transform: rotate(-42deg);
             transform-origin: center;
             pointer-events: none;
@@ -339,95 +339,82 @@ export default function WorkWithUsSection() {
             color: #FFFFFF;
           }
           .work-mobile-card--1::after {
-            background: rgba(255, 255, 255, 0.14);
+            background: rgba(255, 255, 255, 0.1);
           }
           .work-mobile-card--2 {
             background: #F3F1EE;
             color: #071431;
           }
           .work-mobile-card--2::after {
-            background: rgba(242, 110, 53, 0.16);
+            background: rgba(242, 110, 53, 0.1);
           }
           .work-mobile-card--3 {
             background: #4B5A73;
             color: #FFFFFF;
           }
           .work-mobile-card--3::after {
-            background: rgba(255, 255, 255, 0.11);
+            background: rgba(255, 255, 255, 0.07);
           }
           .work-mobile-card-number {
             position: absolute;
-            left: clamp(10px, 2.8vw, 14px);
-            top: clamp(18px, 5vw, 28px);
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
             z-index: 3;
             display: block;
             color: currentColor;
+            opacity: 0.22;
             font-family: "Google Sans Flex";
-            font-size: clamp(26px, 7vw, 38px);
-            font-weight: 500;
+            font-size: clamp(30px, 8vw, 42px);
+            font-weight: 600;
             line-height: 1;
             letter-spacing: 0.04em;
           }
           .work-mobile-card-kicker {
             position: relative;
-            align-self: stretch;
-            max-width: 100%;
             z-index: 2;
             color: currentColor;
-            opacity: 0.72;
+            opacity: 0.6;
             font-family: "Google Sans Flex";
-            font-size: clamp(8px, 2.1vw, 11px);
+            font-size: clamp(7px, 1.8vw, 9px);
             font-weight: 700;
             line-height: 1.3;
-            letter-spacing: 0.12em;
-            text-align: right;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
-            overflow-wrap: anywhere;
           }
           .work-mobile-card-title {
             position: relative;
             z-index: 2;
-            max-width: 100%;
-            margin-left: 0;
-            margin-top: clamp(24px, 5svh, 58px);
+            margin: 0;
             color: currentColor;
             font-family: "Google Sans Flex";
-            font-size: clamp(27px, 7.4vw, 40px);
+            font-size: clamp(19px, 5.2vw, 28px);
             font-weight: 500;
-            line-height: 1.05;
-            letter-spacing: 0;
-            text-align: right;
-            overflow-wrap: anywhere;
+            line-height: 1.08;
+            letter-spacing: -0.01em;
           }
           .work-mobile-nowrap {
             white-space: normal;
           }
           .work-mobile-card--3 .work-mobile-card-title {
-            font-size: clamp(25px, 6.8vw, 36px);
-            margin-left: 0;
-          }
-          .work-mobile-card--3 .work-mobile-card-body {
-            max-width: 100%;
+            font-size: clamp(17px, 4.8vw, 24px);
           }
           .work-mobile-card-body {
             position: relative;
             z-index: 2;
-            max-width: 100%;
-            margin: 0 0 0 auto;
+            margin: 0;
             color: currentColor;
-            opacity: 0.82;
+            opacity: 0.78;
             font-family: "Google Sans Flex";
-            font-size: clamp(13px, 3.45vw, 17px);
+            font-size: clamp(11px, 2.8vw, 14px);
             font-weight: 500;
             line-height: 1.28;
             letter-spacing: 0;
-            text-align: right;
-            overflow-wrap: anywhere;
           }
         }
         @media (max-width: 560px) {
           .work-copy {
-            top: clamp(18px, 5svh, 44px);
+            top: 88px;
             left: 20px;
             max-width: calc(100vw - 40px);
           }
@@ -437,76 +424,66 @@ export default function WorkWithUsSection() {
             gap: 6px;
           }
           .work-heading {
-            margin-top: 12px;
-            font-size: clamp(29px, 8.7vw, 39px);
+            margin-top: 10px;
+            font-size: clamp(28px, 8.2vw, 38px);
             line-height: 1;
           }
           .work-mobile-cards {
-            top: clamp(164px, 27svh, 218px);
-            bottom: clamp(58px, 8svh, 82px);
-            width: 100vw;
+            left: 12px;
+            right: 12px;
+            top: clamp(190px, 26svh, 230px);
+            bottom: 14px;
+            gap: 8px;
           }
           .work-mobile-card {
-            padding: 22px 18px clamp(30px, 5.8svh, 54px);
-            border-radius: 16px 0 0 16px;
-          }
-          .work-mobile-card--2 {
-            --work-mobile-offset: 34px;
-          }
-          .work-mobile-card--3 {
-            --work-mobile-offset: 68px;
+            padding: 12px 14px 12px 48px;
+            border-radius: 12px;
+            gap: 3px;
           }
           .work-mobile-card-number {
-            left: 10px;
-            top: 20px;
+            left: 12px;
+            font-size: clamp(26px, 7vw, 36px);
           }
           .work-mobile-card-title {
-            font-size: clamp(24px, 7.1vw, 34px);
-            margin-left: 0;
-            margin-top: clamp(20px, 4.8svh, 46px);
+            font-size: clamp(17px, 4.6vw, 24px);
           }
           .work-mobile-card--3 .work-mobile-card-title {
-            font-size: clamp(22px, 6.4vw, 30px);
-            margin-left: 0;
-          }
-          .work-mobile-card--3 .work-mobile-card-body {
-            max-width: 100%;
+            font-size: clamp(15px, 4.2vw, 21px);
           }
           .work-mobile-card-body {
-            max-width: 100%;
-            font-size: clamp(12px, 3.45vw, 15px);
+            font-size: clamp(10px, 2.6vw, 13px);
+          }
+          .work-mobile-card-kicker {
+            font-size: clamp(6px, 1.6vw, 8px);
           }
         }
         @media (max-width: 560px) and (max-height: 740px) {
           .work-copy {
-            top: 16px;
+            top: 84px;
           }
           .work-heading {
-            font-size: clamp(27px, 8.2vw, 35px);
+            font-size: clamp(26px, 7.8vw, 34px);
           }
           .work-mobile-cards {
-            top: 150px;
-            bottom: 52px;
-            width: 100vw;
+            top: 174px;
+            bottom: 10px;
+            gap: 6px;
           }
           .work-mobile-card {
-            gap: 10px;
-            padding: 18px 15px 38px;
+            gap: 2px;
+            padding: 10px 12px 10px 44px;
+          }
+          .work-mobile-card-number {
+            font-size: clamp(22px, 6vw, 30px);
           }
           .work-mobile-card-title {
-            font-size: clamp(22px, 6.6vw, 30px);
-            margin-left: 0;
-            margin-top: clamp(16px, 4svh, 34px);
+            font-size: clamp(15px, 4.2vw, 20px);
           }
           .work-mobile-card--3 .work-mobile-card-title {
-            font-size: clamp(20px, 5.8vw, 26px);
-            margin-left: 0;
-          }
-          .work-mobile-card--3 .work-mobile-card-body {
-            max-width: 100%;
+            font-size: clamp(14px, 3.8vw, 18px);
           }
           .work-mobile-card-body {
-            font-size: clamp(11px, 3.2vw, 13px);
+            font-size: clamp(9px, 2.4vw, 11px);
             line-height: 1.22;
           }
         }

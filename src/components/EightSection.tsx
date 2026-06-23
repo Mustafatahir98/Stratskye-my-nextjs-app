@@ -134,6 +134,7 @@ export default function EightSection() {
                         scrub: 0.55,
                         pin: true,
                         anticipatePin: 1,
+                        invalidateOnRefresh: true,
                     },
                 });
 

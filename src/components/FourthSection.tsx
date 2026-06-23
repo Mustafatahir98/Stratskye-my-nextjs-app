@@ -22,6 +22,7 @@ export default function FourthSection() {
           scrub: 1,
           pin: true,
           anticipatePin: 1,
+          invalidateOnRefresh: true,
         },
       });
 
