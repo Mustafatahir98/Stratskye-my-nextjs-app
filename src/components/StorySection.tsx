@@ -32,7 +32,6 @@ export default function StorySection() {
               scrub: isMobile ? 0.9 : 1.15,
               pin: true,
               anticipatePin: 1,
-              invalidateOnRefresh: true,
             }
           });
 

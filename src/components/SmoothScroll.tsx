@@ -19,11 +19,6 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     let removeRatioListener: (() => void) | null = null;
 
     const runRefresh = () => {
-      const activePinnedTrigger = ScrollTrigger.getAll().find(
-        (trigger) => trigger.isActive && Boolean(trigger.vars.pin)
-      );
-      const activeProgress = activePinnedTrigger?.progress;
-
       lenis.stop();
       lenis.resize();
 
@@ -32,15 +27,6 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       });
 
       ScrollTrigger.refresh(true);
-
-      if (activePinnedTrigger && activeProgress !== undefined) {
-        const scrollTarget =
-          activePinnedTrigger.start +
-          (activePinnedTrigger.end - activePinnedTrigger.start) * activeProgress;
-
-        lenis.scrollTo(scrollTarget, { immediate: true, force: true });
-      }
-
       ScrollTrigger.update();
       lenis.start();
     };

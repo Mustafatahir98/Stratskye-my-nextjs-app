@@ -39,7 +39,6 @@ export default function FifthSection() {
                     scrub: 1.25,
                     pin: true,
                     anticipatePin: 1,
-                    invalidateOnRefresh: true,
                 },
             });
 

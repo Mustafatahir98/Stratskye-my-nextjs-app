@@ -170,7 +170,6 @@ export default function NinethSection() {
             scrub: 0.75,
             pin: true,
             anticipatePin: 1,
-            invalidateOnRefresh: true,
           },
         });
 

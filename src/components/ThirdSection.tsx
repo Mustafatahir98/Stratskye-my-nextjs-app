@@ -64,7 +64,6 @@ export default function ThirdSection() {
               scrub: isMobile ? 0.85 : 1,
               pin: true,
               anticipatePin: 1,
-              invalidateOnRefresh: true,
             },
           });
 

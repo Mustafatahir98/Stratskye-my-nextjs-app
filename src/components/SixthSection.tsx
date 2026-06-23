@@ -197,7 +197,7 @@ export default function SixthSection() {
         /* --- MOBILE SPECIFIC OVERRIDES --- */
         @media (max-width: 760px) {
           .sixth-heading {
-            margin-top: clamp(44px, 8vh, 76px);
+            margin-top: clamp(104px, 16svh, 132px);
           }
           .sixth-card-image {
             width: clamp(225px, 60vw, 305px);
@@ -216,6 +216,21 @@ export default function SixthSection() {
             font-size: clamp(34px, 9vw, 46px);
             line-height: 0.96;
             letter-spacing: -0.04em;
+          }
+        }
+        @media (max-width: 760px) and (max-height: 740px) {
+          .sixth-heading {
+            margin-top: 96px;
+          }
+          .sixth-card-image {
+            width: clamp(205px, 54vw, 278px);
+          }
+          .sixth-service-title {
+            font-size: 19px;
+          }
+          .sixth-service-copy {
+            font-size: 12px;
+            line-height: 1.32;
           }
         }
       `}</style>

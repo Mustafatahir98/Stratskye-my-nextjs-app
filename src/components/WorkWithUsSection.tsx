@@ -78,7 +78,6 @@ export default function WorkWithUsSection() {
             scrub: 0.9,
             pin: true,
             anticipatePin: 1,
-            invalidateOnRefresh: true,
           },
         });
 
@@ -137,7 +136,6 @@ export default function WorkWithUsSection() {
             scrub: 0.85,
             pin: true,
             anticipatePin: 1,
-            invalidateOnRefresh: true,
           },
         });
 
