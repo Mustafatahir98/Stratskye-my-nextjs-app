@@ -82,19 +82,20 @@ export default function FifthSection() {
             // SEQUENCE
             tl.to(".fs-energy-field", { opacity: 0.92, scale: 1, rotation: 0, duration: 1.05, ease: "power3.out" }, 0.12)
                 .to(".fs-stage-halo", { opacity: 1, scale: 1, duration: 0.9, ease: "power2.out" }, "<")
-                .to(topRingRef.current, { rotation: -8, opacity: 1, scale: 0.6, filter: "blur(0px)", duration: 1.15, ease: "expo.out" }, "<+=0.12")
+                .to(topRingRef.current, { rotation: -8, opacity: 1, scale: 0.64, filter: "blur(0px)", duration: 1.15, ease: "expo.out" }, "<+=0.12")
                 .to(".fs-orbit-spark", { autoAlpha: 1, scale: 1, duration: 0.58, stagger: 0.045, ease: "power2.out" }, "-=0.54")
                 .to(solutionTextRef.current, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.72, ease: "back.out(1.7)" }, "-=0.32")
                 .to(".fs-ring-flare", { opacity: 0.92, scale: 1.04, duration: 0.42, ease: "power2.out" }, "<")
                 .to(".fs-ring-flare", { opacity: 0, scale: 1.22, duration: 0.58, ease: "power2.out" })
-                .to(topRingRef.current, { rotation: 44, scale: 1.14, duration: 1.7, ease: "sine.inOut" }, "-=0.2")
-                .to(".fs-orbit-sparks", { rotation: 72, scale: 1.14, duration: 1.7, ease: "sine.inOut", force3D: true }, "<")
+                .to(topRingRef.current, { rotation: 44, scale: 1.2, duration: 1.7, ease: "sine.inOut" }, "-=0.2")
+                .to(".fs-orbit-sparks", { rotation: 72, scale: 1.2, duration: 1.7, ease: "sine.inOut", force3D: true }, "<")
                 .to(lineRef.current, { scaleY: 1, opacity: 1, duration: 0.86, ease: "power3.out" }, "<+=0.34")
                 .to(solutionTextRef.current, { opacity: 0, y: -10, scale: 0.84, filter: "blur(4px)", duration: 0.45, ease: "power2.out" }, "<+=0.58")
-                .to(bottomRingOuterRef.current, { rotation: -8, opacity: 1, scale: 1.02, filter: "blur(0px)", duration: 1.08, ease: "power3.out" }, "<+=0.22")
-                .to(bottomRingInnerRef.current, { rotation: 8, opacity: 1, scale: 0.98, filter: "blur(0px)", duration: 1.08, ease: "power3.out" }, "<+=0.08")
-                .to(bottomRingOuterRef.current, { rotation: 42, scale: 1.08, duration: 1.45, ease: "sine.inOut" }, "<")
-                .to(bottomRingInnerRef.current, { rotation: -48, scale: 1.04, duration: 1.45, ease: "sine.inOut" }, "<")
+                .to(lineRef.current, { opacity: 0, scaleY: 0.08, duration: 0.38, ease: "power2.out" }, "<+=0.08")
+                .to(bottomRingOuterRef.current, { rotation: -8, opacity: 1, scale: 1.08, filter: "blur(0px)", duration: 1.08, ease: "power3.out" }, "<+=0.22")
+                .to(bottomRingInnerRef.current, { rotation: 8, opacity: 1, scale: 1.04, filter: "blur(0px)", duration: 1.08, ease: "power3.out" }, "<+=0.08")
+                .to(bottomRingOuterRef.current, { rotation: 42, scale: 1.14, duration: 1.45, ease: "sine.inOut" }, "<")
+                .to(bottomRingInnerRef.current, { rotation: -48, scale: 1.1, duration: 1.45, ease: "sine.inOut" }, "<")
                 .to(topRingRef.current, { opacity: 0.12, scale: 1.22, rotation: 92, duration: 0.72, ease: "power2.out" }, "<+=0.5")
                 .to(".fs-stage-halo", { opacity: 0.38, scale: 1.16, duration: 0.72, ease: "power2.out" }, "<")
                 // 4. Texts fade in
@@ -102,7 +103,7 @@ export default function FifthSection() {
                 .to(mainTextRef.current, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.82, ease: "power2.out" }, "<+=0.08")
                 .to(subTextRef.current, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.82, ease: "power2.out" }, "-=0.42")
                 // 5. Fade out earlier elements
-                .to([mainTextRef.current, subTextRef.current, solutionStageRef.current, lineRef.current], { opacity: 0, y: -14, duration: 0.55, ease: "power2.out" }, "+=0.58")
+                .to([mainTextRef.current, subTextRef.current, solutionStageRef.current], { opacity: 0, y: -14, duration: 0.55, ease: "power2.out" }, "+=0.58")
                 .to(".fs-text-aura", { opacity: 0, scale: 1.15, duration: 0.55, ease: "power2.out" }, "<")
                 // 6. Expand bottom rings
                 .to(".fs-energy-field", { opacity: 0.34, scale: 1.24, rotation: 18, duration: 1.45, ease: "power2.inOut" }, "<")
@@ -177,8 +178,8 @@ export default function FifthSection() {
           background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.12) 26%, transparent 40%, transparent 60%, rgba(255,255,255,0.1) 74%, transparent 100%);
         }
         .fs-energy-field {
-          width: min(82vh, 760px);
-          height: min(82vh, 760px);
+          width: min(88vh, 820px);
+          height: min(88vh, 820px);
           border-radius: 9999px;
           background:
             conic-gradient(from 90deg, transparent 0deg, rgba(242,110,53,0.42) 42deg, transparent 86deg, rgba(117,157,230,0.34) 152deg, transparent 214deg, rgba(255,255,255,0.26) 288deg, transparent 360deg);
@@ -228,12 +229,12 @@ export default function FifthSection() {
           transform-origin: 50% 50%;
           will-change: transform;
         }
-        .fs-orbit-spark-1 { --fs-orbit-x: 0%; --fs-orbit-y: -42%; }
-        .fs-orbit-spark-2 { --fs-orbit-x: 36.37%; --fs-orbit-y: -21%; background: #dce8ff; }
-        .fs-orbit-spark-3 { --fs-orbit-x: 36.37%; --fs-orbit-y: 21%; }
-        .fs-orbit-spark-4 { --fs-orbit-x: 0%; --fs-orbit-y: 42%; background: #dce8ff; }
-        .fs-orbit-spark-5 { --fs-orbit-x: -36.37%; --fs-orbit-y: 21%; }
-        .fs-orbit-spark-6 { --fs-orbit-x: -36.37%; --fs-orbit-y: -21%; background: #dce8ff; }
+        .fs-orbit-spark-1 { --fs-orbit-x: 0%; --fs-orbit-y: -41%; }
+        .fs-orbit-spark-2 { --fs-orbit-x: 35.51%; --fs-orbit-y: -20.5%; background: #dce8ff; }
+        .fs-orbit-spark-3 { --fs-orbit-x: 35.51%; --fs-orbit-y: 20.5%; }
+        .fs-orbit-spark-4 { --fs-orbit-x: 0%; --fs-orbit-y: 41%; background: #dce8ff; }
+        .fs-orbit-spark-5 { --fs-orbit-x: -35.51%; --fs-orbit-y: 20.5%; }
+        .fs-orbit-spark-6 { --fs-orbit-x: -35.51%; --fs-orbit-y: -20.5%; background: #dce8ff; }
         .fs-solution-text {
           font-size: 12px;
           letter-spacing: 0.22em;
@@ -250,11 +251,11 @@ export default function FifthSection() {
           color: #FFF;
           text-align: center;
           font-family: "Google Sans Flex";
-          font-size: clamp(26px, 3.3vw, 44px);
+          font-size: clamp(22px, 2.48vw, 34px);
           font-style: normal;
           font-weight: 400;
-          line-height: 102%;
-          letter-spacing: -1.35px;
+          line-height: 106%;
+          letter-spacing: -0.8px;
         }
         .fs-main-text .accent {
           color: #F26E35;
@@ -262,8 +263,8 @@ export default function FifthSection() {
           font-size: inherit;
           font-style: normal;
           font-weight: 400;
-          line-height: 102%;
-          letter-spacing: -1.35px;
+          line-height: 106%;
+          letter-spacing: -0.8px;
         }
         .fs-corner-glow {
           position: absolute;
@@ -303,6 +304,66 @@ export default function FifthSection() {
           filter: blur(26px);
           mix-blend-mode: screen;
         }
+        .fs-solution-stage {
+          width: min(66vh, 660px);
+          height: min(66vh, 660px);
+          min-width: 410px;
+          min-height: 410px;
+        }
+        .fs-bottom-stage {
+          width: min(66vh, 660px);
+          height: min(66vh, 660px);
+          min-width: 410px;
+          min-height: 410px;
+        }
+        .fs-bottom-ring-inner {
+          inset: 11%;
+          width: 78%;
+          height: 78%;
+        }
+        .fs-center-copy {
+          width: min(68%, 430px);
+        }
+        @media (max-width: 767px) {
+          .fs-energy-field {
+            width: min(80vw, 360px);
+            height: min(80vw, 360px);
+          }
+          .fs-solution-stage {
+            width: min(76vw, 350px);
+            height: min(76vw, 350px);
+            min-width: 0;
+            min-height: 0;
+          }
+          .fs-bottom-stage {
+            width: min(76vw, 350px);
+            height: min(76vw, 350px);
+            min-width: 0;
+            min-height: 0;
+          }
+          .fs-bottom-ring-inner {
+            inset: 12%;
+            width: 76%;
+            height: 76%;
+          }
+          .fs-center-copy {
+            width: min(58vw, 248px);
+            gap: 10px;
+          }
+          .fs-main-text {
+            font-size: clamp(15px, 4.35vw, 19px);
+            line-height: 1.12;
+            letter-spacing: -0.25px;
+          }
+          .fs-main-text .accent {
+            letter-spacing: -0.25px;
+          }
+          .fs-sub-text {
+            max-width: min(52vw, 220px);
+            font-size: clamp(10px, 2.8vw, 12px);
+            line-height: 1.35;
+          }
+        }
       `}</style>
             <div ref={shutterGradientRef} className="fifth-shutter-gradient" aria-hidden="true" />
             <div ref={shutterLeftRef} className="fifth-shutter fifth-shutter-left" aria-hidden="true" />
@@ -315,7 +376,7 @@ export default function FifthSection() {
             {/* SOLUTION RING */}
             <div
                 ref={solutionStageRef}
-                className="absolute top-[49%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center w-[64vh] h-[64vh] min-w-[390px] min-h-[390px] max-w-[660px] max-h-[660px] z-[4]"
+                className="fs-solution-stage absolute top-[49%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center z-[4]"
             >
                 <div className="fs-stage-halo" aria-hidden="true" />
                 <div className="fs-ring-flare" aria-hidden="true" />
@@ -351,7 +412,7 @@ export default function FifthSection() {
             </div>
 
             {/* BOTTOM RINGS & TEXT */}
-            <div className="absolute top-[49%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center w-[54vh] h-[54vh] min-w-[350px] min-h-[350px] max-w-[520px] max-h-[520px]">
+            <div className="fs-bottom-stage absolute top-[49%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center">
                 {/* Outer Ring */}
                 <img
                     ref={bottomRingOuterRef}
@@ -364,7 +425,7 @@ export default function FifthSection() {
                     ref={bottomRingInnerRef}
                     src="/images/IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII.png"
                     alt="Bottom Ring Inner"
-                    className="absolute inset-[10%] w-[80%] h-[80%] object-contain"
+                    className="fs-bottom-ring-inner absolute object-contain"
                 />
 
                 {/* Animated Logo */}
@@ -383,20 +444,17 @@ export default function FifthSection() {
                 />
 
                 {/* Texts */}
-                <div className="absolute z-10 flex flex-col items-center justify-center w-[88%] text-center gap-3 md:gap-4">
+                <div className="fs-center-copy absolute z-10 flex flex-col items-center justify-center text-center gap-3 md:gap-4">
                     <div className="fs-text-aura" aria-hidden="true" />
                     <h2
                         ref={mainTextRef}
                         className="relative fs-main-text"
                         style={{ leadingTrim: "both", textEdge: "cap" } as CapTrimStyle}
                     >
-                        You need a &quot;Full-Stack&quot;<br />
-                        <span className="accent">Growth Machine.</span> And we<br />
-                        are here to build it.
+                        You need a &quot;Full-Stack&quot; <span className="accent">Growth Machine.</span> And we are here to build it.
                     </h2>
-                    <p ref={subTextRef} className="relative text-[#9ba8c6] text-[clamp(11px,1.2vw,13px)] max-w-[280px] leading-relaxed">
-                        In Tech, you can&apos;t solve a sales problem<br />
-                        with just an ad or just a website.
+                    <p ref={subTextRef} className="fs-sub-text relative text-[#9ba8c6] text-[clamp(11px,1.2vw,13px)] max-w-[280px] leading-relaxed">
+                        Throwing money on ad or a website revamp won&apos;t fix your problems.
                     </p>
                 </div>
             </div>

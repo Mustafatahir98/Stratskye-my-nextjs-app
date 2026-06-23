@@ -6,9 +6,12 @@ import { X } from "lucide-react";
 import { sendNewsletterSignupEmail } from "@/app/actions/email";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const triggerVisibleMs = 5000;
+const triggerHiddenMs = 10000;
 
 export default function NewsletterPopup() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isTriggerVisible, setIsTriggerVisible] = useState(true);
   const [status, setStatus] = useState<{
     type: "success" | "error" | "idle";
     message: string;
@@ -16,12 +19,30 @@ export default function NewsletterPopup() {
   const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
-    const timer = window.setTimeout(() => {
-      setIsOpen(true);
-    }, 5000);
+    if (isOpen) {
+      setIsTriggerVisible(false);
+      return;
+    }
 
-    return () => window.clearTimeout(timer);
-  }, []);
+    let visibleTimer: number | undefined;
+    let hiddenTimer: number | undefined;
+
+    const showTrigger = () => {
+      setIsTriggerVisible(true);
+
+      visibleTimer = window.setTimeout(() => {
+        setIsTriggerVisible(false);
+        hiddenTimer = window.setTimeout(showTrigger, triggerHiddenMs);
+      }, triggerVisibleMs);
+    };
+
+    showTrigger();
+
+    return () => {
+      window.clearTimeout(visibleTimer);
+      window.clearTimeout(hiddenTimer);
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -83,13 +104,54 @@ export default function NewsletterPopup() {
     });
   };
 
-  if (!isOpen) {
-    return null;
-  }
+  const openNewsletterPopup = () => {
+    setStatus({ type: "idle", message: "" });
+    setIsOpen(true);
+  };
 
-  return createPortal(
-    <div className="newsletter-popup" role="presentation" onMouseDown={() => setIsOpen(false)}>
+  const styles = (
       <style>{`
+        .newsletter-trigger {
+          position: fixed;
+          right: 0;
+          top: 50%;
+          z-index: 120;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 132px;
+          padding: 16px 10px;
+          border: 1px solid rgba(255, 255, 255, 0.16);
+          border-right: 0;
+          border-radius: 0 14px 14px 0;
+          background: rgba(242, 110, 53, 0.94);
+          color: #fff;
+          font-family: "Google Sans Flex";
+          font-size: 12px;
+          font-weight: 700;
+          line-height: 1;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          writing-mode: vertical-rl;
+          opacity: 0;
+          pointer-events: none;
+          transform: translate(105%, -50%) rotate(180deg);
+          cursor: pointer;
+          box-shadow: 0 16px 34px rgba(9, 14, 28, 0.28);
+          transition: opacity 520ms ease, transform 520ms cubic-bezier(.16, 1, .3, 1), background 180ms ease, box-shadow 180ms ease;
+        }
+        .newsletter-trigger.is-visible {
+          opacity: 1;
+          pointer-events: auto;
+          transform: translateY(-50%) rotate(180deg);
+        }
+        .newsletter-trigger:hover,
+        .newsletter-trigger:focus-visible {
+          background: #ff7a3f;
+          box-shadow: 0 18px 38px rgba(9, 14, 28, 0.34);
+          transform: translateY(-50%) rotate(180deg) translateY(-2px);
+          outline: none;
+        }
         .newsletter-popup {
           position: fixed;
           inset: 0;
@@ -236,6 +298,13 @@ export default function NewsletterPopup() {
           .newsletter-popup {
             padding: 14px;
           }
+          .newsletter-trigger {
+            min-height: 112px;
+            padding: 14px 9px;
+            border-radius: 0 12px 12px 0;
+            font-size: 11px;
+            letter-spacing: 0.12em;
+          }
           .newsletter-dialog {
             padding: 18px;
             border-radius: 20px;
@@ -255,6 +324,28 @@ export default function NewsletterPopup() {
           }
         }
       `}</style>
+  );
+
+  return (
+    <>
+      {styles}
+
+      {!isOpen ? (
+        <button
+          className={`newsletter-trigger${isTriggerVisible ? " is-visible" : ""}`}
+          type="button"
+          aria-label="Open newsletter signup"
+          aria-hidden={!isTriggerVisible}
+          tabIndex={isTriggerVisible ? 0 : -1}
+          onClick={openNewsletterPopup}
+        >
+          Newsletter
+        </button>
+      ) : null}
+
+      {isOpen
+        ? createPortal(
+          <div className="newsletter-popup" role="presentation" onMouseDown={() => setIsOpen(false)}>
 
       <section
         className="newsletter-dialog"
@@ -295,7 +386,10 @@ export default function NewsletterPopup() {
 
         <p className="newsletter-note">Weekly growth ideas, zero clutter. Opt out whenever you want.</p>
       </section>
-    </div>,
-    document.body,
+          </div>,
+          document.body,
+        )
+        : null}
+    </>
   );
 }

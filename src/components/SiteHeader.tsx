@@ -9,6 +9,7 @@ const menuItems = [
   { label: "Home", href: "/" },
   { label: "Work", href: "/work" },
   { label: "Services", href: "/services" },
+  { label: "Approach", href: "/our-approach" },
   { label: "Articles", href: "/blog" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact-form" },
@@ -230,6 +231,7 @@ export default function SiteHeader() {
         .menu-overlay.is-open .menu-list li:nth-child(4) .menu-link { transition-delay: 150ms; }
         .menu-overlay.is-open .menu-list li:nth-child(5) .menu-link { transition-delay: 185ms; }
         .menu-overlay.is-open .menu-list li:nth-child(6) .menu-link { transition-delay: 220ms; }
+        .menu-overlay.is-open .menu-list li:nth-child(7) .menu-link { transition-delay: 255ms; }
         .menu-link:hover, .menu-link:focus-visible, .menu-link.is-active { color: #0a1128; outline: none; }
         .menu-link.is-active::before { content: ""; position: absolute; left: -18px; top: 50%; width: 8px; height: 8px; border-radius: 50%; background: #f26e35; transform: translateY(-50%); }
         .menu-social { margin-top: auto; padding-top: 28px; }

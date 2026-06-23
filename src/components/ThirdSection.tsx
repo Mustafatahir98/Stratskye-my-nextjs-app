@@ -219,7 +219,7 @@ export default function ThirdSection() {
         }
         .ts-orange { color: #f26e35; }
         .ts-ball { position: absolute; top: 0; left: 0; width: 18px; height: 18px; z-index: 30; filter: drop-shadow(0 4px 7px rgba(242, 110, 53, 0.34)); }
-        .ts-card-layer { position: absolute; inset: 0; z-index: 14; pointer-events: none; }
+        .ts-card-layer { position: absolute; inset: 0; z-index: 80; pointer-events: none; }
         .ts-card-shell {
           --ts-card-width: clamp(210px, 24vw, 286px);
           --ts-card-half-height: clamp(113px, 12.96vw, 154.5px);
@@ -231,10 +231,22 @@ export default function ThirdSection() {
           flex-direction: column;
           justify-content: flex-start;
           pointer-events: auto;
+          z-index: 1;
+          isolation: isolate;
+          background: transparent;
           will-change: transform, opacity;
         }
-        .ts-card-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; border-radius: 10px; filter: drop-shadow(0 18px 30px rgba(9, 21, 50, 0.1)); }
-        .ts-card-content { position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; }
+        .ts-card-shell::before {
+          content: "";
+          position: absolute;
+          inset: 1.5% 3% 4% 3%;
+          z-index: 0;
+          background: #fff;
+          border-radius: 8px;
+          clip-path: inset(0 round 8px);
+        }
+        .ts-card-bg { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: fill; border-radius: 10px; filter: drop-shadow(0 18px 30px rgba(9, 21, 50, 0.1)); }
+        .ts-card-content { position: relative; z-index: 2; display: flex; flex-direction: column; height: 100%; }
         .ts-card-icon { width: clamp(45px, 4.6vw, 62px); height: clamp(45px, 4.6vw, 62px); object-fit: contain; margin-bottom: auto; }
         .ts-card-title { margin: 0 0 22px; color: #091532; font-family: "Google Sans Flex"; font-size: clamp(20px, 2vw, 25px); line-height: 1.05; letter-spacing: -0.8px; font-weight: 650; }
         .ts-card-body { margin: 0; color: rgba(9, 21, 50, 0.62); font-family: "Google Sans Flex"; font-size: clamp(13px, 1.2vw, 16px); line-height: 1.18; letter-spacing: -0.28px; max-width: 95%; }
@@ -322,7 +334,7 @@ export default function ThirdSection() {
             z-index: 20;
           }
           .ts-card-layer {
-            z-index: 22;
+            z-index: 80;
           }
           .ts-card-shell {
             --ts-card-width: min(82vw, 320px);
