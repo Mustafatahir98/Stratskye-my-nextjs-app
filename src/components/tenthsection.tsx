@@ -9,6 +9,8 @@ const hangingLogo = "/images/stratskye-animate.png";
 const sectionBg = "/images/footer-landing.png";
 const wordmarkIcon = "/images/Union-logo.svg";
 const wordmarkText = "/images/Text (1).png";
+const instagramUrl = "https://www.instagram.com/stratskye?igsh=MXd4eDVieWw2bzY4Zw%3D%3D";
+const linkedInUrl = "https://www.linkedin.com/authwall?trk=bf&trkInfo=AQGe1p6w0mMtMgAAAZ7zplnQRcb0HyobHNWVctVbGuXOCniiT21f1yzoDn8blbd5xE6i8gBP3v3UQE_LwnagVyV3Md1F0toBKlS2QWmCBhOfNcYFhiV5Ml3YJvqc1bnbCPSYW2k=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2F101893541%2Fadmin%2Fdashboard%2F";
 
 export default function TenthSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -141,7 +143,6 @@ export default function TenthSection() {
           }}
           className="tenth-contact"
         >
-          <span>+92 331 6547886</span>
           <span>admin@stratskye.com</span>
         </div>
 
@@ -151,8 +152,12 @@ export default function TenthSection() {
           }}
           className="tenth-social"
         >
-          <span>instagram</span>
-          <span>linkedin</span>
+          <a href={instagramUrl} target="_blank" rel="noreferrer">
+            instagram
+          </a>
+          <a href={linkedInUrl} target="_blank" rel="noreferrer">
+            linkedin
+          </a>
         </div>
 
         <div
@@ -465,6 +470,14 @@ export default function TenthSection() {
           line-height: 1.18;
           letter-spacing: 0;
           text-shadow: 0 2px 7px rgba(0, 0, 0, 0.58);
+        }
+        .tenth-social a {
+          color: inherit;
+          text-decoration: none;
+        }
+        .tenth-social a:hover,
+        .tenth-social a:focus-visible {
+          color: #f26e35;
         }
         .tenth-giant-word {
           position: absolute;

@@ -9,15 +9,15 @@ const menuItems = [
   { label: "Home", href: "/" },
   { label: "Work", href: "/work" },
   { label: "Services", href: "/services" },
-  { label: "Approach", href: "/our-approach" },
   { label: "Articles", href: "/blog" },
   { label: "About", href: "/about" },
+  { label: "Approach", href: "/our-approach" },
   { label: "Contact", href: "/contact-form" },
 ];
 
 const socialItems = [
-  { label: "Instagram", href: "https://www.instagram.com/stratskye/" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/stratskye/?viewAsMember=true" },
+  { label: "Instagram", href: "https://www.instagram.com/stratskye?igsh=MXd4eDVieWw2bzY4Zw%3D%3D" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/authwall?trk=bf&trkInfo=AQGe1p6w0mMtMgAAAZ7zplnQRcb0HyobHNWVctVbGuXOCniiT21f1yzoDn8blbd5xE6i8gBP3v3UQE_LwnagVyV3Md1F0toBKlS2QWmCBhOfNcYFhiV5Ml3YJvqc1bnbCPSYW2k=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2F101893541%2Fadmin%2Fdashboard%2F" },
   { label: "Terms of Service", href: "/terms-of-services" },
   { label: "Privacy Policy", href: "/privacy-policy" },
 ];

@@ -12,6 +12,8 @@ const hangingLogo = "/images/stratskye-animate.png";
 const sectionBg = "/images/image 9.png";
 const wordmarkIcon = "/images/stratskye-footer-logo.svg";
 const wordmarkText = "/images/Text.png";
+const instagramUrl = "https://www.instagram.com/stratskye?igsh=MXd4eDVieWw2bzY4Zw%3D%3D";
+const linkedInUrl = "https://www.linkedin.com/authwall?trk=bf&trkInfo=AQGe1p6w0mMtMgAAAZ7zplnQRcb0HyobHNWVctVbGuXOCniiT21f1yzoDn8blbd5xE6i8gBP3v3UQE_LwnagVyV3Md1F0toBKlS2QWmCBhOfNcYFhiV5Ml3YJvqc1bnbCPSYW2k=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2F101893541%2Fadmin%2Fdashboard%2F";
 
 export default function PageFooter() {
   const pathname = usePathname();
@@ -174,7 +176,6 @@ export default function PageFooter() {
           }}
           className="page-footer-contact"
         >
-          <a href="tel:+923316547886">+92 331 6547886</a>
           <a href="mailto:admin@stratskye.com">admin@stratskye.com</a>
         </div>
 
@@ -184,10 +185,10 @@ export default function PageFooter() {
           }}
           className="page-footer-social"
         >
-          <a href="https://www.instagram.com/" target="_blank" rel="noreferrer">
+          <a href={instagramUrl} target="_blank" rel="noreferrer">
             instagram
           </a>
-          <a href="https://www.linkedin.com/company/stratskye/?viewAsMember=true" target="_blank" rel="noreferrer">
+          <a href={linkedInUrl} target="_blank" rel="noreferrer">
             linkedin
           </a>
         </div>
