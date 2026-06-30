@@ -665,7 +665,7 @@ export default function NinethSection() {
           .cloud-secure-card,
           .success-card {
             position: absolute;
-            top: 520px;
+            top: 488px;
             height: 260px;
             max-width: none;
           }

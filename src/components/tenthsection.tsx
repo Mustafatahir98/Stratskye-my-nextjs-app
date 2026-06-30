@@ -427,8 +427,9 @@ export default function TenthSection() {
           text-decoration: none;
           display: inline-flex;
           width: fit-content;
-          min-height: 24px;
+          min-height: 16px;
           align-items: center;
+          line-height: 1;
           pointer-events: auto;
           transition: color 0.2s ease, transform 0.2s ease;
         }
@@ -602,6 +603,9 @@ export default function TenthSection() {
             top: 580px;
             font-size: 12px;
           }
+          .tenth-social a {
+            min-height: 14px;
+          }
           .tenth-social {
             gap: 2px;
           }
@@ -712,6 +716,9 @@ export default function TenthSection() {
           .tenth-email {
             top: auto;
             font-size: 11px;
+          }
+          .tenth-social a {
+            min-height: 13px;
           }
           .tenth-social {
             gap: 1px;
