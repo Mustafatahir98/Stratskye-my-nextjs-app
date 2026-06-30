@@ -409,7 +409,7 @@ export default function WorkWithUsSection() {
           .work-mobile-cards {
             left: 12px;
             right: 12px;
-            top: clamp(190px, 26svh, 230px);
+            top: clamp(218px, 30svh, 258px);
             bottom: 14px;
             gap: 8px;
           }
@@ -444,7 +444,7 @@ export default function WorkWithUsSection() {
             font-size: clamp(26px, 7.8vw, 34px);
           }
           .work-mobile-cards {
-            top: 174px;
+            top: 216px;
             bottom: 10px;
             gap: 6px;
           }
