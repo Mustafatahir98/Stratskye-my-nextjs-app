@@ -161,35 +161,31 @@ export default function SixthSection() {
                         onLeaveBack: unlockScroll,
                     });
 
-                    ScrollTrigger.create({
-                        trigger: containerRef.current,
-                        start: "top 70%",
-                        onEnter: playPresentation,
-                    });
                 };
 
                 if (isMobile) {
                     cards.forEach((card, index) => {
                         const start = 0.7 + index * 1.18;
-                        const isLastCard = index === cards.length - 1;
 
                         tl.set(cards, { autoAlpha: 0, zIndex: 0 }, start)
                             .set(card, { zIndex: 2 }, start)
                             .to(card, { autoAlpha: 1, xPercent: 0, y: 0, scale: 0.94, rotateX: 0, duration: 0.42, ease: "back.out(1.3)" }, start)
                             .to(card, { y: -6, scale: 0.98, duration: 0.28, ease: "sine.inOut" }, start + 0.42)
                             .to(card, { y: 0, scale: 0.94, duration: 0.28, ease: "sine.inOut" }, start + 0.7)
-                            .to(card, {
-                                autoAlpha: isLastCard ? 1 : 0,
-                                y: isLastCard ? 0 : -24,
-                                scale: isLastCard ? 0.94 : 0.82,
-                                rotateX: isLastCard ? 0 : 10,
-                                duration: 0.22,
-                                ease: isLastCard ? "power2.out" : "power2.in",
-                            }, start + 0.9)
-                            .set(card, { autoAlpha: isLastCard ? 1 : 0, zIndex: isLastCard ? 2 : 0 }, start + 1.12);
+                            .to(card, { autoAlpha: 0, y: -24, scale: 0.82, rotateX: 10, duration: 0.22, ease: "power2.in" }, start + 0.9)
+                            .set(card, { autoAlpha: 0, zIndex: 0 }, start + 1.12);
                     });
 
-                    createPresentationTrigger(1250, 0.94);
+                    ScrollTrigger.create({
+                        trigger: containerRef.current,
+                        start: "top top",
+                        end: "+=300%",
+                        scrub: 1,
+                        pin: true,
+                        anticipatePin: 1,
+                        invalidateOnRefresh: true,
+                        animation: tl,
+                    });
 
                     return;
                 }
