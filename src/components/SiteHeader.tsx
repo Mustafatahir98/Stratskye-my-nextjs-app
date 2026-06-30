@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { type MouseEvent, useEffect, useState } from "react";
 import { Clock } from "lucide-react";
 
 const menuItems = [
@@ -237,6 +237,20 @@ export default function SiteHeader() {
     }
   };
 
+  const handlePopupMenuItemClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    setMenuOpen(false);
+
+    if (href === "/" && pathname === "/") {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    if (href === pathname) {
+      event.preventDefault();
+    }
+  };
+
   return (
     <>
       <style>{`
@@ -399,13 +413,13 @@ export default function SiteHeader() {
 
               return (
                 <li key={item.href}>
-                  <Link
+                  <a
                     className={`menu-link ${isActive ? "is-active" : ""}`}
                     href={item.href}
-                    onClick={() => handleMenuItemClick(item.href)}
+                    onClick={(event) => handlePopupMenuItemClick(event, item.href)}
                   >
                     {item.label}
-                  </Link>
+                  </a>
                 </li>
               );
             })}
@@ -415,9 +429,15 @@ export default function SiteHeader() {
             <ul className="menu-social-list">
               {socialItems.map((item) => (
                 <li key={item.href}>
-                  <Link className="menu-social-link" href={item.href} onClick={() => setMenuOpen(false)}>
+                  <a
+                    className="menu-social-link"
+                    href={item.href}
+                    target={item.href.startsWith("http") ? "_blank" : undefined}
+                    rel={item.href.startsWith("http") ? "noreferrer" : undefined}
+                    onClick={() => setMenuOpen(false)}
+                  >
                     {item.label}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
