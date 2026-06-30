@@ -352,9 +352,9 @@ export default function HeroSection() {
         <source src="/images/Stratskye-Hero.mp4" type="video/mp4" />
       </video>
       
-      <p className="hero-lead hero-lead-left">
+      <h1 className="hero-lead hero-lead-left">
         <span className="hero-reveal">You build.</span>
-      </p>
+      </h1>
       <p className="hero-lead hero-lead-right">
         <span className="hero-reveal">We drive
 </span>

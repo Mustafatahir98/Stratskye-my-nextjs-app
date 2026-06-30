@@ -12,7 +12,7 @@ import NewsletterPopup from "@/components/NewsletterPopup";
 import TenthSection from "@/components/tenthsection";
 
 export const metadata: Metadata = {
-  title: "B2B Tech Marketing Agency for SaaS & AI Growth",
+  title: "B2B Tech Marketing Agency for SaaS & AI Growth - Stratskye",
   description:
     "B2B tech marketing for SaaS and AI startups: demand gen, lead gen, ABM, content, SEO, and RevOps for pipeline growth.",
 };
