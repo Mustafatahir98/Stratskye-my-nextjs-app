@@ -288,7 +288,9 @@ export default function ContactFormHero() {
         .contact-form-intro {
           max-width: 650px;
           margin-top: clamp(58px, 6vw, 86px);
-          margin-left: min(40%, 510px);
+          margin-left: auto;
+          margin-right: auto;
+          text-align: center;
           color: rgba(13, 22, 47, 0.60);
           font-family: "Google Sans Flex";
           font-size: 28px;
@@ -301,7 +303,7 @@ export default function ContactFormHero() {
           width: min(100%, 1070px);
           margin-top: clamp(92px, 10vw, 150px);
           margin-left: auto;
-          margin-right: 0;
+          margin-right: auto;
         }
         .contact-form-grid {
           display: grid;
@@ -423,10 +425,11 @@ export default function ContactFormHero() {
             letter-spacing: -1.8px;
           }
           .contact-form-intro {
-            margin-left: 0;
+            margin-left: auto;
+            margin-right: auto;
           }
           .contact-form {
-            margin-right: 0;
+            margin-right: auto;
           }
         }
         @media (max-width: 620px) {
