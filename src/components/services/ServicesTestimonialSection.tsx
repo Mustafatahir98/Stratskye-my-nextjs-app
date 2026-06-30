@@ -52,20 +52,31 @@ export default function ServicesTestimonialSection() {
         }
         .services-testimonial-quote {
           max-width: 1120px;
-          margin: clamp(58px, 7vw, 96px) auto 0;
+          margin: clamp(22px, 3vw, 36px) auto 0;
           text-align: center;
           font-family: "Google Sans Flex";
-          font-size: 72px;
+          font-size: clamp(38px, 4.2vw, 64px);
           font-style: normal;
           font-weight: 600;
-          line-height: 100%;
-          letter-spacing: -2.16px;
+          line-height: 104%;
+          letter-spacing: -1.84px;
           background: linear-gradient(180deg, #0D162F 0%, rgba(13, 22, 47, 0.20) 56.28%);
           background-clip: text;
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           text-rendering: geometricPrecision;
           -webkit-font-smoothing: antialiased;
+        }
+        .services-testimonial-theme {
+          margin: clamp(54px, 6.5vw, 90px) auto 0;
+          text-align: center;
+          color: var(--orange);
+          font-size: 11px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: 120%;
+          letter-spacing: 1.1px;
+          text-transform: uppercase;
         }
         .services-testimonial-meta {
           display: flex;
@@ -144,7 +155,7 @@ export default function ServicesTestimonialSection() {
             justify-self: start;
           }
           .services-testimonial-quote {
-            font-size: clamp(42px, 8vw, 62px);
+            font-size: clamp(34px, 6.4vw, 54px);
             letter-spacing: -1.7px;
           }
           .services-testimonial-cta {
@@ -167,9 +178,12 @@ export default function ServicesTestimonialSection() {
             width: min(72vw, 260px);
           }
           .services-testimonial-quote {
-            margin-top: 46px;
-            font-size: 34px;
+            margin-top: 20px;
+            font-size: 30px;
             letter-spacing: -1.02px;
+          }
+          .services-testimonial-theme {
+            margin-top: 44px;
           }
           .services-testimonial-meta {
             flex-direction: column;
@@ -198,27 +212,33 @@ export default function ServicesTestimonialSection() {
           <div className="services-testimonial-portrait-wrap">
             <Image
               className="services-testimonial-portrait"
-              src="/images/mustafa.jpg"
+              src="/images/Evan.jpg"
               width={853}
               height={1356}
-              alt="Portrait of a StratSkye client"
+              alt="Portrait of Evan Marks"
             />
           </div>
 
           <div aria-hidden="true" />
         </div>
 
+        <div className="services-testimonial-theme">
+          Testimonial &mdash; Visibility and growth
+        </div>
+
         <blockquote
           id="services-testimonial-title"
           className="services-testimonial-quote"
         >
-          &ldquo;I&rsquo;ve worked with agencies before, but this is the first time I
-          felt true transparency and accountability. Clear reporting, proactive
-          ideas, and results that spoke for themselves.&rdquo;
+          &ldquo;M1 was in a good place, but we were not reaching the people we
+          should have been reaching. Stratskye identified the gaps and closed
+          them. The visibility changed, the right people started finding us, and
+          the business reflected that.&rdquo;
         </blockquote>
 
         <div className="services-testimonial-meta" aria-label="Client details">
-          <span>Amira K.</span>
+          <span>Evan Marks</span>
+          <span>Founder, M1 Performance Group</span>
         </div>
 
         <div className="services-testimonial-cta">

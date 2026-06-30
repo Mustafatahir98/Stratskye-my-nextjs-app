@@ -283,11 +283,6 @@ export default function EightSection() {
                     onLeaveBack: unlockScroll,
                 });
 
-                ScrollTrigger.create({
-                    trigger: sectionRef.current,
-                    start: "top 70%",
-                    onEnter: playPresentation,
-                });
             });
 
         }, sectionRef);

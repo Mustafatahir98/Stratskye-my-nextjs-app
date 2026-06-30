@@ -255,11 +255,6 @@ export default function SeventhSection() {
               onLeaveBack: unlockScroll,
             });
 
-            ScrollTrigger.create({
-              trigger: sectionRef.current,
-              start: "top 70%",
-              onEnter: playPresentation,
-            });
           };
 
           createPresentationTrigger(isMobile ? 1250 : 950, isMobile ? 0.9 : 0.88);

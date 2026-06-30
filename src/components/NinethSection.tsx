@@ -308,11 +308,6 @@ export default function NinethSection() {
           onLeaveBack: unlockScroll,
         });
 
-        ScrollTrigger.create({
-          trigger: sectionRef.current,
-          start: "top 70%",
-          onEnter: playPresentation,
-        });
       });
 
     }, sectionRef);
