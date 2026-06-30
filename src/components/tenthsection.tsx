@@ -402,7 +402,7 @@ export default function TenthSection() {
           top: 72.5%;
           display: flex;
           flex-direction: column;
-          gap: 7px;
+          gap: 3px;
           color: rgba(255, 255, 255, 0.92);
           leading-trim: both;
           text-edge: cap;
@@ -603,6 +603,9 @@ export default function TenthSection() {
             font-size: 12px;
           }
           .tenth-social {
+            gap: 2px;
+          }
+          .tenth-social {
             left: clamp(24px, 8vw, 70px);
           }
           .tenth-email {
@@ -709,6 +712,9 @@ export default function TenthSection() {
           .tenth-email {
             top: auto;
             font-size: 11px;
+          }
+          .tenth-social {
+            gap: 1px;
           }
           .tenth-social {
             left: 24px;
