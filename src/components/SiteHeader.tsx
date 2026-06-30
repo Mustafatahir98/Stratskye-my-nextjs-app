@@ -237,6 +237,15 @@ export default function SiteHeader() {
     }
   };
 
+  const handleLogoClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    setMenuOpen(false);
+
+    if (pathname === "/") {
+      event.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   const handlePopupMenuItemClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
     setMenuOpen(false);
 
@@ -261,6 +270,7 @@ export default function SiteHeader() {
         .navbar.is-menu-open { z-index: 150; pointer-events: none; }
         .navbar-bg { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(13,19,38,0.9), transparent); z-index: -1; pointer-events: none; transition: background 0.28s ease, backdrop-filter 0.28s ease; }
         .logo { position: absolute; left: 10%; display: flex; align-items: center; text-decoration: none; padding-left: 10px; z-index: 10; transition: left 0.28s ease, padding 0.28s ease; }
+        .navbar.is-menu-open .logo { pointer-events: auto; z-index: 151; }
         .logo-image { width: clamp(118px, 10vw, 156px); height: auto; display: block; object-fit: contain; filter: drop-shadow(0 8px 18px rgba(0,0,0,0.18)); }
         .nav-links { flex: 1 1 auto; display: none; align-items: center; justify-content: center; gap: clamp(14px, 1.55vw, 25px); min-width: 0; }
         .nav-link { position: relative; color: rgba(255,255,255,0.76); font-family: "Google Sans Flex"; font-size: clamp(10px, 0.74vw, 12px); font-weight: 600; line-height: 1; letter-spacing: 0.14em; text-decoration: none; text-transform: uppercase; white-space: nowrap; transition: color 0.2s ease, transform 0.2s ease; }
@@ -362,7 +372,7 @@ export default function SiteHeader() {
 
       <nav className={`navbar px-8 ${hasScrolled ? "is-scrolled" : ""} ${menuOpen ? "is-menu-open" : ""}`}>
         <div className="navbar-bg" />
-        <Link className="logo" href="/" onClick={() => setMenuOpen(false)} aria-label="StratSkye home">
+        <Link className="logo" href="/" onClick={handleLogoClick} aria-label="StratSkye home">
           <img className="logo-image" src="/images/Logo Container.png" alt="StratSkye" />
         </Link>
         <div className="nav-links" aria-label="Primary navigation">

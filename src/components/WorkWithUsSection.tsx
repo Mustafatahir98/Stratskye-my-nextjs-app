@@ -126,16 +126,13 @@ export default function WorkWithUsSection() {
       mm.add("(max-width: 860px)", () => {
         gsap.set(frameItems, { autoAlpha: 0 });
         gsap.set(copyRef.current, { autoAlpha: 0, y: 18, filter: "blur(6px)" });
-        gsap.set(mobileCards, { autoAlpha: 0, xPercent: 60, scale: 0.96, filter: "blur(4px)" });
+        gsap.set(mobileCards, { autoAlpha: 0, y: 18, scale: 0.98, filter: "blur(4px)" });
 
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top top",
-            end: "+=280%",
-            scrub: 0.85,
-            pin: true,
-            anticipatePin: 1,
+            start: "top 72%",
+            once: true,
           },
         });
 
@@ -143,36 +140,18 @@ export default function WorkWithUsSection() {
           autoAlpha: 1,
           y: 0,
           filter: "blur(0px)",
-          duration: 0.55,
+          duration: 0.45,
           ease: "power3.out",
         })
-          .to(mobileCards[0], {
+          .to(mobileCards, {
             autoAlpha: 1,
-            xPercent: 0,
+            y: 0,
             scale: 1,
             filter: "blur(0px)",
-            duration: 0.9,
+            duration: 0.55,
+            stagger: 0.16,
             ease: "power3.out",
-          })
-          .to({}, { duration: 0.18 })
-          .to(mobileCards[1], {
-            autoAlpha: 1,
-            xPercent: 0,
-            scale: 1,
-            filter: "blur(0px)",
-            duration: 0.9,
-            ease: "power3.out",
-          })
-          .to({}, { duration: 0.18 })
-          .to(mobileCards[2], {
-            autoAlpha: 1,
-            xPercent: 0,
-            scale: 1,
-            filter: "blur(0px)",
-            duration: 0.9,
-            ease: "power3.out",
-          })
-          .to({}, { duration: 0.45 });
+          }, "-=0.08");
 
         return () => tl.kill();
       });
@@ -238,6 +217,7 @@ export default function WorkWithUsSection() {
           display: block;
           color: #F26E35;
           font-weight: 500;
+          margin-top: 0.08em;
         }
         .work-frame-stage {
           position: absolute;
@@ -300,8 +280,8 @@ export default function WorkWithUsSection() {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 4px;
-            padding: 14px 18px 14px 56px;
+            gap: 7px;
+            padding: 16px 18px 16px 58px;
             border-radius: 14px;
             box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
             overflow: hidden;
@@ -374,7 +354,7 @@ export default function WorkWithUsSection() {
             color: currentColor;
             opacity: 0.6;
             font-family: "Google Sans Flex";
-            font-size: clamp(7px, 1.8vw, 9px);
+            font-size: clamp(9px, 2.2vw, 11px);
             font-weight: 700;
             line-height: 1.3;
             letter-spacing: 0.14em;
@@ -386,7 +366,7 @@ export default function WorkWithUsSection() {
             margin: 0;
             color: currentColor;
             font-family: "Google Sans Flex";
-            font-size: clamp(19px, 5.2vw, 28px);
+            font-size: clamp(23px, 6vw, 32px);
             font-weight: 500;
             line-height: 1.08;
             letter-spacing: -0.01em;
@@ -395,7 +375,7 @@ export default function WorkWithUsSection() {
             white-space: normal;
           }
           .work-mobile-card--3 .work-mobile-card-title {
-            font-size: clamp(17px, 4.8vw, 24px);
+            font-size: clamp(21px, 5.5vw, 29px);
           }
           .work-mobile-card-body {
             position: relative;
@@ -404,9 +384,9 @@ export default function WorkWithUsSection() {
             color: currentColor;
             opacity: 0.78;
             font-family: "Google Sans Flex";
-            font-size: clamp(11px, 2.8vw, 14px);
+            font-size: clamp(13px, 3.3vw, 16px);
             font-weight: 500;
-            line-height: 1.28;
+            line-height: 1.32;
             letter-spacing: 0;
           }
         }
@@ -434,25 +414,26 @@ export default function WorkWithUsSection() {
             gap: 8px;
           }
           .work-mobile-card {
-            padding: 12px 14px 12px 48px;
+            padding: 14px 14px 14px 50px;
             border-radius: 12px;
-            gap: 3px;
+            gap: 6px;
           }
           .work-mobile-card-number {
             left: 12px;
             font-size: clamp(26px, 7vw, 36px);
           }
           .work-mobile-card-title {
-            font-size: clamp(17px, 4.6vw, 24px);
+            font-size: clamp(22px, 6vw, 28px);
           }
           .work-mobile-card--3 .work-mobile-card-title {
-            font-size: clamp(15px, 4.2vw, 21px);
+            font-size: clamp(20px, 5.3vw, 25px);
           }
           .work-mobile-card-body {
-            font-size: clamp(10px, 2.6vw, 13px);
+            font-size: clamp(13px, 3.4vw, 15px);
+            line-height: 1.3;
           }
           .work-mobile-card-kicker {
-            font-size: clamp(6px, 1.6vw, 8px);
+            font-size: clamp(8px, 2vw, 10px);
           }
         }
         @media (max-width: 560px) and (max-height: 740px) {
@@ -468,21 +449,21 @@ export default function WorkWithUsSection() {
             gap: 6px;
           }
           .work-mobile-card {
-            gap: 2px;
-            padding: 10px 12px 10px 44px;
+            gap: 4px;
+            padding: 11px 12px 11px 44px;
           }
           .work-mobile-card-number {
             font-size: clamp(22px, 6vw, 30px);
           }
           .work-mobile-card-title {
-            font-size: clamp(15px, 4.2vw, 20px);
+            font-size: clamp(19px, 5.2vw, 23px);
           }
           .work-mobile-card--3 .work-mobile-card-title {
-            font-size: clamp(14px, 3.8vw, 18px);
+            font-size: clamp(17px, 4.6vw, 21px);
           }
           .work-mobile-card-body {
-            font-size: clamp(9px, 2.4vw, 11px);
-            line-height: 1.22;
+            font-size: clamp(11px, 3vw, 13px);
+            line-height: 1.24;
           }
         }
       `}</style>
