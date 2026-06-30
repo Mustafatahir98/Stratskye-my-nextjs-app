@@ -493,7 +493,7 @@ export default function TenthSection() {
           width: 100%;
           color: #FFF;
           font-family: "Google Sans Flex";
-          font-size: clamp(10px, 0.74vw, 12px);
+          font-size: clamp(13px, 0.96vw, 16px);
           font-weight: 500;
           line-height: 120%;
           letter-spacing: 0;
@@ -632,7 +632,7 @@ export default function TenthSection() {
           .tenth-copyright {
             top: 580px;
             color: rgba(245, 247, 255, 0.5);
-            font-size: 8px;
+            font-size: 12px;
           }
         }
 
@@ -753,7 +753,7 @@ export default function TenthSection() {
             left: 0;
             right: 0;
             width: 100%;
-            font-size: 7px;
+            font-size: 11px;
             text-align: center;
           }
         }
