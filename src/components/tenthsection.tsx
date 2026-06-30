@@ -120,11 +120,14 @@ export default function TenthSection() {
           ref={(el) => {
             itemRefs.current[3] = el;
           }}
-          className="tenth-footer-left"
+          className="tenth-social"
         >
-          Stop <span>duct-taping</span> your
-          <br />
-          marketing together.
+          <a href={instagramUrl} target="_blank" rel="noreferrer">
+            instagram
+          </a>
+          <a href={linkedInUrl} target="_blank" rel="noreferrer">
+            Linkedin
+          </a>
         </div>
 
         <div
@@ -141,29 +144,6 @@ export default function TenthSection() {
           ref={(el) => {
             itemRefs.current[5] = el;
           }}
-          className="tenth-contact"
-        >
-          <span>admin@stratskye.com</span>
-        </div>
-
-        <div
-          ref={(el) => {
-            itemRefs.current[6] = el;
-          }}
-          className="tenth-social"
-        >
-          <a href={instagramUrl} target="_blank" rel="noreferrer">
-            instagram
-          </a>
-          <a href={linkedInUrl} target="_blank" rel="noreferrer">
-            linkedin
-          </a>
-        </div>
-
-        <div
-          ref={(el) => {
-            itemRefs.current[7] = el;
-          }}
           className="tenth-giant-word"
           aria-hidden="true"
         >
@@ -172,7 +152,23 @@ export default function TenthSection() {
           ))}
         </div>
 
-        <div className="tenth-copyright">Copyright 2026 StratSkye. All rights reserved.</div>
+        <div
+          ref={(el) => {
+            itemRefs.current[6] = el;
+          }}
+          className="tenth-copyright"
+        >
+          Copyright 2026 StratSkye. All rights reserved
+        </div>
+
+        <div
+          ref={(el) => {
+            itemRefs.current[7] = el;
+          }}
+          className="tenth-email"
+        >
+          <a href="mailto:admin@stratskye.com">admin@stratskye</a>
+        </div>
       </div>
 
       <style>{`
@@ -399,24 +395,50 @@ export default function TenthSection() {
           animation: tenthLogoBob 3.9s ease-in-out infinite;
           will-change: transform;
         }
-        .tenth-footer-left {
+        .tenth-social,
+        .tenth-email {
           position: absolute;
           z-index: 7;
-          left: clamp(32px, 4vw, 74px);
           top: 72.5%;
-          color: #FFF;
+          display: flex;
+          flex-direction: column;
+          gap: 7px;
+          color: rgba(255, 255, 255, 0.92);
           leading-trim: both;
           text-edge: cap;
           font-family: "Google Sans Flex";
-          font-size: clamp(20px, 1.75vw, 28px);
+          font-size: clamp(13px, 0.96vw, 16px);
           font-style: normal;
-          font-weight: 400;
-          line-height: 120%;
-          letter-spacing: -0.84px;
+          font-weight: 500;
+          line-height: 1.18;
+          letter-spacing: 0;
           text-shadow: 0 2px 8px rgba(0, 0, 0, 0.58);
         }
-        .tenth-footer-left span {
-          color: rgba(245, 247, 255, 0.48);
+        .tenth-social {
+          left: clamp(32px, 4vw, 74px);
+        }
+        .tenth-email {
+          right: clamp(32px, 4vw, 74px);
+          align-items: flex-end;
+        }
+        .tenth-social a,
+        .tenth-email a {
+          color: inherit;
+          text-decoration: none;
+          display: inline-flex;
+          width: fit-content;
+          min-height: 24px;
+          align-items: center;
+          pointer-events: auto;
+          transition: color 0.2s ease, transform 0.2s ease;
+        }
+        .tenth-social a:hover,
+        .tenth-social a:focus-visible,
+        .tenth-email a:hover,
+        .tenth-email a:focus-visible {
+          color: #f26e35;
+          transform: translateY(-1px);
+          outline: none;
         }
         .tenth-wordmark {
           position: absolute;
@@ -437,47 +459,6 @@ export default function TenthSection() {
           width: 84px;
           height: auto;
           display: block;
-        }
-        .tenth-contact {
-          position: absolute;
-          z-index: 7;
-          left: min(66vw, 1010px);
-          top: 72.5%;
-          display: flex;
-          flex-direction: column;
-          gap: 7px;
-          color: rgba(255, 255, 255, 0.92);
-          font-family: "Google Sans Flex";
-          font-size: clamp(11px, 0.86vw, 14px);
-          font-weight: 500;
-          line-height: 1.18;
-          letter-spacing: 0;
-          text-shadow: 0 2px 7px rgba(0, 0, 0, 0.58);
-        }
-        .tenth-social {
-          position: absolute;
-          z-index: 7;
-          left: auto;
-          right: clamp(32px, 4vw, 74px);
-          top: 72.5%;
-          display: flex;
-          flex-direction: column;
-          gap: 7px;
-          color: rgba(255, 255, 255, 0.92);
-          font-family: "Google Sans Flex";
-          font-size: clamp(11px, 0.86vw, 14px);
-          font-weight: 500;
-          line-height: 1.18;
-          letter-spacing: 0;
-          text-shadow: 0 2px 7px rgba(0, 0, 0, 0.58);
-        }
-        .tenth-social a {
-          color: inherit;
-          text-decoration: none;
-        }
-        .tenth-social a:hover,
-        .tenth-social a:focus-visible {
-          color: #f26e35;
         }
         .tenth-giant-word {
           position: absolute;
@@ -505,16 +486,18 @@ export default function TenthSection() {
         .tenth-copyright {
           position: absolute;
           z-index: 8;
-          left: 50%;
-          bottom: 22px;
-          transform: translateX(-50%);
+          left: 0;
+          right: 0;
+          top: 72.5%;
+          width: 100%;
           color: #FFF;
           font-family: "Google Sans Flex";
           font-size: clamp(10px, 0.74vw, 12px);
           font-weight: 500;
           line-height: 120%;
-          letter-spacing: -0.12px;
+          letter-spacing: 0;
           white-space: nowrap;
+          text-align: center;
           text-shadow: 0 2px 8px rgba(0, 0, 0, 0.68);
         }
         @keyframes tenthTape {
@@ -614,10 +597,16 @@ export default function TenthSection() {
           .tenth-hanging-group {
             top: 364px;
           }
-          .tenth-footer-left {
+          .tenth-social,
+          .tenth-email {
             top: 580px;
+            font-size: 12px;
+          }
+          .tenth-social {
             left: clamp(24px, 8vw, 70px);
-            font-size: 10px;
+          }
+          .tenth-email {
+            right: clamp(24px, 8vw, 70px);
           }
           .tenth-wordmark {
             top: 578px;
@@ -628,25 +617,13 @@ export default function TenthSection() {
           .tenth-wordmark-text {
             width: 112px;
           }
-          .tenth-contact {
-            top: 578px;
-            left: auto;
-            right: clamp(24px, 8vw, 70px);
-            font-size: 8px;
-          }
-          .tenth-social {
-            top: 628px;
-            left: auto;
-            right: clamp(24px, 8vw, 70px);
-            font-size: 8px;
-          }
           .tenth-giant-word {
             bottom: 46px;
             color: rgba(82, 120, 216, 0.24);
             font-size: clamp(50px, 13vw, 82px);
           }
           .tenth-copyright {
-            bottom: 24px;
+            top: 580px;
             color: rgba(245, 247, 255, 0.5);
             font-size: 8px;
           }
@@ -728,25 +705,20 @@ export default function TenthSection() {
             width: 100%;
             height: 100%;
           }
-          .tenth-footer-left,
-          .tenth-contact,
-          .tenth-social {
+          .tenth-social,
+          .tenth-email {
             top: auto;
+            font-size: 11px;
+          }
+          .tenth-social {
             left: 24px;
             right: auto;
-            font-size: 9px;
+            bottom: 92px;
           }
-          .tenth-footer-left {
-            bottom: 122px;
-          }
-          .tenth-contact {
-            bottom: 82px;
-          }
-          .tenth-social {
-            bottom: 82px;
+          .tenth-email {
             left: auto;
             right: 24px;
-            text-align: right;
+            bottom: 92px;
           }
           .tenth-wordmark {
             top: auto;
@@ -764,7 +736,10 @@ export default function TenthSection() {
           }
           .tenth-copyright {
             bottom: 18px;
-            width: 90%;
+            top: auto;
+            left: 0;
+            right: 0;
+            width: 100%;
             font-size: 7px;
             text-align: center;
           }
@@ -783,13 +758,14 @@ export default function TenthSection() {
           .tenth-hanging-group {
             top: 338px;
           }
-          .tenth-footer-left,
+          .tenth-social,
+          .tenth-email,
           .tenth-wordmark {
             bottom: 116px;
           }
-          .tenth-contact,
-          .tenth-social {
-            bottom: 78px;
+          .tenth-social,
+          .tenth-email {
+            bottom: 84px;
           }
         }
       `}</style>

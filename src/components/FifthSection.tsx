@@ -28,19 +28,11 @@ export default function FifthSection() {
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
 
+        const cleanupFns: Array<() => void> = [];
         const ctx = gsap.context(() => {
             const isMobile = window.matchMedia("(max-width: 767px)").matches;
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: "top top",
-                    end: "+=470%",
-                    scrub: 1.25,
-                    pin: true,
-                    anticipatePin: 1,
-                },
-            });
+            const tl = gsap.timeline({ paused: true });
 
             // INITIAL STATES
             gsap.set([shutterLeftRef.current, shutterRightRef.current], {
@@ -65,15 +57,7 @@ export default function FifthSection() {
             gsap.set(animateLogoRef.current, { opacity: 0, rotation: -180, filter: "grayscale(100%) blur(5px)", scale: 0.46 });
             gsap.set(logoGlowRef.current, { opacity: 0, scale: 0.52, rotation: -36 });
 
-            const shutterTl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: containerRef.current,
-                    start: isMobile ? "top 82%" : "top 72%",
-                    end: "top top",
-                    scrub: 0.8,
-                    invalidateOnRefresh: true,
-                },
-            });
+            const shutterTl = gsap.timeline({ paused: true });
 
             shutterTl.to(shutterLeftRef.current, { xPercent: -100, duration: 0.95, ease: "power3.inOut" }, 0)
                 .to(shutterRightRef.current, { xPercent: 100, duration: 0.95, ease: "power3.inOut" }, 0)
@@ -114,9 +98,171 @@ export default function FifthSection() {
                 .to(animateLogoRef.current, { opacity: 1, rotation: 0, filter: "grayscale(0%) blur(0px)", scale: 1, duration: 1.5, ease: "power3.out" }, "-=1.1")
                 .to(".fs-energy-field", { opacity: 0.12, scale: 1.34, duration: 0.8, ease: "power2.out" }, "<");
 
+            let isScrollLocked = false;
+            let isAnimating = false;
+            let activeDirection: "forward" | "reverse" | null = null;
+            let mainTrigger: ReturnType<typeof ScrollTrigger.create> | null = null;
+            const scrollLockOptions = { passive: false, capture: true } as AddEventListenerOptions;
+            const lockedKeys = new Set(["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "]);
+            const getLenis = () => window.__stratskyeLenis;
+
+            const jumpToScroll = (top: number) => {
+                const lenis = getLenis();
+
+                if (lenis) {
+                    lenis.scrollTo(top, { immediate: true, force: true });
+                } else {
+                    window.scrollTo({ top, behavior: "auto" });
+                }
+
+                ScrollTrigger.update();
+            };
+
+            const blockScroll = (event: Event) => {
+                if (!isScrollLocked) return;
+                event.preventDefault();
+                event.stopImmediatePropagation();
+            };
+
+            const blockScrollKeys = (event: KeyboardEvent) => {
+                if (!isScrollLocked || !lockedKeys.has(event.key)) return;
+                event.preventDefault();
+                event.stopImmediatePropagation();
+            };
+
+            const unlockScroll = () => {
+                if (!isScrollLocked) return;
+                isScrollLocked = false;
+                window.removeEventListener("wheel", blockScroll, scrollLockOptions);
+                window.removeEventListener("touchmove", blockScroll, scrollLockOptions);
+                window.removeEventListener("keydown", blockScrollKeys, true);
+                getLenis()?.start();
+            };
+
+            const lockScroll = (top?: number) => {
+                if (!isScrollLocked) {
+                    isScrollLocked = true;
+                    getLenis()?.stop();
+                    window.addEventListener("wheel", blockScroll, scrollLockOptions);
+                    window.addEventListener("touchmove", blockScroll, scrollLockOptions);
+                    window.addEventListener("keydown", blockScrollKeys, true);
+                }
+
+                if (typeof top === "number") {
+                    jumpToScroll(top);
+                }
+            };
+
+            const playMain = (direction: "forward" | "reverse") => {
+                if (isAnimating || !mainTrigger) return;
+
+                isAnimating = true;
+                activeDirection = direction;
+                tl.pause();
+                lockScroll(direction === "forward" ? mainTrigger.start : mainTrigger.end - 1);
+                tl.eventCallback("onComplete", () => {
+                    isAnimating = false;
+                    activeDirection = null;
+                    tl.progress(1).pause();
+                    jumpToScroll((mainTrigger?.end ?? window.scrollY) + 2);
+                    window.requestAnimationFrame(unlockScroll);
+                });
+                tl.eventCallback("onReverseComplete", () => {
+                    isAnimating = false;
+                    activeDirection = null;
+                    tl.progress(0).pause();
+                    jumpToScroll((mainTrigger?.start ?? window.scrollY) - 2);
+                    window.requestAnimationFrame(unlockScroll);
+                });
+                tl.timeScale(tl.duration() / (isMobile ? 4.6 : 4.1));
+
+                if (direction === "forward") {
+                    tl.play(0);
+                } else {
+                    tl.progress(1).reverse();
+                }
+            };
+
+            cleanupFns.push(unlockScroll);
+
+            ScrollTrigger.create({
+                trigger: containerRef.current,
+                start: isMobile ? "top 82%" : "top 72%",
+                end: "top top",
+                invalidateOnRefresh: true,
+                onEnter: () => shutterTl.timeScale(shutterTl.duration() / 0.9).play(),
+                onLeave: () => {
+                    shutterTl.progress(1).pause();
+                },
+                onLeaveBack: () => {
+                    shutterTl.timeScale(shutterTl.duration() / 0.75).reverse();
+                },
+            });
+
+            mainTrigger = ScrollTrigger.create({
+                trigger: containerRef.current,
+                start: "top top",
+                end: "+=1050",
+                pin: true,
+                anticipatePin: 1,
+                invalidateOnRefresh: true,
+                onEnter: () => {
+                    if (tl.progress() < 1) {
+                        playMain("forward");
+                    } else {
+                        tl.progress(1).pause();
+                    }
+                },
+                onUpdate: () => {
+                    if (isScrollLocked && isAnimating && mainTrigger && activeDirection) {
+                        const lockedPosition = activeDirection === "reverse" ? mainTrigger.end - 1 : mainTrigger.start;
+                        const distance = Math.abs(window.scrollY - lockedPosition);
+                        if (distance > 3) {
+                            jumpToScroll(lockedPosition);
+                        }
+                    }
+                },
+                onLeave: () => {
+                    if (isAnimating) {
+                        jumpToScroll(mainTrigger?.start ?? window.scrollY);
+                        return;
+                    }
+                    tl.progress(1).pause();
+                    unlockScroll();
+                },
+                onEnterBack: () => {
+                    if (tl.progress() > 0) {
+                        playMain("reverse");
+                    } else {
+                        tl.progress(0).pause();
+                    }
+                },
+                onLeaveBack: () => {
+                    if (isAnimating) {
+                        jumpToScroll((mainTrigger?.start ?? window.scrollY) + 2);
+                        return;
+                    }
+                    tl.progress(0).pause();
+                    unlockScroll();
+                },
+            });
+
+            ScrollTrigger.create({
+                trigger: containerRef.current,
+                start: "top 70%",
+                onEnter: () => {
+                    if (tl.progress() === 0) {
+                        shutterTl.timeScale(shutterTl.duration() / 0.9).play();
+                    }
+                },
+            });
+
         }, containerRef);
 
-        return () => ctx.revert();
+        return () => {
+            cleanupFns.forEach((cleanup) => cleanup());
+            ctx.revert();
+        };
     }, []);
 
     return (

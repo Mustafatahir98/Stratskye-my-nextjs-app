@@ -8,7 +8,7 @@ const headingStyle: React.CSSProperties & { leadingTrim?: string; textEdge?: str
     leadingTrim: "both",
     textEdge: "cap",
     fontFamily: '"Google Sans Flex"',
-    fontSize: "clamp(28px, 4.7vw, 56px)", // Tweaked mobile baseline slightly for safety
+    fontSize: "clamp(28px, 3.2vw, 44px)",
     fontStyle: "normal",
     fontWeight: 500,
     lineHeight: "112%",
@@ -37,6 +37,7 @@ export default function EightSection() {
         gsap.registerPlugin(ScrollTrigger);
 
         const mm = gsap.matchMedia();
+        const cleanupFns: Array<() => void> = [];
         const ctx = gsap.context(() => {
             const cards = cardsRef.current.filter(Boolean);
 
@@ -126,16 +127,7 @@ export default function EightSection() {
                 gsap.set(cards[1], { autoAlpha: 1, zIndex: 20 });
                 gsap.set(cards[2], { autoAlpha: 0, zIndex: 10, rotationZ: 8, scale: 0.96 });
 
-                const tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: sectionRef.current,
-                        start: "top top",
-                        end: "+=115%",
-                        scrub: 0.55,
-                        pin: true,
-                        anticipatePin: 1,
-                    },
-                });
+                const tl = gsap.timeline({ paused: true });
 
                 tl.addLabel("spread")
                     .to(cards[0], {
@@ -184,11 +176,127 @@ export default function EightSection() {
                         duration: 0.58,
                         ease: "power3.inOut",
                     }, "row+=0.08");
+
+                let hasPresented = false;
+                let hasCompleted = false;
+                let isScrollLocked = false;
+                let presentationTrigger: ReturnType<typeof ScrollTrigger.create> | null = null;
+                const scrollLockOptions = { passive: false, capture: true } as AddEventListenerOptions;
+                const lockedKeys = new Set(["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "]);
+                const getLenis = () => window.__stratskyeLenis;
+
+                const jumpToScroll = (top: number) => {
+                    const lenis = getLenis();
+
+                    if (lenis) {
+                        lenis.scrollTo(top, { immediate: true, force: true });
+                    } else {
+                        window.scrollTo({ top, behavior: "auto" });
+                    }
+
+                    ScrollTrigger.update();
+                };
+
+                const blockScroll = (event: Event) => {
+                    if (!isScrollLocked) return;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                };
+
+                const blockScrollKeys = (event: KeyboardEvent) => {
+                    if (!isScrollLocked || !lockedKeys.has(event.key)) return;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                };
+
+                const unlockScroll = () => {
+                    if (!isScrollLocked) return;
+                    isScrollLocked = false;
+                    window.removeEventListener("wheel", blockScroll, scrollLockOptions);
+                    window.removeEventListener("touchmove", blockScroll, scrollLockOptions);
+                    window.removeEventListener("keydown", blockScrollKeys, true);
+                    getLenis()?.start();
+                };
+
+                const lockScroll = () => {
+                    if (isScrollLocked) return;
+                    isScrollLocked = true;
+                    getLenis()?.stop();
+                    window.addEventListener("wheel", blockScroll, scrollLockOptions);
+                    window.addEventListener("touchmove", blockScroll, scrollLockOptions);
+                    window.addEventListener("keydown", blockScrollKeys, true);
+
+                    if (presentationTrigger) {
+                        jumpToScroll(presentationTrigger.start);
+                    }
+                };
+
+                const playPresentation = () => {
+                    if (hasPresented) {
+                        if (hasCompleted) {
+                            tl.progress(1);
+                        }
+                        return;
+                    }
+
+                    hasPresented = true;
+                    lockScroll();
+                    tl.eventCallback("onComplete", () => {
+                        hasCompleted = true;
+                        tl.progress(1);
+                        if (presentationTrigger) {
+                            jumpToScroll(Math.max(presentationTrigger.start, presentationTrigger.end - 2));
+                        }
+                        window.requestAnimationFrame(unlockScroll);
+                    });
+                    tl.timeScale(0.88).play(0);
+                };
+
+                cleanupFns.push(unlockScroll);
+
+                presentationTrigger = ScrollTrigger.create({
+                    trigger: sectionRef.current,
+                    start: "top top",
+                    end: "+=950",
+                    pin: true,
+                    anticipatePin: 1,
+                    invalidateOnRefresh: true,
+                    onEnter: playPresentation,
+                    onUpdate: () => {
+                        if (isScrollLocked && !hasCompleted && presentationTrigger) {
+                            jumpToScroll(presentationTrigger.start);
+                        }
+                    },
+                    onLeave: () => {
+                        if (hasCompleted) {
+                            tl.progress(1);
+                            unlockScroll();
+                        } else {
+                            jumpToScroll(presentationTrigger?.start ?? window.scrollY);
+                        }
+                    },
+                    onEnterBack: () => {
+                        hasPresented = true;
+                        hasCompleted = true;
+                        tl.progress(1);
+                    },
+                    onLeaveBack: unlockScroll,
+                });
+
+                ScrollTrigger.create({
+                    trigger: sectionRef.current,
+                    start: "top 70%",
+                    onEnter: playPresentation,
+                });
             });
 
         }, sectionRef);
 
-        return () => ctx.revert();
+        return () => {
+            cleanupFns.forEach((cleanup) => cleanup());
+            ctx.revert();
+            mm.revert();
+        };
     }, []);
 
     const cardImages = [

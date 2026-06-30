@@ -33,6 +33,7 @@ export default function SixthSection() {
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
 
+        const cleanupFns: Array<() => void> = [];
         const ctx = gsap.context(() => {
             const mm = gsap.matchMedia();
 
@@ -44,17 +45,7 @@ export default function SixthSection() {
                 const { isMobile } = context.conditions as { isMobile: boolean };
                 const cards = [card1Ref.current, card2Ref.current, card3Ref.current];
 
-                const tl = gsap.timeline({
-                    scrollTrigger: {
-                        trigger: containerRef.current,
-                        start: "top top",
-                        end: isMobile ? "+=300%" : "+=210%",
-                        scrub: 1,
-                        pin: true,
-                        anticipatePin: 1,
-                        invalidateOnRefresh: true,
-                    },
-                });
+                const tl = gsap.timeline({ paused: true });
 
                 gsap.set(outerRingRef.current, { rotation: 0, opacity: 0, scale: 0.96, transformOrigin: "50% 50%", force3D: true });
                 gsap.set(dottedRingRef.current, { rotation: 0, opacity: 0, scale: 0.9, transformOrigin: "50% 50%", force3D: true });
@@ -63,18 +54,142 @@ export default function SixthSection() {
                 tl.to(outerRingRef.current, { opacity: 0.42, rotation: 0, scale: 1, duration: 1.2, ease: "power2.out" }, 0)
                     .to(dottedRingRef.current, { opacity: 0.9, rotation: 0, scale: 1, duration: 1.2, ease: "power2.out" }, 0);
 
+                let hasPresented = false;
+                let hasCompleted = false;
+                let isScrollLocked = false;
+                let presentationTrigger: ReturnType<typeof ScrollTrigger.create> | null = null;
+                const scrollLockOptions = { passive: false, capture: true } as AddEventListenerOptions;
+                const lockedKeys = new Set(["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "]);
+                const getLenis = () => window.__stratskyeLenis;
+
+                const jumpToScroll = (top: number) => {
+                    const lenis = getLenis();
+
+                    if (lenis) {
+                        lenis.scrollTo(top, { immediate: true, force: true });
+                    } else {
+                        window.scrollTo({ top, behavior: "auto" });
+                    }
+
+                    ScrollTrigger.update();
+                };
+
+                const blockScroll = (event: Event) => {
+                    if (!isScrollLocked) return;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                };
+
+                const blockScrollKeys = (event: KeyboardEvent) => {
+                    if (!isScrollLocked || !lockedKeys.has(event.key)) return;
+                    event.preventDefault();
+                    event.stopImmediatePropagation();
+                };
+
+                const unlockScroll = () => {
+                    if (!isScrollLocked) return;
+                    isScrollLocked = false;
+                    window.removeEventListener("wheel", blockScroll, scrollLockOptions);
+                    window.removeEventListener("touchmove", blockScroll, scrollLockOptions);
+                    window.removeEventListener("keydown", blockScrollKeys, true);
+                    getLenis()?.start();
+                };
+
+                const lockScroll = () => {
+                    if (isScrollLocked) return;
+                    isScrollLocked = true;
+                    getLenis()?.stop();
+                    window.addEventListener("wheel", blockScroll, scrollLockOptions);
+                    window.addEventListener("touchmove", blockScroll, scrollLockOptions);
+                    window.addEventListener("keydown", blockScrollKeys, true);
+
+                    if (presentationTrigger) {
+                        jumpToScroll(presentationTrigger.start);
+                    }
+                };
+
+                const createPresentationTrigger = (duration: number, timeScale: number) => {
+                    const playPresentation = () => {
+                        if (hasPresented) {
+                            if (hasCompleted) {
+                                tl.progress(1);
+                            }
+                            return;
+                        }
+
+                        hasPresented = true;
+                        lockScroll();
+                        tl.eventCallback("onComplete", () => {
+                            hasCompleted = true;
+                            tl.progress(1);
+                            if (presentationTrigger) {
+                                jumpToScroll(Math.max(presentationTrigger.start, presentationTrigger.end - 2));
+                            }
+                            window.requestAnimationFrame(unlockScroll);
+                        });
+                        tl.timeScale(timeScale).play(0);
+                    };
+
+                    cleanupFns.push(unlockScroll);
+
+                    presentationTrigger = ScrollTrigger.create({
+                        trigger: containerRef.current,
+                        start: "top top",
+                        end: `+=${duration}`,
+                        pin: true,
+                        anticipatePin: 1,
+                        invalidateOnRefresh: true,
+                        onEnter: playPresentation,
+                        onUpdate: () => {
+                            if (isScrollLocked && !hasCompleted && presentationTrigger) {
+                                jumpToScroll(presentationTrigger.start);
+                            }
+                        },
+                        onLeave: () => {
+                            if (hasCompleted) {
+                                tl.progress(1);
+                                unlockScroll();
+                            } else {
+                                jumpToScroll(presentationTrigger?.start ?? window.scrollY);
+                            }
+                        },
+                        onEnterBack: () => {
+                            hasPresented = true;
+                            hasCompleted = true;
+                            tl.progress(1);
+                        },
+                        onLeaveBack: unlockScroll,
+                    });
+
+                    ScrollTrigger.create({
+                        trigger: containerRef.current,
+                        start: "top 70%",
+                        onEnter: playPresentation,
+                    });
+                };
+
                 if (isMobile) {
                     cards.forEach((card, index) => {
                         const start = 0.7 + index * 1.18;
+                        const isLastCard = index === cards.length - 1;
 
                         tl.set(cards, { autoAlpha: 0, zIndex: 0 }, start)
                             .set(card, { zIndex: 2 }, start)
                             .to(card, { autoAlpha: 1, xPercent: 0, y: 0, scale: 0.94, rotateX: 0, duration: 0.42, ease: "back.out(1.3)" }, start)
                             .to(card, { y: -6, scale: 0.98, duration: 0.28, ease: "sine.inOut" }, start + 0.42)
                             .to(card, { y: 0, scale: 0.94, duration: 0.28, ease: "sine.inOut" }, start + 0.7)
-                            .to(card, { autoAlpha: 0, y: -24, scale: 0.82, rotateX: 10, duration: 0.22, ease: "power2.in" }, start + 0.9)
-                            .set(card, { autoAlpha: 0, zIndex: 0 }, start + 1.12);
+                            .to(card, {
+                                autoAlpha: isLastCard ? 1 : 0,
+                                y: isLastCard ? 0 : -24,
+                                scale: isLastCard ? 0.94 : 0.82,
+                                rotateX: isLastCard ? 0 : 10,
+                                duration: 0.22,
+                                ease: isLastCard ? "power2.out" : "power2.in",
+                            }, start + 0.9)
+                            .set(card, { autoAlpha: isLastCard ? 1 : 0, zIndex: isLastCard ? 2 : 0 }, start + 1.12);
                     });
+
+                    createPresentationTrigger(1250, 0.94);
 
                     return;
                 }
@@ -100,11 +215,16 @@ export default function SixthSection() {
                 });
 
                 tl.to(cards, { y: "+=4", duration: 0.7, ease: "sine.inOut" }, 1.35);
+
+                createPresentationTrigger(900, 0.9);
             });
 
         }, containerRef);
 
-        return () => ctx.revert();
+        return () => {
+            cleanupFns.forEach((cleanup) => cleanup());
+            ctx.revert();
+        };
     }, []);
 
     return (

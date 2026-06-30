@@ -50,6 +50,7 @@ export default function SeventhSection() {
     }
 
     const mm = gsap.matchMedia();
+    const cleanupFns: Array<() => void> = [];
     const ctx = gsap.context(() => {
       mm.add(
         {
@@ -103,64 +104,171 @@ export default function SeventhSection() {
             transformOrigin: "50% 0%",
           });
 
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top top",
-              end: isMobile ? "+=340%" : "+=210%",
-              scrub: 1,
-              pin: true,
-              anticipatePin: 1,
-              invalidateOnRefresh: true,
-            },
-          });
+          const tl = gsap.timeline({ paused: true });
 
-          tl.to(bgRef.current, { autoAlpha: 1, scale: 1, duration: 0.8, ease: "power2.out" }, 0)
+          tl.to(bgRef.current, { autoAlpha: 1, scale: 1, duration: 0.55, ease: "power2.out" }, 0)
             .to(
               [haloRef.current, raysRef.current],
-              { autoAlpha: 1, scale: 1, duration: 1.3, ease: "power2.out" },
-              0.03
+              { autoAlpha: 1, scale: 1, duration: 0.85, ease: "power2.out" },
+              0.28
             )
             .to(
               moonGroupRef.current,
-              { autoAlpha: 1, yPercent: 0, scale: 1, duration: 1.45, ease: "power3.out" },
-              0.05
+              { autoAlpha: 1, yPercent: 0, scale: 1, duration: 0.95, ease: "power3.out" },
+              0.3
             )
             .to(
               [mountainCoverRef.current, mountainRef.current],
-              { autoAlpha: 1, yPercent: 0, scale: 1, duration: 1.2, ease: "power3.out" },
-              0.38
+              { autoAlpha: 1, yPercent: 0, scale: 1, duration: 0.9, ease: "power3.out" },
+              1.32
             )
-            .to(starsRef.current, { autoAlpha: 1, scale: 1, duration: 1, ease: "power2.out" }, 0.58)
-            .to(labelRef.current, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" }, 0.72)
+            .to(starsRef.current, { autoAlpha: 1, scale: 1, duration: 0.65, ease: "power2.out" }, 1.55)
+            .to(labelRef.current, { autoAlpha: 1, y: 0, duration: 0.35, ease: "power2.out" }, 1.9)
             .to(
               headingRef.current,
-              { autoAlpha: 1, y: 0, duration: 0.65, ease: "power2.out" },
-              isMobile ? 1.05 : 1.15
+              { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out" },
+              2.18
             )
             .to(
               linkRef.current,
-              { autoAlpha: 1, y: 0, duration: 0.55, ease: "power2.out" },
-              isMobile ? 1.25 : 1.28
+              { autoAlpha: 1, y: 0, duration: 0.42, ease: "power2.out" },
+              2.36
             );
 
           cards.forEach((card, index) => {
-            const start = isMobile ? 1.55 + index * 0.72 : 1.25 + index * 0.34;
+            const start = isMobile ? 2.8 + index * 0.78 : 2.82 + index * 0.58;
             tl.to(
               card,
-              { autoAlpha: 1, y: 0, scale: 1, duration: 0.72, ease: "back.out(1.35)" },
+              { autoAlpha: 1, y: 0, scale: 1, duration: 0.62, ease: "back.out(1.35)" },
               start
             ).to(
               anchors[index],
-              { autoAlpha: 1, y: 0, scaleY: 1, duration: 0.48, ease: "power2.out" },
-              start + 0.18
+              { autoAlpha: 1, y: 0, scaleY: 1, duration: 0.38, ease: "power2.out" },
+              start + 0.2
             );
           });
+
+          let hasPresented = false;
+          let hasCompleted = false;
+          let isScrollLocked = false;
+          let presentationTrigger: ReturnType<typeof ScrollTrigger.create> | null = null;
+          const scrollLockOptions = { passive: false, capture: true } as AddEventListenerOptions;
+          const lockedKeys = new Set(["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "]);
+          const getLenis = () => window.__stratskyeLenis;
+
+          const jumpToScroll = (top: number) => {
+            const lenis = getLenis();
+
+            if (lenis) {
+              lenis.scrollTo(top, { immediate: true, force: true });
+            } else {
+              window.scrollTo({ top, behavior: "auto" });
+            }
+
+            ScrollTrigger.update();
+          };
+
+          const blockScroll = (event: Event) => {
+            if (!isScrollLocked) return;
+            event.preventDefault();
+            event.stopImmediatePropagation();
+          };
+
+          const blockScrollKeys = (event: KeyboardEvent) => {
+            if (!isScrollLocked || !lockedKeys.has(event.key)) return;
+            event.preventDefault();
+            event.stopImmediatePropagation();
+          };
+
+          const unlockScroll = () => {
+            if (!isScrollLocked) return;
+            isScrollLocked = false;
+            window.removeEventListener("wheel", blockScroll, scrollLockOptions);
+            window.removeEventListener("touchmove", blockScroll, scrollLockOptions);
+            window.removeEventListener("keydown", blockScrollKeys, true);
+            getLenis()?.start();
+          };
+
+          const lockScroll = () => {
+            if (isScrollLocked) return;
+            isScrollLocked = true;
+            getLenis()?.stop();
+            window.addEventListener("wheel", blockScroll, scrollLockOptions);
+            window.addEventListener("touchmove", blockScroll, scrollLockOptions);
+            window.addEventListener("keydown", blockScrollKeys, true);
+
+            if (presentationTrigger) {
+              jumpToScroll(presentationTrigger.start);
+            }
+          };
+
+          const createPresentationTrigger = (duration: number, timeScale: number) => {
+            const playPresentation = () => {
+              if (hasPresented) {
+                if (hasCompleted) {
+                  tl.progress(1);
+                }
+                return;
+              }
+
+              hasPresented = true;
+              lockScroll();
+              tl.eventCallback("onComplete", () => {
+                hasCompleted = true;
+                tl.progress(1);
+                if (presentationTrigger) {
+                  jumpToScroll(Math.max(presentationTrigger.start, presentationTrigger.end - 2));
+                }
+                window.requestAnimationFrame(unlockScroll);
+              });
+              tl.timeScale(timeScale).play(0);
+            };
+
+            cleanupFns.push(unlockScroll);
+
+            presentationTrigger = ScrollTrigger.create({
+              trigger: sectionRef.current,
+              start: "top top",
+              end: `+=${duration}`,
+              pin: true,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+              onEnter: playPresentation,
+              onUpdate: () => {
+                if (isScrollLocked && !hasCompleted && presentationTrigger) {
+                  jumpToScroll(presentationTrigger.start);
+                }
+              },
+              onLeave: () => {
+                if (hasCompleted) {
+                  tl.progress(1);
+                  unlockScroll();
+                } else {
+                  jumpToScroll(presentationTrigger?.start ?? window.scrollY);
+                }
+              },
+              onEnterBack: () => {
+                hasPresented = true;
+                hasCompleted = true;
+                tl.progress(1);
+              },
+              onLeaveBack: unlockScroll,
+            });
+
+            ScrollTrigger.create({
+              trigger: sectionRef.current,
+              start: "top 70%",
+              onEnter: playPresentation,
+            });
+          };
+
+          createPresentationTrigger(isMobile ? 1250 : 950, isMobile ? 0.9 : 0.88);
         }
       );
     }, sectionRef);
 
     return () => {
+      cleanupFns.forEach((cleanup) => cleanup());
       mm.revert();
       ctx.revert();
     };

@@ -196,7 +196,12 @@ export default function SiteHeader() {
 
   useEffect(() => {
     const updateScrolled = () => {
-      setHasScrolled(window.scrollY > 24);
+      const scrolled = window.scrollY > 24;
+
+      setHasScrolled(scrolled);
+      if (scrolled) {
+        setMenuOpen(false);
+      }
     };
 
     updateScrolled();
@@ -206,6 +211,23 @@ export default function SiteHeader() {
       window.removeEventListener("scroll", updateScrolled);
     };
   }, []);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const closeMenuOnScrollStart = () => {
+      setMenuOpen(false);
+    };
+    const listenerOptions = { capture: true, passive: true } as AddEventListenerOptions;
+
+    window.addEventListener("wheel", closeMenuOnScrollStart, listenerOptions);
+    window.addEventListener("touchmove", closeMenuOnScrollStart, listenerOptions);
+
+    return () => {
+      window.removeEventListener("wheel", closeMenuOnScrollStart, listenerOptions);
+      window.removeEventListener("touchmove", closeMenuOnScrollStart, listenerOptions);
+    };
+  }, [menuOpen]);
 
   const handleMenuItemClick = (href: string) => {
     setMenuOpen(false);
@@ -222,6 +244,7 @@ export default function SiteHeader() {
         html, body { scroll-behavior: smooth; scroll-padding-top: 92px; }
         .noise-overlay { position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); opacity: 0.15; pointer-events: none; z-index: 60; mix-blend-mode: overlay; }
         .navbar { position: fixed; top: 0; left: 0; right: 0; height: 80px; z-index: 120; display: flex; align-items: center; transition: padding 0.28s ease, height 0.28s ease; }
+        .navbar.is-menu-open { z-index: 150; pointer-events: none; }
         .navbar-bg { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(13,19,38,0.9), transparent); z-index: -1; pointer-events: none; transition: background 0.28s ease, backdrop-filter 0.28s ease; }
         .logo { position: absolute; left: 10%; display: flex; align-items: center; text-decoration: none; padding-left: 10px; z-index: 10; transition: left 0.28s ease, padding 0.28s ease; }
         .logo-image { width: clamp(118px, 10vw, 156px); height: auto; display: block; object-fit: contain; filter: drop-shadow(0 8px 18px rgba(0,0,0,0.18)); }
@@ -236,7 +259,7 @@ export default function SiteHeader() {
         .nav-time svg { flex: 0 0 auto; }
         .nav-separator { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.8); }
         .nav-menu { position: absolute; right: calc(10% + 12px); width: 48px; height: 48px; display: grid; place-items: center; cursor: pointer; border: 0; background: transparent; padding: 0; z-index: 130; mix-blend-mode: difference; color: #ffffff; }
-        .nav-menu.is-open { mix-blend-mode: normal; color: #0a1128; }
+        .nav-menu.is-open { z-index: 151; pointer-events: auto; mix-blend-mode: normal; color: #0a1128; }
         .nav-menu:focus-visible { outline: 1px solid rgba(255,255,255,0.85); outline-offset: 5px; }
         .nav-menu-stack { position: relative; width: 32px; height: 18px; display: block; }
         .nav-menu-line { position: absolute; right: 0; width: 32px; height: 2px; border-radius: 999px; background: currentColor; transition: transform 0.35s cubic-bezier(.22,1,.36,1), top 0.35s cubic-bezier(.22,1,.36,1), width 0.35s cubic-bezier(.22,1,.36,1), opacity 0.25s ease; }
@@ -244,10 +267,10 @@ export default function SiteHeader() {
         .nav-menu-line:last-child { top: 13px; width: 21px; }
         .nav-menu.is-open .nav-menu-line:first-child { top: 9px; transform: rotate(42deg); }
         .nav-menu.is-open .nav-menu-line:last-child { top: 9px; width: 32px; transform: rotate(-42deg); }
-        .menu-overlay { position: fixed; inset: 0; z-index: 110; pointer-events: none; opacity: 0; visibility: hidden; transition: opacity 0.25s ease, visibility 0.25s ease; }
+        .menu-overlay { position: fixed; inset: 0; z-index: 140; pointer-events: none; opacity: 0; visibility: hidden; transition: opacity 0.25s ease, visibility 0.25s ease; }
         .menu-overlay.is-open { pointer-events: auto; opacity: 1; visibility: visible; }
-        .menu-backdrop { position: absolute; inset: 0; background: transparent; }
-        .menu-panel { position: absolute; top: 5px; right: 10%; width: min(376px, calc(100vw - 32px)); min-height: 448px; display: flex; flex-direction: column; padding: 26px 14px 24px 28px; border: 1px solid rgba(155,171,219,0.82); border-radius: 12px; background: #f2eee9; box-shadow: 0 18px 44px rgba(10,17,40,0.18); color: #0a1128; transform: translate(12px, -14px) scale(0.94); transform-origin: top right; opacity: 0; transition: transform 0.42s cubic-bezier(.16,1,.3,1), opacity 0.28s ease; }
+        .menu-backdrop { position: absolute; inset: 0; z-index: 0; background: transparent; }
+        .menu-panel { position: absolute; top: 5px; right: 10%; z-index: 1; width: min(376px, calc(100vw - 32px)); min-height: 448px; display: flex; flex-direction: column; padding: 26px 14px 24px 28px; border: 1px solid rgba(155,171,219,0.82); border-radius: 12px; background: #f2eee9; box-shadow: 0 18px 44px rgba(10,17,40,0.18); color: #0a1128; transform: translate(12px, -14px) scale(0.94); transform-origin: top right; opacity: 0; transition: transform 0.42s cubic-bezier(.16,1,.3,1), opacity 0.28s ease; }
         .menu-overlay.is-open .menu-panel { transform: translate(0, 0) scale(1); opacity: 1; }
         .menu-list { list-style: none; display: flex; flex-direction: column; gap: 2px; margin: 0; padding: 0 58px 0 0; }
         .menu-link { position: relative; display: inline-flex; align-items: center; min-height: 40px; color: #6f7283; text-decoration: none; font-size: 34px; font-weight: 500; line-height: 1; letter-spacing: 0; transform: translateY(8px); opacity: 0; transition: color 0.22s ease, transform 0.34s cubic-bezier(.22,1,.36,1), opacity 0.34s ease; }
@@ -323,7 +346,7 @@ export default function SiteHeader() {
 
       <div className="noise-overlay" />
 
-      <nav className={`navbar px-8 ${hasScrolled ? "is-scrolled" : ""}`}>
+      <nav className={`navbar px-8 ${hasScrolled ? "is-scrolled" : ""} ${menuOpen ? "is-menu-open" : ""}`}>
         <div className="navbar-bg" />
         <Link className="logo" href="/" onClick={() => setMenuOpen(false)} aria-label="StratSkye home">
           <img className="logo-image" src="/images/Logo Container.png" alt="StratSkye" />

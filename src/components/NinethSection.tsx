@@ -69,6 +69,7 @@ export default function NinethSection() {
     gsap.registerPlugin(ScrollTrigger);
 
     const mm = gsap.matchMedia();
+    const cleanupFns: Array<() => void> = [];
     const ctx = gsap.context(() => {
       const introItems = introRefs.current.filter(Boolean);
       const statCardItems = cardRefs.current.slice(0, 3).filter(Boolean);
@@ -76,9 +77,9 @@ export default function NinethSection() {
       const allCards = [...statCardItems, ...lowerCardItems];
       
       const rowPositions = [
-        { left: 22, top: 181 },
-        { left: 212, top: 181 },
-        { left: 402, top: 181 },
+        { left: 28, top: 285 },
+        { left: 290, top: 285 },
+        { left: 552, top: 285 },
       ];
 
       // --- MOBILE ANIMATIONS (Up to 767px) ---
@@ -133,21 +134,6 @@ export default function NinethSection() {
           filter: "blur(8px)",
         });
 
-        gsap.to(introItems, {
-          autoAlpha: 1,
-          y: 0,
-          scale: 1,
-          filter: "blur(0px)",
-          duration: 0.85,
-          stagger: 0.08,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 68%",
-            once: true,
-          },
-        });
-
         gsap.set(statCardItems, {
           autoAlpha: 0,
           y: 58,
@@ -162,15 +148,16 @@ export default function NinethSection() {
           filter: "blur(10px)",
         });
 
-        const revealTimeline = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top top",
-            end: "+=1180",
-            scrub: 0.75,
-            pin: true,
-            anticipatePin: 1,
-          },
+        const revealTimeline = gsap.timeline({ paused: true });
+
+        revealTimeline.to(introItems, {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          filter: "blur(0px)",
+          duration: 0.85,
+          stagger: 0.08,
+          ease: "power3.out",
         });
 
         statCardItems.forEach((card, index) => {
@@ -214,11 +201,124 @@ export default function NinethSection() {
             },
             "statsRow+=0.08"
           );
+
+        let hasPresented = false;
+        let hasCompleted = false;
+        let isScrollLocked = false;
+        let presentationTrigger: ReturnType<typeof ScrollTrigger.create> | null = null;
+        const scrollLockOptions = { passive: false, capture: true } as AddEventListenerOptions;
+        const lockedKeys = new Set(["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "]);
+        const getLenis = () => window.__stratskyeLenis;
+
+        const jumpToScroll = (top: number) => {
+          const lenis = getLenis();
+
+          if (lenis) {
+            lenis.scrollTo(top, { immediate: true, force: true });
+          } else {
+            window.scrollTo({ top, behavior: "auto" });
+          }
+
+          ScrollTrigger.update();
+        };
+
+        const blockScroll = (event: Event) => {
+          if (!isScrollLocked) return;
+          event.preventDefault();
+          event.stopImmediatePropagation();
+        };
+
+        const blockScrollKeys = (event: KeyboardEvent) => {
+          if (!isScrollLocked || !lockedKeys.has(event.key)) return;
+          event.preventDefault();
+          event.stopImmediatePropagation();
+        };
+
+        const unlockScroll = () => {
+          if (!isScrollLocked) return;
+          isScrollLocked = false;
+          window.removeEventListener("wheel", blockScroll, scrollLockOptions);
+          window.removeEventListener("touchmove", blockScroll, scrollLockOptions);
+          window.removeEventListener("keydown", blockScrollKeys, true);
+          getLenis()?.start();
+        };
+
+        const lockScroll = () => {
+          if (isScrollLocked) return;
+          isScrollLocked = true;
+          getLenis()?.stop();
+          window.addEventListener("wheel", blockScroll, scrollLockOptions);
+          window.addEventListener("touchmove", blockScroll, scrollLockOptions);
+          window.addEventListener("keydown", blockScrollKeys, true);
+
+          if (presentationTrigger) {
+            jumpToScroll(presentationTrigger.start);
+          }
+        };
+
+        const playPresentation = () => {
+          if (hasPresented) {
+            if (hasCompleted) {
+              revealTimeline.progress(1);
+            }
+            return;
+          }
+
+          hasPresented = true;
+          lockScroll();
+          revealTimeline.eventCallback("onComplete", () => {
+            hasCompleted = true;
+            revealTimeline.progress(1);
+            if (presentationTrigger) {
+              jumpToScroll(Math.max(presentationTrigger.start, presentationTrigger.end - 2));
+            }
+            window.requestAnimationFrame(unlockScroll);
+          });
+          revealTimeline.timeScale(0.82).play(0);
+        };
+
+        cleanupFns.push(unlockScroll);
+
+        presentationTrigger = ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "+=1050",
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onEnter: playPresentation,
+          onUpdate: () => {
+            if (isScrollLocked && !hasCompleted && presentationTrigger) {
+              jumpToScroll(presentationTrigger.start);
+            }
+          },
+          onLeave: () => {
+            if (hasCompleted) {
+              revealTimeline.progress(1);
+              unlockScroll();
+            } else {
+              jumpToScroll(presentationTrigger?.start ?? window.scrollY);
+            }
+          },
+          onEnterBack: () => {
+            hasPresented = true;
+            hasCompleted = true;
+            revealTimeline.progress(1);
+          },
+          onLeaveBack: unlockScroll,
+        });
+
+        ScrollTrigger.create({
+          trigger: sectionRef.current,
+          start: "top 70%",
+          onEnter: playPresentation,
+        });
       });
 
     }, sectionRef);
 
     return () => {
+      cleanupFns.forEach((cleanup) => cleanup());
       ctx.revert();
       mm.revert();
     };
@@ -524,14 +624,16 @@ export default function NinethSection() {
             padding-bottom: 0;
           }
           .stats-canvas {
-            height: 708px;
-            max-width: 608px;
+            --stats-canvas-x: 0px;
+            height: 870px;
+            max-width: 820px;
           }
           .stats-eyebrow {
             position: absolute;
-            top: 25px;
+            top: 113px;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translateX(-50%) scale(var(--stats-title-counter-scale, 1));
+            transform-origin: top center;
             font-size: 8px;
             margin-bottom: 0;
           }
@@ -540,10 +642,11 @@ export default function NinethSection() {
 
           .stats-heading {
             position: absolute;
-            top: 67px;
+            top: 155px;
             left: 50%;
             width: 390px;
-            transform: translateX(-50%);
+            transform: translateX(-50%) scale(var(--stats-title-counter-scale, 1));
+            transform-origin: top center;
             font-size: 24px;
             line-height: 1.08;
             padding-inline: 0;
@@ -556,47 +659,104 @@ export default function NinethSection() {
 
           .stats-image-card {
             position: absolute;
-            width: 183px;
+            width: 240px;
             max-width: none;
             animation: statFloat 5.5s ease-in-out infinite;
           }
-          .stat-one { left: 22px; top: 181px; animation-delay: 0s; }
-          .stat-two { left: 210px; top: 256px; animation-delay: -1.6s; }
-          .stat-three { left: 399px; top: 347px; animation-delay: -3.1s; }
+          .stat-one { left: 28px; top: 285px; animation-delay: 0s; }
+          .stat-two { left: 290px; top: 365px; animation-delay: -1.6s; }
+          .stat-three { left: 552px; top: 462px; animation-delay: -3.1s; }
 
           .cloud-secure-card,
           .success-card {
             position: absolute;
-            top: 340px;
-            height: 200px;
+            top: 520px;
+            height: 260px;
             max-width: none;
           }
 
-          .cloud-secure-card { left: 22px; width: 276px; padding: 40px 20px; }
-          .cloud-secure-card p { font-size: 11px; }
+          .cloud-secure-card { left: 28px; width: 388px; padding: 50px 24px; }
+          .cloud-secure-card p { font-size: 13px; }
 
-          .success-card { left: 304px; width: 277px; padding: 17px 14px 14px; }
-          .success-label { font-size: 7px; margin-bottom: 0; }
-          .success-slide { min-height: 139px; justify-content: flex-start; }
-          .success-card p { margin-top: auto; font-size: 10px; line-height: 1.35; }
-          .success-author { margin-top: 11px; gap: 7px; }
-          .dots-container { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); margin-top: 0; gap: 6px; }
-          .testimonial-dot { width: 18px; height: 3px; }
-          .testimonial-dot.is-active { width: 28px; }
-          .author-photo { width: 22px; height: 22px; font-size: 10px; }
-          .success-author strong { font-size: 8px; }
-          .success-author small { font-size: 6px; }
+          .success-card { left: 428px; width: 384px; padding: 24px 20px 18px; }
+          .success-label { font-size: 8px; margin-bottom: 0; }
+          .success-slide { min-height: 188px; justify-content: flex-start; padding-bottom: 28px; }
+          .success-card p { margin-top: 20px; font-size: 12px; line-height: 1.38; }
+          .success-author { margin-top: 16px; gap: 9px; }
+          .dots-container { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); margin-top: 0; gap: 8px; }
+          .testimonial-dot { width: 22px; height: 4px; }
+          .testimonial-dot.is-active { width: 36px; }
+          .author-photo { width: 28px; height: 28px; font-size: 12px; }
+          .success-author strong { font-size: 10px; }
+          .success-author small { font-size: 8px; }
         }
 
         @media (min-width: 900px) {
           .stats-section {
-            min-height: max(100vh, 980px);
-            padding-top: max(40px, calc((100vh - 1027px) / 2));
+            min-height: 100vh;
+            padding-top: 0;
             padding-bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
           }
           .stats-canvas {
-            transform: scale(1.45);
+            --stats-canvas-x: -12px;
+            --stats-title-counter-scale: 0.98;
+            transform: translate3d(var(--stats-canvas-x), -72px, 0) scale(1.02);
+            transform-origin: top center;
             margin-bottom: 0;
+          }
+        }
+
+        @media (min-width: 900px) and (min-height: 761px) {
+          .stats-canvas {
+            margin-top: 0;
+          }
+        }
+
+        @media (min-width: 900px) and (max-height: 760px) {
+          .stats-canvas {
+            margin-top: 0;
+          }
+        }
+
+        @media (min-width: 900px) and (max-height: 760px) {
+          .stats-canvas {
+            --stats-title-counter-scale: 1.087;
+            transform: translate3d(var(--stats-canvas-x), -56px, 0) scale(0.92);
+          }
+        }
+
+        @media (min-width: 1024px) and (min-height: 760px) {
+          .stats-canvas {
+            --stats-canvas-x: -12px;
+            --stats-title-counter-scale: 0.962;
+            transform: translate3d(var(--stats-canvas-x), -74px, 0) scale(1.04);
+          }
+        }
+
+        @media (min-width: 1180px) and (min-height: 820px) {
+          .stats-canvas {
+            --stats-canvas-x: -14px;
+            --stats-title-counter-scale: 0.926;
+            transform: translate3d(var(--stats-canvas-x), -84px, 0) scale(1.08);
+          }
+        }
+
+        @media (min-width: 1360px) and (min-height: 900px) {
+          .stats-canvas {
+            --stats-canvas-x: -16px;
+            --stats-title-counter-scale: 0.847;
+            transform: translate3d(var(--stats-canvas-x), -98px, 0) scale(1.18);
+          }
+        }
+
+        @media (min-width: 1600px) and (min-height: 980px) {
+          .stats-canvas {
+            --stats-canvas-x: -18px;
+            --stats-title-counter-scale: 0.758;
+            transform: translate3d(var(--stats-canvas-x), -118px, 0) scale(1.32);
           }
         }
 

@@ -68,6 +68,7 @@ export default function HeroSection() {
           object-position: center;
           opacity: 1;
           pointer-events: none;
+          filter: contrast(1.08) saturate(1.08) brightness(0.94);
           will-change: transform;
         }
         
@@ -182,6 +183,7 @@ export default function HeroSection() {
             height: 108%;
             object-position: center top;
             opacity: 1;
+            filter: contrast(1.1) saturate(1.08) brightness(0.93);
           }
           .hero-lead {
             left: 50%;
@@ -244,6 +246,7 @@ export default function HeroSection() {
             height: 116%;
             object-position: center top;
             opacity: 1;
+            filter: contrast(1.12) saturate(1.06) brightness(0.92);
           }
           .hero-lead {
             width: calc(100vw - 40px);
