@@ -5,6 +5,7 @@ import "./globals.css";
 import SmoothScroll from "../components/SmoothScroll";
 import SiteHeader from "../components/SiteHeader";
 import PageFooter from "../components/PageFooter";
+import RouteLoadRecovery from "../components/RouteLoadRecovery";
 
 const googleSansFlex = Google_Sans_Flex({
   subsets: ["latin"],
@@ -36,6 +37,7 @@ export default function RootLayout({
         className={`${googleSansFlex.className} ${googleSansFlex.variable} bg-black text-white antialiased`}
         suppressHydrationWarning
       >
+        <RouteLoadRecovery />
         <SiteHeader />
         <SmoothScroll>
           {children}
