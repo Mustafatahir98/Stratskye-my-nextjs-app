@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "B2B Marketing Approach for Tech Growth - Stratskye",
@@ -593,6 +594,31 @@ export default function OurApproachPage() {
         .approach-closing .approach-copy {
           color: rgba(245, 247, 255, 0.76);
         }
+        .approach-cta {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 48px;
+          margin-top: 28px;
+          padding: 15px 22px;
+          border: 1px solid rgba(255,255,255,0.34);
+          border-radius: 999px;
+          color: #fff;
+          font-size: 12px;
+          font-weight: 700;
+          line-height: 1;
+          letter-spacing: 0;
+          text-decoration: none;
+          text-transform: uppercase;
+          transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+        }
+        .approach-cta:hover,
+        .approach-cta:focus-visible {
+          background: #f26e35;
+          border-color: #f26e35;
+          color: #fff;
+          outline: none;
+        }
         @media (max-width: 860px) {
           .approach-shell {
             width: min(100% - 32px, 1180px);
@@ -718,6 +744,9 @@ export default function OurApproachPage() {
           </div>
           <div className="approach-copy">
             <CopyBlock items={closingCopy} />
+            <Link className="approach-cta" href="/contact-form">
+              Book a Strategy Call
+            </Link>
           </div>
         </div>
       </section>

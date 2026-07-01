@@ -15,6 +15,9 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
+    const previousScrollRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+
     const lenis = new Lenis();
     window.__stratskyeLenis = lenis;
     const updateScrollTrigger = () => ScrollTrigger.update();
@@ -94,6 +97,14 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
 
+    const navigationEntry = performance.getEntriesByType("navigation")[0] as
+      | PerformanceNavigationTiming
+      | undefined;
+    if (navigationEntry?.type === "reload") {
+      lenis.scrollTo(0, { immediate: true, force: true });
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
+
     window.addEventListener("resize", handleViewportChange);
     window.addEventListener("orientationchange", handleOrientationChange);
     watchDevicePixelRatio();
@@ -116,6 +127,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       if (window.__stratskyeLenis === lenis) {
         delete window.__stratskyeLenis;
       }
+      window.history.scrollRestoration = previousScrollRestoration;
     };
   }, []);
 
