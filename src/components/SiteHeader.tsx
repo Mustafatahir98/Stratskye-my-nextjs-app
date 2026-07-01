@@ -423,13 +423,13 @@ export default function SiteHeader() {
 
               return (
                 <li key={item.href}>
-                  <a
+                  <Link
                     className={`menu-link ${isActive ? "is-active" : ""}`}
                     href={item.href}
                     onClick={(event) => handlePopupMenuItemClick(event, item.href)}
                   >
                     {item.label}
-                  </a>
+                  </Link>
                 </li>
               );
             })}
@@ -437,19 +437,33 @@ export default function SiteHeader() {
 
           <nav className="menu-social" aria-label="Social links">
             <ul className="menu-social-list">
-              {socialItems.map((item) => (
-                <li key={item.href}>
-                  <a
-                    className="menu-social-link"
-                    href={item.href}
-                    target={item.href.startsWith("http") ? "_blank" : undefined}
-                    rel={item.href.startsWith("http") ? "noreferrer" : undefined}
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
+              {socialItems.map((item) => {
+                const isExternal = item.href.startsWith("http");
+
+                return (
+                  <li key={item.href}>
+                    {isExternal ? (
+                      <a
+                        className="menu-social-link"
+                        href={item.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {item.label}
+                      </a>
+                    ) : (
+                      <Link
+                        className="menu-social-link"
+                        href={item.href}
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {item.label}
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </div>
