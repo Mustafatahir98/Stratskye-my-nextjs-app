@@ -7,7 +7,270 @@ export const metadata: Metadata = {
   title: "About Stratskye - B2B Tech Marketing Agency",
   description:
     "Stratskye is a B2B tech marketing agency for SaaS and AI startups, building demand gen, ABM, content, SEO and RevOps systems.",
+  alternates: {
+    canonical: "/about",
+  },
 };
+
+const aboutPageSchema = `{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://stratskye.com/#organization",
+      "name": "Stratskye",
+      "url": "https://stratskye.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://stratskye.com/#logo",
+        "url": "https://stratskye.com/images/Logo%20Container.png",
+        "contentUrl": "https://stratskye.com/images/Logo%20Container.png",
+        "caption": "Stratskye logo"
+      },
+      "email": "admin@stratskye.com",
+      "foundingDate": "2019",
+      "description": "Stratskye is a remote B2B growth marketing agency built by two engineers for technical founders and B2B companies whose products are stronger than their market presence.",
+      "slogan": "Your product is technically strong. The market just does not understand it yet.",
+      "areaServed": {
+        "@type": "Place",
+        "name": "Worldwide"
+      },
+      "numberOfEmployees": {
+        "@type": "QuantitativeValue",
+        "value": 11,
+        "unitText": "specialists"
+      },
+      "founder": [
+        {
+          "@id": "https://stratskye.com/about#noor-farjad"
+        },
+        {
+          "@id": "https://stratskye.com/about#farjad"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/stratskye",
+        "https://www.linkedin.com/company/101893541/"
+      ],
+      "knowsAbout": [
+        "B2B growth marketing",
+        "B2B tech marketing",
+        "SaaS marketing",
+        "AI startup marketing",
+        "Deep tech marketing",
+        "Fintech marketing",
+        "Technical product positioning",
+        "LinkedIn content strategy",
+        "SEO and technical website work",
+        "Social media management",
+        "Email marketing",
+        "Lead generation",
+        "Copywriting",
+        "Podcast and media placement"
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "email": "admin@stratskye.com",
+          "contactType": "Business inquiries",
+          "areaServed": "Worldwide",
+          "availableLanguage": [
+            "English"
+          ]
+        }
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://stratskye.com/#professional-service",
+      "name": "Stratskye",
+      "url": "https://stratskye.com/",
+      "image": "https://stratskye.com/images/Logo%20Container.png",
+      "email": "admin@stratskye.com",
+      "description": "Stratskye is a remote professional service provider offering B2B growth marketing, positioning, LinkedIn content strategy, SEO, technical website work, social media management, email marketing, lead generation, copywriting, and podcast and media placement for technical B2B companies.",
+      "parentOrganization": {
+        "@id": "https://stratskye.com/#organization"
+      },
+      "areaServed": {
+        "@type": "Place",
+        "name": "Worldwide"
+      },
+      "founder": [
+        {
+          "@id": "https://stratskye.com/about#noor-farjad"
+        },
+        {
+          "@id": "https://stratskye.com/about#farjad"
+        }
+      ],
+      "sameAs": [
+        "https://www.instagram.com/stratskye",
+        "https://www.linkedin.com/company/101893541/"
+      ],
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "name": "B2B Growth Marketing Services",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "B2B Growth Marketing Services",
+            "serviceType": "B2B growth marketing",
+            "provider": {
+              "@id": "https://stratskye.com/#organization"
+            },
+            "areaServed": {
+              "@type": "Place",
+              "name": "Worldwide"
+            },
+            "audience": {
+              "@type": "BusinessAudience",
+              "audienceType": "B2B tech, SaaS, AI, fintech, infrastructure, deep tech, and professional services companies"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://stratskye.com/about#noor-farjad",
+      "name": "Noor Farjad",
+      "jobTitle": "Co-founder and CEO",
+      "worksFor": {
+        "@id": "https://stratskye.com/#organization"
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "NUST"
+      },
+      "award": "APICTA 2015 Gold Award",
+      "knowsAbout": [
+        "Computer Engineering",
+        "Deep tech marketing",
+        "Fractional CMO work",
+        "Computer vision",
+        "Object detection",
+        "Technical product marketing",
+        "B2B growth marketing"
+      ],
+      "description": "Noor Farjad is Co-founder and CEO of Stratskye. She is a Computer Engineer from NUST, an APICTA 2015 Gold Award recipient, a former fractional CMO in deep tech, and the founder of Stratskye since 2019."
+    },
+    {
+      "@type": "Person",
+      "@id": "https://stratskye.com/about#farjad",
+      "name": "Farjad",
+      "jobTitle": "Co-founder",
+      "worksFor": {
+        "@id": "https://stratskye.com/#organization"
+      },
+      "knowsAbout": [
+        "Electrical Engineering",
+        "Product building",
+        "Augmented reality products",
+        "Unity development",
+        "Manufacturing Excellence",
+        "Systems thinking",
+        "Technical product strategy",
+        "B2B growth systems"
+      ],
+      "description": "Farjad is Co-founder of Stratskye. He is an Electrical Engineer who built foreign language applications and augmented reality products before spending a decade in Manufacturing Excellence at P&G, where he developed the systems thinking that now supports Stratskye engagements."
+    },
+    {
+      "@type": "AboutPage",
+      "@id": "https://stratskye.com/about#aboutpage",
+      "url": "https://stratskye.com/about",
+      "name": "About Stratskye - B2B Tech Marketing Agency",
+      "headline": "Your product is technically strong. The market just does not understand it yet.",
+      "description": "Learn about Stratskye, a remote B2B growth marketing agency built by engineers for technical founders, SaaS, AI, deep tech, fintech, infrastructure, professional services, and B2B technology companies.",
+      "isPartOf": {
+        "@id": "https://stratskye.com/#website"
+      },
+      "about": {
+        "@id": "https://stratskye.com/#organization"
+      },
+      "mainEntity": {
+        "@id": "https://stratskye.com/#organization"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://stratskye.com/#logo"
+      },
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "https://stratskye.com/#organization"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://stratskye.com/about#faq",
+      "url": "https://stratskye.com/about",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What industries does Stratskye work with?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Stratskye works with B2B tech, SaaS, AI, fintech, infrastructure, deep tech, and professional services companies."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long does an engagement typically run?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Most clients start with a minimum three-month engagement. Many continue beyond that."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you work with early-stage companies?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Stratskye works with early-stage companies when the product is live, there are real customers, and there is a budget to run a proper engagement."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does the onboarding process look like?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The onboarding process starts with one structured session where the team extracts what they need from the client, followed by a strategy review before anything goes live."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How involved do I need to be day to day?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Client involvement is minimal day to day. Clients provide input at the start, approve before anything publishes, and review results on a regular cadence."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Stratskye sign NDAs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Stratskye routinely signs NDAs, and a significant portion of the client portfolio operates under one."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is the team based?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Stratskye operates remotely with a distributed team of 11 specialists."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I get started?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Book a strategy call. One conversation is enough to know whether there is a genuine fit."
+          }
+        }
+      ]
+    }
+  ]
+}`;
 
 const founderStory = [
   "Noor Farjad founded Stratskye in 2019 and ran every engagement herself for five years. Every brief, every deliverable, every client conversation came through her directly.",
@@ -120,6 +383,10 @@ function CopyStack({ items }: { items: string[] }) {
 export default function AboutPage() {
   return (
     <main className="about-page">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: aboutPageSchema }}
+      />
       <style>{`
         .about-page {
           --blue: #0D162F;

@@ -1,10 +1,263 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Our Approach - Stratskye",
+  title: "B2B Marketing Approach for Tech Growth - Stratskye",
   description:
     "How Stratskye researches, plans, executes, and reports on B2B technology marketing work.",
+  alternates: {
+    canonical: "/our-approach",
+  },
 };
+
+const approachPageSchema = `{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://stratskye.com/#organization",
+      "name": "Stratskye",
+      "url": "https://stratskye.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "@id": "https://stratskye.com/#logo",
+        "url": "https://stratskye.com/images/Logo%20Container.png",
+        "contentUrl": "https://stratskye.com/images/Logo%20Container.png",
+        "caption": "Stratskye logo"
+      },
+      "email": "admin@stratskye.com",
+      "description": "Stratskye is a remote B2B tech growth marketing agency helping SaaS, AI, deep tech, fintech, infrastructure, professional services, and B2B technology companies build stronger positioning, visibility, content, demand generation, and growth systems.",
+      "areaServed": "Worldwide",
+      "sameAs": [
+        "https://www.instagram.com/stratskye",
+        "https://www.linkedin.com/company/101893541/"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "@id": "https://stratskye.com/contact-form#business-contact",
+        "email": "admin@stratskye.com",
+        "contactType": "Business inquiries",
+        "areaServed": "Worldwide",
+        "availableLanguage": "English"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://stratskye.com/#website",
+      "url": "https://stratskye.com/",
+      "name": "Stratskye",
+      "publisher": {
+        "@id": "https://stratskye.com/#organization"
+      },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://stratskye.com/our-approach#webpage",
+      "url": "https://stratskye.com/our-approach",
+      "name": "B2B Marketing Approach for Tech Growth | Stratskye",
+      "headline": "We start with what the business needs.",
+      "description": "Stratskye's approach starts with research, discovery, proposal planning, a 30/60/90-day value framework, weekly communication, progress updates, and monthly reporting.",
+      "isPartOf": {
+        "@id": "https://stratskye.com/#website"
+      },
+      "about": {
+        "@id": "https://stratskye.com/#organization"
+      },
+      "mainEntity": {
+        "@id": "https://stratskye.com/our-approach#stratskye-working-process"
+      },
+      "publisher": {
+        "@id": "https://stratskye.com/#organization"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://stratskye.com/#logo"
+      },
+      "inLanguage": "en",
+      "significantLink": [
+        "https://stratskye.com/services",
+        "https://stratskye.com/about",
+        "https://stratskye.com/contact-form"
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://stratskye.com/#professional-service",
+      "name": "Stratskye",
+      "url": "https://stratskye.com/",
+      "image": "https://stratskye.com/images/Logo%20Container.png",
+      "email": "admin@stratskye.com",
+      "description": "Stratskye is a remote professional service provider offering B2B tech growth marketing, positioning, demand generation, content and thought leadership, account-based marketing, digital and growth marketing, SEO, and email marketing services.",
+      "parentOrganization": {
+        "@id": "https://stratskye.com/#organization"
+      },
+      "areaServed": "Worldwide",
+      "sameAs": [
+        "https://www.instagram.com/stratskye",
+        "https://www.linkedin.com/company/101893541/"
+      ],
+      "contactPoint": {
+        "@id": "https://stratskye.com/contact-form#business-contact"
+      },
+      "makesOffer": {
+        "@type": "Offer",
+        "@id": "https://stratskye.com/services#main-offer",
+        "name": "B2B Tech Growth Marketing Services",
+        "itemOffered": {
+          "@id": "https://stratskye.com/services#b2b-tech-growth-marketing-service"
+        }
+      }
+    },
+    {
+      "@type": "Service",
+      "@id": "https://stratskye.com/services#b2b-tech-growth-marketing-service",
+      "name": "B2B Tech Growth Marketing Services",
+      "alternateName": "B2B Tech Marketing Services for SaaS and AI",
+      "url": "https://stratskye.com/services",
+      "serviceType": "B2B tech growth marketing",
+      "provider": {
+        "@id": "https://stratskye.com/#organization"
+      },
+      "areaServed": "Worldwide",
+      "audience": {
+        "@type": "BusinessAudience",
+        "audienceType": "B2B companies, SaaS companies, AI companies, deep tech companies, fintech companies, infrastructure companies, and professional services companies"
+      },
+      "description": "B2B tech growth marketing services covering positioning, content, SEO, social media, lead generation, demand generation, account-based marketing, email marketing, website improvement, and ongoing marketing leadership."
+    },
+    {
+      "@type": "HowTo",
+      "@id": "https://stratskye.com/our-approach#stratskye-working-process",
+      "name": "Stratskye Client Approach and Marketing Process",
+      "description": "A structured B2B marketing approach that starts with research, discovery, proposal planning, a 30/60/90-day value framework, weekly communication, progress updates, and monthly reporting.",
+      "mainEntityOfPage": {
+        "@id": "https://stratskye.com/our-approach#webpage"
+      },
+      "provider": {
+        "@id": "https://stratskye.com/#organization"
+      },
+      "step": [
+        {
+          "@type": "HowToStep",
+          "@id": "https://stratskye.com/our-approach#research-step",
+          "position": 1,
+          "name": "Research",
+          "text": "Stratskye reviews the website, social media channels, Google search results, competitors, industry positioning, and available digital touchpoints before the discovery call."
+        },
+        {
+          "@type": "HowToStep",
+          "@id": "https://stratskye.com/our-approach#discovery-call-step",
+          "position": 2,
+          "name": "Discovery Call",
+          "text": "The discovery call helps Stratskye understand the client's goals, audience, current marketing efforts, sales process, challenges, internal capacity, and first priorities."
+        },
+        {
+          "@type": "HowToStep",
+          "@id": "https://stratskye.com/our-approach#proposal-step",
+          "position": 3,
+          "name": "Proposal",
+          "text": "After discovery, Stratskye builds a proposal around the areas where marketing can create the most value, such as website structure, positioning, content, lead generation, social media, SEO, or marketing systems."
+        },
+        {
+          "@type": "HowToStep",
+          "@id": "https://stratskye.com/our-approach#first-30-days-step",
+          "position": 4,
+          "name": "First 30 Days: Understand, Align, and Set the Foundation",
+          "text": "The first 30 days focus on research, onboarding, strategy, setup, reviewing current marketing, understanding the audience, aligning priorities, and defining the first set of actions."
+        },
+        {
+          "@type": "HowToStep",
+          "@id": "https://stratskye.com/our-approach#days-31-60-step",
+          "position": 5,
+          "name": "Days 31 to 60: Execute, Test, and Build Momentum",
+          "text": "Days 31 to 60 focus on execution, implementing approved priorities, improving the website, building content, refining messaging, setting up campaigns, improving visibility, and strengthening marketing systems."
+        },
+        {
+          "@type": "HowToStep",
+          "@id": "https://stratskye.com/our-approach#days-61-90-step",
+          "position": 6,
+          "name": "Days 61 to 90: Measure, Improve, and Plan What Comes Next",
+          "text": "By 90 days, Stratskye reviews work completed, results achieved, remaining gaps, and the next stage of growth before moving into a retainer model when appropriate."
+        },
+        {
+          "@type": "HowToStep",
+          "@id": "https://stratskye.com/our-approach#communication-step",
+          "position": 7,
+          "name": "Clear Client Communication",
+          "text": "Each client has one main point of contact, weekly strategy meetings, weekly progress updates, and monthly reporting so they know what is happening, why it is happening, and how it supports the business."
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://stratskye.com/our-approach#approach-step-list",
+      "name": "Stratskye Approach Steps",
+      "description": "Ordered list of the visible steps and phases in Stratskye's client approach.",
+      "mainEntityOfPage": {
+        "@id": "https://stratskye.com/our-approach#webpage"
+      },
+      "itemListOrder": "https://schema.org/ItemListOrderAscending",
+      "numberOfItems": 7,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Research",
+          "item": {
+            "@id": "https://stratskye.com/our-approach#research-step"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Discovery Call",
+          "item": {
+            "@id": "https://stratskye.com/our-approach#discovery-call-step"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Proposal",
+          "item": {
+            "@id": "https://stratskye.com/our-approach#proposal-step"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "First 30 Days",
+          "item": {
+            "@id": "https://stratskye.com/our-approach#first-30-days-step"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "Days 31 to 60",
+          "item": {
+            "@id": "https://stratskye.com/our-approach#days-31-60-step"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "Days 61 to 90",
+          "item": {
+            "@id": "https://stratskye.com/our-approach#days-61-90-step"
+          }
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "name": "Clear Client Communication",
+          "item": {
+            "@id": "https://stratskye.com/our-approach#communication-step"
+          }
+        }
+      ]
+    }
+  ]
+}`;
 
 const introCopy = [
   "We do not start with services. We start with what the business needs.",
@@ -127,6 +380,10 @@ function CopyBlock({ items }: { items: string[] }) {
 export default function OurApproachPage() {
   return (
     <main className="approach-page">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: approachPageSchema }}
+      />
       <style>{`
         .approach-page {
           --approach-blue: #0d162f;

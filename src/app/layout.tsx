@@ -17,8 +17,12 @@ const googleSansFlex = Google_Sans_Flex({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://stratskye.com"),
   title: "Stratskye",
   description: "Animated Experience",
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function RootLayout({
