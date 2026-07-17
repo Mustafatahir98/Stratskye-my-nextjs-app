@@ -154,17 +154,7 @@ export default function SeventhSection() {
           // instead of dragging out over 5+ seconds.
           tl.timeScale(1.3);
 
-          // Once triggered, the timeline runs on GSAP's own ticker —
-          // completely independent of scroll. It is never fast-forwarded
-          // or snapped to a finished state, so it always plays out at its
-          // own pace no matter how fast the user keeps scrolling.
-          let hasStarted = false;
-
-          const startOnce = () => {
-            if (hasStarted) return;
-            hasStarted = true;
-            tl.play(0);
-          };
+          let hasCompleted = false;
 
           ScrollTrigger.create({
             trigger: sectionRef.current,
@@ -177,8 +167,31 @@ export default function SeventhSection() {
             // teleporting here — scrolling stays 100% native the whole
             // time. The pin itself is what naturally holds the section
             // on screen; nothing extra is blocking the user's input.
-            onEnter: startOnce,
-            onEnterBack: startOnce,
+            onEnter: () => {
+              if (hasCompleted) {
+                tl.progress(1);
+                return;
+              }
+              tl.play(0);
+            },
+            onEnterBack: () => {
+              if (hasCompleted) {
+                tl.progress(1);
+                return;
+              }
+              tl.play(0);
+            },
+            onLeave: () => {
+              // If the user scrolls past fast enough to outrun the
+              // animation, just snap its internal state to finished —
+              // this never touches scroll position, so there's no jump.
+              hasCompleted = true;
+              tl.progress(1);
+            },
+            onLeaveBack: () => {
+              hasCompleted = false;
+              tl.pause(0);
+            },
           });
         }
       );
