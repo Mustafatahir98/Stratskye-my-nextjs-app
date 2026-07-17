@@ -50,7 +50,6 @@ export default function SeventhSection() {
     }
 
     const mm = gsap.matchMedia();
-    const cleanupFns: Array<() => void> = [];
     const ctx = gsap.context(() => {
       mm.add(
         {
@@ -104,166 +103,88 @@ export default function SeventhSection() {
             transformOrigin: "50% 0%",
           });
 
+          // Timeline is time-based (not scroll-scrubbed) — it plays fully on
+          // its own once triggered, regardless of scroll speed or direction.
           const tl = gsap.timeline({ paused: true });
 
-          tl.to(bgRef.current, { autoAlpha: 1, scale: 1, duration: 0.55, ease: "power2.out" }, 0)
+          tl.to(bgRef.current, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "power2.out" }, 0)
             .to(
               [haloRef.current, raysRef.current],
-              { autoAlpha: 1, scale: 1, duration: 0.85, ease: "power2.out" },
-              0.28
+              { autoAlpha: 1, scale: 1, duration: 0.75, ease: "power2.out" },
+              0.24
             )
             .to(
               moonGroupRef.current,
-              { autoAlpha: 1, yPercent: 0, scale: 1, duration: 0.95, ease: "power3.out" },
-              0.3
+              { autoAlpha: 1, yPercent: 0, scale: 1, duration: 0.85, ease: "power3.out" },
+              0.26
             )
             .to(
               [mountainCoverRef.current, mountainRef.current],
-              { autoAlpha: 1, yPercent: 0, scale: 1, duration: 0.9, ease: "power3.out" },
-              1.32
+              { autoAlpha: 1, yPercent: 0, scale: 1, duration: 0.8, ease: "power3.out" },
+              1.1
             )
-            .to(starsRef.current, { autoAlpha: 1, scale: 1, duration: 0.65, ease: "power2.out" }, 1.55)
-            .to(labelRef.current, { autoAlpha: 1, y: 0, duration: 0.35, ease: "power2.out" }, 1.9)
+            .to(starsRef.current, { autoAlpha: 1, scale: 1, duration: 0.55, ease: "power2.out" }, 1.3
+            )
+            .to(labelRef.current, { autoAlpha: 1, y: 0, duration: 0.32, ease: "power2.out" }, 1.6)
             .to(
               headingRef.current,
-              { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out" },
-              2.18
+              { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out" },
+              1.86
             )
             .to(
               linkRef.current,
-              { autoAlpha: 1, y: 0, duration: 0.42, ease: "power2.out" },
-              2.36
+              { autoAlpha: 1, y: 0, duration: 0.38, ease: "power2.out" },
+              2.02
             );
 
           cards.forEach((card, index) => {
-            const start = isMobile ? 2.8 + index * 0.78 : 2.82 + index * 0.58;
+            const start = isMobile ? 2.3 + index * 0.6 : 2.32 + index * 0.46;
             tl.to(
               card,
-              { autoAlpha: 1, y: 0, scale: 1, duration: 0.62, ease: "back.out(1.35)" },
+              { autoAlpha: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.35)" },
               start
             ).to(
               anchors[index],
-              { autoAlpha: 1, y: 0, scaleY: 1, duration: 0.38, ease: "power2.out" },
-              start + 0.2
+              { autoAlpha: 1, y: 0, scaleY: 1, duration: 0.34, ease: "power2.out" },
+              start + 0.18
             );
           });
 
-          let hasPresented = false;
-          let hasCompleted = false;
-          let isScrollLocked = false;
-          let presentationTrigger: ReturnType<typeof ScrollTrigger.create> | null = null;
-          const scrollLockOptions = { passive: false, capture: true } as AddEventListenerOptions;
-          const lockedKeys = new Set(["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "]);
-          const getLenis = () => window.__stratskyeLenis;
+          // Slightly faster than real-time — makes the reveal feel snappy
+          // instead of dragging out over 5+ seconds.
+          tl.timeScale(1.3);
 
-          const jumpToScroll = (top: number) => {
-            const lenis = getLenis();
+          // Once triggered, the timeline runs on GSAP's own ticker —
+          // completely independent of scroll. It is never fast-forwarded
+          // or snapped to a finished state, so it always plays out at its
+          // own pace no matter how fast the user keeps scrolling.
+          let hasStarted = false;
 
-            if (lenis) {
-              lenis.scrollTo(top, { immediate: true, force: true });
-            } else {
-              window.scrollTo({ top, behavior: "auto" });
-            }
-
-            ScrollTrigger.update();
+          const startOnce = () => {
+            if (hasStarted) return;
+            hasStarted = true;
+            tl.play(0);
           };
 
-          const blockScroll = (event: Event) => {
-            if (!isScrollLocked) return;
-            event.preventDefault();
-            event.stopImmediatePropagation();
-          };
-
-          const blockScrollKeys = (event: KeyboardEvent) => {
-            if (!isScrollLocked || !lockedKeys.has(event.key)) return;
-            event.preventDefault();
-            event.stopImmediatePropagation();
-          };
-
-          const unlockScroll = () => {
-            if (!isScrollLocked) return;
-            isScrollLocked = false;
-            window.removeEventListener("wheel", blockScroll, scrollLockOptions);
-            window.removeEventListener("touchmove", blockScroll, scrollLockOptions);
-            window.removeEventListener("keydown", blockScrollKeys, true);
-            getLenis()?.start();
-          };
-
-          const lockScroll = () => {
-            if (isScrollLocked) return;
-            isScrollLocked = true;
-            getLenis()?.stop();
-            window.addEventListener("wheel", blockScroll, scrollLockOptions);
-            window.addEventListener("touchmove", blockScroll, scrollLockOptions);
-            window.addEventListener("keydown", blockScrollKeys, true);
-
-            if (presentationTrigger) {
-              jumpToScroll(presentationTrigger.start);
-            }
-          };
-
-          const createPresentationTrigger = (duration: number, timeScale: number) => {
-            const playPresentation = () => {
-              if (hasPresented) {
-                if (hasCompleted) {
-                  tl.progress(1);
-                }
-                return;
-              }
-
-              hasPresented = true;
-              lockScroll();
-              tl.eventCallback("onComplete", () => {
-                hasCompleted = true;
-                tl.progress(1);
-                if (presentationTrigger) {
-                  jumpToScroll(Math.max(presentationTrigger.start, presentationTrigger.end - 2));
-                }
-                window.requestAnimationFrame(unlockScroll);
-              });
-              tl.timeScale(timeScale).play(0);
-            };
-
-            cleanupFns.push(unlockScroll);
-
-            presentationTrigger = ScrollTrigger.create({
-              trigger: sectionRef.current,
-              start: "top top",
-              end: `+=${duration}`,
-              pin: true,
-              anticipatePin: 1,
-              invalidateOnRefresh: true,
-              onEnter: playPresentation,
-              onUpdate: () => {
-                if (isScrollLocked && !hasCompleted && presentationTrigger) {
-                  jumpToScroll(presentationTrigger.start);
-                }
-              },
-              onLeave: () => {
-                if (hasCompleted) {
-                  tl.progress(1);
-                  unlockScroll();
-                } else {
-                  jumpToScroll(presentationTrigger?.start ?? window.scrollY);
-                }
-              },
-              onEnterBack: () => {
-                hasPresented = true;
-                hasCompleted = true;
-                tl.progress(1);
-              },
-              onLeaveBack: unlockScroll,
-            });
-
-          };
-
-          createPresentationTrigger(isMobile ? 1250 : 950, isMobile ? 0.9 : 0.88);
+          ScrollTrigger.create({
+            trigger: sectionRef.current,
+            start: "top top",
+            end: `+=${isMobile ? 1050 : 850}`,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            // No wheel/touch/keydown interception and no manual scroll
+            // teleporting here — scrolling stays 100% native the whole
+            // time. The pin itself is what naturally holds the section
+            // on screen; nothing extra is blocking the user's input.
+            onEnter: startOnce,
+            onEnterBack: startOnce,
+          });
         }
       );
     }, sectionRef);
 
     return () => {
-      cleanupFns.forEach((cleanup) => cleanup());
       mm.revert();
       ctx.revert();
     };
@@ -384,6 +305,7 @@ export default function SeventhSection() {
           opacity: 0.54;
           filter: invert(1) brightness(0.92) contrast(1.08);
           mix-blend-mode: soft-light;
+          will-change: opacity, transform;
         }
         .proof-moon-group {
           z-index: 3;
@@ -392,6 +314,7 @@ export default function SeventhSection() {
           width: min(84%, 920px);
           transform: translateX(-50%);
           isolation: isolate;
+          will-change: opacity, transform;
         }
         .proof-moon-halo,
         .proof-moon-rays {
@@ -462,6 +385,7 @@ export default function SeventhSection() {
           opacity: 0.92;
           mix-blend-mode: normal;
           filter: brightness(0.72) saturate(1.28) contrast(1.12);
+          will-change: opacity, transform;
         }
         .proof-mountain {
           z-index: 8;
@@ -473,6 +397,7 @@ export default function SeventhSection() {
           opacity: 0.96;
           mix-blend-mode: multiply;
           filter: saturate(1.08) contrast(1.04);
+          will-change: opacity, transform;
         }
         .proof-stars {
           z-index: 4;
@@ -484,6 +409,7 @@ export default function SeventhSection() {
           opacity: 0.64;
           mix-blend-mode: screen;
           filter: brightness(1.35) contrast(1.04);
+          will-change: opacity, transform;
         }
         .proof-color-wash {
           z-index: 5;
@@ -523,6 +449,7 @@ export default function SeventhSection() {
           letter-spacing: 0.18em;
           line-height: 1;
           text-transform: uppercase;
+          will-change: opacity, transform;
         }
         .proof-label::before,
         .proof-label::after,
@@ -570,6 +497,7 @@ export default function SeventhSection() {
           align-items: center;
           width: clamp(248px, 31.5vw, 348px);
           filter: drop-shadow(0 14px 24px rgba(13, 23, 47, 0.12));
+          will-change: opacity, transform;
         }
         .proof-card-img {
           display: block;
@@ -638,7 +566,7 @@ export default function SeventhSection() {
             filter 280ms ease,
             text-shadow 280ms ease;
           cursor: default;
-          will-change: transform;
+          will-change: transform, opacity;
         }
         .proof-heading:hover {
           transform: translateY(-4px);
@@ -666,6 +594,7 @@ export default function SeventhSection() {
             gap 240ms ease,
             transform 240ms ease,
             filter 240ms ease;
+          will-change: transform, opacity;
         }
         .proof-link:hover {
           gap: 11px;

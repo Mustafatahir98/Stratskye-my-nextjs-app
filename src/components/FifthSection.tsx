@@ -28,7 +28,6 @@ export default function FifthSection() {
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
 
-        const cleanupFns: Array<() => void> = [];
         const ctx = gsap.context(() => {
             const isMobile = window.matchMedia("(max-width: 767px)").matches;
 
@@ -48,14 +47,14 @@ export default function FifthSection() {
             gsap.set(".fs-orbit-sparks", { rotation: -6, scale: 1, transformOrigin: "50% 50%", force3D: true });
             gsap.set(".fs-orbit-spark", { autoAlpha: 1, scale: 1, transformOrigin: "50% 50%" });
             gsap.set(".fs-text-aura", { opacity: 0, scale: 0.82, transformOrigin: "50% 50%" });
-            gsap.set(topRingRef.current, { rotation: -8, opacity: 1, scale: 0.64, filter: "blur(0px)", transformOrigin: "50% 50%" });
-            gsap.set(solutionTextRef.current, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" });
-            gsap.set(lineRef.current, { scaleY: 0, opacity: 0, transformOrigin: "top center" });
-            gsap.set(bottomRingOuterRef.current, { rotation: 135, opacity: 0, scale: 0.76, filter: "blur(8px)", transformOrigin: "50% 50%" });
-            gsap.set(bottomRingInnerRef.current, { rotation: -175, opacity: 0, scale: 0.72, filter: "blur(8px)", transformOrigin: "50% 50%" });
-            gsap.set([mainTextRef.current, subTextRef.current], { opacity: 0, y: 26, filter: "blur(6px)" });
-            gsap.set(animateLogoRef.current, { opacity: 0, rotation: -180, filter: "grayscale(100%) blur(5px)", scale: 0.46 });
-            gsap.set(logoGlowRef.current, { opacity: 0, scale: 0.52, rotation: -36 });
+            gsap.set(topRingRef.current, { rotation: -8, opacity: 1, scale: 0.64, transformOrigin: "50% 50%", force3D: true });
+            gsap.set(solutionTextRef.current, { opacity: 1, y: 0, scale: 1, force3D: true });
+            gsap.set(lineRef.current, { scaleY: 0, opacity: 0, transformOrigin: "top center", force3D: true });
+            gsap.set(bottomRingOuterRef.current, { rotation: 135, opacity: 0, scale: 0.76, transformOrigin: "50% 50%", force3D: true });
+            gsap.set(bottomRingInnerRef.current, { rotation: -175, opacity: 0, scale: 0.72, transformOrigin: "50% 50%", force3D: true });
+            gsap.set([mainTextRef.current, subTextRef.current], { opacity: 0, y: 26, force3D: true });
+            gsap.set(animateLogoRef.current, { opacity: 0, rotation: -180, scale: 0.46, force3D: true });
+            gsap.set(logoGlowRef.current, { opacity: 0, scale: 0.52, rotation: -36, force3D: true });
 
             const shutterTl = gsap.timeline({ paused: true });
 
@@ -66,124 +65,41 @@ export default function FifthSection() {
             // SEQUENCE
             tl.to(".fs-energy-field", { opacity: 0.92, scale: 1, rotation: 0, duration: 0.7, ease: "power3.out" }, 0)
                 .to(".fs-stage-halo", { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, "<")
-                .to(topRingRef.current, { rotation: -8, opacity: 1, scale: 0.64, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, "<")
+                .to(topRingRef.current, { rotation: -8, opacity: 1, scale: 0.64, duration: 0.4, ease: "expo.out" }, "<")
                 .to(".fs-orbit-spark", { autoAlpha: 1, scale: 1, duration: 0.3, stagger: 0.025, ease: "power2.out" }, "<")
-                .to(solutionTextRef.current, { opacity: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 0.3, ease: "back.out(1.7)" }, "<")
+                .to(solutionTextRef.current, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(1.7)" }, "<")
                 .to(".fs-ring-flare", { opacity: 0.92, scale: 1.04, duration: 0.42, ease: "power2.out" }, "<")
                 .to(".fs-ring-flare", { opacity: 0, scale: 1.22, duration: 0.58, ease: "power2.out" })
                 .to(topRingRef.current, { rotation: 44, scale: 1.2, duration: 1.7, ease: "sine.inOut" }, "-=0.2")
                 .to(".fs-orbit-sparks", { rotation: 72, scale: 1.2, duration: 1.7, ease: "sine.inOut", force3D: true }, "<")
                 .to(lineRef.current, { scaleY: 1, opacity: 1, duration: 0.86, ease: "power3.out" }, "<+=0.34")
-                .to(solutionTextRef.current, { opacity: 0, y: -10, scale: 0.84, filter: "blur(4px)", duration: 0.45, ease: "power2.out" }, "<+=0.58")
+                .to(solutionTextRef.current, { opacity: 0, y: -10, scale: 0.84, duration: 0.45, ease: "power2.out" }, "<+=0.58")
                 .to(lineRef.current, { opacity: 0, scaleY: 0.08, duration: 0.38, ease: "power2.out" }, "<+=0.08")
-                .to(bottomRingOuterRef.current, { rotation: -8, opacity: 1, scale: 1.08, filter: "blur(0px)", duration: 1.08, ease: "power3.out" }, "<+=0.22")
-                .to(bottomRingInnerRef.current, { rotation: 8, opacity: 1, scale: 1.04, filter: "blur(0px)", duration: 1.08, ease: "power3.out" }, "<+=0.08")
+                .to(bottomRingOuterRef.current, { rotation: -8, opacity: 1, scale: 1.08, duration: 1.08, ease: "power3.out" }, "<+=0.22")
+                .to(bottomRingInnerRef.current, { rotation: 8, opacity: 1, scale: 1.04, duration: 1.08, ease: "power3.out" }, "<+=0.08")
                 .to(bottomRingOuterRef.current, { rotation: 42, scale: 1.14, duration: 1.45, ease: "sine.inOut" }, "<")
                 .to(bottomRingInnerRef.current, { rotation: -48, scale: 1.1, duration: 1.45, ease: "sine.inOut" }, "<")
                 .to(topRingRef.current, { opacity: 0.12, scale: 1.22, rotation: 92, duration: 0.72, ease: "power2.out" }, "<+=0.5")
                 .to(".fs-stage-halo", { opacity: 0.38, scale: 1.16, duration: 0.72, ease: "power2.out" }, "<")
                 // 4. Texts fade in
                 .to(".fs-text-aura", { opacity: 1, scale: 1, duration: 0.72, ease: "power2.out" }, "-=0.18")
-                .to(mainTextRef.current, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.82, ease: "power2.out" }, "<+=0.08")
-                .to(subTextRef.current, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.82, ease: "power2.out" }, "-=0.42")
+                .to(mainTextRef.current, { opacity: 1, y: 0, duration: 0.82, ease: "power2.out" }, "<+=0.08")
+                .to(subTextRef.current, { opacity: 1, y: 0, duration: 0.82, ease: "power2.out" }, "-=0.42")
                 // 5. Fade out earlier elements
                 .to([mainTextRef.current, subTextRef.current, solutionStageRef.current], { opacity: 0, y: -14, duration: 0.55, ease: "power2.out" }, "+=0.58")
                 .to(".fs-text-aura", { opacity: 0, scale: 1.15, duration: 0.55, ease: "power2.out" }, "<")
                 // 6. Expand bottom rings
                 .to(".fs-energy-field", { opacity: 0.34, scale: 1.24, rotation: 18, duration: 1.45, ease: "power2.inOut" }, "<")
-                .to(bottomRingOuterRef.current, { rotation: 116, scale: 3.85, opacity: 0.7, duration: 1.55, ease: "power2.inOut" }, "<")
-                .to(bottomRingInnerRef.current, { rotation: -124, scale: 3.65, opacity: 0.62, duration: 1.55, ease: "power2.inOut" }, "<")
-                // 7. Show logo, rotate, grayscale to color
+                .to(bottomRingOuterRef.current, { rotation: 116, scale: 3.2, opacity: 0.7, duration: 1.55, ease: "power2.inOut" }, "<")
+                .to(bottomRingInnerRef.current, { rotation: -124, scale: 3.05, opacity: 0.62, duration: 1.55, ease: "power2.inOut" }, "<")
+                // 7. Reveal the logo over the expanding glow
                 .to(logoGlowRef.current, { opacity: 1, scale: 1.08, rotation: 0, duration: 1.2, ease: "power2.out" }, "-=1.05")
-                .to(animateLogoRef.current, { opacity: 1, rotation: 0, filter: "grayscale(0%) blur(0px)", scale: 1, duration: 1.5, ease: "power3.out" }, "-=1.1")
+                .to(animateLogoRef.current, { opacity: 1, rotation: 0, scale: 1, duration: 1.5, ease: "power3.out" }, "-=1.1")
                 .to(".fs-energy-field", { opacity: 0.12, scale: 1.34, duration: 0.8, ease: "power2.out" }, "<");
 
-            let isScrollLocked = false;
-            let isAnimating = false;
-            let activeDirection: "forward" | "reverse" | null = null;
-            let mainTrigger: ReturnType<typeof ScrollTrigger.create> | null = null;
-            const scrollLockOptions = { passive: false, capture: true } as AddEventListenerOptions;
-            const lockedKeys = new Set(["ArrowDown", "ArrowUp", "PageDown", "PageUp", "Home", "End", " "]);
-            const getLenis = () => window.__stratskyeLenis;
-
-            const jumpToScroll = (top: number) => {
-                const lenis = getLenis();
-
-                if (lenis) {
-                    lenis.scrollTo(top, { immediate: true, force: true });
-                } else {
-                    window.scrollTo({ top, behavior: "auto" });
-                }
-
-                ScrollTrigger.update();
-            };
-
-            const blockScroll = (event: Event) => {
-                if (!isScrollLocked) return;
-                event.preventDefault();
-                event.stopImmediatePropagation();
-            };
-
-            const blockScrollKeys = (event: KeyboardEvent) => {
-                if (!isScrollLocked || !lockedKeys.has(event.key)) return;
-                event.preventDefault();
-                event.stopImmediatePropagation();
-            };
-
-            const unlockScroll = () => {
-                if (!isScrollLocked) return;
-                isScrollLocked = false;
-                window.removeEventListener("wheel", blockScroll, scrollLockOptions);
-                window.removeEventListener("touchmove", blockScroll, scrollLockOptions);
-                window.removeEventListener("keydown", blockScrollKeys, true);
-                getLenis()?.start();
-            };
-
-            const lockScroll = (top?: number) => {
-                if (!isScrollLocked) {
-                    isScrollLocked = true;
-                    getLenis()?.stop();
-                    window.addEventListener("wheel", blockScroll, scrollLockOptions);
-                    window.addEventListener("touchmove", blockScroll, scrollLockOptions);
-                    window.addEventListener("keydown", blockScrollKeys, true);
-                }
-
-                if (typeof top === "number") {
-                    jumpToScroll(top);
-                }
-            };
-
-            const playMain = (direction: "forward" | "reverse") => {
-                if (isAnimating || !mainTrigger) return;
-
-                isAnimating = true;
-                activeDirection = direction;
-                tl.pause();
-                lockScroll(direction === "forward" ? mainTrigger.start : mainTrigger.end - 1);
-                tl.eventCallback("onComplete", () => {
-                    isAnimating = false;
-                    activeDirection = null;
-                    tl.progress(1).pause();
-                    jumpToScroll((mainTrigger?.end ?? window.scrollY) + 2);
-                    window.requestAnimationFrame(unlockScroll);
-                });
-                tl.eventCallback("onReverseComplete", () => {
-                    isAnimating = false;
-                    activeDirection = null;
-                    tl.progress(0).pause();
-                    jumpToScroll((mainTrigger?.start ?? window.scrollY) - 2);
-                    window.requestAnimationFrame(unlockScroll);
-                });
-                tl.timeScale(tl.duration() / (isMobile ? 4.6 : 4.1));
-
-                if (direction === "forward") {
-                    tl.play(0);
-                } else {
-                    tl.progress(1).reverse();
-                }
-            };
-
-            cleanupFns.push(unlockScroll);
+            // Keep the presentation time-based so it starts automatically once
+            // the section reaches the viewport, without locking user input.
+            tl.timeScale(tl.duration() / (isMobile ? 4.6 : 4.1));
 
             ScrollTrigger.create({
                 trigger: containerRef.current,
@@ -199,74 +115,26 @@ export default function FifthSection() {
                 },
             });
 
-            mainTrigger = ScrollTrigger.create({
+            ScrollTrigger.create({
                 trigger: containerRef.current,
                 start: "top top",
-                end: "+=1050",
+                end: () => `+=${Math.round(window.innerHeight * (window.innerWidth <= 767 ? 2.1 : 1.65))}`,
                 pin: true,
                 anticipatePin: 1,
                 invalidateOnRefresh: true,
-                onEnter: () => {
-                    if (tl.progress() < 1) {
-                        playMain("forward");
-                    } else {
-                        tl.progress(1).pause();
-                    }
-                },
-                onUpdate: () => {
-                    if (isScrollLocked && isAnimating && mainTrigger && activeDirection) {
-                        const lockedPosition = activeDirection === "reverse" ? mainTrigger.end - 1 : mainTrigger.start;
-                        const distance = Math.abs(window.scrollY - lockedPosition);
-                        if (distance > 3) {
-                            jumpToScroll(lockedPosition);
-                        }
-                    }
-                },
-                onLeave: () => {
-                    if (isAnimating) {
-                        jumpToScroll(mainTrigger?.start ?? window.scrollY);
-                        return;
-                    }
-                    tl.progress(1).pause();
-                    unlockScroll();
-                },
-                onEnterBack: () => {
-                    if (tl.progress() > 0) {
-                        playMain("reverse");
-                    } else {
-                        tl.progress(0).pause();
-                    }
-                },
-                onLeaveBack: () => {
-                    if (isAnimating) {
-                        jumpToScroll((mainTrigger?.start ?? window.scrollY) + 2);
-                        return;
-                    }
-                    tl.progress(0).pause();
-                    unlockScroll();
-                },
-            });
-
-            ScrollTrigger.create({
-                trigger: containerRef.current,
-                start: "top 70%",
-                onEnter: () => {
-                    if (tl.progress() === 0) {
-                        shutterTl.timeScale(shutterTl.duration() / 0.9).play();
-                    }
-                },
+                animation: tl,
+                toggleActions: "play none reverse reverse",
             });
 
         }, containerRef);
 
         return () => {
-            cleanupFns.forEach((cleanup) => cleanup());
             ctx.revert();
         };
     }, []);
 
     return (
-        <div ref={containerRef} className="fifth-section post-shutter-section relative w-full h-screen overflow-hidden flex flex-col items-center z-30">
+        <div ref={containerRef} className="fifth-section post-shutter-section relative w-full h-[100svh] lg:h-[100dvh] overflow-hidden flex flex-col items-center z-30">
             <style>{`
         .fifth-section {
           background: var(--post-shutter-bg);
@@ -353,6 +221,15 @@ export default function FifthSection() {
             0 0 22px rgba(242, 110, 53, 0.36),
             inset 0 0 24px rgba(255, 255, 255, 0.12);
           pointer-events: none;
+        }
+        .fs-energy-field,
+        .fs-stage-halo,
+        .fs-ring-flare,
+        .fs-solution-stage > img,
+        .fs-bottom-stage > img,
+        .fs-logo-glow {
+          backface-visibility: hidden;
+          will-change: transform, opacity;
         }
         .fs-orbit-spark {
           position: absolute;
@@ -591,8 +468,8 @@ export default function FifthSection() {
                     ref={animateLogoRef}
                     src="/images/stratskye-animate.png"
                     alt="Animated Logo"
-                    className="absolute inset-[-20%] w-[140%] h-[140%] object-contain scale-125"
-                    style={{ willChange: "transform, filter, opacity" }}
+                    className="absolute inset-[-20%] w-[140%] h-[140%] object-contain"
+                    style={{ willChange: "transform, opacity" }}
                 />
 
                 {/* Texts */}
