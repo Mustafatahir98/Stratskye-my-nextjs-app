@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Google_Sans_Flex } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 // Yahan dhyan dein: brackets { } nahi lagane kyunke humne 'default' export kiya hai
 import SmoothScroll from "../components/SmoothScroll";
@@ -44,6 +45,7 @@ export default function RootLayout({
           <PageFooter />
         </SmoothScroll>
       </body>
+      <GoogleAnalytics gaId="G-1KJFEWE0ZE" />
     </html>
   );
 }
