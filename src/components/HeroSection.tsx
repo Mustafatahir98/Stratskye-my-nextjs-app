@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -54,8 +55,8 @@ export default function HeroSection() {
           z-index: 2;
           inset: 0;
           background:
-            radial-gradient(circle at 50% 42%, rgba(21, 44, 86, 0.08), transparent 28%),
-            linear-gradient(180deg, rgba(7, 17, 44, 0.22) 0%, rgba(7, 17, 44, 0.1) 42%, rgba(7, 17, 44, 0.72) 100%);
+            radial-gradient(circle at 50% 42%, rgba(21, 44, 86, 0.04), transparent 28%),
+            linear-gradient(180deg, rgba(7, 17, 44, 0.18) 0%, rgba(7, 17, 44, 0.05) 42%, rgba(7, 17, 44, 0.4) 100%);
           pointer-events: none;
         }
         .hero-bg-video {
@@ -68,8 +69,47 @@ export default function HeroSection() {
           object-position: center;
           opacity: 1;
           pointer-events: none;
-          filter: contrast(1.08) saturate(1.08) brightness(0.94);
+          filter: contrast(1.07) saturate(1.28) brightness(1.04);
           will-change: transform;
+        }
+        .hero-color-fx {
+          position: absolute;
+          z-index: 1;
+          inset: 0;
+          overflow: hidden;
+          pointer-events: none;
+        }
+        .hero-color-fx::before,
+        .hero-color-fx::after {
+          content: "";
+          position: absolute;
+          inset: -8%;
+          pointer-events: none;
+          mix-blend-mode: screen;
+        }
+        .hero-color-fx::before {
+          background:
+            radial-gradient(ellipse 60% 58% at 88% 6%, rgba(50, 155, 255, 0.32) 0%, rgba(17, 108, 255, 0.14) 48%, transparent 75%),
+            radial-gradient(ellipse 48% 46% at 12% 47%, rgba(20, 112, 255, 0.14), transparent 72%);
+          filter: blur(16px);
+        }
+        .hero-color-fx::after {
+          background:
+            radial-gradient(ellipse 56% 45% at 50% 82%, rgba(255, 75, 24, 0.3) 0%, rgba(255, 54, 9, 0.12) 55%, transparent 78%),
+            radial-gradient(ellipse 43% 33% at 3% 84%, rgba(255, 73, 29, 0.23), transparent 74%),
+            radial-gradient(ellipse 36% 30% at 97% 79%, rgba(255, 65, 18, 0.15), transparent 75%);
+          filter: blur(20px);
+        }
+        .hero-center-vector {
+          position: absolute;
+          z-index: 16;
+          top: 50%;
+          left: 50%;
+          width: 32px;
+          height: auto;
+          transform: translate(-50%, -50%);
+          filter: drop-shadow(0 0 9px rgba(247, 242, 238, 0.72));
+          pointer-events: none;
         }
         
         .hero-lead {
@@ -121,29 +161,7 @@ export default function HeroSection() {
         .giant-blur-wrapper { position: absolute; bottom: -12px; left: 0; width: 100%; overflow: hidden; z-index: 10; pointer-events: none; }
         .giant-blur-wrapper::before,
         .giant-blur-wrapper::after {
-          content: "";
-          position: absolute;
-          top: -42px;
-          bottom: -24px;
-          width: min(30vw, 390px);
-          z-index: 2;
-          opacity: 0.78;
-          filter: blur(28px);
-          mix-blend-mode: screen;
-          animation: edgeGlowPulse 5.5s ease-in-out infinite;
-        }
-        .giant-blur-wrapper::before {
-          left: -12vw;
-          background:
-            radial-gradient(ellipse at left bottom, rgba(68, 151, 255, 0.56), rgba(68, 151, 255, 0.22) 42%, transparent 72%),
-            linear-gradient(90deg, rgba(7, 17, 44, 0.62), transparent 72%);
-        }
-        .giant-blur-wrapper::after {
-          right: -12vw;
-          background:
-            radial-gradient(ellipse at right bottom, rgba(68, 151, 255, 0.56), rgba(68, 151, 255, 0.22) 42%, transparent 72%),
-            linear-gradient(270deg, rgba(7, 17, 44, 0.62), transparent 72%);
-          animation-delay: -2.75s;
+          content: none;
         }
         .giant-blur-track {
           display: flex;
@@ -151,6 +169,26 @@ export default function HeroSection() {
           animation: textMarquee 28s linear infinite;
           -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
           mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+        }
+        .hero-marquee-sharp {
+          -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 42%, transparent 53%);
+          mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 42%, transparent 53%);
+        }
+        .hero-marquee-blur-window {
+          position: absolute;
+          z-index: 5;
+          inset: -18px 0 -24px;
+          overflow: hidden;
+          pointer-events: none;
+          -webkit-mask-image: linear-gradient(90deg, transparent 34%, rgba(0, 0, 0, 0.72) 43%, #000 53%, #000 91%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 34%, rgba(0, 0, 0, 0.72) 43%, #000 53%, #000 91%, transparent 100%);
+        }
+        .hero-marquee-blur-track {
+          position: absolute;
+          top: 18px;
+          left: 0;
+          filter: blur(8px);
+          opacity: 0.96;
         }
         @keyframes textMarquee { 0% { transform: translateX(-5%); } 100% { transform: translateX(-55%); } }
         @keyframes edgeGlowPulse {
@@ -183,8 +221,9 @@ export default function HeroSection() {
             height: 108%;
             object-position: center top;
             opacity: 1;
-            filter: contrast(1.1) saturate(1.08) brightness(0.93);
+            filter: contrast(1.08) saturate(1.2) brightness(1);
           }
+          .hero-center-vector { width: 30px; }
           .hero-lead {
             left: 50%;
             width: min(88vw, 520px);
@@ -238,7 +277,7 @@ export default function HeroSection() {
           .hero-root::after {
             background:
               radial-gradient(circle at 50% 36%, rgba(39, 82, 147, 0.18), transparent 29%),
-              linear-gradient(180deg, rgba(7, 17, 44, 0.28) 0%, rgba(7, 17, 44, 0.08) 34%, rgba(7, 17, 44, 0.82) 100%);
+              linear-gradient(180deg, rgba(7, 17, 44, 0.24) 0%, rgba(7, 17, 44, 0.06) 34%, rgba(7, 17, 44, 0.55) 100%);
           }
           .hero-bg-video {
             inset: -8% -26%;
@@ -246,7 +285,11 @@ export default function HeroSection() {
             height: 116%;
             object-position: center top;
             opacity: 1;
-            filter: contrast(1.12) saturate(1.06) brightness(0.92);
+            filter: contrast(1.1) saturate(1.18) brightness(0.98);
+          }
+          .hero-center-vector { width: 27px; }
+          .hero-marquee-blur-track {
+            filter: blur(5px);
           }
           .hero-lead {
             width: calc(100vw - 40px);
@@ -351,6 +394,17 @@ export default function HeroSection() {
       >
         <source src="/images/Stratskye-Hero.mp4" type="video/mp4" />
       </video>
+
+      <div className="hero-color-fx" aria-hidden="true" />
+      <Image
+        src="/images/Vector.svg"
+        alt=""
+        width={47}
+        height={46}
+        className="hero-center-vector"
+        aria-hidden="true"
+        priority
+      />
       
       <h1 className="hero-lead hero-lead-left">
         <span className="hero-reveal">You build.</span>
@@ -365,10 +419,17 @@ export default function HeroSection() {
       </div>
 
       <div className="giant-blur-wrapper hero-momentum-reveal">
-        <div className="giant-blur-track">
+        <div className="giant-blur-track hero-marquee-sharp">
           <div className="giant-blur-text">It drives momentum</div>
           <div className="giant-blur-text">It drives momentum</div>
           <div className="giant-blur-text">It drives momentum</div>
+        </div>
+        <div className="hero-marquee-blur-window" aria-hidden="true">
+          <div className="giant-blur-track hero-marquee-blur-track">
+            <div className="giant-blur-text">It drives momentum</div>
+            <div className="giant-blur-text">It drives momentum</div>
+            <div className="giant-blur-text">It drives momentum</div>
+          </div>
         </div>
       </div>
     </section>

@@ -88,10 +88,12 @@ export default function ThirdSection() {
 
             tl.to(ballRightRef.current, {
               motionPath: { path: rightEntryPath, align: rightEntryPath, alignOrigin: [0.5, 0.5] },
-              duration: 1,
+              duration: 0.86,
               ease: "none",
             }, 0);
 
+            tl.to([".ts-v-string", ".ts-grid-layer"], { autoAlpha: 0, duration: 0.2, ease: "power1.out" }, 0.88);
+            tl.to([ballLeftRef.current, ballRightRef.current], { autoAlpha: 0, duration: 0.12 }, 0.9);
             tl.to(ovalRef.current, { autoAlpha: 1, duration: 0.42, ease: "power2.out" }, 1);
 
             tl.to(ballLeftRef.current, {
@@ -113,6 +115,7 @@ export default function ThirdSection() {
               duration: 4.2,
               ease: "none",
             }, 1);
+            tl.to([ballLeftRef.current, ballRightRef.current], { autoAlpha: 1, duration: 0.16 }, 1.08);
           } else {
             // Clean Custom Mobile Logic (No Loop Back or Oval Reset After Merge)
             tl.to(ballLeftRef.current, {
@@ -126,6 +129,12 @@ export default function ThirdSection() {
               duration: 1.2,
               ease: "none",
             }, 0);
+
+            tl.to([".ts-v-string", ".ts-grid-layer"], {
+              autoAlpha: 0,
+              duration: 0.2,
+              ease: "power1.out",
+            }, 1);
 
             // Hide balls smoothly right after merging into position
             tl.to([ballLeftRef.current, ballRightRef.current], {
@@ -169,19 +178,21 @@ export default function ThirdSection() {
           color: #091532;
           --ts-left-lane: 19.3%;
           --ts-right-lane: 80.7%;
-          --ts-line-color: rgba(9, 21, 50, 0.08);
+          --ts-line-color: rgba(9, 21, 50, 0.1);
           --ts-oval-width: min(98vw, 1280px, 118vh);
           --ts-oval-height: calc(var(--ts-oval-width) * 662 / 1549);
           --ts-oval-top: calc(50vh - (var(--ts-oval-height) / 2));
           --ts-oval-center: calc(var(--ts-oval-top) + (var(--ts-oval-height) / 2));
         }
+        .ts-grid-layer { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
         .ts-grid-line-v { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--ts-line-color); }
-        .ts-v-string { position: absolute; inset: 0 0 auto; width: 100%; height: var(--ts-oval-top); z-index: 3; pointer-events: none; overflow: visible; }
+        .ts-v-string { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 3; pointer-events: none; overflow: visible; }
         .ts-oval-shell { position: absolute; top: var(--ts-oval-top); left: 50%; transform: translateX(-50%); width: var(--ts-oval-width); aspect-ratio: 1549 / 662; z-index: 7; pointer-events: none; }
+        .ts-oval-shell::before { content: ""; position: absolute; left: 50%; bottom: 100%; width: 1px; height: var(--ts-oval-top); transform: translateX(-50%); background: var(--ts-line-color); }
         .ts-oval-image, .ts-oval-path-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
         .ts-oval-image { object-fit: contain; }
         .ts-oval-path-svg { opacity: 0; pointer-events: none; overflow: visible; }
-        .ts-string-path { fill: none; stroke: rgba(9, 21, 50, 0.11); stroke-width: 1.25; vector-effect: non-scaling-stroke; }
+        .ts-string-path { fill: none; stroke: rgba(9, 21, 50, 0.1); stroke-width: 1; vector-effect: non-scaling-stroke; }
         .ts-mobile-entry-path { opacity: 0; }
         .ts-hit-text-wrap,
         .ts-phase-text-wrap {
@@ -216,6 +227,8 @@ export default function ThirdSection() {
           flex-direction: row;
           gap: 0.24em;
           white-space: nowrap;
+          font-size: clamp(38px, 4vw, 50px);
+          letter-spacing: -1.45px;
         }
         .ts-orange { color: #f26e35; }
         .ts-ball { position: absolute; top: 0; left: 0; width: 18px; height: 18px; z-index: 30; filter: drop-shadow(0 4px 7px rgba(242, 110, 53, 0.34)); }
@@ -430,19 +443,18 @@ export default function ThirdSection() {
         }
       `}</style>
 
-      <div className="absolute inset-0 z-0">
+      <div className="ts-grid-layer">
         <div className="ts-grid-line-v" style={{ left: "var(--ts-left-lane)" }} />
-        <div className="ts-grid-line-v" style={{ left: "50%" }} />
         <div className="ts-grid-line-v" style={{ left: "var(--ts-right-lane)" }} />
       </div>
 
-      <svg viewBox="0 0 1000 760" preserveAspectRatio="none" className="ts-v-string">
-        <path id="ts-left-path" className="ts-string-path ts-entry-path" d="M 193 72 L 193 204 C 193 338 250 432 360 510 C 440 568 496 646 500 760" />
-        <path id="ts-right-path" className="ts-string-path ts-entry-path" d="M 807 72 L 807 204 C 807 338 750 432 640 510 C 560 568 504 646 500 760" />
+      <svg viewBox="0 0 1000 1000" preserveAspectRatio="none" className="ts-v-string">
+        <path id="ts-left-path" className="ts-string-path ts-entry-path" d="M 193 -40 L 193 210 C 193 395 248 516 320 575 C 430 650 493 810 500 1040" />
+        <path id="ts-right-path" className="ts-string-path ts-entry-path" d="M 807 -40 L 807 210 C 807 395 752 516 680 575 C 570 650 507 810 500 1040" />
         
         {/* Mobile path updated coordinates to start within grid safely without clipping */}
-        <path id="ts-left-path-mobile" className="ts-string-path ts-mobile-entry-path" d="M 130 50 L 130 204 C 130 338 214 432 342 510 C 432 568 495 646 500 760" />
-        <path id="ts-right-path-mobile" className="ts-string-path ts-mobile-entry-path" d="M 870 50 L 870 204 C 870 338 786 432 658 510 C 568 568 505 646 500 760" />
+        <path id="ts-left-path-mobile" className="ts-string-path ts-mobile-entry-path" d="M 130 -40 L 130 210 C 130 395 214 520 342 580 C 442 660 495 820 500 1040" />
+        <path id="ts-right-path-mobile" className="ts-string-path ts-mobile-entry-path" d="M 870 -40 L 870 210 C 870 395 786 520 658 580 C 558 660 505 820 500 1040" />
       </svg>
 
       <div ref={ovalRef} className="ts-oval-shell">

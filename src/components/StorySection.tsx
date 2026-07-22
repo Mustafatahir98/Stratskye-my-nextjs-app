@@ -3,12 +3,13 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 
 export default function StorySection() {
   const storyRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
     const mm = gsap.matchMedia();
     const ctx = gsap.context(() => {
       mm.add(
@@ -44,32 +45,75 @@ export default function StorySection() {
       gsap.set(".dunk-impact", { autoAlpha: 0, scale: 0.45, rotation: -12 });
       gsap.set(".dunk-speed-line", { autoAlpha: 0, x: -18 });
       gsap.set(".dunk-net-line", { scaleY: 0.72, transformOrigin: "top center" });
-      gsap.set(".story-ball-left", { top: "-8vh", left: leftLane, filter: "drop-shadow(0 10px 15px rgba(255, 100, 0, 0.4))" });
-      gsap.set(".story-ball-right", { top: "-8vh", left: rightLane });
+      gsap.set(".story-ball-left", {
+        top: 0,
+        left: 0,
+        filter: "drop-shadow(0 10px 15px rgba(255, 100, 0, 0.4))",
+        motionPath: {
+          path: "#story-entry-lower-motion",
+          align: "#story-entry-lower-motion",
+          alignOrigin: [0, 0],
+          start: 0,
+          end: 0,
+        },
+      });
+      gsap.set(".story-ball-right", {
+        top: 0,
+        left: 0,
+        motionPath: {
+          path: "#story-entry-upper-motion",
+          align: "#story-entry-upper-motion",
+          alignOrigin: [0, 0],
+          start: 0,
+          end: 0,
+        },
+      });
       gsap.set(".story-horizontal-track", { opacity: 0 });
       gsap.set(".story-curve-right", { opacity: 0 });
       gsap.set(".story-curve-left", { opacity: 0 });
 
-      // PHASE 0 & 1: Balls enter on vertical strings, then turn onto horizontal string lanes.
+      // PHASE 0 & 1: Each ball follows the exact same continuous curve as its string.
       storyTl.addLabel("start")
-             .to(".story-ball-left", { top: bottomLane, duration: 1.2, ease: "power2.out" }, "start")
-             .to(".story-ball-right", { top: topLane, duration: 1.2, ease: "power2.out" }, "start")
-             .to(".story-curve-right", { opacity: 0.4, duration: 0.65 }, "start+=0.45")
-             .to(".story-horizontal-track", { opacity: 1, duration: 0.65 }, "start+=0.65")
-             
-             // Transition Text 1 to Text 2 while balls move on curves
-             .to(".story-text-1", { autoAlpha: 0, x: -textShift, duration: 1.1 }, "start+=1")
+             .to(".story-ball-left", {
+               motionPath: {
+                 path: "#story-entry-lower-motion",
+                 align: "#story-entry-lower-motion",
+                 alignOrigin: [0, 0],
+                 start: 0,
+                 end: 1,
+               },
+               duration: 2.7,
+               ease: "none",
+             }, "start")
+             .to(".story-ball-right", {
+               motionPath: {
+                 path: "#story-entry-upper-motion",
+                 align: "#story-entry-upper-motion",
+                 alignOrigin: [0, 0],
+                 start: 0,
+                 end: 1,
+               },
+               duration: 1.9,
+               ease: "none",
+             }, "start")
+             // Once the entry is complete, erase the curves and leave straight lanes behind.
+             .to(".story-entry-track", { opacity: 0, duration: 0.45, ease: "power1.out" }, "start+=2.35")
+             .to(".story-horizontal-track", { opacity: 1, duration: 0.45 }, "start+=2.35")
+             .to(".story-text-1", { autoAlpha: 0, x: -textShift, duration: 0.8 }, "start+=2.35")
              .to(".story-text-2", { autoAlpha: 1, x: 0, duration: 1.1, ease: "power2.out" }, "<0.35")
              .to(".story-icon-2", { autoAlpha: 1, y: 0, scale: 1, rotation: 7, duration: 0.9, ease: "back.out(1.5)" }, "<0.15")
-             .to(".story-ball-left", { left: rightLane, top: bottomLane, duration: 1.7, ease: "sine.inOut" }, "<")
-             .to(".story-ball-right", { left: leftLane, top: topLane, duration: 1.7, ease: "sine.inOut" }, "<");
+             .to(".story-ball-right", { autoAlpha: 0, duration: 0.18 }, "start+=1.72")
+             .addLabel("entryComplete", "start+=2.7")
+             .set(".story-ball-left", { clearProps: "x,y", left: rightLane, top: bottomLane }, "entryComplete")
+             .set(".story-ball-right", { clearProps: "x,y", left: leftLane, top: topLane }, "entryComplete")
+             .to(".story-ball-right", { autoAlpha: 1, left: isMobile ? "31%" : "32%", duration: 0.72, ease: "power2.out" }, "entryComplete");
 
       // PHASE 2: right to left / left to right
       storyTl.to([".story-text-2", ".story-icon-2"], { autoAlpha: 0, x: -textShift, duration: 1.1, delay: 0.15 })
              .to(".story-text-3", { autoAlpha: 1, x: 0, duration: 1.1, ease: "power2.out" }, "<0.35")
              .to(".story-icon-3", { autoAlpha: 1, y: 0, scale: 1, rotation: -5, duration: 0.9, ease: "back.out(1.5)" }, "<0.15")
              .to(".story-ball-left", { left: leftLane, top: bottomLane, duration: 1.7, ease: "sine.inOut" }, "<")
-             .to(".story-ball-right", { left: rightLane, top: topLane, duration: 1.7, ease: "sine.inOut" }, "<");
+             .to(".story-ball-right", { autoAlpha: 1, left: rightLane, top: topLane, duration: 1.7, ease: "sine.inOut" }, "<");
 
       // PHASE 3: left to right / right to left
       storyTl.to([".story-text-3", ".story-icon-3"], { autoAlpha: 0, x: -textShift, duration: 1.1, delay: 0.15 })
@@ -102,6 +146,7 @@ export default function StorySection() {
              .to(".story-text-6", { autoAlpha: 1, x: 0, duration: 1.1 }, "<0.35")
              .to(".story-curve-right", { opacity: 0, duration: 0.55 }, "<")
              .to(".story-curve-left", { opacity: 0.4, duration: 0.55 }, "<")
+             .to(".story-entry-track", { opacity: 0, duration: 0.85 }, "<")
              .to(".story-horizontal-track", { opacity: 0, duration: 0.85 }, "<")
              .to(".story-ball-left", { left: leftLane, top: "116vh", duration: 1.5, ease: "power2.inOut" }, "<0.1")
              .to(".story-ball-right", { left: rightLane, top: "116vh", duration: 1.5, ease: "power2.inOut" }, "<");
@@ -131,6 +176,9 @@ export default function StorySection() {
         /* Vertical Grids */
         .story-panel { position: absolute; inset: 0; opacity: 1; transform: translateX(0); will-change: transform, opacity; }
         .story-grid .grid-line-v { position: absolute; top: 0; bottom: 0; width: 1px; background: rgba(20, 32, 67, 0.09); }
+        .story-entry-track { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 6; pointer-events: none; overflow: visible; }
+        .story-entry-track path { fill: none; stroke: #cbd1da; stroke-width: 1; vector-effect: non-scaling-stroke; opacity: 0.62; }
+        .story-motion-path { stroke: transparent !important; }
         .string-line-v { position: absolute; top: 0; bottom: 0; width: 1px; transform: translateX(-50%); z-index: 6; opacity: 0.16; filter: invert(1); pointer-events: none; }
         
         /* Dynamic Horizontal Strings */
@@ -175,7 +223,8 @@ export default function StorySection() {
         .bracket.br { bottom: -10px; right: -10px; border-bottom-width: 2px; border-right-width: 2px; }
 
         /* Pinned Balls */
-        .story-ball-left, .story-ball-right { position: absolute; top: -8vh; width: 30px; height: 30px; transform: translate(-50%, -50%); z-index: 35; will-change: top, left, filter; transition: filter 0.5s ease; filter: drop-shadow(0 10px 15px rgba(255, 100, 0, 0.4)); }
+        .story-ball-left, .story-ball-right { position: absolute; top: -8vh; width: 0; height: 0; z-index: 35; will-change: top, left, transform, filter; transition: filter 0.5s ease; filter: drop-shadow(0 10px 15px rgba(255, 100, 0, 0.4)); }
+        .story-ball-image { position: absolute; top: 0; left: 0; width: 30px; height: 30px; max-width: none; transform: translate(-50%, -50%); }
         .story-ball-left { left: var(--story-left-lane); }
         .story-ball-right { left: var(--story-right-lane); }
         @media (max-width: 900px) {
@@ -282,11 +331,9 @@ export default function StorySection() {
           .story-dunk {
             width: min(33vw, 124px);
           }
-          .story-ball-left,
-          .story-ball-right {
+          .story-ball-image {
             width: 24px;
             height: 24px;
-            z-index: 36;
           }
         }
 
@@ -314,6 +361,14 @@ export default function StorySection() {
           <div className="grid-line-v" style={{ left: "var(--story-right-lane)" }} />
         </div>
 
+        {/* The visible strings and the hidden ball paths share identical geometry. */}
+        <svg className="story-entry-track" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M 193 0 L 193 430 C 193 628 282 788 407 788 L 1100 788" />
+          <path d="M 807 0 C 807 118 854 213 930 213 L 1100 213" />
+          <path id="story-entry-lower-motion" className="story-motion-path" d="M 193 -60 L 193 430 C 193 628 282 788 407 788 L 807 788" />
+          <path id="story-entry-upper-motion" className="story-motion-path" d="M 807 -60 L 807 0 C 807 118 854 213 930 213 L 1100 213" />
+        </svg>
+
         {/* Strings Vertical */}
         <img src="/images/line.png" alt="" className="string-line-v" style={{ left: "var(--story-left-lane)" }} />
         <img src="/images/line.png" alt="" className="string-line-v" style={{ left: "var(--story-right-lane)" }} />
@@ -333,8 +388,12 @@ export default function StorySection() {
         <img src="/images/curved-string-small.png" alt="" className="curve-img story-curve-left" style={{ top: "var(--story-bottom-lane)", left: "var(--story-left-lane)", transform: "translate(-100%, 0%) rotate(90deg)" }} />
 
         {/* Story Sequence Balls */}
-        <img src="/images/smallball.png" alt="" className="story-ball-left" />
-        <img src="/images/smallball.png" alt="" className="story-ball-right" />
+        <span className="story-ball-left" aria-hidden="true">
+          <img src="/images/smallball.png" alt="" className="story-ball-image" />
+        </span>
+        <span className="story-ball-right" aria-hidden="true">
+          <img src="/images/smallball.png" alt="" className="story-ball-image" />
+        </span>
 
         <img src="/images/layer-2.png" alt="" className="story-icon story-icon-2" />
         <img src="/images/layer-3.png" alt="" className="story-icon story-icon-3" />

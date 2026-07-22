@@ -285,12 +285,12 @@ export default function SiteHeader() {
         .nav-menu { position: absolute; right: calc(10% + 12px); width: 48px; height: 48px; display: grid; place-items: center; cursor: pointer; border: 0; background: transparent; padding: 0; z-index: 130; mix-blend-mode: difference; color: #ffffff; }
         .nav-menu.is-open { z-index: 151; pointer-events: auto; mix-blend-mode: normal; color: #0a1128; }
         .nav-menu:focus-visible { outline: 1px solid rgba(255,255,255,0.85); outline-offset: 5px; }
-        .nav-menu-stack { position: relative; width: 32px; height: 18px; display: block; }
-        .nav-menu-line { position: absolute; right: 0; width: 32px; height: 2px; border-radius: 999px; background: currentColor; transition: transform 0.35s cubic-bezier(.22,1,.36,1), top 0.35s cubic-bezier(.22,1,.36,1), width 0.35s cubic-bezier(.22,1,.36,1), opacity 0.25s ease; }
+        .nav-menu-stack { position: relative; width: 38px; height: 18px; display: block; }
+        .nav-menu-line { position: absolute; right: 0; width: 38px; height: 2px; border-radius: 999px; background: currentColor; transition: transform 0.35s cubic-bezier(.22,1,.36,1), top 0.35s cubic-bezier(.22,1,.36,1), width 0.35s cubic-bezier(.22,1,.36,1), opacity 0.25s ease; }
         .nav-menu-line:first-child { top: 4px; }
-        .nav-menu-line:last-child { top: 13px; width: 21px; }
+        .nav-menu-line:last-child { top: 13px; width: 38px; }
         .nav-menu.is-open .nav-menu-line:first-child { top: 9px; transform: rotate(42deg); }
-        .nav-menu.is-open .nav-menu-line:last-child { top: 9px; width: 32px; transform: rotate(-42deg); }
+        .nav-menu.is-open .nav-menu-line:last-child { top: 9px; width: 38px; transform: rotate(-42deg); }
         .menu-overlay { position: fixed; inset: 0; z-index: 140; pointer-events: none; opacity: 0; visibility: hidden; transition: opacity 0.25s ease, visibility 0.25s ease; }
         .menu-overlay.is-open { pointer-events: auto; opacity: 1; visibility: visible; }
         .menu-backdrop { position: absolute; inset: 0; z-index: 0; background: transparent; }

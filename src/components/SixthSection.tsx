@@ -6,14 +6,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const services = [
     {
-        image: "/images/Group 513054.png",
-        title: "High-Octane Branding",
-        description: "Positioning that makes you look like the category leader, not a startup"
+        image: "/images/Group 513058.png",
+        title: "Lead Generation",
+        description: "We manage your presence to ensure you’re the loudest, most trusted voice in the industry."
     },
     {
-        image: "/images/Group 513058.png",
-        title: "Performance Websites",
-        description: "Blazing-fast, conversion-optimized sites that act as your 24/7 top-performing salesperson",
+        image: "/images/Group 513054.png",
+        title: "High-Octane Branding",
+        description: "Positioning that makes you look like the category leader, not a startup.",
     },
     {
         image: "/images/Group 513059.png",
@@ -163,32 +163,32 @@ export default function SixthSection() {
 
                 };
 
-                if (isMobile) {
-                    cards.forEach((card, index) => {
-                        const start = 0.7 + index * 1.18;
+                const carouselTl = gsap.timeline({ paused: true, repeat: -1, repeatDelay: 0.12 });
 
-                        tl.set(cards, { autoAlpha: 0, zIndex: 0 }, start)
-                            .set(card, { zIndex: 2 }, start)
-                            .to(card, { autoAlpha: 1, xPercent: 0, y: 0, scale: 0.94, rotateX: 0, duration: 0.42, ease: "back.out(1.3)" }, start)
-                            .to(card, { y: -6, scale: 0.98, duration: 0.28, ease: "sine.inOut" }, start + 0.42)
-                            .to(card, { y: 0, scale: 0.94, duration: 0.28, ease: "sine.inOut" }, start + 0.7)
-                            .to(card, { autoAlpha: 0, y: -24, scale: 0.82, rotateX: 10, duration: 0.22, ease: "power2.in" }, start + 0.9)
-                            .set(card, { autoAlpha: 0, zIndex: 0 }, start + 1.12);
-                    });
+                cards.forEach((card) => {
+                    carouselTl
+                        .set(cards, { autoAlpha: 0, zIndex: 0 })
+                        .set(card, { autoAlpha: 0, zIndex: 2, xPercent: 0, y: isMobile ? 18 : 24, scale: 0.94, rotateX: -8 })
+                        .to(card, { autoAlpha: 1, y: 0, scale: 1, rotateX: 0, duration: 0.52, ease: "power3.out" })
+                        .to(card, { y: -4, duration: 2.05, ease: "sine.inOut" })
+                        .to(card, { autoAlpha: 0, y: -20, scale: 0.96, duration: 0.42, ease: "power2.in" })
+                        .set(card, { autoAlpha: 0, zIndex: 0 });
+                });
 
-                    ScrollTrigger.create({
-                        trigger: containerRef.current,
-                        start: "top top",
-                        end: "+=300%",
-                        scrub: 1,
-                        pin: true,
-                        anticipatePin: 1,
-                        invalidateOnRefresh: true,
-                        animation: tl,
-                    });
+                ScrollTrigger.create({
+                    trigger: containerRef.current,
+                    start: "top 78%",
+                    end: "bottom 22%",
+                    onEnter: () => {
+                        tl.restart();
+                        carouselTl.restart();
+                    },
+                    onEnterBack: () => carouselTl.play(),
+                    onLeave: () => carouselTl.pause(),
+                    onLeaveBack: () => carouselTl.pause(0),
+                });
 
-                    return;
-                }
+                return;
 
                 const finalPositions = [
                         { xPercent: -76, y: 0, scale: 0.72 },
@@ -230,7 +230,9 @@ export default function SixthSection() {
         >
             <style>{`
         .sixth-section {
-          background: var(--post-shutter-bg);
+          background:
+            radial-gradient(circle at 70% 38%, rgba(29, 49, 88, 0.3), transparent 58%),
+            #0d172f;
         }
         .sixth-bg-noise {
           display: none;
@@ -256,40 +258,40 @@ export default function SixthSection() {
           background: linear-gradient(180deg, transparent, rgba(255,255,255,0.12), transparent);
         }
         .sixth-ring-plane {
-          transform: translate(-50%, -50%) scaleY(0.74);
+          transform: translate(-50%, -50%) scaleY(0.9);
           transform-origin: center;
           transform-style: flat;
         }
         .sixth-heading {
-          margin-top: clamp(96px, 12vh, 126px);
+          margin-top: clamp(34px, 5vh, 52px);
         }
         .sixth-heading h2 {
           margin: 0;
           color: #fff;
           font-family: "Google Sans Flex";
-          font-size: clamp(36px, 4.05vw, 58px);
-          font-weight: 500;
-          line-height: 0.96;
-          letter-spacing: -0.04em;
+          font-size: clamp(34px, 4vw, 40px);
+          font-weight: 400;
+          line-height: 0.94;
+          letter-spacing: -0.045em;
         }
         .sixth-card-image {
-          width: clamp(285px, 32vw, 430px);
+          width: clamp(360px, 61vw, 520px);
           height: auto;
           object-fit: contain;
-          filter: drop-shadow(0 0 32px rgba(242,110,53,0.28));
+          filter: none;
         }
         .sixth-service-title {
           color: #F26E35;
           font-family: "Google Sans Flex";
-          font-size: clamp(18px, 1.7vw, 24px);
-          font-weight: 600;
+          font-size: clamp(18px, 2vw, 21px);
+          font-weight: 500;
           line-height: 120%;
           letter-spacing: -0.25px;
         }
         .sixth-service-copy {
           color: rgba(205, 214, 236, 0.72);
           font-family: "Google Sans Flex";
-          font-size: clamp(11px, 0.92vw, 13px);
+          font-size: clamp(11px, 1.25vw, 13px);
           font-weight: 400;
           line-height: 142%;
         }
@@ -308,15 +310,27 @@ export default function SixthSection() {
           opacity: 0.35;
           mask-image: radial-gradient(circle, #000 0 58%, transparent 72%);
           pointer-events: none;
+          display: none;
         }
+        .sixth-crosshair { display: none; }
+        .sixth-cards-stage {
+          position: absolute;
+          left: 50%;
+          top: 24%;
+          width: min(90vw, 620px);
+          height: 500px;
+          transform: translateX(-50%);
+          z-index: 10;
+        }
+        .sixth-service-card { inset: 0; }
 
         /* --- MOBILE SPECIFIC OVERRIDES --- */
         @media (max-width: 760px) {
           .sixth-heading {
-            margin-top: clamp(104px, 16svh, 132px);
+            margin-top: clamp(38px, 7svh, 58px);
           }
           .sixth-card-image {
-            width: clamp(225px, 60vw, 305px);
+            width: clamp(330px, 112vw, 480px);
           }
           .sixth-service-title {
             font-size: 21px;
@@ -329,9 +343,14 @@ export default function SixthSection() {
             width: 70vw; 
           }
           .sixth-heading h2 {
-            font-size: clamp(34px, 9vw, 46px);
+            font-size: clamp(32px, 9vw, 40px);
             line-height: 0.96;
             letter-spacing: -0.04em;
+          }
+          .sixth-cards-stage {
+            top: 25%;
+            width: calc(100vw - 24px);
+            height: 470px;
           }
         }
         @media (max-width: 760px) and (max-height: 740px) {
@@ -360,7 +379,7 @@ export default function SixthSection() {
                 </h2>
             </div>
 
-            <div className="absolute left-1/2 top-[56%] w-[138vw] max-w-[1540px] min-w-[940px] pointer-events-none sixth-ring-plane z-[1]">
+            <div className="absolute left-1/2 top-[50%] w-[138vw] max-w-[1540px] min-w-[940px] pointer-events-none sixth-ring-plane z-[1]">
                 <img
                     ref={outerRingRef}
                     src="/images/flat-liner.png"
@@ -377,10 +396,10 @@ export default function SixthSection() {
 
             <div className="sixth-platform-grid z-[2]" aria-hidden="true" />
 
-            <div className="absolute left-1/2 top-[50%] z-10 flex w-[90vw] md:w-[72vw] max-w-[620px] -translate-x-1/2 -translate-y-1/2 items-center justify-center">
+            <div className="sixth-cards-stage flex items-start justify-center">
                 <div
                     ref={card1Ref}
-                    className="absolute flex w-full flex-col items-center text-center opacity-0 invisible"
+                    className="sixth-service-card absolute flex w-full flex-col items-center text-center opacity-0 invisible"
                     style={{ perspective: "900px", willChange: "transform, opacity" }}
                 >
                     <img
@@ -396,7 +415,7 @@ export default function SixthSection() {
 
                 <div
                     ref={card2Ref}
-                    className="absolute flex w-full flex-col items-center text-center opacity-0 invisible"
+                    className="sixth-service-card absolute flex w-full flex-col items-center text-center opacity-0 invisible"
                     style={{ perspective: "900px", willChange: "transform, opacity" }}
                 >
                     <img
@@ -412,7 +431,7 @@ export default function SixthSection() {
 
                 <div
                     ref={card3Ref}
-                    className="absolute flex w-full flex-col items-center text-center opacity-0 invisible"
+                    className="sixth-service-card absolute flex w-full flex-col items-center text-center opacity-0 invisible"
                     style={{ perspective: "900px", willChange: "transform, opacity" }}
                 >
                     <img

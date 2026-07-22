@@ -40,21 +40,23 @@ export default function FifthSection() {
                 force3D: true,
             });
             gsap.set(shutterGradientRef.current, { autoAlpha: 0 });
-            gsap.set(solutionStageRef.current, { opacity: 1 });
+            gsap.set(solutionStageRef.current, { left: "50%", top: "49%", xPercent: -50, yPercent: -50, opacity: 1 });
             gsap.set(".fs-energy-field", { xPercent: -50, yPercent: -50, rotation: -6, opacity: 0.72, scale: 0.92, transformOrigin: "50% 50%" });
             gsap.set(".fs-stage-halo", { opacity: 0.62, scale: 0.92, transformOrigin: "50% 50%" });
             gsap.set(".fs-ring-flare", { opacity: 0, scale: 0.86, transformOrigin: "50% 50%" });
             gsap.set(".fs-orbit-sparks", { rotation: -6, scale: 1, transformOrigin: "50% 50%", force3D: true });
             gsap.set(".fs-orbit-spark", { autoAlpha: 1, scale: 1, transformOrigin: "50% 50%" });
             gsap.set(".fs-text-aura", { opacity: 0, scale: 0.82, transformOrigin: "50% 50%" });
-            gsap.set(topRingRef.current, { rotation: -8, opacity: 1, scale: 0.64, transformOrigin: "50% 50%", force3D: true });
-            gsap.set(solutionTextRef.current, { opacity: 1, y: 0, scale: 1, force3D: true });
+            gsap.set(topRingRef.current, { rotation: 0, opacity: 1, scale: 0.84, transformOrigin: "50% 50%", force3D: true });
+            gsap.set(solutionTextRef.current, { left: "50%", top: "50%", xPercent: -50, yPercent: -50, opacity: 1, y: 0, scale: 1, force3D: true });
             gsap.set(lineRef.current, { scaleY: 0, opacity: 0, transformOrigin: "top center", force3D: true });
-            gsap.set(bottomRingOuterRef.current, { rotation: 135, opacity: 0, scale: 0.76, transformOrigin: "50% 50%", force3D: true });
-            gsap.set(bottomRingInnerRef.current, { rotation: -175, opacity: 0, scale: 0.72, transformOrigin: "50% 50%", force3D: true });
+            gsap.set(bottomRingOuterRef.current, { rotation: 0, opacity: 0, scale: 0.9, transformOrigin: "50% 50%", force3D: true });
+            gsap.set(bottomRingInnerRef.current, { rotation: 0, opacity: 0, scale: 0.9, transformOrigin: "50% 50%", force3D: true });
+            gsap.set(".fs-bottom-connector", { opacity: 0 });
             gsap.set([mainTextRef.current, subTextRef.current], { opacity: 0, y: 26, force3D: true });
-            gsap.set(animateLogoRef.current, { opacity: 0, rotation: -180, scale: 0.46, force3D: true });
-            gsap.set(logoGlowRef.current, { opacity: 0, scale: 0.52, rotation: -36, force3D: true });
+            gsap.set(".fs-crosshair", { opacity: 0 });
+            gsap.set(animateLogoRef.current, { opacity: 0, rotation: -18, scale: 0.7, force3D: true });
+            gsap.set(logoGlowRef.current, { opacity: 0, scale: 0.72, rotation: -12, force3D: true });
 
             const shutterTl = gsap.timeline({ paused: true });
 
@@ -62,44 +64,28 @@ export default function FifthSection() {
                 .to(shutterRightRef.current, { xPercent: 100, duration: 0.95, ease: "power3.inOut" }, 0)
                 .to([shutterLeftRef.current, shutterRightRef.current], { autoAlpha: 0, duration: 0.18, ease: "power2.out" }, 0.72);
 
-            // SEQUENCE
-            tl.to(".fs-energy-field", { opacity: 0.92, scale: 1, rotation: 0, duration: 0.7, ease: "power3.out" }, 0)
-                .to(".fs-stage-halo", { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" }, "<")
-                .to(topRingRef.current, { rotation: -8, opacity: 1, scale: 0.64, duration: 0.4, ease: "expo.out" }, "<")
-                .to(".fs-orbit-spark", { autoAlpha: 1, scale: 1, duration: 0.3, stagger: 0.025, ease: "power2.out" }, "<")
-                .to(solutionTextRef.current, { opacity: 1, y: 0, scale: 1, duration: 0.3, ease: "back.out(1.7)" }, "<")
-                .to(".fs-ring-flare", { opacity: 0.92, scale: 1.04, duration: 0.42, ease: "power2.out" }, "<")
-                .to(".fs-ring-flare", { opacity: 0, scale: 1.22, duration: 0.58, ease: "power2.out" })
-                .to(topRingRef.current, { rotation: 44, scale: 1.2, duration: 1.7, ease: "sine.inOut" }, "-=0.2")
-                .to(".fs-orbit-sparks", { rotation: 72, scale: 1.2, duration: 1.7, ease: "sine.inOut", force3D: true }, "<")
-                .to(lineRef.current, { scaleY: 1, opacity: 1, duration: 0.86, ease: "power3.out" }, "<+=0.34")
-                .to(solutionTextRef.current, { opacity: 0, y: -10, scale: 0.84, duration: 0.45, ease: "power2.out" }, "<+=0.58")
-                .to(lineRef.current, { opacity: 0, scaleY: 0.08, duration: 0.38, ease: "power2.out" }, "<+=0.08")
-                .to(bottomRingOuterRef.current, { rotation: -8, opacity: 1, scale: 1.08, duration: 1.08, ease: "power3.out" }, "<+=0.22")
-                .to(bottomRingInnerRef.current, { rotation: 8, opacity: 1, scale: 1.04, duration: 1.08, ease: "power3.out" }, "<+=0.08")
-                .to(bottomRingOuterRef.current, { rotation: 42, scale: 1.14, duration: 1.45, ease: "sine.inOut" }, "<")
-                .to(bottomRingInnerRef.current, { rotation: -48, scale: 1.1, duration: 1.45, ease: "sine.inOut" }, "<")
-                .to(topRingRef.current, { opacity: 0.12, scale: 1.22, rotation: 92, duration: 0.72, ease: "power2.out" }, "<+=0.5")
-                .to(".fs-stage-halo", { opacity: 0.38, scale: 1.16, duration: 0.72, ease: "power2.out" }, "<")
-                // 4. Texts fade in
-                .to(".fs-text-aura", { opacity: 1, scale: 1, duration: 0.72, ease: "power2.out" }, "-=0.18")
-                .to(mainTextRef.current, { opacity: 1, y: 0, duration: 0.82, ease: "power2.out" }, "<+=0.08")
-                .to(subTextRef.current, { opacity: 1, y: 0, duration: 0.82, ease: "power2.out" }, "-=0.42")
-                // 5. Fade out earlier elements
-                .to([mainTextRef.current, subTextRef.current, solutionStageRef.current], { opacity: 0, y: -14, duration: 0.55, ease: "power2.out" }, "+=0.58")
-                .to(".fs-text-aura", { opacity: 0, scale: 1.15, duration: 0.55, ease: "power2.out" }, "<")
-                // 6. Expand bottom rings
-                .to(".fs-energy-field", { opacity: 0.34, scale: 1.24, rotation: 18, duration: 1.45, ease: "power2.inOut" }, "<")
-                .to(bottomRingOuterRef.current, { rotation: 116, scale: 3.2, opacity: 0.7, duration: 1.55, ease: "power2.inOut" }, "<")
-                .to(bottomRingInnerRef.current, { rotation: -124, scale: 3.05, opacity: 0.62, duration: 1.55, ease: "power2.inOut" }, "<")
-                // 7. Reveal the logo over the expanding glow
-                .to(logoGlowRef.current, { opacity: 1, scale: 1.08, rotation: 0, duration: 1.2, ease: "power2.out" }, "-=1.05")
-                .to(animateLogoRef.current, { opacity: 1, rotation: 0, scale: 1, duration: 1.5, ease: "power3.out" }, "-=1.1")
-                .to(".fs-energy-field", { opacity: 0.12, scale: 1.34, duration: 0.8, ease: "power2.out" }, "<");
+            // A deterministic three-state sequence. Scrubbing makes reverse motion
+            // follow the exact same path instead of competing time-based tweens.
+            tl.to(topRingRef.current, { rotation: 10, scale: 0.88, duration: 0.9, ease: "sine.inOut" }, 0)
+                .to(lineRef.current, { scaleY: 1, opacity: 0.58, duration: 0.68, ease: "power2.out" }, 0.12)
+                .to({}, { duration: 0.35 }, 0.9)
+                .to(solutionTextRef.current, { opacity: 0, y: -8, scale: 0.96, duration: 0.34, ease: "power2.out" }, 1.18)
+                .to(lineRef.current, { opacity: 0, scaleY: 0.08, duration: 0.3, ease: "power2.out" }, 1.18)
+                .to(topRingRef.current, { opacity: 0, scale: 1.04, rotation: 24, duration: 0.52, ease: "power2.out" }, 1.14)
+                .to(bottomRingOuterRef.current, { opacity: 0.28, scale: 1.14, duration: 0.68, ease: "power3.out" }, 1.34)
+                .to(bottomRingInnerRef.current, { opacity: 0.76, scale: 1.1, duration: 0.68, ease: "power3.out" }, 1.38)
+                .to([".fs-bottom-connector", ".fs-crosshair"], { opacity: 1, duration: 0.45, ease: "power2.out" }, 1.4)
+                .to(mainTextRef.current, { opacity: 1, y: 0, duration: 0.56, ease: "power2.out" }, 1.55)
+                .to({}, { duration: 0.62 }, 2.1)
+                .to(mainTextRef.current, { opacity: 0, y: -12, duration: 0.4, ease: "power2.inOut" }, 2.72)
+                .to(".fs-bottom-connector", { opacity: 0, duration: 0.34, ease: "power2.out" }, 2.72)
+                .to(bottomRingOuterRef.current, { scale: 2.3, opacity: 0.34, duration: 1.0, ease: "power2.inOut" }, 2.82)
+                .to(bottomRingInnerRef.current, { scale: 2.2, opacity: 0.72, duration: 1.0, ease: "power2.inOut" }, 2.82)
+                .to(logoGlowRef.current, { opacity: 0.72, scale: 1.08, rotation: 0, duration: 0.78, ease: "power2.out" }, 2.96)
+                .to(animateLogoRef.current, { opacity: 1, rotation: 0, scale: 1, duration: 0.9, ease: "power3.out" }, 2.96)
+                .to({}, { duration: 0.18 }, 3.82);
 
-            // Keep the presentation time-based so it starts automatically once
-            // the section reaches the viewport, without locking user input.
-            tl.timeScale(tl.duration() / (isMobile ? 4.6 : 4.1));
+            tl.timeScale(tl.duration() / (isMobile ? 4.8 : 4.4));
 
             ScrollTrigger.create({
                 trigger: containerRef.current,
@@ -118,12 +104,12 @@ export default function FifthSection() {
             ScrollTrigger.create({
                 trigger: containerRef.current,
                 start: "top top",
-                end: () => `+=${Math.round(window.innerHeight * (window.innerWidth <= 767 ? 2.1 : 1.65))}`,
+                end: () => `+=${Math.round(window.innerHeight * (window.innerWidth <= 767 ? 2.2 : 2.6))}`,
                 pin: true,
                 anticipatePin: 1,
                 invalidateOnRefresh: true,
                 animation: tl,
-                toggleActions: "play none reverse reverse",
+                toggleActions: "play complete reverse reset",
             });
 
         }, containerRef);
@@ -134,10 +120,12 @@ export default function FifthSection() {
     }, []);
 
     return (
-        <div ref={containerRef} className="fifth-section post-shutter-section relative w-full h-[100svh] lg:h-[100dvh] overflow-hidden flex flex-col items-center z-30">
+        <div id="solution" ref={containerRef} className="fifth-section post-shutter-section relative w-full h-[100svh] lg:h-[100dvh] overflow-hidden flex flex-col items-center z-30">
             <style>{`
         .fifth-section {
-          background: var(--post-shutter-bg);
+          background:
+            radial-gradient(circle at 72% 44%, rgba(30, 51, 91, 0.34), transparent 58%),
+            #0d172f;
           isolation: isolate;
         }
         .fifth-shutter-gradient {
@@ -189,8 +177,14 @@ export default function FifthSection() {
           left: 50%;
           width: 1px;
           z-index: 0;
-          background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.12) 26%, transparent 40%, transparent 60%, rgba(255,255,255,0.1) 74%, transparent 100%);
+          display: none;
         }
+        .fs-energy-field,
+        .fs-stage-halo,
+        .fs-ring-flare,
+        .fs-orbit-sparks,
+        .fs-corner-glow,
+        .fs-text-aura { display: none; }
         .fs-energy-field {
           width: min(88vh, 820px);
           height: min(88vh, 820px);
@@ -259,26 +253,32 @@ export default function FifthSection() {
         .fs-orbit-spark-5 { --fs-orbit-x: -35.51%; --fs-orbit-y: 20.5%; }
         .fs-orbit-spark-6 { --fs-orbit-x: -35.51%; --fs-orbit-y: -20.5%; background: #dce8ff; }
         .fs-solution-text {
-          font-size: 12px;
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          padding: 9px 11px;
+          font-size: 11px;
           letter-spacing: 0.22em;
-          color: rgba(255,255,255,0.9);
+          color: rgba(199, 210, 232, 0.88);
           font-family: "Google Sans Flex";
           font-weight: 500;
           text-transform: uppercase;
-          text-shadow: 0 0 18px rgba(255,255,255,0.42);
+          text-shadow: none;
         }
-        .fs-bracket {
-          color: rgba(255,255,255,0.55);
-        }
+        .fs-label-corner { position: absolute; width: 5px; height: 5px; border-style: solid; border-color: rgba(190, 203, 229, 0.62); }
+        .fs-label-corner-tl { top: 4px; left: 2px; border-width: 1px 0 0 1px; }
+        .fs-label-corner-tr { top: 4px; right: 2px; border-width: 1px 1px 0 0; }
+        .fs-label-corner-bl { bottom: 4px; left: 2px; border-width: 0 0 1px 1px; }
+        .fs-label-corner-br { right: 2px; bottom: 4px; border-width: 0 1px 1px 0; }
         .fs-main-text {
           color: #FFF;
           text-align: center;
           font-family: "Google Sans Flex";
-          font-size: clamp(22px, 2.48vw, 34px);
+          font-size: clamp(28px, 4.1vw, 42px);
           font-style: normal;
           font-weight: 400;
           line-height: 106%;
-          letter-spacing: -0.8px;
+          letter-spacing: -1.65px;
         }
         .fs-main-text .accent {
           color: #F26E35;
@@ -287,7 +287,7 @@ export default function FifthSection() {
           font-style: normal;
           font-weight: 400;
           line-height: 106%;
-          letter-spacing: -0.8px;
+          letter-spacing: -1.65px;
         }
         .fs-corner-glow {
           position: absolute;
@@ -324,8 +324,9 @@ export default function FifthSection() {
             radial-gradient(circle at 33% 66%, rgba(255, 208, 139, 0.72) 0%, rgba(242, 110, 53, 0.32) 21%, transparent 46%),
             radial-gradient(circle at 68% 36%, rgba(255, 171, 119, 0.58) 0%, rgba(242, 110, 53, 0.28) 24%, transparent 50%),
             radial-gradient(circle at 50% 50%, rgba(190, 216, 255, 0.45) 0%, rgba(114, 153, 220, 0.16) 36%, transparent 66%);
-          filter: blur(26px);
+          filter: blur(34px);
           mix-blend-mode: screen;
+          opacity: 0.72;
         }
         .fs-solution-stage {
           width: min(66vh, 660px);
@@ -334,8 +335,8 @@ export default function FifthSection() {
           min-height: 410px;
         }
         .fs-bottom-stage {
-          width: min(66vh, 660px);
-          height: min(66vh, 660px);
+          width: min(70vh, 660px);
+          height: min(70vh, 660px);
           min-width: 410px;
           min-height: 410px;
         }
@@ -345,8 +346,12 @@ export default function FifthSection() {
           height: 78%;
         }
         .fs-center-copy {
-          width: min(68%, 430px);
+          width: min(112%, 500px);
         }
+        .fs-sub-text { display: none; }
+        .fs-intro-connector { position: absolute; top: 50%; bottom: 0; left: 50%; z-index: 3; width: 1px; transform: translateX(-50%); }
+        .fs-intro-connector img { width: 1px; height: 100%; object-fit: fill; transform-origin: top center; opacity: 0.58; }
+        .fs-bottom-connector { position: absolute; left: 50%; bottom: 100%; width: 1px; height: 55vh; transform: translateX(-50%); background: rgba(128, 148, 188, 0.22); }
         @media (max-width: 767px) {
           .fs-energy-field {
             width: min(108vw, 500px);
@@ -397,7 +402,7 @@ export default function FifthSection() {
             <div ref={shutterGradientRef} className="fifth-shutter-gradient" aria-hidden="true" />
             <div ref={shutterLeftRef} className="fifth-shutter fifth-shutter-left" aria-hidden="true" />
             <div ref={shutterRightRef} className="fifth-shutter fifth-shutter-right" aria-hidden="true" />
-            <div className="absolute inset-0 fs-crosshair opacity-80 pointer-events-none" />
+            <div className="absolute inset-0 fs-crosshair pointer-events-none" />
             <div className="fs-corner-glow fs-corner-glow-left" aria-hidden="true" />
             <div className="fs-corner-glow fs-corner-glow-right" aria-hidden="true" />
             <div className="fs-energy-field absolute left-1/2 top-[49%] z-[1]" aria-hidden="true" />
@@ -423,15 +428,17 @@ export default function FifthSection() {
                     alt="Top Ring"
                     className="relative z-[1] w-full h-full object-contain"
                 />
-                <div ref={solutionTextRef} className="absolute z-[2] flex gap-2 items-center fs-solution-text whitespace-nowrap">
-                    <span className="fs-bracket">[</span>
+                <div ref={solutionTextRef} className="absolute z-[2] flex items-center fs-solution-text whitespace-nowrap">
+                    <span className="fs-label-corner fs-label-corner-tl" />
+                    <span className="fs-label-corner fs-label-corner-tr" />
+                    <span className="fs-label-corner fs-label-corner-bl" />
+                    <span className="fs-label-corner fs-label-corner-br" />
                     <span>THE SOLUTION</span>
-                    <span className="fs-bracket">]</span>
                 </div>
             </div>
 
             {/* CONNECTING LINE */}
-            <div className="absolute top-[26vh] left-1/2 -translate-x-1/2 h-[19vh] min-h-[90px] max-h-[210px] flex justify-center">
+            <div className="fs-intro-connector">
                 <img
                     ref={lineRef}
                     src="/images/Line 90.png"
@@ -442,6 +449,7 @@ export default function FifthSection() {
 
             {/* BOTTOM RINGS & TEXT */}
             <div className="fs-bottom-stage absolute top-[49%] left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center">
+                <span className="fs-bottom-connector" aria-hidden="true" />
                 {/* Outer Ring */}
                 <img
                     ref={bottomRingOuterRef}
@@ -480,7 +488,9 @@ export default function FifthSection() {
                         className="relative fs-main-text"
                         style={{ leadingTrim: "both", textEdge: "cap" } as CapTrimStyle}
                     >
-                        You need a &quot;Full-Stack&quot; <span className="accent">Growth Machine.</span> And we are here to build it.
+                        You need a &quot;Full-Stack&quot;<br />
+                        <span className="accent">Growth Machine.</span> And we<br />
+                        are here to build it.
                     </h2>
                     <p ref={subTextRef} className="fs-sub-text relative text-[#9ba8c6] text-[clamp(11px,1.2vw,13px)] max-w-[280px] leading-relaxed">
                         Throwing money on ad or a website revamp won&apos;t fix your problems.
