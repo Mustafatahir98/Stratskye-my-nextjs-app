@@ -208,6 +208,7 @@ export default function StorySection() {
         .story-icon-3 { left: 66%; top: 24%; }
         .story-icon-4 { left: 61%; top: 22%; width: clamp(80px, 10vw, 135px); }
         .story-icon-5 { left: 65%; top: 48%; }
+        .story-icon-mobile { display: none; }
         .story-dunk { width: clamp(155px, 17vw, 238px); aspect-ratio: 1.04; filter: none; }
         .story-dunk-backboard { position: absolute; top: 8%; right: 6%; width: 52%; height: 36%; border: 3px solid rgba(9, 21, 50, 0.28); border-radius: 7px; background: rgba(255, 255, 255, 0.36); box-shadow: inset 0 0 0 1px rgba(242, 110, 53, 0.13), 0 18px 28px rgba(9, 21, 50, 0.08); }
         .story-dunk-square { position: absolute; left: 31%; bottom: 15%; width: 38%; height: 42%; border: 2px solid rgba(242, 110, 53, 0.42); border-bottom: 0; border-radius: 4px 4px 0 0; }
@@ -242,12 +243,13 @@ export default function StorySection() {
             letter-spacing: 0;
             text-wrap: balance;
           }
-          .story-icon-2,
-          .story-icon-3,
-          .story-icon-4 {
-            left: 50%;
-            top: calc(var(--story-copy-center) - clamp(76px, 11svh, 112px));
-            translate: -50% -100%;
+          .story-icon-desktop { display: none !important; }
+          .story-text .story-icon-mobile {
+            display: block;
+            top: auto;
+            bottom: calc(100% + clamp(12px, 2vw, 22px));
+            left: calc(50% + clamp(64px, 12vw, 110px));
+            translate: none;
           }
           .story-icon-5 {
             left: 50%;
@@ -321,6 +323,10 @@ export default function StorySection() {
           .story-icon {
             width: clamp(52px, 16vw, 70px);
             filter: drop-shadow(0 12px 20px rgba(242, 110, 53, 0.2));
+          }
+          .story-text .story-icon-mobile {
+            bottom: calc(100% + 14px);
+            left: calc(50% + clamp(76px, 24vw, 104px));
           }
           .story-icon-4 { width: clamp(58px, 18vw, 78px); }
           .story-icon-5 {
@@ -396,9 +402,9 @@ export default function StorySection() {
           <img src="/images/smallball.png" alt="" className="story-ball-image" />
         </span>
 
-        <img src="/images/layer-2.png" alt="" className="story-icon story-icon-2" />
-        <img src="/images/layer-3.png" alt="" className="story-icon story-icon-3" />
-        <img src="/images/layer-4.png" alt="" className="story-icon story-icon-4" />
+        <img src="/images/layer-2.png" alt="" className="story-icon story-icon-2 story-icon-desktop" />
+        <img src="/images/layer-3.png" alt="" className="story-icon story-icon-3 story-icon-desktop" />
+        <img src="/images/layer-4.png" alt="" className="story-icon story-icon-4 story-icon-desktop" />
         <div className="story-icon story-icon-5 story-dunk" aria-hidden="true">
           <span className="dunk-impact" />
           <span className="dunk-speed-line" />
@@ -427,14 +433,17 @@ export default function StorySection() {
         </div>
 
         <div className="story-text story-text-2">
+          <img src="/images/layer-2.png" alt="" className="story-icon story-icon-2 story-icon-mobile" />
           <h2 className="story-heading">You just finished a <span className="text-orange">demo.</span></h2>
         </div>
 
         <div className="story-text story-text-3">
+          <img src="/images/layer-3.png" alt="" className="story-icon story-icon-3 story-icon-mobile" />
           <h2 className="story-heading">The Technical Lead was <span className="text-orange text-italic">nodding.</span></h2>
         </div>
 
         <div className="story-text story-text-4">
+          <img src="/images/layer-4.png" alt="" className="story-icon story-icon-4 story-icon-mobile" />
           <h2 className="story-heading">They called it a <span className="text-orange text-italic">game-changer</span></h2>
         </div>
 
