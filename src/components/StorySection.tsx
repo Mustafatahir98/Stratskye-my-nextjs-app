@@ -19,11 +19,13 @@ export default function StorySection() {
         },
         (context) => {
           const isMobile = context.conditions?.isMobile;
-          const leftLane = isMobile ? "13%" : "19.3%";
-          const rightLane = isMobile ? "87%" : "80.7%";
-          const topLane = isMobile ? "18vh" : "21vh";
-          const bottomLane = isMobile ? "82vh" : "78vh";
+          const leftLane = "19.3%";
+          const rightLane = isMobile ? "86.7%" : "80.7%";
+          const topLane = isMobile ? "12.6vh" : "21vh";
+          const bottomLane = isMobile ? "76.5vh" : "78vh";
           const textShift = isMobile ? 38 : 70;
+          const lowerEntryPath = isMobile ? "#story-entry-lower-motion-mobile" : "#story-entry-lower-motion";
+          const upperEntryPath = isMobile ? "#story-entry-upper-motion-mobile" : "#story-entry-upper-motion";
 
           const storyTl = gsap.timeline({
             scrollTrigger: {
@@ -50,8 +52,8 @@ export default function StorySection() {
         left: 0,
         filter: "drop-shadow(0 10px 15px rgba(255, 100, 0, 0.4))",
         motionPath: {
-          path: "#story-entry-lower-motion",
-          align: "#story-entry-lower-motion",
+          path: lowerEntryPath,
+          align: lowerEntryPath,
           alignOrigin: [0, 0],
           start: 0,
           end: 0,
@@ -61,8 +63,8 @@ export default function StorySection() {
         top: 0,
         left: 0,
         motionPath: {
-          path: "#story-entry-upper-motion",
-          align: "#story-entry-upper-motion",
+          path: upperEntryPath,
+          align: upperEntryPath,
           alignOrigin: [0, 0],
           start: 0,
           end: 0,
@@ -76,8 +78,8 @@ export default function StorySection() {
       storyTl.addLabel("start")
              .to(".story-ball-left", {
                motionPath: {
-                 path: "#story-entry-lower-motion",
-                 align: "#story-entry-lower-motion",
+                 path: lowerEntryPath,
+                 align: lowerEntryPath,
                  alignOrigin: [0, 0],
                  start: 0,
                  end: 1,
@@ -87,8 +89,8 @@ export default function StorySection() {
              }, "start")
              .to(".story-ball-right", {
                motionPath: {
-                 path: "#story-entry-upper-motion",
-                 align: "#story-entry-upper-motion",
+                 path: upperEntryPath,
+                 align: upperEntryPath,
                  alignOrigin: [0, 0],
                  start: 0,
                  end: 1,
@@ -179,6 +181,7 @@ export default function StorySection() {
         .story-entry-track { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 6; pointer-events: none; overflow: visible; }
         .story-entry-track path { fill: none; stroke: #cbd1da; stroke-width: 1; vector-effect: non-scaling-stroke; opacity: 0.62; }
         .story-motion-path { stroke: transparent !important; }
+        .story-entry-mobile { display: none; }
         .string-line-v { position: absolute; top: 0; bottom: 0; width: 1px; transform: translateX(-50%); z-index: 6; opacity: 0.16; filter: invert(1); pointer-events: none; }
         
         /* Dynamic Horizontal Strings */
@@ -244,10 +247,10 @@ export default function StorySection() {
 
         @media (max-width: 640px) {
           .story-root {
-            --story-left-lane: 13%;
-            --story-right-lane: 87%;
-            --story-top-lane: 18vh;
-            --story-bottom-lane: 82vh;
+            --story-left-lane: 19.3%;
+            --story-right-lane: 86.7%;
+            --story-top-lane: 12.6vh;
+            --story-bottom-lane: 76.5vh;
             height: 100dvh;
             min-height: 100dvh;
             max-height: 100dvh;
@@ -335,6 +338,8 @@ export default function StorySection() {
             width: 24px;
             height: 24px;
           }
+          .story-entry-desktop { display: none; }
+          .story-entry-mobile { display: block; }
         }
 
         @media (max-width: 380px) {
@@ -363,10 +368,14 @@ export default function StorySection() {
 
         {/* The visible strings and the hidden ball paths share identical geometry. */}
         <svg className="story-entry-track" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M 193 0 L 193 430 C 193 628 282 788 407 788 L 1100 788" />
-          <path d="M 807 0 C 807 118 854 213 930 213 L 1100 213" />
+          <path className="story-entry-desktop" d="M 193 0 L 193 430 C 193 628 282 788 407 788 L 1100 788" />
+          <path className="story-entry-desktop" d="M 807 0 C 807 118 854 213 930 213 L 1100 213" />
           <path id="story-entry-lower-motion" className="story-motion-path" d="M 193 -60 L 193 430 C 193 628 282 788 407 788 L 807 788" />
           <path id="story-entry-upper-motion" className="story-motion-path" d="M 807 -60 L 807 0 C 807 118 854 213 930 213 L 1100 213" />
+          <path className="story-entry-mobile" d="M 193 0 L 193 370 C 193 620 285 765 420 765 L 1100 765" />
+          <path className="story-entry-mobile" d="M 820 0 C 820 72 855 126 925 126 L 1100 126" />
+          <path id="story-entry-lower-motion-mobile" className="story-motion-path" d="M 193 -60 L 193 370 C 193 620 285 765 420 765 L 867 765" />
+          <path id="story-entry-upper-motion-mobile" className="story-motion-path" d="M 820 -60 L 820 0 C 820 72 855 126 925 126 L 1100 126" />
         </svg>
 
         {/* Strings Vertical */}

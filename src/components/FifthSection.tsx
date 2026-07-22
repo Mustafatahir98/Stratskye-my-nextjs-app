@@ -398,6 +398,24 @@ export default function FifthSection() {
             line-height: 1.34;
           }
         }
+        @media (max-width: 1024px) {
+          .fs-solution-stage,
+          .fs-bottom-stage {
+            width: min(75svh, 82vw, 500px);
+            height: min(75svh, 82vw, 500px);
+            min-width: 0;
+            min-height: 0;
+          }
+          .fs-solution-text {
+            padding: 7px 9px;
+            font-size: clamp(8px, 1.25vw, 10px);
+            letter-spacing: 0.2em;
+          }
+          .fs-label-corner-tl,
+          .fs-label-corner-tr { top: 3px; }
+          .fs-label-corner-bl,
+          .fs-label-corner-br { bottom: 3px; }
+        }
       `}</style>
             <div ref={shutterGradientRef} className="fifth-shutter-gradient" aria-hidden="true" />
             <div ref={shutterLeftRef} className="fifth-shutter fifth-shutter-left" aria-hidden="true" />
