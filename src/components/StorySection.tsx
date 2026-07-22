@@ -26,6 +26,8 @@ export default function StorySection() {
           const textShift = isMobile ? 38 : 70;
           const lowerEntryPath = isMobile ? "#story-entry-lower-motion-mobile" : "#story-entry-lower-motion";
           const upperEntryPath = isMobile ? "#story-entry-upper-motion-mobile" : "#story-entry-upper-motion";
+          const upperEntryDuration = isMobile ? 2.35 : 1.9;
+          const upperEntryFadeAt = isMobile ? 2.24 : 1.72;
 
           const storyTl = gsap.timeline({
             scrollTrigger: {
@@ -95,7 +97,7 @@ export default function StorySection() {
                  start: 0,
                  end: 1,
                },
-               duration: 1.9,
+               duration: upperEntryDuration,
                ease: "none",
              }, "start")
              // Once the entry is complete, erase the curves and leave straight lanes behind.
@@ -104,7 +106,7 @@ export default function StorySection() {
              .to(".story-text-1", { autoAlpha: 0, x: -textShift, duration: 0.8 }, "start+=2.35")
              .to(".story-text-2", { autoAlpha: 1, x: 0, duration: 1.1, ease: "power2.out" }, "<0.35")
              .to(".story-icon-2", { autoAlpha: 1, y: 0, scale: 1, rotation: 7, duration: 0.9, ease: "back.out(1.5)" }, "<0.15")
-             .to(".story-ball-right", { autoAlpha: 0, duration: 0.18 }, "start+=1.72")
+             .to(".story-ball-right", { autoAlpha: 0, duration: 0.18 }, `start+=${upperEntryFadeAt}`)
              .addLabel("entryComplete", "start+=2.7")
              .set(".story-ball-left", { clearProps: "x,y", left: rightLane, top: bottomLane }, "entryComplete")
              .set(".story-ball-right", { clearProps: "x,y", left: leftLane, top: topLane }, "entryComplete")
@@ -173,6 +175,7 @@ export default function StorySection() {
           --story-right-lane: 80.7%;
           --story-top-lane: 21vh;
           --story-bottom-lane: 78vh;
+          --story-copy-center: 49.5vh;
           font-family: "Google Sans Flex";
         }
         /* Vertical Grids */
@@ -192,7 +195,7 @@ export default function StorySection() {
         .curve-img { position: absolute; width: 180px; height: 180px; object-fit: contain; z-index: 7; opacity: 0; pointer-events: none; filter: invert(1); }
         
         /* Typography */
-        .story-text-container { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; text-align: center; z-index: 30; }
+        .story-text-container { position: absolute; top: var(--story-copy-center); left: 50%; transform: translate(-50%, -50%); width: 100%; text-align: center; z-index: 30; }
         .story-text { position: absolute; width: 100%; top: 50%; left: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; visibility: hidden; will-change: opacity, transform; }
         .story-text-1 { opacity: 1; visibility: visible; }
         
@@ -230,19 +233,27 @@ export default function StorySection() {
         .story-ball-image { position: absolute; top: 0; left: 0; width: 30px; height: 30px; max-width: none; transform: translate(-50%, -50%); }
         .story-ball-left { left: var(--story-left-lane); }
         .story-ball-right { left: var(--story-right-lane); }
-        @media (max-width: 900px) {
+        @media (max-width: 1024px) {
           .story-heading {
-            max-width: min(82vw, 680px);
+            max-width: min(78vw, 680px);
             margin: 0 auto;
-            font-size: clamp(34px, 7vw, 54px);
-            line-height: 1;
+            font-size: clamp(30px, 5.6vw, 48px);
+            line-height: 1.02;
             letter-spacing: 0;
             text-wrap: balance;
           }
-          .story-icon-2 { left: 67%; top: 24%; }
-          .story-icon-3 { left: 69%; top: 23%; }
-          .story-icon-4 { left: 64%; top: 21%; }
-          .story-icon-5 { left: 62%; top: 52%; }
+          .story-icon-2,
+          .story-icon-3,
+          .story-icon-4 {
+            left: 50%;
+            top: calc(var(--story-copy-center) - clamp(76px, 11svh, 112px));
+            translate: -50% -100%;
+          }
+          .story-icon-5 {
+            left: 50%;
+            top: calc(var(--story-copy-center) + clamp(96px, 13svh, 132px));
+            translate: -50% 0;
+          }
         }
 
         @media (max-width: 640px) {
@@ -251,6 +262,7 @@ export default function StorySection() {
             --story-right-lane: 86.7%;
             --story-top-lane: 12.6vh;
             --story-bottom-lane: 76.5vh;
+            --story-copy-center: 44.55vh;
             height: 100dvh;
             min-height: 100dvh;
             max-height: 100dvh;
@@ -290,10 +302,7 @@ export default function StorySection() {
             height: 118px;
             opacity: 0;
           }
-          .story-text-container {
-            top: calc((var(--story-top-lane) + var(--story-bottom-lane)) / 2);
-            width: calc(100vw - 36px);
-          }
+          .story-text-container { width: calc(100vw - 36px); }
           .story-text {
             width: 100%;
           }
@@ -313,23 +322,9 @@ export default function StorySection() {
             width: clamp(52px, 16vw, 70px);
             filter: drop-shadow(0 12px 20px rgba(242, 110, 53, 0.2));
           }
-          .story-icon-2 {
-            left: 66%;
-            top: 34%;
-          }
-          .story-icon-3 {
-            left: 67%;
-            top: 33%;
-          }
-          .story-icon-4 {
-            left: 65%;
-            top: 32%;
-            width: clamp(58px, 18vw, 78px);
-          }
+          .story-icon-4 { width: clamp(58px, 18vw, 78px); }
           .story-icon-5 {
-            left: 50%;
-            top: 65%;
-            transform: translateX(-50%);
+            top: calc(var(--story-copy-center) + clamp(102px, 14svh, 128px));
           }
           .story-dunk {
             width: min(33vw, 124px);
@@ -348,9 +343,6 @@ export default function StorySection() {
           }
           .story-text-5 .story-heading {
             font-size: 30px;
-          }
-          .story-icon-5 {
-            top: 66%;
           }
           .story-dunk {
             width: 112px;
@@ -373,9 +365,9 @@ export default function StorySection() {
           <path id="story-entry-lower-motion" className="story-motion-path" d="M 193 -60 L 193 430 C 193 628 282 788 407 788 L 807 788" />
           <path id="story-entry-upper-motion" className="story-motion-path" d="M 807 -60 L 807 0 C 807 118 854 213 930 213 L 1100 213" />
           <path className="story-entry-mobile" d="M 193 0 L 193 370 C 193 620 285 765 420 765 L 1100 765" />
-          <path className="story-entry-mobile" d="M 820 0 C 820 72 855 126 925 126 L 1100 126" />
+          <path className="story-entry-mobile" d="M 867 0 L 867 18 C 867 78 900 126 960 126 L 1100 126" />
           <path id="story-entry-lower-motion-mobile" className="story-motion-path" d="M 193 -60 L 193 370 C 193 620 285 765 420 765 L 867 765" />
-          <path id="story-entry-upper-motion-mobile" className="story-motion-path" d="M 820 -60 L 820 0 C 820 72 855 126 925 126 L 1100 126" />
+          <path id="story-entry-upper-motion-mobile" className="story-motion-path" d="M 867 -60 L 867 18 C 867 78 900 126 960 126 L 1000 126" />
         </svg>
 
         {/* Strings Vertical */}
