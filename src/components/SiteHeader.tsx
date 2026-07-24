@@ -184,13 +184,24 @@ export default function SiteHeader() {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setMenuOpen(false);
     };
+    const previousBodyOverflow = document.body.style.overflowY;
 
     window.addEventListener("keydown", handleKeyDown);
-    document.body.style.overflowY = menuOpen ? "hidden" : "";
+    document.body.style.overflowY = menuOpen ? "hidden" : previousBodyOverflow;
+
+    if (menuOpen) {
+      window.__stratskyeLenis?.stop();
+    } else {
+      window.__stratskyeLenis?.start();
+    }
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflowY = "";
+      document.body.style.overflowY = previousBodyOverflow;
+
+      if (menuOpen) {
+        window.__stratskyeLenis?.start();
+      }
     };
   }, [menuOpen]);
 
@@ -211,23 +222,6 @@ export default function SiteHeader() {
       window.removeEventListener("scroll", updateScrolled);
     };
   }, []);
-
-  useEffect(() => {
-    if (!menuOpen) return;
-
-    const closeMenuOnScrollStart = () => {
-      setMenuOpen(false);
-    };
-    const listenerOptions = { capture: true, passive: true } as AddEventListenerOptions;
-
-    window.addEventListener("wheel", closeMenuOnScrollStart, listenerOptions);
-    window.addEventListener("touchmove", closeMenuOnScrollStart, listenerOptions);
-
-    return () => {
-      window.removeEventListener("wheel", closeMenuOnScrollStart, listenerOptions);
-      window.removeEventListener("touchmove", closeMenuOnScrollStart, listenerOptions);
-    };
-  }, [menuOpen]);
 
   const handleMenuItemClick = (href: string) => {
     setMenuOpen(false);
@@ -291,7 +285,7 @@ export default function SiteHeader() {
         .nav-menu-line:last-child { top: 13px; width: 38px; }
         .nav-menu.is-open .nav-menu-line:first-child { top: 9px; transform: rotate(42deg); }
         .nav-menu.is-open .nav-menu-line:last-child { top: 9px; width: 38px; transform: rotate(-42deg); }
-        .menu-overlay { position: fixed; inset: 0; z-index: 140; pointer-events: none; opacity: 0; visibility: hidden; transition: opacity 0.25s ease, visibility 0.25s ease; }
+        .menu-overlay { position: fixed; inset: 0; z-index: 140; overflow: hidden; pointer-events: none; opacity: 0; visibility: hidden; transition: opacity 0.25s ease, visibility 0.25s ease; }
         .menu-overlay.is-open { pointer-events: auto; opacity: 1; visibility: visible; }
         .menu-backdrop { position: absolute; inset: 0; z-index: 0; background: transparent; }
         .menu-panel { position: absolute; top: 5px; right: 10%; z-index: 1; width: min(376px, calc(100vw - 32px)); min-height: 448px; display: flex; flex-direction: column; padding: 26px 14px 24px 28px; border: 1px solid rgba(155,171,219,0.82); border-radius: 12px; background: #f2eee9; box-shadow: 0 18px 44px rgba(10,17,40,0.18); color: #0a1128; transform: translate(12px, -14px) scale(0.94); transform-origin: top right; opacity: 0; transition: transform 0.42s cubic-bezier(.16,1,.3,1), opacity 0.28s ease; }
@@ -360,11 +354,19 @@ export default function SiteHeader() {
           .navbar.is-scrolled .nav-links { display: none; }
           .navbar.is-scrolled .nav-menu { display: grid; }
           .nav-menu.is-open { right: 16px; top: 12px; }
-          .menu-panel { inset: 0; width: 100%; min-height: 100dvh; border: 0; border-radius: 0; padding: max(96px, env(safe-area-inset-top)) 28px max(30px, env(safe-area-inset-bottom)); transform: translateY(-18px); }
-          .menu-list { gap: clamp(4px, 1.2vh, 10px); padding-right: 56px; }
-          .menu-link { min-height: clamp(40px, 8vh, 58px); font-size: clamp(36px, 12vw, 56px); }
+          .menu-panel { inset: 0; width: 100%; height: 100dvh; min-height: 0; max-height: 100dvh; overflow-x: hidden; overflow-y: auto; overscroll-behavior-y: contain; touch-action: pan-y; -webkit-overflow-scrolling: touch; border: 0; border-radius: 0; padding: calc(88px + env(safe-area-inset-top)) 28px calc(28px + env(safe-area-inset-bottom)); transform: translateY(-18px); }
+          .menu-list { flex: 0 0 auto; gap: clamp(4px, 1.2dvh, 10px); padding-right: 56px; }
+          .menu-link { min-height: clamp(40px, 8dvh, 58px); font-size: clamp(36px, 12vw, 56px); }
           .menu-social { padding-top: 30px; }
           .menu-social-link { font-size: clamp(20px, 6vw, 28px); }
+        }
+        @media (max-width: 980px) and (max-height: 700px) {
+          .menu-panel { padding-top: calc(76px + env(safe-area-inset-top)); }
+          .menu-list { gap: 0; }
+          .menu-link { min-height: 40px; font-size: clamp(34px, 10vw, 44px); }
+          .menu-social { padding-top: 18px; }
+          .menu-social::before { margin-bottom: 16px; }
+          .menu-social-link { font-size: clamp(18px, 5.4vw, 23px); }
         }
       `}</style>
 
@@ -416,7 +418,7 @@ export default function SiteHeader() {
 
       <div id="site-menu" className={`menu-overlay ${menuOpen ? "is-open" : ""}`} aria-hidden={!menuOpen}>
         <div className="menu-backdrop" onClick={() => setMenuOpen(false)} />
-        <div className="menu-panel">
+        <div className="menu-panel" data-lenis-prevent>
           <ul className="menu-list">
             {menuItems.map((item) => {
               const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
