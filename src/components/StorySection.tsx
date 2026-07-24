@@ -20,7 +20,8 @@ export default function StorySection() {
         (context) => {
           const isMobile = context.conditions?.isMobile;
           const leftLane = "19.3%";
-          const rightLane = isMobile ? "86.7%" : "80.7%";
+          // Keep the mobile lane clear of the fixed header's 48px menu touch target.
+          const rightLane = isMobile ? "78.5%" : "80.7%";
           const topLane = isMobile ? "12.6svh" : "21vh";
           const bottomLane = isMobile ? "76.5svh" : "78vh";
           const textShift = isMobile ? 38 : 70;
@@ -54,7 +55,9 @@ export default function StorySection() {
         top: 0,
         left: 0,
         force3D: true,
-        filter: "drop-shadow(0 10px 15px rgba(255, 100, 0, 0.4))",
+        filter: isMobile
+          ? "drop-shadow(0 8px 12px rgba(242, 110, 53, 0.5))"
+          : "drop-shadow(0 10px 15px rgba(255, 100, 0, 0.4))",
         motionPath: {
           path: lowerEntryPath,
           align: lowerEntryPath,
@@ -264,7 +267,7 @@ export default function StorySection() {
         @media (max-width: 640px) {
           .story-root {
             --story-left-lane: 19.3%;
-            --story-right-lane: 86.7%;
+            --story-right-lane: 78.5%;
             --story-top-lane: 12.6svh;
             --story-bottom-lane: 76.5svh;
             --story-copy-center: 44.55svh;
@@ -339,8 +342,13 @@ export default function StorySection() {
             width: min(33vw, 124px);
           }
           .story-ball-image {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
+            filter: saturate(1.08) contrast(1.05);
+          }
+          .story-ball-left,
+          .story-ball-right {
+            filter: drop-shadow(0 8px 12px rgba(242, 110, 53, 0.5));
           }
           .story-entry-desktop { display: none; }
           .story-entry-mobile { display: block; }
@@ -373,10 +381,10 @@ export default function StorySection() {
           <path className="story-entry-desktop" d="M 807 0 C 807 118 854 213 930 213 L 1100 213" />
           <path id="story-entry-lower-motion" className="story-motion-path" d="M 193 -60 L 193 430 C 193 628 282 788 407 788 L 807 788" />
           <path id="story-entry-upper-motion" className="story-motion-path" d="M 807 -60 L 807 0 C 807 118 854 213 930 213 L 1100 213" />
-          <path className="story-entry-mobile" d="M 193 0 L 193 425 C 193 615 282 765 420 765 L 1100 765" />
-          <path className="story-entry-mobile" d="M 867 0 L 867 18 C 867 78 900 126 960 126 L 1100 126" />
-          <path id="story-entry-lower-motion-mobile" className="story-motion-path" d="M 193 -60 L 193 425 C 193 615 282 765 420 765 L 867 765" />
-          <path id="story-entry-upper-motion-mobile" className="story-motion-path" d="M 867 -60 L 867 18 C 867 78 900 126 960 126 L 1000 126" />
+          <path className="story-entry-mobile" d="M 193 0 L 193 410 C 193 620 320 765 500 765 L 1100 765" />
+          <path className="story-entry-mobile" d="M 785 0 L 785 18 C 785 82 830 126 900 126 L 1100 126" />
+          <path id="story-entry-lower-motion-mobile" className="story-motion-path" d="M 193 -60 L 193 410 C 193 620 320 765 500 765 L 785 765" />
+          <path id="story-entry-upper-motion-mobile" className="story-motion-path" d="M 785 -60 L 785 18 C 785 82 830 126 900 126 L 1000 126" />
         </svg>
 
         {/* Strings Vertical */}
