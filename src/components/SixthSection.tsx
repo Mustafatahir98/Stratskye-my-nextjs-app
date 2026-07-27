@@ -18,7 +18,7 @@ const services = [
     {
         image: "/images/Group 513059.png",
         title: "Authority Socials",
-        description: " We manage your presence to ensure you’re the loudest, most trusted voice in the industry.",
+        description: "We manage your presence to ensure you’re the loudest, most trusted voice in the industry.",
     },
 ];
 
@@ -327,45 +327,69 @@ export default function SixthSection() {
         /* --- MOBILE SPECIFIC OVERRIDES --- */
         @media (max-width: 760px) {
           .sixth-heading {
-            margin-top: clamp(38px, 7svh, 58px);
+            margin-top: clamp(104px, 14svh, 126px);
+            padding-inline: 24px;
           }
           .sixth-card-image {
-            width: clamp(330px, 112vw, 480px);
+            width: clamp(280px, 80vw, 360px);
           }
           .sixth-service-title {
-            font-size: 21px;
+            margin: 0;
+            font-size: clamp(25px, 7vw, 29px);
+            font-weight: 550;
+            line-height: 1.06;
+            letter-spacing: -0.02em;
           }
           .sixth-service-copy {
-            font-size: 13px;
-            max-width: 90%; 
+            max-width: min(84vw, 340px);
+            font-size: clamp(14px, 4vw, 16px);
+            line-height: 1.38;
+            color: rgba(213, 221, 240, 0.8);
           }
           .sixth-platform-grid {
             width: 70vw; 
           }
           .sixth-heading h2 {
-            font-size: clamp(32px, 9vw, 40px);
-            line-height: 0.96;
-            letter-spacing: -0.04em;
+            font-size: clamp(38px, 10.5vw, 46px);
+            line-height: 0.92;
+            letter-spacing: -0.045em;
           }
           .sixth-cards-stage {
-            top: 25%;
-            width: calc(100vw - 24px);
-            height: 470px;
+            top: clamp(230px, 29svh, 270px);
+            width: calc(100vw - 32px);
+            height: calc(100svh - 250px);
+          }
+          .sixth-card-content {
+            margin-top: clamp(12px, 2.2svh, 20px);
+          }
+          .sixth-card-content .sixth-service-copy {
+            margin-top: 10px;
           }
         }
         @media (max-width: 760px) and (max-height: 740px) {
           .sixth-heading {
-            margin-top: 96px;
+            margin-top: 92px;
+          }
+          .sixth-heading h2 {
+            font-size: 38px;
           }
           .sixth-card-image {
-            width: clamp(205px, 54vw, 278px);
+            width: clamp(260px, 74vw, 310px);
+          }
+          .sixth-cards-stage {
+            top: 200px;
+            height: calc(100svh - 214px);
+          }
+          .sixth-card-content {
+            margin-top: 8px;
           }
           .sixth-service-title {
-            font-size: 19px;
+            font-size: clamp(23px, 6.6vw, 26px);
           }
           .sixth-service-copy {
-            font-size: 12px;
-            line-height: 1.32;
+            max-width: min(86vw, 330px);
+            font-size: clamp(13px, 3.8vw, 15px);
+            line-height: 1.34;
           }
         }
       `}</style>
@@ -407,7 +431,7 @@ export default function SixthSection() {
                         alt={services[0].title}
                         className="sixth-card-image"
                     />
-                    <div className="mt-[3vh] flex flex-col items-center">
+                    <div className="sixth-card-content mt-[3vh] flex flex-col items-center">
                         <h3 className="sixth-service-title">{services[0].title}</h3>
                         <p className="sixth-service-copy mt-3 max-w-[360px]">{services[0].description}</p>
                     </div>
@@ -423,7 +447,7 @@ export default function SixthSection() {
                         alt={services[1].title}
                         className="sixth-card-image"
                     />
-                    <div className="mt-[3vh] flex flex-col items-center">
+                    <div className="sixth-card-content mt-[3vh] flex flex-col items-center">
                         <h3 className="sixth-service-title">{services[1].title}</h3>
                         <p className="sixth-service-copy mt-3 max-w-[360px]">{services[1].description}</p>
                     </div>
@@ -439,7 +463,7 @@ export default function SixthSection() {
                         alt={services[2].title}
                         className="sixth-card-image"
                     />
-                    <div className="mt-[3vh] flex flex-col items-center">
+                    <div className="sixth-card-content mt-[3vh] flex flex-col items-center">
                         <h3 className="sixth-service-title">{services[2].title}</h3>
                         <p className="sixth-service-copy mt-3 max-w-[360px]">{services[2].description}</p>
                     </div>
