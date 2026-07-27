@@ -22,8 +22,8 @@ export default function StorySection() {
           const leftLane = "19.3%";
           // Keep the mobile lane clear of the fixed header's 48px menu touch target.
           const rightLane = isMobile ? "78.5%" : "80.7%";
-          const topLane = isMobile ? "12.6svh" : "21vh";
-          const bottomLane = isMobile ? "76.5svh" : "78vh";
+          const topLane = isMobile ? "12.6%" : "21vh";
+          const bottomLane = isMobile ? "76.5%" : "78vh";
           const textShift = isMobile ? 38 : 70;
           const lowerEntryPath = isMobile ? "#story-entry-lower-motion-mobile" : "#story-entry-lower-motion";
           const upperEntryPath = isMobile ? "#story-entry-upper-motion-mobile" : "#story-entry-upper-motion";
@@ -33,7 +33,7 @@ export default function StorySection() {
           const storyTl = gsap.timeline({
             scrollTrigger: {
               trigger: storyRef.current,
-              start: "top top",
+              start: isMobile ? "top 80px" : "top top",
               end: "+=560%",
               scrub: 1.15,
               pin: true,
@@ -158,8 +158,8 @@ export default function StorySection() {
              .to(".story-curve-left", { opacity: 0.4, duration: 0.55 }, "<")
              .to(".story-entry-track", { opacity: 0, duration: 0.85 }, "<")
              .to(".story-horizontal-track", { opacity: 0, duration: 0.85 }, "<")
-             .to(".story-ball-left", { left: leftLane, top: isMobile ? "116svh" : "116vh", duration: 1.5, ease: "power2.inOut" }, "<0.1")
-             .to(".story-ball-right", { left: rightLane, top: isMobile ? "116svh" : "116vh", duration: 1.5, ease: "power2.inOut" }, "<");
+             .to(".story-ball-left", { left: leftLane, top: isMobile ? "116%" : "116vh", duration: 1.5, ease: "power2.inOut" }, "<0.1")
+             .to(".story-ball-right", { left: rightLane, top: isMobile ? "116%" : "116vh", duration: 1.5, ease: "power2.inOut" }, "<");
         }
       );
 
@@ -268,12 +268,12 @@ export default function StorySection() {
           .story-root {
             --story-left-lane: 19.3%;
             --story-right-lane: 78.5%;
-            --story-top-lane: 12.6svh;
-            --story-bottom-lane: 76.5svh;
-            --story-copy-center: 44.55svh;
-            height: 100svh;
-            min-height: 100svh;
-            max-height: 100svh;
+            --story-top-lane: 12.6%;
+            --story-bottom-lane: 76.5%;
+            --story-copy-center: 44.55%;
+            height: calc(100svh - 80px);
+            min-height: calc(100svh - 80px);
+            max-height: calc(100svh - 80px);
             background: #f7f3ee;
           }
           .story-root::before,
