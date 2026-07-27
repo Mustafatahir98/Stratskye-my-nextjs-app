@@ -355,14 +355,14 @@ export default function SiteHeader() {
           .navbar.is-scrolled .nav-menu { display: grid; }
           .nav-menu.is-open { right: 16px; top: 12px; }
           .menu-panel { inset: 0; width: 100%; height: 100dvh; min-height: 0; max-height: 100dvh; overflow-x: hidden; overflow-y: auto; overscroll-behavior-y: contain; touch-action: pan-y; -webkit-overflow-scrolling: touch; border: 0; border-radius: 0; padding: calc(88px + env(safe-area-inset-top)) 28px calc(28px + env(safe-area-inset-bottom)); transform: translateY(-18px); }
-          .menu-list { flex: 0 0 auto; gap: clamp(4px, 1.2dvh, 10px); padding-right: 56px; }
+          .menu-list { flex: 0 0 auto; gap: clamp(8px, 1.5dvh, 14px); padding-right: 56px; }
           .menu-link { min-height: clamp(40px, 8dvh, 58px); font-size: clamp(36px, 12vw, 56px); }
           .menu-social { padding-top: 30px; }
           .menu-social-link { font-size: clamp(20px, 6vw, 28px); }
         }
         @media (max-width: 980px) and (max-height: 700px) {
           .menu-panel { padding-top: calc(76px + env(safe-area-inset-top)); }
-          .menu-list { gap: 0; }
+          .menu-list { gap: 6px; }
           .menu-link { min-height: 40px; font-size: clamp(34px, 10vw, 44px); }
           .menu-social { padding-top: 18px; }
           .menu-social::before { margin-bottom: 16px; }
