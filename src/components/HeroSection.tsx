@@ -13,6 +13,8 @@ export default function HeroSection() {
     gsap.registerPlugin(ScrollTrigger);
     
     const ctx = gsap.context(() => {
+      const isMobile = window.matchMedia("(max-width: 560px)").matches;
+
       gsap.fromTo(
         heroBgRef.current,
         { yPercent: -4, scale: 1.08 },
@@ -30,12 +32,21 @@ export default function HeroSection() {
       );
 
       gsap.set(".hero-reveal", { opacity: 0, y: 34 });
-      gsap.set(".hero-momentum-reveal", { opacity: 0, y: 90 });
-      gsap.timeline({ delay: 0.35, defaults: { duration: 0.8, ease: "power3.out" } })
+      gsap.set(
+        ".hero-momentum-reveal",
+        isMobile ? { opacity: 1, y: 0 } : { opacity: 0, y: 90 }
+      );
+      const introTimeline = gsap.timeline({
+        delay: 0.35,
+        defaults: { duration: 0.8, ease: "power3.out" },
+      })
         .to(".hero-lead-left .hero-reveal", { opacity: 1, y: 0 })
         .to(".hero-lead-right .hero-reveal", { opacity: 1, y: 0 }, "+=0.08")
-        .to(".hero-desc .hero-reveal", { opacity: 1, y: 0 }, "+=0.08")
-        .to(".hero-momentum-reveal", { opacity: 1, y: 0, duration: 1 }, "+=0.02");
+        .to(".hero-desc .hero-reveal", { opacity: 1, y: 0 }, "+=0.08");
+
+      if (!isMobile) {
+        introTimeline.to(".hero-momentum-reveal", { opacity: 1, y: 0, duration: 1 }, "+=0.02");
+      }
 
     }, heroRef);
 
