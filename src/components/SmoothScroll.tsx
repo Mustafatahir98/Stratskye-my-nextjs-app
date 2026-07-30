@@ -28,6 +28,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     let ratioQuery: MediaQueryList | null = null;
     let removeRatioListener: (() => void) | null = null;
     let lastViewportWidth = window.innerWidth;
+    let lastViewportHeight = window.visualViewport?.height ?? window.innerHeight;
     let lastPixelRatio = window.devicePixelRatio;
 
     const runRefresh = () => {
@@ -75,20 +76,24 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       };
     };
     const handleViewportChange = () => {
+      const viewportHeight = window.visualViewport?.height ?? window.innerHeight;
       const widthChanged = Math.abs(window.innerWidth - lastViewportWidth) > 1;
+      const heightChanged = Math.abs(viewportHeight - lastViewportHeight) > 2;
       const ratioChanged = window.devicePixelRatio !== lastPixelRatio;
 
-      if (!widthChanged && !ratioChanged) {
+      if (!widthChanged && !heightChanged && !ratioChanged) {
         return;
       }
 
       lastViewportWidth = window.innerWidth;
+      lastViewportHeight = viewportHeight;
       lastPixelRatio = window.devicePixelRatio;
-      refreshLayout();
+      refreshLayout(heightChanged && !widthChanged ? 220 : 180);
     };
 
     const handleOrientationChange = () => {
       lastViewportWidth = window.innerWidth;
+      lastViewportHeight = window.visualViewport?.height ?? window.innerHeight;
       lastPixelRatio = window.devicePixelRatio;
       refreshLayout(320);
     };
@@ -106,6 +111,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     }
 
     window.addEventListener("resize", handleViewportChange);
+    window.visualViewport?.addEventListener("resize", handleViewportChange);
     window.addEventListener("orientationchange", handleOrientationChange);
     watchDevicePixelRatio();
     window.requestAnimationFrame(() => refreshLayout(0));
@@ -119,6 +125,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
       }
 
       window.removeEventListener("resize", handleViewportChange);
+      window.visualViewport?.removeEventListener("resize", handleViewportChange);
       window.removeEventListener("orientationchange", handleOrientationChange);
       removeRatioListener?.();
       gsap.ticker.remove(tick);

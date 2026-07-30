@@ -177,8 +177,9 @@ export default function SixthSection() {
 
                 ScrollTrigger.create({
                     trigger: containerRef.current,
-                    start: "top 78%",
+                    start: "top top",
                     end: "bottom 22%",
+                    invalidateOnRefresh: true,
                     onEnter: () => {
                         tl.restart();
                         carouselTl.restart();
