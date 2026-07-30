@@ -120,9 +120,15 @@ export default function FifthSection() {
     }, []);
 
     return (
-        <div id="solution" ref={containerRef} className="fifth-section post-shutter-section relative w-full h-[100svh] lg:h-[100dvh] overflow-hidden flex flex-col items-center z-30">
+        <div id="solution" ref={containerRef} className="fifth-section post-shutter-section relative w-full overflow-hidden flex flex-col items-center z-30">
             <style>{`
         .fifth-section {
+          height: 100vh;
+          min-height: 100vh;
+          max-height: 100vh;
+          height: 100dvh;
+          min-height: 100dvh;
+          max-height: 100dvh;
           background:
             radial-gradient(circle at 72% 44%, rgba(30, 51, 91, 0.34), transparent 58%),
             #0d172f;
