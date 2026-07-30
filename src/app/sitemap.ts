@@ -8,7 +8,7 @@ const LAST_MODIFIED = new Date("2026-07-16T02:20:38+00:00")
 export const dynamic = "force-dynamic"
 
 type WordPressPost = {
-  databaseId: number
+  slug: string
   date?: string | null
   modified?: string | null
 }
@@ -84,7 +84,7 @@ async function getBlogRoutes(): Promise<MetadataRoute.Sitemap> {
       {
         posts(first: 100) {
           nodes {
-            databaseId
+            slug
             date
             modified
           }
@@ -93,9 +93,9 @@ async function getBlogRoutes(): Promise<MetadataRoute.Sitemap> {
     `)
 
     return (data.posts?.nodes || [])
-      .filter((post) => post.databaseId)
+      .filter((post) => post.slug)
       .map((post) => ({
-        url: `${SITE_URL}/blog/${post.databaseId}`,
+        url: `${SITE_URL}/blog/${post.slug}`,
         lastModified: new Date(post.modified || post.date || LAST_MODIFIED),
         changeFrequency: "monthly",
         priority: 0.5,

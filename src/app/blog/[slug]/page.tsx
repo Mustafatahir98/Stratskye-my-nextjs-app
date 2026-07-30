@@ -1,24 +1,59 @@
 import { fetchGraphQL } from "@/lib/graphql"
 import { Metadata } from "next"
 import Link from "next/link"
+import { redirect } from "next/navigation"
 import SinglePostClient from "./SinglePostClient"
 
 type Props = {
   params: Promise<{ slug: string }>
 }
 
+const postFields = `
+  title
+  slug
+  excerpt
+  content
+  date
+  featuredImage {
+    node {
+      mediaItemUrl
+      altText
+    }
+  }
+  author {
+    node {
+      name
+    }
+  }
+  categories {
+    nodes {
+      name
+    }
+  }
+`
+
+async function getPost(slug: string) {
+  const isLegacyId = /^\d+$/.test(slug)
+  const idType = isLegacyId ? "DATABASE_ID" : "SLUG"
+
+  const data = await fetchGraphQL(
+    `
+      query GetPost($id: ID!) {
+        post(id: $id, idType: ${idType}) {
+          ${postFields}
+        }
+      }
+    `,
+    { id: slug }
+  )
+
+  return data?.post
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params
   try {
-    const data = await fetchGraphQL(`
-      {
-        post(id: ${slug}, idType: DATABASE_ID) {
-          title
-          excerpt
-        }
-      }
-    `)
-    const post = data?.post
+    const post = await getPost(slug)
     if (!post) return { title: "Post not found" }
     return {
       title: post.title,
@@ -31,34 +66,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function SinglePost({ params }: Props) {
   const { slug } = await params
-
-  const data = await fetchGraphQL(`
-    {
-      post(id: ${slug}, idType: DATABASE_ID) {
-        title
-        content
-        date
-        featuredImage {
-          node {
-            mediaItemUrl
-            altText
-          }
-        }
-        author {
-          node {
-            name
-          }
-        }
-        categories {
-          nodes {
-            name
-          }
-        }
-      }
-    }
-  `)
-
-  const post = data?.post
+  const post = await getPost(slug)
 
   if (!post) {
     return (
@@ -72,6 +80,10 @@ export default async function SinglePost({ params }: Props) {
         </div>
       </main>
     )
+  }
+
+  if (/^\d+$/.test(slug) && post.slug) {
+    redirect(`/blog/${post.slug}`)
   }
 
   return <SinglePostClient post={post} />

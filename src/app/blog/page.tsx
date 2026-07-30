@@ -322,7 +322,7 @@ export default function BlogPage() {
                 return (
                   <Link
                     key={post.databaseId}
-                    href={`/blog/${post.databaseId}`}
+                    href={`/blog/${post.slug}`}
                     className="blog-card"
                   >
                     <img
