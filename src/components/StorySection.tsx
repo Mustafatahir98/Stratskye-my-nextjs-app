@@ -282,7 +282,7 @@ export default function StorySection() {
             --story-right-lane: 87%;
             --story-top-lane: 12.6%;
             --story-bottom-lane: 87.4%;
-            --story-copy-center: 44.55%;
+            --story-copy-center: 50%;
             height: calc(100vh - 80px);
             min-height: calc(100vh - 80px);
             max-height: calc(100vh - 80px);
