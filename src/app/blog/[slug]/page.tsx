@@ -2,6 +2,7 @@ import { fetchGraphQL } from "@/lib/graphql"
 import { Metadata } from "next"
 import Link from "next/link"
 import { redirect } from "next/navigation"
+import { cache } from "react"
 import SinglePostClient from "./SinglePostClient"
 
 type Props = {
@@ -32,7 +33,7 @@ const postFields = `
   }
 `
 
-async function getPost(slug: string) {
+const getPost = cache(async (slug: string) => {
   const isLegacyId = /^\d+$/.test(slug)
   const idType = isLegacyId ? "DATABASE_ID" : "SLUG"
 
@@ -44,11 +45,12 @@ async function getPost(slug: string) {
         }
       }
     `,
-    { id: slug }
+    { id: slug },
+    { revalidate: 300, tags: ["blog-posts", `blog-post-${slug}`] }
   )
 
   return data?.post
-}
+})
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params

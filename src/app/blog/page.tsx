@@ -1,27 +1,16 @@
-"use client"
-
+import { fetchGraphQL } from "@/lib/graphql"
 import Link from "next/link"
-import { useEffect, useState } from "react"
 
 type Post = {
   databaseId: number
   title: string
   slug: string
-  excerpt?: string | null
   date?: string | null
   featuredImage?: {
     node?: {
       mediaItemUrl?: string | null
       altText?: string | null
     } | null
-  } | null
-  author?: {
-    node?: {
-      name?: string | null
-    } | null
-  } | null
-  categories?: {
-    nodes?: { name: string }[]
   } | null
 }
 
@@ -35,44 +24,42 @@ function formatDate(date?: string | null) {
   }).format(new Date(date))
 }
 
-function stripHtml(value?: string | null) {
-  return value?.replace(/<[^>]*>/g, "").trim() || ""
+async function getPosts() {
+  return fetchGraphQL<{ posts?: { nodes?: Post[] } }>(
+    `
+      {
+        posts(first: 12) {
+          nodes {
+            databaseId
+            title
+            slug
+            date
+            featuredImage {
+              node {
+                mediaItemUrl
+                altText
+              }
+            }
+          }
+        }
+      }
+    `,
+    undefined,
+    { revalidate: 300, tags: ["blog-posts"] }
+  )
 }
 
-export default function BlogPage() {
-  const [posts, setPosts] = useState<Post[]>([])
-  const [loaded, setLoaded] = useState(false)
-  const [error, setError] = useState("")
+export default async function BlogPage() {
+  let posts: Post[] = []
+  let error = ""
 
-  useEffect(() => {
-    let mounted = true
-
-    fetch("/api/posts")
-      .then(async (response) => {
-        const data = await response.json()
-
-        if (!response.ok) {
-          throw new Error(data?.error || "Unable to fetch posts")
-        }
-
-        return data
-      })
-      .then((data) => {
-        if (!mounted) return
-        setPosts(data?.posts?.nodes || [])
-        setLoaded(true)
-      })
-      .catch((fetchError) => {
-        if (!mounted) return
-        console.error("Unable to load blog posts", fetchError)
-        setError("Unable to load posts")
-        setLoaded(true)
-      })
-
-    return () => {
-      mounted = false
-    }
-  }, [])
+  try {
+    const data = await getPosts()
+    posts = data.posts?.nodes || []
+  } catch (fetchError) {
+    console.error("Unable to load blog posts", fetchError)
+    error = "Unable to load posts"
+  }
 
   const visiblePosts = posts.filter((post) => post.featuredImage?.node?.mediaItemUrl)
 
@@ -304,18 +291,13 @@ export default function BlogPage() {
           </div>
 
           <section className="blog-grid-section">
-          {!loaded ? (
-            <div className="blog-loading">
-              <span className="blog-spinner" />
-              <span>Loading</span>
-            </div>
-          ) : error ? (
+          {error ? (
             <div className="blog-state">{error}</div>
           ) : visiblePosts.length === 0 ? (
             <div className="blog-state">No posts found</div>
           ) : (
             <div className="blog-grid">
-              {visiblePosts.map((post) => {
+              {visiblePosts.map((post, index) => {
                 const image = post.featuredImage?.node
                 const date = formatDate(post.date)
 
@@ -329,6 +311,9 @@ export default function BlogPage() {
                       src={image?.mediaItemUrl || ""}
                       alt={image?.altText || post.title}
                       className="blog-card-image"
+                      loading={index < 2 ? "eager" : "lazy"}
+                      fetchPriority={index === 0 ? "high" : "auto"}
+                      decoding="async"
                     />
                     <div className="blog-card-content">
                       {date ? <span className="blog-date">{date}</span> : null}
