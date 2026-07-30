@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
@@ -38,7 +38,7 @@ export default function ThirdSection() {
   const card2Ref = useRef<HTMLDivElement>(null);
   const card3Ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
     const mm = gsap.matchMedia();
@@ -64,6 +64,7 @@ export default function ThirdSection() {
               scrub: isMobile ? 0.85 : 1,
               pin: true,
               anticipatePin: 1,
+              invalidateOnRefresh: true,
             },
           });
 
@@ -163,6 +164,8 @@ export default function ThirdSection() {
             .to({}, { duration: 0.04 }, 5.16);
         }
       );
+
+      requestAnimationFrame(() => ScrollTrigger.refresh());
     }, containerRef);
 
     return () => {
