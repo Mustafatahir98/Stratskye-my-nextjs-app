@@ -177,9 +177,8 @@ export default function SixthSection() {
 
                 ScrollTrigger.create({
                     trigger: containerRef.current,
-                    start: "top top",
+                    start: "top 78%",
                     end: "bottom 22%",
-                    invalidateOnRefresh: true,
                     onEnter: () => {
                         tl.restart();
                         carouselTl.restart();
@@ -227,16 +226,10 @@ export default function SixthSection() {
     return (
         <div
             ref={containerRef}
-            className="sixth-section post-shutter-section relative w-full overflow-hidden flex flex-col items-center justify-start z-20"
+            className="sixth-section post-shutter-section relative w-full h-[100vh] h-[100svh] overflow-hidden flex flex-col items-center justify-start z-20"
         >
             <style>{`
         .sixth-section {
-          height: 100vh;
-          min-height: 100vh;
-          max-height: 100vh;
-          height: 100dvh;
-          min-height: 100dvh;
-          max-height: 100dvh;
           background:
             radial-gradient(circle at 70% 38%, rgba(29, 49, 88, 0.3), transparent 58%),
             #0d172f;
@@ -334,7 +327,7 @@ export default function SixthSection() {
         /* --- MOBILE SPECIFIC OVERRIDES --- */
         @media (max-width: 760px) {
           .sixth-heading {
-            margin-top: clamp(88px, 12dvh, 108px);
+            margin-top: clamp(104px, 14svh, 126px);
             padding-inline: 24px;
           }
           .sixth-card-image {
@@ -362,12 +355,12 @@ export default function SixthSection() {
             letter-spacing: -0.045em;
           }
           .sixth-cards-stage {
-            top: clamp(230px, 29dvh, 270px);
+            top: clamp(230px, 29svh, 270px);
             width: calc(100vw - 32px);
-            height: calc(100dvh - 250px);
+            height: calc(100svh - 250px);
           }
           .sixth-card-content {
-            margin-top: clamp(12px, 2.2dvh, 20px);
+            margin-top: clamp(12px, 2.2svh, 20px);
           }
           .sixth-card-content .sixth-service-copy {
             margin-top: 10px;
@@ -375,7 +368,7 @@ export default function SixthSection() {
         }
         @media (max-width: 760px) and (max-height: 740px) {
           .sixth-heading {
-            margin-top: 78px;
+            margin-top: 92px;
           }
           .sixth-heading h2 {
             font-size: 38px;
@@ -385,7 +378,7 @@ export default function SixthSection() {
           }
           .sixth-cards-stage {
             top: 200px;
-            height: calc(100dvh - 214px);
+            height: calc(100svh - 214px);
           }
           .sixth-card-content {
             margin-top: 8px;
