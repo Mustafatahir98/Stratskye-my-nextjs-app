@@ -100,7 +100,7 @@ export default function TenthSection() {
           </h2>
           <p>StratSkye can build the professional growth machine your tech deserves.</p>
           <a href="/contact-form" className="tenth-cta">
-            <span className="tenth-cta-text">LETS CONNECT</span>
+            <span className="tenth-cta-text">LET&apos;S CONNECT</span>
             <span className="tenth-cta-arrow" aria-hidden="true" />
           </a>
         </div>
@@ -167,7 +167,7 @@ export default function TenthSection() {
           }}
           className="tenth-email"
         >
-          <a href="mailto:admin@stratskye.com">admin@stratskye</a>
+          <a href="mailto:admin@stratskye.com">admin@stratskye.com</a>
         </div>
       </div>
 
@@ -398,7 +398,7 @@ export default function TenthSection() {
         .tenth-social,
         .tenth-email {
           position: absolute;
-          z-index: 7;
+          z-index: 9;
           top: 72.5%;
           display: flex;
           flex-direction: column;
@@ -427,7 +427,9 @@ export default function TenthSection() {
           text-decoration: none;
           display: inline-flex;
           width: fit-content;
-          min-height: 16px;
+          min-height: 22px;
+          padding-inline: 8px;
+          margin-inline: -8px;
           align-items: center;
           line-height: 1;
           pointer-events: auto;
@@ -500,6 +502,7 @@ export default function TenthSection() {
           white-space: nowrap;
           text-align: center;
           text-shadow: 0 2px 8px rgba(0, 0, 0, 0.68);
+          pointer-events: none;
         }
         @keyframes tenthTape {
           0%, 100% { transform: rotate(-1.4deg) translateY(0); }
@@ -602,9 +605,6 @@ export default function TenthSection() {
           .tenth-email {
             top: 580px;
             font-size: 12px;
-          }
-          .tenth-social a {
-            min-height: 14px;
           }
           .tenth-social {
             gap: 2px;
@@ -716,9 +716,6 @@ export default function TenthSection() {
           .tenth-email {
             top: auto;
             font-size: 11px;
-          }
-          .tenth-social a {
-            min-height: 13px;
           }
           .tenth-social {
             gap: 1px;

@@ -345,7 +345,7 @@ export default function EightSection() {
             {/* Connect Link Call to Action */}
             <div className="link-wrapper z-20">
                 <a href="/contact-form" style={linkStyle}>
-                    LETS CONNECT
+                    LET&apos;S CONNECT
                 </a>
             </div>
 

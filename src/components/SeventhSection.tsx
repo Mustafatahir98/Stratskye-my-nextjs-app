@@ -267,7 +267,7 @@ export default function SeventhSection() {
         </h2>
 
         <a ref={linkRef} className="proof-link" href="/contact-form">
-          <span>LETS CONNECT</span>
+          <span>LET&apos;S CONNECT</span>
           <span className="proof-link-arrow" aria-hidden="true" />
         </a>
       </div>
