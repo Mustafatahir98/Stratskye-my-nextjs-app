@@ -138,7 +138,7 @@ export async function sendContactEmail(
 
   try {
     const { error } = await resend.emails.send({
-      from: "StratSkye Website <onboarding@resend.dev>",
+      from: "StratSkye Website <admin@stratskye.com>",
       to: recipientEmail,
       replyTo: email,
       subject: `New contact form submission from ${name}`,
@@ -210,7 +210,7 @@ export async function sendNewsletterSignupEmail(
 
   try {
     const { error } = await resend.emails.send({
-      from: "StratSkye Website <onboarding@resend.dev>",
+      from: "StratSkye Website <admin@stratskye.com>",
       to: recipientEmail,
       replyTo: email,
       subject: `New newsletter signup from ${name}`,
