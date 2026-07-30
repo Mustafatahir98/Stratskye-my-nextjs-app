@@ -283,9 +283,12 @@ export default function StorySection() {
             --story-top-lane: 12.6%;
             --story-bottom-lane: 87.4%;
             --story-copy-center: 44.55%;
-            height: calc(100svh - 80px);
-            min-height: calc(100svh - 80px);
-            max-height: calc(100svh - 80px);
+            height: calc(100vh - 80px);
+            min-height: calc(100vh - 80px);
+            max-height: calc(100vh - 80px);
+            height: calc(100dvh - 80px);
+            min-height: calc(100dvh - 80px);
+            max-height: calc(100dvh - 80px);
             background: #f7f3ee;
           }
           .story-root::before,
