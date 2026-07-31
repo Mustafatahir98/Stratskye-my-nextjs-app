@@ -7,18 +7,78 @@ export const metadata: Metadata = {
 };
 
 const projects = [
-  ["NovaSync", "Rebranding a SaaS platform for faster growth."],
-  ["CipherWave", "Building trust for a modern cybersecurity brand."],
-  ["VoltGrid AI", "Creating momentum for an AI infrastructure company."],
-  ["CoreStack Labs", "Simplifying complex tech through branding."],
-  ["ApexIQ", "Designing a scalable growth-focused brand system."],
-  ["InfraPulse", "Strengthening visibility for a cloud tech company."],
-  ["QuantumOps", "Crafting a premium enterprise software identity."],
-  ["DataForm", "Turning analytics into a clear digital experience."],
-  ["Nexum Systems", "Refreshing a tech brand for expansion."],
-  ["SecureLayer", "Building a stronger presence for enterprise trust."],
-  ["StackPilot", "Helping a B2B startup scale with confidence."],
-  ["OmniLoop", "Building a modern brand for a tech company."],
+  {
+    name: "NovaSync",
+    description: "Rebranding a SaaS platform for faster growth.",
+    image: "/images/work/novasync.jpg",
+    imageAlt: "Illuminated digital circuit board representing a connected SaaS platform",
+  },
+  {
+    name: "CipherWave",
+    description: "Building trust for a modern cybersecurity brand.",
+    image: "/images/work/cipherwave.jpg",
+    imageAlt: "Encrypted green data streams representing cybersecurity",
+  },
+  {
+    name: "VoltGrid AI",
+    description: "Creating momentum for an AI infrastructure company.",
+    image: "/images/work/voltgrid-ai.jpg",
+    imageAlt: "Blue illuminated computer keyboard representing AI infrastructure",
+  },
+  {
+    name: "CoreStack Labs",
+    description: "Simplifying complex tech through branding.",
+    image: "/images/work/corestack-labs.jpg",
+    imageAlt: "Software developer working across multiple code displays",
+  },
+  {
+    name: "ApexIQ",
+    description: "Designing a scalable growth-focused brand system.",
+    image: "/images/work/apexiq.jpg",
+    imageAlt: "Brand strategist organizing a wall of colorful planning notes",
+  },
+  {
+    name: "InfraPulse",
+    description: "Strengthening visibility for a cloud tech company.",
+    image: "/images/work/infrapulse.jpg",
+    imageAlt: "Colorful software code representing cloud technology",
+  },
+  {
+    name: "QuantumOps",
+    description: "Crafting a premium enterprise software identity.",
+    image: "/images/work/quantumops.jpg",
+    imageAlt: "Enterprise data center with rows of server infrastructure",
+  },
+  {
+    name: "DataForm",
+    description: "Turning analytics into a clear digital experience.",
+    image: "/images/work/dataform.jpg",
+    imageAlt: "Analytics dashboard with performance charts on a laptop",
+  },
+  {
+    name: "Nexum Systems",
+    description: "Refreshing a tech brand for expansion.",
+    image: "/images/work/nexum-systems.jpg",
+    imageAlt: "Technology team planning together around laptops and notes",
+  },
+  {
+    name: "SecureLayer",
+    description: "Building a stronger presence for enterprise trust.",
+    image: "/images/work/securelayer.jpg",
+    imageAlt: "Connected network cables inside secure infrastructure",
+  },
+  {
+    name: "StackPilot",
+    description: "Helping a B2B startup scale with confidence.",
+    image: "/images/work/stackpilot.jpg",
+    imageAlt: "Startup team collaborating around a shared table",
+  },
+  {
+    name: "OmniLoop",
+    description: "Building a modern brand for a tech company.",
+    image: "/images/work/omniloop.jpg",
+    imageAlt: "Connected world viewed from space at night",
+  },
 ];
 
 export default function WorkPage() {
@@ -66,6 +126,17 @@ export default function WorkPage() {
           height: auto;
           margin-top: clamp(6px, 1.4vw, 18px);
           justify-self: start;
+          animation: workSignatureFloat 2.8s ease-in-out infinite;
+          will-change: transform;
+        }
+        @keyframes workSignatureFloat {
+          0%,
+          100% {
+            transform: translate3d(0, -7px, 0);
+          }
+          50% {
+            transform: translate3d(0, 7px, 0);
+          }
         }
         .work-intro {
           width: min(100%, 340px);
@@ -93,6 +164,9 @@ export default function WorkPage() {
           text-decoration: none;
           aspect-ratio: 559 / 560;
           box-shadow: 0 18px 36px rgba(13, 22, 47, 0.08);
+          transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+            box-shadow 320ms ease;
+          will-change: transform;
         }
         .work-card::after {
           content: "";
@@ -101,19 +175,16 @@ export default function WorkPage() {
           border-radius: inherit;
           border: 1px solid rgba(13, 22, 47, 0.08);
           pointer-events: none;
-        }
-        .work-card:nth-child(3n) {
-          box-shadow: 0 0 0 4px #2f8df5, 0 18px 36px rgba(13, 22, 47, 0.08);
-        }
-        .work-card:nth-child(3n)::after {
-          border-color: rgba(242, 110, 53, 0.95);
-          border-width: 4px;
+          transition: border-color 280ms ease;
         }
         .work-card-image {
           width: 100%;
           height: 100%;
           object-fit: cover;
           display: block;
+          transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
+            filter 320ms ease;
+          will-change: transform;
         }
         .work-card-copy {
           position: absolute;
@@ -129,6 +200,25 @@ export default function WorkPage() {
           border-radius: 14px;
           background: rgba(247, 242, 238, 0.96);
           box-shadow: 0 8px 22px rgba(13, 22, 47, 0.08);
+          transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+            box-shadow 320ms ease;
+        }
+        @media (hover: hover) {
+          .work-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 28px 54px rgba(13, 22, 47, 0.16);
+          }
+          .work-card:hover::after {
+            border-color: rgba(242, 110, 53, 0.34);
+          }
+          .work-card:hover .work-card-image {
+            transform: scale(1.065);
+            filter: saturate(1.08) contrast(1.03);
+          }
+          .work-card:hover .work-card-copy {
+            transform: translateY(-4px);
+            box-shadow: 0 14px 30px rgba(13, 22, 47, 0.14);
+          }
         }
         .work-card-title {
           color: var(--blue);
@@ -286,19 +376,19 @@ export default function WorkPage() {
           </p>
 
           <div className="work-grid" aria-label="Selected StratSkye projects">
-            {projects.map(([name, description]) => (
-              <article className="work-card" key={name}>
+            {projects.map((project) => (
+              <article className="work-card" key={project.name}>
                 <Image
                   className="work-card-image"
-                  src="/images/Frame 1171275785.png"
+                  src={project.image}
                   width={559}
                   height={560}
-                  alt=""
+                  alt={project.imageAlt}
                   sizes="(max-width: 620px) calc(100vw - 36px), (max-width: 980px) calc((100vw - 64px) / 2), 360px"
                 />
                 <div className="work-card-copy">
-                  <h2 className="work-card-title">{name}</h2>
-                  <p className="work-card-description">{description}</p>
+                  <h2 className="work-card-title">{project.name}</h2>
+                  <p className="work-card-description">{project.description}</p>
                 </div>
               </article>
             ))}
