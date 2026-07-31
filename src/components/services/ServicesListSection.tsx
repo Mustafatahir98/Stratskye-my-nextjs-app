@@ -14,6 +14,8 @@ const services = [
       "Funnel strategy and appointment setting",
       "Marketing analytics and reporting",
     ],
+    image: "/images/services/demand-generation.jpg",
+    imageAlt: "Marketing team reviewing a campaign presentation in a meeting",
   },
   {
     label: "02 /",
@@ -28,6 +30,8 @@ const services = [
       "LinkedIn content strategy",
       "Content calendars and editorial planning",
     ],
+    image: "/images/services/content-thought-leadership.jpg",
+    imageAlt: "Writer developing content ideas and notes at a desk",
   },
   {
     label: "03 /",
@@ -42,6 +46,8 @@ const services = [
       "ABM reporting and account tracking",
       "Enterprise-focused content and sales assets",
     ],
+    image: "/images/services/account-based-marketing.jpg",
+    imageAlt: "Business team discussing a targeted account strategy",
   },
   {
     label: "04 /",
@@ -56,6 +62,8 @@ const services = [
       "Brand voice and tone guidelines",
       "Pitch decks and sales narrative support",
     ],
+    image: "/images/services/brand-positioning.jpg",
+    imageAlt: "Strategist organizing brand ideas on a wall of notes",
   },
   {
     label: "05 /",
@@ -70,6 +78,8 @@ const services = [
       "Growth campaign planning",
       "Performance tracking and reporting",
     ],
+    image: "/images/services/digital-growth-marketing.jpg",
+    imageAlt: "Digital marketing analytics dashboard displayed on a laptop",
   },
   {
     label: "06 /",
@@ -84,6 +94,8 @@ const services = [
       "Subject line and copy testing",
       "Campaign performance analysis",
     ],
+    image: "/images/services/email-marketing.jpg",
+    imageAlt: "Email inbox open on a laptop screen",
   },
 ];
 
@@ -91,20 +103,41 @@ export default function ServicesListSection() {
   return (
     <section className="services-list-section" aria-labelledby="services-list-title">
       <style>{`
+        .services-page {
+          background: #f7f2ee;
+        }
         .services-list-section {
           --blue: #0D162F;
           --service-ink: #F5F7FF;
           --service-muted: rgba(229, 236, 255, 0.62);
           --service-border: rgba(229, 236, 255, 0.08);
           --orange: #F26E35;
+          position: relative;
+          isolation: isolate;
           background: var(--post-shutter-bg);
           color: var(--service-ink);
           font-family: "Google Sans Flex";
-          border-radius: clamp(18px, 2vw, 32px);
+          border-radius: clamp(28px, 4vw, 56px);
           overflow: hidden;
           padding: clamp(28px, 4vw, 72px) clamp(28px, 4vw, 72px) clamp(80px, 10vw, 150px);
         }
+        .services-list-section::before {
+          content: "";
+          position: absolute;
+          z-index: 0;
+          inset: 0;
+          background-image: linear-gradient(
+            90deg,
+            rgba(229, 236, 255, 0.045) 1px,
+            transparent 1px
+          );
+          background-size: 12.5% 100%;
+          background-position: center top;
+          pointer-events: none;
+        }
         .services-list-shell {
+          position: relative;
+          z-index: 1;
           width: min(100%, 1328px);
           margin: 0 auto;
         }
@@ -286,7 +319,11 @@ export default function ServicesListSection() {
         }
         @media (max-width: 620px) {
           .services-list-section {
+            border-radius: 28px;
             padding: 22px 18px 78px;
+          }
+          .services-list-section::before {
+            background-size: 25% 100%;
           }
           .service-title-button {
             font-size: 34px;
@@ -331,10 +368,10 @@ export default function ServicesListSection() {
             <div className="service-media">
               <Image
                 className="service-image"
-                src="/images/Rectangle 4311.png"
+                src={service.image}
                 width={420}
                 height={240}
-                alt=""
+                alt={service.imageAlt}
               />
             </div>
           </article>
