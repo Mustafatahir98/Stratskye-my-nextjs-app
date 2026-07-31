@@ -284,6 +284,17 @@ export default function ContactFormHero() {
           height: auto;
           justify-self: end;
           margin-top: 58px;
+          animation: contactScrollNoteFloat 4s ease-in-out infinite;
+          will-change: transform;
+        }
+        @keyframes contactScrollNoteFloat {
+          0%,
+          100% {
+            transform: translate3d(0, -6px, 0);
+          }
+          50% {
+            transform: translate3d(0, 6px, 0);
+          }
         }
         .contact-form-intro {
           max-width: 650px;

@@ -51,6 +51,17 @@ export default function ServicesHero() {
           height: auto;
           justify-self: end;
           margin-top: 12px;
+          animation: servicesScrollNoteFloat 4s ease-in-out infinite;
+          will-change: transform;
+        }
+        @keyframes servicesScrollNoteFloat {
+          0%,
+          100% {
+            transform: translate3d(0, -6px, 0);
+          }
+          50% {
+            transform: translate3d(0, 6px, 0);
+          }
         }
         .services-hero-media-row {
           display: grid;
