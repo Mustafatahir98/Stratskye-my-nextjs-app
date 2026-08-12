@@ -250,7 +250,7 @@ export default function ServicesTestimonialSection() {
               there. Tell us where marketing feels stuck right now and we&apos;ll
               be direct about whether we can help.
             </p>
-            <Link className="services-testimonial-link" href="/contact">
+            <Link className="services-testimonial-link" href="/contact-form">
               <span>Start the Conversation</span>
               <span aria-hidden="true">-&gt;</span>
             </Link>

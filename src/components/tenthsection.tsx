@@ -98,7 +98,7 @@ export default function TenthSection() {
             <br />
             marketing together.
           </h2>
-          <p>StratSkye can build the professional growth machine your tech deserves.</p>
+          <p>Stratskye can build the professional growth machine your tech deserves.</p>
           <a href="/contact-form" className="tenth-cta">
             <span className="tenth-cta-text">LET&apos;S CONNECT</span>
             <span className="tenth-cta-arrow" aria-hidden="true" />
@@ -158,7 +158,7 @@ export default function TenthSection() {
           }}
           className="tenth-copyright"
         >
-          Copyright 2026 StratSkye. All rights reserved
+          Copyright 2026 Stratskye. All rights reserved
         </div>
 
         <div

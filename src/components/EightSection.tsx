@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -31,7 +32,8 @@ const linkStyle: React.CSSProperties & { leadingTrim?: string; textEdge?: string
 
 export default function EightSection() {
     const sectionRef = useRef<HTMLDivElement>(null);
-    const cardsRef = useRef<(HTMLImageElement | null)[]>([]);
+    const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+    const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
     useEffect(() => {
         gsap.registerPlugin(ScrollTrigger);
@@ -330,15 +332,29 @@ export default function EightSection() {
             {/* Responsive Cards Wrapper */}
             <div className="cards-main-container relative w-full z-20">
                 {cardImages.map((card, index) => (
-                    <img
+                    <div
                         key={card.src}
                         ref={(el) => {
                             cardsRef.current[index] = el;
                         }}
-                        src={card.src}
-                        alt={`Card ${index + 1}`}
                         className={`eight-card ${card.className}`}
-                    />
+                    >
+                        <Image
+                            src={card.src}
+                            alt={`Card ${index + 1}`}
+                            width={479}
+                            height={457}
+                            sizes="(max-width: 767px) min(320px, calc(100vw - 48px)), min(25.2vw, 280px)"
+                            className="eight-card-image"
+                            onPointerEnter={() => setHoveredCard(index)}
+                            onPointerLeave={() => setHoveredCard(null)}
+                            style={hoveredCard === index ? {
+                                transform: "translateY(-18px) scale(1.065) rotateX(2deg)",
+                                filter: "brightness(1.04) drop-shadow(0 30px 38px rgba(3, 7, 18, 0.5)) drop-shadow(0 0 24px rgba(255, 107, 40, 0.38))",
+                                boxShadow: "0 0 0 2px rgba(255, 107, 40, 0.72), 0 18px 50px rgba(255, 107, 40, 0.18)",
+                            } : undefined}
+                        />
+                    </div>
                 ))}
             </div>
 
@@ -412,9 +428,24 @@ export default function EightSection() {
                 .eight-card {
                     width: 100%;
                     max-width: 320px; /* High fidelity full size display on mobile */
+                    pointer-events: auto;
+                    will-change: transform;
+                }
+                .eight-card-image {
+                    display: block;
+                    width: 100%;
                     height: auto;
                     object-fit: contain;
-                    will-change: transform;
+                    border-radius: 14px;
+                    filter: drop-shadow(0 14px 24px rgba(3, 7, 18, 0.18));
+                    box-shadow: 0 0 0 0 rgba(255, 107, 40, 0);
+                    cursor: pointer;
+                    pointer-events: auto;
+                    transition:
+                        transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+                        filter 420ms ease,
+                        box-shadow 420ms ease;
+                    will-change: transform, filter, box-shadow;
                 }
                 .link-wrapper {
                     margin-top: 4rem;
@@ -459,7 +490,7 @@ export default function EightSection() {
                         width: 100%;
                         height: 100%;
                         padding-inline: 0;
-                        pointer-events: none;
+                        pointer-events: auto;
                         max-width: none;
                     }
                     .eight-card {
@@ -477,6 +508,26 @@ export default function EightSection() {
                         width: auto;
                         margin-top: 0;
                         margin-bottom: 0;
+                    }
+                }
+
+                .eight-card:hover {
+                    z-index: 50 !important;
+                }
+                .eight-card:hover .eight-card-image {
+                    transform: translateY(-18px) scale(1.065) rotateX(2deg);
+                    filter:
+                        brightness(1.04)
+                        drop-shadow(0 30px 38px rgba(3, 7, 18, 0.5))
+                        drop-shadow(0 0 24px rgba(255, 107, 40, 0.38));
+                    box-shadow:
+                        0 0 0 2px rgba(255, 107, 40, 0.72),
+                        0 18px 50px rgba(255, 107, 40, 0.18);
+                }
+
+                @media (prefers-reduced-motion: reduce) {
+                    .eight-card-image {
+                        transition-duration: 1ms;
                     }
                 }
 

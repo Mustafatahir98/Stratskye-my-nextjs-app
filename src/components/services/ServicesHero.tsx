@@ -7,7 +7,6 @@ export default function ServicesHero() {
         .services-hero {
           --blue: #0D162F;
           --orange: #F26E35;
-          min-height: 100vh;
           background: #f7f2ee;
           color: var(--blue);
           font-family: "Google Sans Flex";
