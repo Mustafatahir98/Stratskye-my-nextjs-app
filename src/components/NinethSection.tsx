@@ -54,6 +54,41 @@ export default function NinethSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const introRefs = useRef<(HTMLElement | null)[]>([]);
   const cardRefs = useRef<(HTMLElement | HTMLImageElement | null)[]>([]);
+  const touchStartRef = useRef<{ x: number; y: number } | null>(null);
+
+  const showPreviousTestimonial = () => {
+    setActiveTestimonial((current) =>
+      (current - 1 + testimonials.length) % testimonials.length
+    );
+  };
+
+  const showNextTestimonial = () => {
+    setActiveTestimonial((current) => (current + 1) % testimonials.length);
+  };
+
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    const touch = event.touches[0];
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+  };
+
+  const handleTouchEnd = (event: React.TouchEvent<HTMLDivElement>) => {
+    const start = touchStartRef.current;
+    const touch = event.changedTouches[0];
+    touchStartRef.current = null;
+
+    if (!start || !touch) return;
+
+    const deltaX = touch.clientX - start.x;
+    const deltaY = touch.clientY - start.y;
+
+    if (Math.abs(deltaX) < 45 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+
+    if (deltaX < 0) {
+      showNextTestimonial();
+    } else {
+      showPreviousTestimonial();
+    }
+  };
 
   // Automatic testimonial loop
   useEffect(() => {
@@ -383,9 +418,19 @@ export default function NinethSection() {
               cardRefs.current[4] = el;
             }}
             className="success-card"
+            aria-label="Customer testimonials. Swipe left or right to change testimonial."
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onTouchCancel={() => {
+              touchStartRef.current = null;
+            }}
           >
             <div className="success-label">SUCCESS STORIES</div>
-            <div key={activeTestimonial} className="success-slide">
+            <div
+              key={activeTestimonial}
+              className="success-slide"
+              aria-live="polite"
+            >
               <p>{testimonial.quote}</p>
               <div className="success-author">
                 <span className="author-photo">{testimonial.initials}</span>
@@ -532,9 +577,11 @@ export default function NinethSection() {
           position: relative;
           display: flex;
           flex-direction: column;
+          height: 244px;
           padding: 20px 18px;
           background: #172852;
           box-shadow: inset 0 1px rgba(255, 255, 255, 0.04);
+          touch-action: pan-y;
         }
         .success-label {
           position: relative;
@@ -559,8 +606,12 @@ export default function NinethSection() {
         }
         .success-card p {
           color: #f3f6ff;
-          font-size: 12px;
-          line-height: 1.45;
+          font-size: 14px;
+          font-weight: 450;
+          line-height: 1.5;
+          letter-spacing: 0.005em;
+          text-rendering: optimizeLegibility;
+          -webkit-font-smoothing: antialiased;
         }
         .success-author {
           display: flex;
@@ -601,15 +652,15 @@ export default function NinethSection() {
         }
         .success-author strong {
           display: block;
-          font-size: 11px;
+          font-size: 12px;
           font-weight: 700;
-          line-height: 1.2;
+          line-height: 1.3;
         }
         .success-author small {
           display: block;
-          color: rgba(255, 255, 255, 0.52);
-          font-size: 9px;
-          line-height: 1.2;
+          color: rgba(255, 255, 255, 0.68);
+          font-size: 10px;
+          line-height: 1.3;
         }
 
         /* --- DESKTOP LAYOUT OVERRIDES (768px and up) --- */
@@ -676,14 +727,14 @@ export default function NinethSection() {
           .success-card { left: 428px; width: 384px; padding: 24px 20px 18px; }
           .success-label { font-size: 8px; margin-bottom: 0; }
           .success-slide { min-height: 188px; justify-content: flex-start; padding-bottom: 28px; }
-          .success-card p { margin-top: 20px; font-size: 12px; line-height: 1.38; }
+          .success-card p { margin-top: 20px; font-size: 13.5px; line-height: 1.48; }
           .success-author { margin-top: 16px; gap: 9px; }
           .dots-container { position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%); margin-top: 0; gap: 8px; }
           .testimonial-dot { width: 22px; height: 4px; }
           .testimonial-dot.is-active { width: 36px; }
           .author-photo { width: 28px; height: 28px; font-size: 12px; }
-          .success-author strong { font-size: 10px; }
-          .success-author small { font-size: 8px; }
+          .success-author strong { font-size: 11px; }
+          .success-author small { font-size: 9px; }
         }
 
         @media (min-width: 900px) {
