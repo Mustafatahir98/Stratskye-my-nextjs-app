@@ -745,7 +745,7 @@ export default function OurApproachPage() {
           <div className="approach-copy">
             <CopyBlock items={closingCopy} />
             <Link className="approach-cta" href="/contact-form">
-              Book a Strategy Call
+              BOOK A STRATEGY CALL
             </Link>
           </div>
         </div>

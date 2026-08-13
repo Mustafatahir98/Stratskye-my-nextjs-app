@@ -408,7 +408,7 @@ export default function WorkPage() {
               we&apos;ll build the momentum.
             </p>
             <a className="work-together-link" href="/contact-form">
-              You can say hello
+              YOU CAN SAY HELLO
               <span aria-hidden="true">-&gt;</span>
             </a>
           </div>

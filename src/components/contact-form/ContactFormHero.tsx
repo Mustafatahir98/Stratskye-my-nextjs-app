@@ -389,6 +389,7 @@ export default function ContactFormHero() {
           font-weight: 500;
           line-height: 120%;
           letter-spacing: -0.36px;
+          text-transform: uppercase;
           box-shadow: 0 14px 28px rgba(13, 22, 47, 0.08);
           cursor: pointer;
           transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
@@ -571,7 +572,7 @@ export default function ContactFormHero() {
             type="submit"
             disabled={isPending || !isFormValid}
           >
-            {isPending ? "Sending..." : "Submit"}
+            {isPending ? "SENDING..." : "SUBMIT"}
           </button>
           {status.message ? (
             <p className="contact-form-status" data-state={status.type}>

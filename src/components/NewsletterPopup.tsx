@@ -19,30 +19,26 @@ export default function NewsletterPopup() {
   const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
-    if (isOpen) {
-      setIsTriggerVisible(false);
-      return;
-    }
-
     let visibleTimer: number | undefined;
     let hiddenTimer: number | undefined;
 
-    const showTrigger = () => {
-      setIsTriggerVisible(true);
-
+    const scheduleTriggerCycle = () => {
       visibleTimer = window.setTimeout(() => {
         setIsTriggerVisible(false);
-        hiddenTimer = window.setTimeout(showTrigger, triggerHiddenMs);
+        hiddenTimer = window.setTimeout(() => {
+          setIsTriggerVisible(true);
+          scheduleTriggerCycle();
+        }, triggerHiddenMs);
       }, triggerVisibleMs);
     };
 
-    showTrigger();
+    scheduleTriggerCycle();
 
     return () => {
       window.clearTimeout(visibleTimer);
       window.clearTimeout(hiddenTimer);
     };
-  }, [isOpen]);
+  }, []);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -259,6 +255,7 @@ export default function NewsletterPopup() {
           font: inherit;
           font-size: 12px;
           font-weight: 500;
+          text-transform: uppercase;
           cursor: pointer;
           box-shadow: 0 10px 20px rgba(17, 25, 46, 0.08);
           transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
@@ -375,7 +372,7 @@ export default function NewsletterPopup() {
             </div>
           </div>
           <button className="newsletter-submit" type="submit" disabled={isPending}>
-            {isPending ? "Submitting..." : "Submit"}
+            {isPending ? "SUBMITTING..." : "SUBMIT"}
           </button>
           {status.message ? (
             <p className="newsletter-status" data-state={status.type}>

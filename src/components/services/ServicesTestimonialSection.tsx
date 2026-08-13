@@ -77,6 +77,7 @@ export default function ServicesTestimonialSection() {
           line-height: 120%;
           letter-spacing: 1.1px;
           text-transform: uppercase;
+          text-transform: uppercase;
         }
         .services-testimonial-meta {
           display: flex;
@@ -251,7 +252,7 @@ export default function ServicesTestimonialSection() {
               be direct about whether we can help.
             </p>
             <Link className="services-testimonial-link" href="/contact-form">
-              <span>Start the Conversation</span>
+              <span>START THE CONVERSATION</span>
               <span aria-hidden="true">-&gt;</span>
             </Link>
           </div>

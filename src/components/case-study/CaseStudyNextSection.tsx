@@ -199,7 +199,7 @@ export default function CaseStudyNextSection() {
               we&apos;ll build the momentum.
             </p>
             <Link className="case-study-next-link" href="/contact-form">
-              <span>You can say hello!</span>
+              <span>YOU CAN SAY HELLO!</span>
               <span aria-hidden="true">-&gt;</span>
             </Link>
           </div>

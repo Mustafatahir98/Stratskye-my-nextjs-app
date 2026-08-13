@@ -401,10 +401,10 @@ export default function SinglePostClient({ post }: { post: SinglePost }) {
                 Bring the vision, we&apos;ll build the momentum.
               </p>
               <Link href="/blog" className="single-back">
-                All Articles
+                ALL ARTICLES
               </Link>
               <Link href="/contact-form" className="single-contact">
-                You can say hello <span aria-hidden="true">-&gt;</span>
+                YOU CAN SAY HELLO <span aria-hidden="true">-&gt;</span>
               </Link>
             </div>
           </section>

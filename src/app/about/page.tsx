@@ -324,11 +324,13 @@ const teamCopy = [
 
 const founderCards = [
   {
-    line: "Noor Farjad \u2014 Co-founder and CEO.",
+    name: "Noor Farjad",
+    role: "Co-founder and CEO",
     copy: "Computer Engineer, NUST. APICTA 2015 Gold Award recipient. Former fractional CMO in deep tech. Stratskye founder since 2019.",
   },
   {
-    line: "Farjad \u2014 Co-founder.",
+    name: "Farjad",
+    role: "Co-founder",
     copy: "Electrical Engineer. Built foreign language applications and augmented reality products before spending a decade in Manufacturing Excellence at P&G, where he developed the systems thinking that now runs every Stratskye engagement. Stratskye operational architect.",
   },
 ];
@@ -761,13 +763,33 @@ export default function AboutPage() {
         }
         .about-founder-card h3 {
           color: var(--blue);
-          font-size: 24px;
+          font-size: 26px;
           font-weight: 600;
-          line-height: 110%;
+          line-height: 115%;
           letter-spacing: 0;
         }
+        .about-founder-role {
+          display: flex;
+          align-items: center;
+          gap: 9px;
+          margin-top: 11px;
+          color: var(--orange);
+          font-size: 10px;
+          font-weight: 700;
+          line-height: 130%;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+        }
+        .about-founder-role::before {
+          content: "";
+          width: 18px;
+          height: 1px;
+          flex: 0 0 auto;
+          background: currentColor;
+          box-shadow: 0 0 10px rgba(242, 110, 53, 0.34);
+        }
         .about-founder-card p {
-          margin-top: 16px;
+          margin-top: 20px;
           color: var(--ink);
           font-size: 16px;
           line-height: 145%;
@@ -968,7 +990,7 @@ export default function AboutPage() {
               down.
             </p>
             <Link className="about-button" href="/contact-form">
-              Book a Strategy Call
+              BOOK A STRATEGY CALL
             </Link>
           </div>
         </div>
@@ -1103,7 +1125,7 @@ export default function AboutPage() {
             finish.
           </p>
           <Link className="about-button" href="/case-study">
-            Explore the Case Studies
+            EXPLORE THE CASE STUDIES
           </Link>
         </div>
 
@@ -1118,7 +1140,7 @@ export default function AboutPage() {
             most direct way to see it.
           </p>
           <Link className="about-button" href="/case-study">
-            View Client Case Studies
+            VIEW CLIENT CASE STUDIES
           </Link>
         </div>
       </section>
@@ -1161,10 +1183,10 @@ export default function AboutPage() {
                 <div className="about-figure-frame">
                   <Image
                     className="about-figure-image"
-                    src="/images/Rectangle 4307.png"
-                    width={760}
-                    height={428}
-                    alt="Noor, Farjad, and the broader Stratskye team"
+                    src="/images/about-tech-team.jpg"
+                    width={1260}
+                    height={750}
+                    alt="Software engineers collaborating around computer screens"
                   />
                 </div>
               </figure>
@@ -1173,8 +1195,9 @@ export default function AboutPage() {
 
             <div className="about-founder-cards">
               {founderCards.map((founder) => (
-                <article className="about-founder-card about-reveal" key={founder.line}>
-                  <h3>{founder.line}</h3>
+                <article className="about-founder-card about-reveal" key={founder.name}>
+                  <h3>{founder.name}</h3>
+                  <div className="about-founder-role">{founder.role}</div>
                   <p>{founder.copy}</p>
                 </article>
               ))}
@@ -1215,7 +1238,7 @@ export default function AboutPage() {
           whether there is a system worth building for your specific situation.
         </p>
         <Link className="about-button about-reveal" href="/contact-form">
-          Book a Strategy Call
+          BOOK A STRATEGY CALL
         </Link>
         <div className="about-footer-line about-reveal">
           Stratskye | Founded 2019 | Team of 11 Specialists B2B Growth Marketing | LinkedIn | SEO | Content | Lead Generation admin@stratskye.com
