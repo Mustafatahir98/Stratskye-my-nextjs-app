@@ -14,7 +14,7 @@ const services = [
       "Funnel strategy and appointment setting",
       "Marketing analytics and reporting",
     ],
-    image: "/images/services/demand-generation.jpg",
+    image: "/images/services/demand-generation 1.webp",
     imageAlt: "Marketing team reviewing a campaign presentation in a meeting",
   },
   {
@@ -30,7 +30,7 @@ const services = [
       "LinkedIn content strategy",
       "Content calendars and editorial planning",
     ],
-    image: "/images/services/content-thought-leadership.jpg",
+    image: "/images/services/content-thought-leadership 1.webp",
     imageAlt: "Writer developing content ideas and notes at a desk",
   },
   {
@@ -46,7 +46,7 @@ const services = [
       "ABM reporting and account tracking",
       "Enterprise-focused content and sales assets",
     ],
-    image: "/images/services/account-based-marketing.jpg",
+    image: "/images/services/account-based-marketing 1.webp",
     imageAlt: "Business team discussing a targeted account strategy",
   },
   {
@@ -62,7 +62,7 @@ const services = [
       "Brand voice and tone guidelines",
       "Pitch decks and sales narrative support",
     ],
-    image: "/images/services/brand-positioning.jpg",
+    image: "/images/services/brand-positioning 1.webp",
     imageAlt: "Strategist organizing brand ideas on a wall of notes",
   },
   {
@@ -78,7 +78,7 @@ const services = [
       "Growth campaign planning",
       "Performance tracking and reporting",
     ],
-    image: "/images/services/digital-growth-marketing.jpg",
+    image: "/images/services/digital-growth-marketing 1.webp",
     imageAlt: "Digital marketing analytics dashboard displayed on a laptop",
   },
   {
@@ -94,7 +94,7 @@ const services = [
       "Subject line and copy testing",
       "Campaign performance analysis",
     ],
-    image: "/images/services/email-marketing.jpg",
+    image: "/images/services/email-marketing 1.webp",
     imageAlt: "Email inbox open on a laptop screen",
   },
 ];

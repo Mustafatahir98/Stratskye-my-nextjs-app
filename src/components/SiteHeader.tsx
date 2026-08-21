@@ -335,11 +335,40 @@ export default function SiteHeader() {
           .navbar.is-scrolled .nav-links { display: none; }
           .navbar.is-scrolled .nav-menu { display: grid; }
           .nav-menu.is-open { right: 16px; top: 12px; }
-          .menu-panel { inset: 0; width: 100%; min-height: 100dvh; border: 0; border-radius: 0; padding: max(96px, env(safe-area-inset-top)) 28px max(30px, env(safe-area-inset-bottom)); transform: translateY(-18px); }
-          .menu-list { gap: clamp(4px, 1.2vh, 10px); padding-right: 56px; }
-          .menu-link { min-height: clamp(40px, 8vh, 58px); font-size: clamp(36px, 12vw, 56px); }
-          .menu-social { padding-top: 30px; }
-          .menu-social-link { font-size: clamp(20px, 6vw, 28px); }
+          .menu-panel {
+            inset: 0;
+            width: 100%;
+            height: 100dvh;
+            min-height: 0;
+            max-height: 100dvh;
+            overflow-x: hidden;
+            overflow-y: auto;
+            overscroll-behavior: contain;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-gutter: stable;
+            border: 0;
+            border-radius: 0;
+            padding: max(82px, calc(env(safe-area-inset-top) + 68px)) 24px max(30px, calc(env(safe-area-inset-bottom) + 24px));
+            transform: translateY(-18px);
+          }
+          .menu-list { gap: 1px; padding-right: 54px; }
+          .menu-link {
+            min-height: 0;
+            padding: 3px 0;
+            font-size: clamp(32px, 10.5vw, 48px);
+            line-height: 0.95;
+          }
+          .menu-social { margin-top: 18px; padding-top: 0; flex: 0 0 auto; }
+          .menu-social::before { margin-bottom: 14px; }
+          .menu-social-list { gap: 2px; }
+          .menu-social-link { font-size: clamp(18px, 5vw, 22px); line-height: 1.15; }
+        }
+        @media (max-width: 980px) and (max-height: 720px) {
+          .menu-panel { padding-top: max(76px, calc(env(safe-area-inset-top) + 62px)); }
+          .menu-link { padding: 2px 0; font-size: clamp(28px, 6.5vh, 36px); }
+          .menu-social { margin-top: 14px; }
+          .menu-social::before { margin-bottom: 10px; }
+          .menu-social-link { font-size: clamp(16px, 4vh, 19px); }
         }
       `}</style>
 
