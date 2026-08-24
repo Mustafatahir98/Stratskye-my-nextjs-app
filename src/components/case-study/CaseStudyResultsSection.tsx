@@ -187,7 +187,7 @@ export default function CaseStudyResultsSection() {
             id="case-study-results-title"
             className="case-study-testimonial-quote"
           >
-            “Working with StratSkye felt like adding a true growth partner to our
+            “Working with Stratskye felt like adding a true growth partner to our
             team. They were proactive, strategic, and helped us improve
             everything from our brand positioning to our digital presence. Highly
             recommend them to any tech company serious about scaling.”

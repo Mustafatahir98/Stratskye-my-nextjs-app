@@ -130,7 +130,7 @@ export default function CaseStudySummarySection() {
 
             <p className="case-study-summary-text">
               Great tech deserves more than visibility. It deserves trust,
-              traction, and momentum. At StratSkye, we don&apos;t just offer
+              traction, and momentum. At Stratskye, we don&apos;t just offer
               marketing services, we build growth systems. Branding. Websites.
               Social authority. Lead generation. Whether you need a stronger
               presence, a website that actually converts, or a brand people

@@ -113,7 +113,7 @@ export default function TenthSection() {
         >
           <span className="tenth-connector tenth-connector-left" aria-hidden="true" />
           <span className="tenth-connector tenth-connector-right" aria-hidden="true" />
-          <img src={hangingLogo} alt="StratSkye hanging logo" className="tenth-logo-orb" />
+          <img src={hangingLogo} alt="Stratskye hanging logo" className="tenth-logo-orb" />
         </div>
 
         <div
@@ -137,7 +137,7 @@ export default function TenthSection() {
           className="tenth-wordmark"
         >
           <img src={wordmarkIcon} alt="" className="tenth-wordmark-icon" />
-          <img src={wordmarkText} alt="StratSkye" className="tenth-wordmark-text" />
+          <img src={wordmarkText} alt="Stratskye" className="tenth-wordmark-text" />
         </div>
 
         <div

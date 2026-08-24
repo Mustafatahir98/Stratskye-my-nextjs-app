@@ -122,7 +122,7 @@ export async function sendContactEmail(
     
   const html = `
     <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #0D162F;">
-      <h2 style="margin: 0 0 16px;">New StratSkye contact form submission</h2>
+      <h2 style="margin: 0 0 16px;">New Stratskye contact form submission</h2>
       <p><strong>Name:</strong> ${escapeHtml(name)}</p>
       <p><strong>Email:</strong> ${escapeHtml(email)}</p>
       ${company ? `<p><strong>Company:</strong> ${escapeHtml(company)}</p>` : ""}
@@ -138,7 +138,7 @@ export async function sendContactEmail(
 
   try {
     const { error } = await resend.emails.send({
-      from: "StratSkye Website <admin@stratskye.com>",
+      from: "Stratskye Website <admin@stratskye.com>",
       to: recipientEmail,
       replyTo: email,
       subject: `New contact form submission from ${name}`,
@@ -194,7 +194,7 @@ export async function sendNewsletterSignupEmail(
   }
 
   const plainText = [
-    "New StratSkye newsletter signup",
+    "New Stratskye newsletter signup",
     "",
     `Name: ${name}`,
     `Email: ${email}`,
@@ -202,7 +202,7 @@ export async function sendNewsletterSignupEmail(
 
   const html = `
     <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #0D162F;">
-      <h2 style="margin: 0 0 16px;">New StratSkye newsletter signup</h2>
+      <h2 style="margin: 0 0 16px;">New Stratskye newsletter signup</h2>
       <p><strong>Name:</strong> ${escapeHtml(name)}</p>
       <p><strong>Email:</strong> ${escapeHtml(email)}</p>
     </div>
@@ -210,7 +210,7 @@ export async function sendNewsletterSignupEmail(
 
   try {
     const { error } = await resend.emails.send({
-      from: "StratSkye Website <admin@stratskye.com>",
+      from: "Stratskye Website <admin@stratskye.com>",
       to: recipientEmail,
       replyTo: email,
       subject: `New newsletter signup from ${name}`,

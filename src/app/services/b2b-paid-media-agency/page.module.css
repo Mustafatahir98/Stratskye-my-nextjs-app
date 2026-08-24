@@ -1,0 +1,27 @@
+.heroButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.secondaryButton {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+}
+
+.secondaryButton:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 560px) {
+  .heroButtons {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .heroButtons a {
+    width: 100%;
+  }
+}

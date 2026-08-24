@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | StratSkye",
+  title: "Privacy Policy | Stratskye",
   description: "How Stratskye collects, uses, and protects your information.",
 };
 

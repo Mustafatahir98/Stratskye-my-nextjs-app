@@ -15,6 +15,15 @@ const menuItems = [
   { label: "Contact", href: "/contact-form" },
 ];
 
+const servicePages = [
+  { label: "B2B Lead Generation", href: "/services/b2b-lead-generation-services" },
+  { label: "B2B Demand Generation", href: "/services/b2b-demand-generation-services" },
+  { label: "B2B Content Marketing", href: "/services/b2b-content-marketing-services" },
+  { label: "Marketing Automation", href: "/services/b2b-marketing-automation-services" },
+  { label: "B2B Paid Media", href: "/services/b2b-paid-media-agency" },
+  { label: "B2B SEO", href: "/services/b2b-seo-services" },
+];
+
 const socialItems = [
   { label: "Instagram", href: "https://www.instagram.com/stratskye?igsh=MXd4eDVieWw2bzY4Zw%3D%3D" },
   { label: "LinkedIn", href: "https://www.linkedin.com/authwall?trk=bf&trkInfo=AQGe1p6w0mMtMgAAAZ7zplnQRcb0HyobHNWVctVbGuXOCniiT21f1yzoDn8blbd5xE6i8gBP3v3UQE_LwnagVyV3Md1F0toBKlS2QWmCBhOfNcYFhiV5Ml3YJvqc1bnbCPSYW2k=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fcompany%2F101893541%2Fadmin%2Fdashboard%2F" },
@@ -182,7 +191,9 @@ export default function SiteHeader() {
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
     };
 
     window.addEventListener("keydown", handleKeyDown);
@@ -252,6 +263,16 @@ export default function SiteHeader() {
         .nav-link:hover, .nav-link:focus-visible, .nav-link.is-active { color: #fff; outline: none; }
         .nav-link:hover, .nav-link:focus-visible { transform: translateY(-1px); }
         .nav-link.is-active::after { content: ""; position: absolute; left: 50%; bottom: -10px; width: 5px; height: 5px; border-radius: 999px; background: #f26e35; transform: translateX(-50%); box-shadow: 0 0 12px rgba(242,110,53,0.85); }
+        .nav-services { position: relative; display: flex; align-items: center; }
+        .nav-services > .nav-link { display: inline-flex; align-items: center; }
+        .nav-services-flyout { position: absolute; top: 100%; left: 50%; width: 300px; padding-top: 20px; transform: translateX(-50%); visibility: hidden; opacity: 0; pointer-events: none; transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.24s cubic-bezier(.22,1,.36,1); }
+        .nav-services:hover .nav-services-flyout, .nav-services:focus-within .nav-services-flyout { visibility: visible; opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+        .nav-services-card { padding: 10px; border-radius: 8px; background: rgba(8,14,32,0.94); box-shadow: 0 16px 34px rgba(10,17,40,0.2); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+        .nav-services-list { list-style: none; display: grid; gap: 2px; margin: 0; padding: 0; }
+        .nav-service-link { display: flex; align-items: center; justify-content: space-between; min-height: 38px; padding: 8px 10px; border-radius: 6px; color: rgba(255,255,255,0.72); font-size: 13px; font-weight: 600; line-height: 1.2; letter-spacing: 0.01em; text-decoration: none; text-transform: none; transition: color 0.18s ease, background 0.18s ease, transform 0.18s ease; }
+        .nav-service-link::after { content: "↗"; color: #f26e35; font-size: 14px; opacity: 0; transform: translate(-4px, 4px); transition: opacity 0.18s ease, transform 0.18s ease; }
+        .nav-service-link:hover, .nav-service-link:focus-visible, .nav-service-link.is-active { color: #fff; background: rgba(255,255,255,0.08); outline: none; transform: translateX(2px); }
+        .nav-service-link:hover::after, .nav-service-link:focus-visible::after, .nav-service-link.is-active::after { opacity: 1; transform: translate(0, 0); }
         .nav-center { position: absolute; left: 32%; right: 32%; height: 100%; display: flex; align-items: center; justify-content: center; gap: 18px; font-size: 11px; font-weight: 600; font-family: "Google Sans Flex"; letter-spacing: 0.15em; color: rgba(255, 255, 255, 0.95); text-transform: uppercase; mix-blend-mode: difference; white-space: nowrap; transition: opacity 0.22s ease; }
         .nav-location { max-width: 190px; overflow: hidden; text-overflow: ellipsis; }
         .nav-time { display: inline-flex; align-items: center; gap: 8px; color: rgb(254 215 170); }
@@ -283,6 +304,12 @@ export default function SiteHeader() {
         .menu-overlay.is-open .menu-list li:nth-child(7) .menu-link { transition-delay: 255ms; }
         .menu-link:hover, .menu-link:focus-visible, .menu-link.is-active { color: #0a1128; outline: none; }
         .menu-link.is-active::before { content: ""; position: absolute; left: -18px; top: 50%; width: 8px; height: 8px; border-radius: 50%; background: #f26e35; transform: translateY(-50%); }
+        .menu-services { position: relative; }
+        .menu-services-flyout { position: static; width: 100%; max-height: 0; overflow: hidden; visibility: hidden; opacity: 0; pointer-events: none; transition: max-height 0.34s cubic-bezier(.22,1,.36,1), opacity 0.2s ease, visibility 0.2s ease; }
+        .menu-services:hover .menu-services-flyout, .menu-services:focus-within .menu-services-flyout { max-height: 320px; visibility: visible; opacity: 1; pointer-events: auto; }
+        .menu-services-card { padding: 6px 0 8px 18px; }
+        .menu-service-link { display: flex; align-items: center; min-height: 31px; padding: 4px 0; color: #777b8e; font-size: 14px; font-weight: 600; line-height: 1.2; text-decoration: none; transition: color 0.18s ease, transform 0.18s ease; }
+        .menu-service-link:hover, .menu-service-link:focus-visible, .menu-service-link.is-active { color: #0a1128; outline: none; transform: translateX(3px); }
         .menu-social { margin-top: auto; padding-top: 28px; }
         .menu-social::before { content: ""; display: block; height: 1px; margin: 0 0 26px; background: rgba(155,171,219,0.74); }
         .menu-social-list { list-style: none; display: grid; gap: 4px; margin: 0; padding: 0; }
@@ -358,6 +385,9 @@ export default function SiteHeader() {
             font-size: clamp(32px, 10.5vw, 48px);
             line-height: 0.95;
           }
+          .menu-services-flyout { max-height: none; overflow: visible; visibility: visible; opacity: 1; pointer-events: auto; }
+          .menu-services-card { padding: 4px 0 6px 18px; }
+          .menu-service-link { min-height: 29px; padding: 3px 0; font-size: 13px; }
           .menu-social { margin-top: 18px; padding-top: 0; flex: 0 0 auto; }
           .menu-social::before { margin-bottom: 14px; }
           .menu-social-list { gap: 2px; }
@@ -376,12 +406,43 @@ export default function SiteHeader() {
 
       <nav className={`navbar px-8 ${hasScrolled ? "is-scrolled" : ""}`}>
         <div className="navbar-bg" />
-        <Link className="logo" href="/" onClick={() => setMenuOpen(false)} aria-label="StratSkye home">
-          <img className="logo-image" src="/images/Logo Container.png" alt="StratSkye" />
+        <Link className="logo" href="/" onClick={() => setMenuOpen(false)} aria-label="Stratskye home">
+          <img className="logo-image" src="/images/Logo Container.png" alt="Stratskye" />
         </Link>
         <div className="nav-links" aria-label="Primary navigation">
           {menuItems.map((item) => {
             const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+
+            if (item.href === "/services") {
+              return (
+                <div key={item.href} className="nav-services">
+                  <Link
+                    className={`nav-link ${isActive ? "is-active" : ""}`}
+                    href={item.href}
+                    onClick={() => handleMenuItemClick(item.href)}
+                  >
+                    {item.label}
+                  </Link>
+                  <div id="nav-services-menu" className="nav-services-flyout">
+                    <div className="nav-services-card">
+                      <ul className="nav-services-list">
+                        {servicePages.map((service) => (
+                          <li key={service.href}>
+                            <Link
+                              className={`nav-service-link ${pathname === service.href ? "is-active" : ""}`}
+                              href={service.href}
+                              onClick={() => handleMenuItemClick(service.href)}
+                            >
+                              {service.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              );
+            }
 
             return (
               <Link
@@ -424,6 +485,39 @@ export default function SiteHeader() {
           <ul className="menu-list">
             {menuItems.map((item) => {
               const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+
+              if (item.href === "/services") {
+                return (
+                  <li key={item.href}>
+                    <div className="menu-services">
+                      <Link
+                        className={`menu-link ${isActive ? "is-active" : ""}`}
+                        href={item.href}
+                        onClick={() => handleMenuItemClick(item.href)}
+                      >
+                        {item.label}
+                      </Link>
+                      <div id="overlay-services-menu" className="menu-services-flyout">
+                        <div className="menu-services-card">
+                          <ul className="nav-services-list">
+                            {servicePages.map((service) => (
+                              <li key={service.href}>
+                                <Link
+                                  className={`menu-service-link ${pathname === service.href ? "is-active" : ""}`}
+                                  href={service.href}
+                                  onClick={() => handleMenuItemClick(service.href)}
+                                >
+                                  {service.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                );
+              }
 
               return (
                 <li key={item.href}>

@@ -980,7 +980,7 @@ export default function AboutPage() {
               src="/images/StratSkye.png"
               width={403}
               height={126}
-              alt="StratSkye"
+              alt="Stratskye"
             />
             <p>
               Stratskye is a B2B growth marketing agency built by two engineers

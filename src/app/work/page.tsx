@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 
 export const metadata: Metadata = {
-  title: "Our Work | StratSkye",
+  title: "Our Work | Stratskye",
   description: "Projects that move businesses forward with brand, web, and growth systems.",
 };
 
@@ -375,7 +375,7 @@ export default function WorkPage() {
             all looking for branding that creates real impact.
           </p>
 
-          <div className="work-grid" aria-label="Selected StratSkye projects">
+          <div className="work-grid" aria-label="Selected Stratskye projects">
             {projects.map((project) => (
               <article className="work-card" key={project.name}>
                 <Image

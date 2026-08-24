@@ -6,8 +6,8 @@ import CaseStudyResultsSection from "@/components/case-study/CaseStudyResultsSec
 import CaseStudySummarySection from "@/components/case-study/CaseStudySummarySection";
 
 export const metadata: Metadata = {
-  title: "Case Study | StratSkye",
-  description: "A StratSkye case study on brand identity and digital experience.",
+  title: "Case Study | Stratskye",
+  description: "A Stratskye case study on brand identity and digital experience.",
 };
 
 export default function CaseStudyPage() {

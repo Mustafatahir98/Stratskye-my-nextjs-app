@@ -497,7 +497,7 @@ export default function WorkWithUsSection() {
         ))}
       </div>
 
-      <div className="work-mobile-cards" role="list" aria-label="Ways to work with StratSkye">
+      <div className="work-mobile-cards" role="list" aria-label="Ways to work with Stratskye">
         {mobileWays.map((way, index) => (
           <div
             key={way.label}

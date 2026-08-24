@@ -39,6 +39,30 @@ const staticRoutes: MetadataRoute.Sitemap = [
     priority: 0.8,
   },
   {
+    url: `${SITE_URL}/services/b2b-content-marketing-services`,
+    lastModified: LAST_MODIFIED,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  },
+  {
+    url: `${SITE_URL}/services/b2b-marketing-automation-services`,
+    lastModified: LAST_MODIFIED,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  },
+  {
+    url: `${SITE_URL}/services/b2b-paid-media-agency`,
+    lastModified: LAST_MODIFIED,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  },
+  {
+    url: `${SITE_URL}/services/b2b-seo-services`,
+    lastModified: LAST_MODIFIED,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  },
+  {
     url: `${SITE_URL}/about`,
     lastModified: LAST_MODIFIED,
     changeFrequency: "daily",

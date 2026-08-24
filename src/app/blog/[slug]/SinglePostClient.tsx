@@ -46,7 +46,7 @@ function renderTitle(title: string) {
 
 export default function SinglePostClient({ post }: { post: SinglePost }) {
   const image = post.featuredImage?.node
-  const author = post.author?.node?.name || "StratSkye"
+  const author = post.author?.node?.name || "Stratskye"
 
   return (
     <>

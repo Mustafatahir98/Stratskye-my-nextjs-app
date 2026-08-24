@@ -4,7 +4,7 @@ import ContactFormHero from "@/components/contact-form/ContactFormHero";
 
 export const metadata: Metadata = {
   title: "Contact B2B Tech Marketing Agency - Stratskye",
-  description: "Tell StratSkye what you are building and what is getting in the way.",
+  description: "Tell Stratskye what you are building and what is getting in the way.",
   alternates: {
     canonical: "/contact-form",
   },

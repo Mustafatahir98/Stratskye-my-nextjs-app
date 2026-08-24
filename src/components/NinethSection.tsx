@@ -28,7 +28,7 @@ const statCards = [
 const testimonials = [
   {
     quote:
-      "Before StratSkye, our marketing was a mess of different freelancers. They came in, fixed our branding, rebuilt our site, and started delivering leads that actually close. They are our outsourced CMO.",
+      "Before Stratskye, our marketing was a mess of different freelancers. They came in, fixed our branding, rebuilt our site, and started delivering leads that actually close. They are our outsourced CMO.",
     author: "Sarah J.",
     role: "CEO of CloudSecure",
     initials: "S",
@@ -42,7 +42,7 @@ const testimonials = [
   },
   {
     quote:
-      "StratSkye brought strategy and execution into one rhythm. We stopped guessing, launched cleaner campaigns, and finally had reporting that made decisions obvious.",
+      "Stratskye brought strategy and execution into one rhythm. We stopped guessing, launched cleaner campaigns, and finally had reporting that made decisions obvious.",
     author: "Anika R.",
     role: "COO of Northline Labs",
     initials: "A",

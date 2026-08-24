@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | StratSkye",
+  title: "Terms of Service | Stratskye",
   description: "Terms for using the Stratskye website and services.",
 };
 
