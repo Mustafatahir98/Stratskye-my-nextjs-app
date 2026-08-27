@@ -312,9 +312,9 @@ export default function SiteHeader() {
         .menu-services { position: relative; }
         .menu-services-flyout { position: static; width: 100%; max-height: 0; overflow: hidden; visibility: hidden; opacity: 0; pointer-events: none; transition: max-height 0.34s cubic-bezier(.22,1,.36,1), opacity 0.2s ease, visibility 0.2s ease; }
         .menu-services:hover .menu-services-flyout, .menu-services:focus-within .menu-services-flyout, .menu-services.is-open .menu-services-flyout { max-height: 360px; visibility: visible; opacity: 1; pointer-events: auto; }
-        .menu-services-toggle { width: 100%; justify-content: space-between; border: 0; background: transparent; font-family: inherit; text-align: left; cursor: pointer; }
-        .menu-services-chevron { margin-left: 16px; color: #f26e35; font-size: 0.62em; transition: transform 0.25s ease; }
-        .menu-services.is-open .menu-services-chevron { transform: rotate(180deg); }
+        .menu-services-toggle { width: 100%; justify-content: flex-start; border: 0; background: transparent; font-family: inherit; text-align: left; cursor: pointer; }
+        .menu-services-chevron { display: none; position: absolute; top: 50%; right: -38px; width: 9px; height: 9px; border-right: 1px solid #fff; border-bottom: 1px solid #fff; pointer-events: none; filter: drop-shadow(0 1px 1px rgba(10,17,40,0.35)); transform: translateY(-65%) rotate(45deg); transition: transform 0.25s ease; }
+        .menu-services.is-open .menu-services-chevron { transform: translateY(-35%) rotate(225deg); }
         .menu-services-card { padding: 6px 0 8px 18px; }
         .menu-service-link { display: flex; align-items: center; min-height: 31px; padding: 4px 0; color: #777b8e; font-size: 14px; font-weight: 600; line-height: 1.2; text-decoration: none; transition: color 0.18s ease, transform 0.18s ease; }
         .menu-service-link:hover, .menu-service-link:focus-visible, .menu-service-link.is-active { color: #0a1128; outline: none; transform: translateX(3px); }
@@ -395,6 +395,7 @@ export default function SiteHeader() {
           }
           .menu-services:hover .menu-services-flyout, .menu-services:focus-within .menu-services-flyout { max-height: 0; overflow: hidden; visibility: hidden; opacity: 0; pointer-events: none; }
           .menu-services.is-open .menu-services-flyout { max-height: 360px; visibility: visible; opacity: 1; pointer-events: auto; }
+          .menu-services-chevron { display: block; }
           .menu-services-card { padding: 4px 0 6px 18px; }
           .menu-service-link { min-height: 29px; padding: 3px 0; font-size: 13px; }
           .menu-social { margin-top: 18px; padding-top: 0; flex: 0 0 auto; }
@@ -524,7 +525,7 @@ export default function SiteHeader() {
                         onClick={() => setServicesOpen((open) => !open)}
                       >
                         <span>{item.label}</span>
-                        <span className="menu-services-chevron" aria-hidden="true">▼</span>
+                        <span className="menu-services-chevron" aria-hidden="true" />
                       </button>
                       <div id="overlay-services-menu" className="menu-services-flyout">
                         <div className="menu-services-card">
