@@ -26,7 +26,7 @@ const analysisImage = "/images/services/b2b-seo/technical-seo-analysis.png";
 export const metadata: Metadata = {
   title: "B2B SEO Services for SaaS & Technology Companies | Stratskye",
   description:
-    "B2B SEO services for SaaS and technology companies, connecting buyer-intent research, technical SEO, expert content, authority, AI search, and reporting.",
+    "Grow organic traffic with Stratskye's B2B SEO services, from technical and on-page SEO to buyer-intent content and link building. Book a strategy call.",
   alternates: { canonical: pageUrl },
   openGraph: {
     title: "B2B SEO Services for SaaS & Technology Companies | Stratskye",

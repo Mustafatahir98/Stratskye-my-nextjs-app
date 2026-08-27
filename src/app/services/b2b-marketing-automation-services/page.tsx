@@ -21,7 +21,7 @@ const heroImage = "/images/services/b2b-marketing-automation/automation-workflow
 export const metadata: Metadata = {
   title: "B2B Marketing Automation Services for SaaS & Tech | Stratskye",
   description:
-    "Marketing automation services for SaaS and technology companies, connecting workflow logic, CRM data, email automation, journey mapping, and measurement.",
+    "Connect CRM, email and sales workflows with Stratskye's B2B marketing automation services for smarter lead routing and nurturing. Book a strategy call.",
   alternates: { canonical: pageUrl },
   openGraph: {
     title: "B2B Marketing Automation Services for SaaS & Tech | Stratskye",

@@ -17,7 +17,7 @@ import styles from "./page.module.css";
 export const metadata: Metadata = {
   title: "B2B Lead Generation Services for SaaS & Tech | Stratskye",
   description:
-    "B2B lead generation services for SaaS and technology companies, connecting ICP targeting, verified data, LinkedIn, outbound, landing pages, and CRM handoff.",
+    "Reach ideal buyers with Stratskye's B2B lead generation services, combining ICP targeting, verified data, outreach and CRM routing. Book a strategy call.",
   alternates: {
     canonical: "/services/b2b-lead-generation-services",
   },

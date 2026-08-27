@@ -19,7 +19,7 @@ import styles from "../b2b-lead-generation-services/page.module.css";
 export const metadata: Metadata = {
   title: "B2B Demand Generation Services for SaaS & Tech | Stratskye",
   description:
-    "B2B demand generation services for SaaS and technology companies, connecting awareness, authority, demand capture, nurture, and measurement under one strategy.",
+    "Build a predictable SaaS pipeline with Stratskye's B2B demand generation services, connecting awareness, authority and demand capture. Book a strategy call.",
   alternates: {
     canonical: "/services/b2b-demand-generation-services",
   },

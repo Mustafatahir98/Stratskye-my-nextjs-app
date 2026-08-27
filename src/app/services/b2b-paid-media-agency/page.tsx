@@ -26,7 +26,7 @@ const optimizationImage = "/images/services/b2b-paid-media/campaign-optimization
 export const metadata: Metadata = {
   title: "B2B Paid Media Agency for SaaS & Technology | Stratskye",
   description:
-    "B2B paid media agency services for SaaS and technology companies, connecting audience strategy, paid search, LinkedIn, retargeting, tracking, and optimization.",
+    "Turn ad spend into qualified pipeline with Stratskye, a B2B paid media agency for Google Ads, LinkedIn Ads, retargeting and tracking. Book a strategy call.",
   alternates: { canonical: pageUrl },
   openGraph: {
     title: "B2B Paid Media Agency for SaaS & Technology | Stratskye",

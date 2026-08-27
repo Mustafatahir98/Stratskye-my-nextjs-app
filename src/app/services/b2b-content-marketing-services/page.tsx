@@ -26,7 +26,7 @@ const heroImage = "/images/services/b2b-content-marketing/content-strategy-works
 export const metadata: Metadata = {
   title: "B2B Content Marketing Services for SaaS & Tech | Stratskye",
   description:
-    "B2B content marketing services for SaaS and technology companies, connecting expert insight, SEO, editorial production, distribution, and measurement.",
+    "Turn expertise into authority with Stratskye's B2B content marketing services, covering SEO, case studies and LinkedIn distribution. Book a strategy call.",
   alternates: { canonical: pageUrl },
   openGraph: {
     title: "B2B Content Marketing Services for SaaS & Tech | Stratskye",

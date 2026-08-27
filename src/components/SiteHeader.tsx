@@ -108,6 +108,7 @@ export default function SiteHeader() {
   const [time, setTime] = useState("LOADING...");
   const [locationLabel, setLocationLabel] = useState("DETECTING...");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const pathname = usePathname();
 
@@ -193,6 +194,7 @@ export default function SiteHeader() {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setMenuOpen(false);
+        setServicesOpen(false);
       }
     };
 
@@ -212,6 +214,7 @@ export default function SiteHeader() {
       setHasScrolled(scrolled);
       if (scrolled) {
         setMenuOpen(false);
+        setServicesOpen(false);
       }
     };
 
@@ -228,6 +231,7 @@ export default function SiteHeader() {
 
     const closeMenuOnScrollStart = () => {
       setMenuOpen(false);
+      setServicesOpen(false);
     };
     const listenerOptions = { capture: true, passive: true } as AddEventListenerOptions;
 
@@ -242,6 +246,7 @@ export default function SiteHeader() {
 
   const handleMenuItemClick = (href: string) => {
     setMenuOpen(false);
+    setServicesOpen(false);
 
     if (href === "/" && pathname === "/") {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -306,7 +311,10 @@ export default function SiteHeader() {
         .menu-link.is-active::before { content: ""; position: absolute; left: -18px; top: 50%; width: 8px; height: 8px; border-radius: 50%; background: #f26e35; transform: translateY(-50%); }
         .menu-services { position: relative; }
         .menu-services-flyout { position: static; width: 100%; max-height: 0; overflow: hidden; visibility: hidden; opacity: 0; pointer-events: none; transition: max-height 0.34s cubic-bezier(.22,1,.36,1), opacity 0.2s ease, visibility 0.2s ease; }
-        .menu-services:hover .menu-services-flyout, .menu-services:focus-within .menu-services-flyout { max-height: 320px; visibility: visible; opacity: 1; pointer-events: auto; }
+        .menu-services:hover .menu-services-flyout, .menu-services:focus-within .menu-services-flyout, .menu-services.is-open .menu-services-flyout { max-height: 360px; visibility: visible; opacity: 1; pointer-events: auto; }
+        .menu-services-toggle { width: 100%; justify-content: space-between; border: 0; background: transparent; font-family: inherit; text-align: left; cursor: pointer; }
+        .menu-services-chevron { margin-left: 16px; color: #f26e35; font-size: 0.62em; transition: transform 0.25s ease; }
+        .menu-services.is-open .menu-services-chevron { transform: rotate(180deg); }
         .menu-services-card { padding: 6px 0 8px 18px; }
         .menu-service-link { display: flex; align-items: center; min-height: 31px; padding: 4px 0; color: #777b8e; font-size: 14px; font-weight: 600; line-height: 1.2; text-decoration: none; transition: color 0.18s ease, transform 0.18s ease; }
         .menu-service-link:hover, .menu-service-link:focus-visible, .menu-service-link.is-active { color: #0a1128; outline: none; transform: translateX(3px); }
@@ -385,7 +393,8 @@ export default function SiteHeader() {
             font-size: clamp(32px, 10.5vw, 48px);
             line-height: 0.95;
           }
-          .menu-services-flyout { max-height: none; overflow: visible; visibility: visible; opacity: 1; pointer-events: auto; }
+          .menu-services:hover .menu-services-flyout, .menu-services:focus-within .menu-services-flyout { max-height: 0; overflow: hidden; visibility: hidden; opacity: 0; pointer-events: none; }
+          .menu-services.is-open .menu-services-flyout { max-height: 360px; visibility: visible; opacity: 1; pointer-events: auto; }
           .menu-services-card { padding: 4px 0 6px 18px; }
           .menu-service-link { min-height: 29px; padding: 3px 0; font-size: 13px; }
           .menu-social { margin-top: 18px; padding-top: 0; flex: 0 0 auto; }
@@ -406,7 +415,15 @@ export default function SiteHeader() {
 
       <nav className={`navbar px-8 ${hasScrolled ? "is-scrolled" : ""}`}>
         <div className="navbar-bg" />
-        <Link className="logo" href="/" onClick={() => setMenuOpen(false)} aria-label="Stratskye home">
+        <Link
+          className="logo"
+          href="/"
+          onClick={() => {
+            setMenuOpen(false);
+            setServicesOpen(false);
+          }}
+          aria-label="Stratskye home"
+        >
           <img className="logo-image" src="/images/Logo Container.png" alt="Stratskye" />
         </Link>
         <div className="nav-links" aria-label="Primary navigation">
@@ -470,7 +487,10 @@ export default function SiteHeader() {
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
           aria-controls="site-menu"
-          onClick={() => setMenuOpen((open) => !open)}
+          onClick={() => {
+            if (menuOpen) setServicesOpen(false);
+            setMenuOpen((open) => !open);
+          }}
         >
           <span className="nav-menu-stack" aria-hidden="true">
             <span className="nav-menu-line" />
@@ -480,7 +500,13 @@ export default function SiteHeader() {
       </nav>
 
       <div id="site-menu" className={`menu-overlay ${menuOpen ? "is-open" : ""}`} aria-hidden={!menuOpen}>
-        <div className="menu-backdrop" onClick={() => setMenuOpen(false)} />
+        <div
+          className="menu-backdrop"
+          onClick={() => {
+            setMenuOpen(false);
+            setServicesOpen(false);
+          }}
+        />
         <div className="menu-panel">
           <ul className="menu-list">
             {menuItems.map((item) => {
@@ -489,17 +515,29 @@ export default function SiteHeader() {
               if (item.href === "/services") {
                 return (
                   <li key={item.href}>
-                    <div className="menu-services">
-                      <Link
-                        className={`menu-link ${isActive ? "is-active" : ""}`}
-                        href={item.href}
-                        onClick={() => handleMenuItemClick(item.href)}
+                    <div className={`menu-services ${servicesOpen ? "is-open" : ""}`}>
+                      <button
+                        type="button"
+                        className={`menu-link menu-services-toggle ${isActive ? "is-active" : ""}`}
+                        aria-expanded={servicesOpen}
+                        aria-controls="overlay-services-menu"
+                        onClick={() => setServicesOpen((open) => !open)}
                       >
-                        {item.label}
-                      </Link>
+                        <span>{item.label}</span>
+                        <span className="menu-services-chevron" aria-hidden="true">▼</span>
+                      </button>
                       <div id="overlay-services-menu" className="menu-services-flyout">
                         <div className="menu-services-card">
                           <ul className="nav-services-list">
+                            <li>
+                              <Link
+                                className={`menu-service-link ${pathname === item.href ? "is-active" : ""}`}
+                                href={item.href}
+                                onClick={() => handleMenuItemClick(item.href)}
+                              >
+                                All Services
+                              </Link>
+                            </li>
                             {servicePages.map((service) => (
                               <li key={service.href}>
                                 <Link
@@ -537,7 +575,14 @@ export default function SiteHeader() {
             <ul className="menu-social-list">
               {socialItems.map((item) => (
                 <li key={item.href}>
-                  <Link className="menu-social-link" href={item.href} onClick={() => setMenuOpen(false)}>
+                  <Link
+                    className="menu-social-link"
+                    href={item.href}
+                    onClick={() => {
+                      setMenuOpen(false);
+                      setServicesOpen(false);
+                    }}
+                  >
                     {item.label}
                   </Link>
                 </li>
