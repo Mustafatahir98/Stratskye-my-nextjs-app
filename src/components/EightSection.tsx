@@ -297,9 +297,9 @@ export default function EightSection() {
     }, []);
 
     const cardImages = [
-        { src: "/images/The Audit.png", className: "eight-card-a" },
-        { src: "/images/Frame 8.png", className: "eight-card-b" },
-        { src: "/images/The Growth Engine.png", className: "eight-card-c" },
+        { src: "/images/The Audit 1.webp", className: "eight-card-a" },
+        { src: "/images/Frame 8 7.webp", className: "eight-card-b" },
+        { src: "/images/The Growth Engine 1.webp", className: "eight-card-c" },
     ];
 
     return (

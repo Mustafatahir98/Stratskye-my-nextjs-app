@@ -104,7 +104,7 @@ export default function CaseStudyChallengeSection() {
       <div className="case-study-challenge-shell">
         <Image
           className="case-study-challenge-image"
-          src="/images/Rectangle 4303.png"
+          src="/images/Rectangle 4303 1.webp"
           width={1756}
           height={944}
           alt="Open office workspace with people collaborating"

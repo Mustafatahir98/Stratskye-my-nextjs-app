@@ -362,7 +362,7 @@ export default function WorkPage() {
 
             <Image
               className="work-signature"
-              src="/images/Built to Perform.png"
+              src="/images/Built to Perform 1.webp"
               width={660}
               height={118}
               alt="Built to Perform"

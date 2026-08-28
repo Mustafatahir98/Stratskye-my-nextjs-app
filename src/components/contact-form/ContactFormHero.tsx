@@ -489,7 +489,7 @@ export default function ContactFormHero() {
 
           <Image
             className="contact-form-scroll-note"
-            src="/images/Scroll to fill _).png"
+            src="/images/Scroll to fill _) 1.webp"
             width={548}
             height={118}
             alt="Scroll to fill"

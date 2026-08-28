@@ -279,7 +279,7 @@ export default async function BlogPage() {
 
             <div className="blog-mark-wrap">
               <img
-                src="/images/weve got you coverd.png"
+                src="/images/weve got you coverd 1.webp"
                 alt="we've got you covered"
                 className="blog-mark"
               />

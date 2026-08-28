@@ -225,7 +225,7 @@ export default function ServicesHero() {
           </h1>
           <Image
             className="services-scroll-note"
-            src="/images/Scroll down _).png"
+            src="/images/Scroll down _) 1.webp"
             width={584}
             height={120}
             alt="Scroll down"
@@ -236,7 +236,7 @@ export default function ServicesHero() {
         <div className="services-hero-media-row">
           <Image
             className="services-hero-image"
-            src="/images/service-main.png"
+            src="/images/service-main 1.webp"
             width={1093}
             height={434}
             alt="Team collaborating around a laptop in a bright office"

@@ -23,8 +23,8 @@ const servicesPageSchema = `{
       "logo": {
         "@type": "ImageObject",
         "@id": "https://stratskye.com/#logo",
-        "url": "https://stratskye.com/images/Logo%20Container.png",
-        "contentUrl": "https://stratskye.com/images/Logo%20Container.png",
+        "url": "https://stratskye.com/images/Logo%20Container%201.webp",
+        "contentUrl": "https://stratskye.com/images/Logo%20Container%201.webp",
         "caption": "Stratskye logo"
       },
       "email": "admin@stratskye.com",
@@ -93,7 +93,7 @@ const servicesPageSchema = `{
       "@id": "https://stratskye.com/#professional-service",
       "name": "Stratskye",
       "url": "https://stratskye.com/",
-      "image": "https://stratskye.com/images/Logo%20Container.png",
+      "image": "https://stratskye.com/images/Logo%20Container%201.webp",
       "email": "admin@stratskye.com",
       "description": "Stratskye is a remote professional service provider offering B2B tech growth marketing, demand generation, content and thought leadership, account-based marketing, brand and positioning strategy, digital and growth marketing, and email marketing services.",
       "parentOrganization": {

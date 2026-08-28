@@ -6,17 +6,17 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const services = [
     {
-        image: "/images/Group 513058.png",
+        image: "/images/Group 513058 1.webp",
         title: "Lead Generation",
         description: "We manage your presence to ensure you’re the loudest, most trusted voice in the industry."
     },
     {
-        image: "/images/Group 513054.png",
+        image: "/images/Group 513054 1.webp",
         title: "High-Octane Branding",
         description: "Positioning that makes you look like the category leader, not a startup.",
     },
     {
-        image: "/images/Group 513059.png",
+        image: "/images/Group 513059 1.webp",
         title: "Authority Socials",
         description: "We manage your presence to ensure you’re the loudest, most trusted voice in the industry.",
     },
@@ -412,7 +412,7 @@ export default function SixthSection() {
                 />
                 <img
                     ref={dottedRingRef}
-                    src="/images/IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII.png"
+                    src="/images/IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII 1.webp"
                     alt=""
                     className="relative w-full h-auto object-contain drop-shadow-[0_0_10px_rgba(255,255,255,0.18)]"
                 />

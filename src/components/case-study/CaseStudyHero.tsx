@@ -244,7 +244,7 @@ export default function CaseStudyHero() {
 
         <Image
           className="case-study-image"
-          src="/images/Rectangle 4303.png"
+          src="/images/Rectangle 4303 1.webp"
           width={1756}
           height={944}
           alt="Modern office with team members collaborating"

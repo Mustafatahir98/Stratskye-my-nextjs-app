@@ -425,7 +425,7 @@ export default function SiteHeader() {
           }}
           aria-label="Stratskye home"
         >
-          <img className="logo-image" src="/images/Logo Container.png" alt="Stratskye" />
+          <img className="logo-image" src="/images/Logo Container 1.webp" alt="Stratskye" />
         </Link>
         <div className="nav-links" aria-label="Primary navigation">
           {menuItems.map((item) => {

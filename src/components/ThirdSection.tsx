@@ -9,21 +9,21 @@ const cards = [
   {
     title: "The Site Sells You Short",
     body: 'They visit your website to "check you out," but it looks like a 2015 template. Trust drops.',
-    bg: "/images/The Site Sells You Short.png",
+    bg: "/images/The Site Sells You Short 1.webp",
     icon: "/images/Union.svg",
     className: "ts-card-1",
   },
   {
     title: "The Committee Veto",
     body: "Your champion tries to sell you internally, but they're unable to convince the CFO that it is an investment and not an expense.",
-    bg: "/images/The Committee Veto (1).png",
+    bg: "/images/The Committee Veto (1) 1.webp",
     icon: "/images/Union (1).svg",
     className: "ts-card-2",
   },
   {
     title: "The Social Silence",
     body: 'They look for your brand on LinkedIn. You haven\'t posted in three months. "Are they still in business?" they wonder.',
-    bg: "/images/The Social Silence.png",
+    bg: "/images/The Site Sells You Short 2.webp",
     icon: "/images/Union (2).svg",
     className: "ts-card-3",
   },
@@ -461,7 +461,7 @@ export default function ThirdSection() {
       </svg>
 
       <div ref={ovalRef} className="ts-oval-shell">
-        <img src="/images/Container (4).png" alt="" className="ts-oval-image" />
+        <img src="/images/Container 2.webp" alt="" className="ts-oval-image" />
         <svg viewBox="0 0 1549 662" preserveAspectRatio="none" className="ts-oval-path-svg">
           <path id="ts-oval-path-left" d="M 774 0 L 749 0 L 699 0 L 649 0 L 599 0 L 549 0 L 499 0 L 449 0 L 399 0 L 350 0 L 325 0 L 300 1 L 275 4 L 250 9 L 225 17 L 200 26 L 175 38 L 150 53 L 125 71 L 100 93 L 80 114 L 65 132 L 50 154 L 40 171 L 30 191 L 20 215 L 10 246 L 0 331 L 10 414 L 20 446 L 30 470 L 40 489 L 50 506 L 65 528 L 80 547 L 100 568 L 125 590 L 150 608 L 175 622 L 200 634 L 225 644 L 250 651 L 275 656 L 300 660 L 325 661 L 350 661 L 399 661 L 449 661 L 499 661 L 549 661 L 599 661 L 649 661 L 699 661 L 749 661 L 774 661 L 799 661 L 849 661 L 899 661 L 949 661 L 999 661 L 1049 661 L 1099 661 L 1149 661 L 1198 661 L 1223 661 L 1248 660 L 1273 656 L 1298 651 L 1323 644 L 1348 634 L 1373 622 L 1398 607 L 1423 589 L 1448 567 L 1463 552 L 1478 534 L 1498 506 L 1508 489 L 1518 469 L 1528 445 L 1538 412 L 1548 331 L 1538 248 L 1528 216 L 1518 192 L 1508 172 L 1498 155 L 1478 127 L 1463 109 L 1448 93 L 1423 71 L 1398 53 L 1373 38 L 1348 26 L 1323 17 L 1298 10 L 1273 4 L 1248 1 L 1223 0 L 1198 0 L 1149 0 L 1099 0 L 1049 0 L 999 0 L 949 0 L 899 0 L 849 0 L 799 0 L 774 0" fill="none" />
           <path id="ts-oval-path-right" d="M 774 0 L 799 0 L 849 0 L 899 0 L 949 0 L 999 0 L 1049 0 L 1099 0 L 1149 0 L 1198 0 L 1223 0 L 1248 1 L 1273 4 L 1298 10 L 1323 17 L 1348 26 L 1373 38 L 1398 53 L 1423 71 L 1448 93 L 1463 109 L 1478 127 L 1498 155 L 1508 172 L 1518 192 L 1528 216 L 1538 248 L 1548 331 L 1538 412 L 1528 445 L 1518 469 L 1508 489 L 1498 506 L 1478 534 L 1463 552 L 1448 567 L 1423 589 L 1398 607 L 1373 622 L 1348 634 L 1323 644 L 1298 651 L 1273 656 L 1248 660 L 1223 661 L 1198 661 L 1149 661 L 1099 661 L 1049 661 L 999 661 L 949 661 L 899 661 L 849 661 L 799 661 L 774 661 L 749 661 L 699 661 L 649 661 L 599 661 L 549 661 L 499 661 L 449 661 L 399 661 L 350 661 L 325 661 L 300 660 L 275 656 L 250 651 L 225 644 L 200 634 L 175 622 L 150 608 L 125 590 L 100 568 L 80 547 L 65 528 L 50 506 L 40 489 L 30 470 L 20 446 L 10 414 L 0 331 L 10 246 L 20 215 L 30 191 L 40 171 L 50 154 L 65 132 L 80 114 L 100 93 L 125 71 L 150 53 L 175 38 L 200 26 L 225 17 L 250 9 L 275 4 L 300 1 L 325 0 L 350 0 L 399 0 L 449 0 L 499 0 L 549 0 L 599 0 L 649 0 L 699 0 L 749 0 L 774 0" fill="none" />
@@ -478,8 +478,8 @@ export default function ThirdSection() {
         <h2 className="ts-phase-text ts-text-brand">Your tech is ready,<br /><span className="ts-orange">your brand isn&apos;t.</span></h2>
       </div>
 
-      <img ref={ballLeftRef} src="/images/smallball.png" alt="" className="ts-ball" />
-      <img ref={ballRightRef} src="/images/smallball.png" alt="" className="ts-ball" />
+      <img ref={ballLeftRef} src="/images/smallball 1.webp" alt="" className="ts-ball" />
+      <img ref={ballRightRef} src="/images/smallball 1.webp" alt="" className="ts-ball" />
 
       <div className="ts-card-layer">
         {cards.map((card, index) => (

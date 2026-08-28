@@ -168,7 +168,7 @@ export default function CaseStudyResultsSection() {
             <article className="case-study-result-card" key={card.metric}>
               <Image
                 className="case-study-result-image"
-                src="/images/Rectangle 4306 (1).png"
+                src="/images/Rectangle 4306 (1) 1.webp"
                 width={511}
                 height={472}
                 alt=""

@@ -5,21 +5,21 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const bgCardImage =
-  "/images/freepik_ultrarealistic-cinematic-golf-lifestyle-editorial-image-set-in-a-tropical-caribbean-golf-environment-bright-natural-daylight-with-humid-haze-wideangle-composition-candid-moment-of-a-golfe_0001 1.png";
+  "/images/freepik_ultrarealistic-cinematic-golf-lifestyle-editorial-image-set-in-a-tropical-caribbean-golf-environment-bright-natural-daylight-with-humid-haze-wideangle-composition-candid-moment-of-a-golfe_0001 1 1.webp";
 
 const statCards = [
   {
-    src: "/images/Frame 86.png",
+    src: "/images/Frame 86 1.webp",
     alt: "Value created: $140M",
     className: "stat-one",
   },
   {
-    src: "/images/Frame 85.png",
+    src: "/images/Frame 85 1.webp",
     alt: "Return client rate: 94%",
     className: "stat-two",
   },
   {
-    src: "/images/Frame 26.png",
+    src: "/images/Frame 26 1.webp",
     alt: "Projects delivered: +124",
     className: "stat-three",
   },

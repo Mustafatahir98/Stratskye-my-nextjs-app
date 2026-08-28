@@ -7,19 +7,19 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 const proofCards = [
   {
     className: "proof-card-cyber",
-    src: "/images/Cybersecurity SaaS.png",
+    src: "/images/Cybersecurity SaaS 1.webp",
     alt: "Cybersecurity SaaS social proof",
     lineClass: "proof-anchor-cyber",
   },
   {
     className: "proof-card-fintech",
-    src: "/images/The Committee Veto.png",
+    src: "/images/The Committee Veto 1.webp",
     alt: "FinTech Platform social proof",
     lineClass: "proof-anchor-fintech",
   },
   {
     className: "proof-card-infra",
-    src: "/images/Infrastructure Hardware.png",
+    src: "/images/Infrastructure Hardware 1.webp",
     alt: "Infrastructure Hardware social proof",
     lineClass: "proof-anchor-infra",
   },
@@ -206,27 +206,27 @@ export default function SeventhSection() {
   return (
     <section id="social-proof" ref={sectionRef} className="seventh-section post-shutter-section">
       <div ref={panelRef} className="social-proof-panel">
-        <img ref={bgRef} className="proof-bg" src="/images/moon-bg.png" alt="" aria-hidden="true" />
+        <img ref={bgRef} className="proof-bg" src="/images/moon-bg 1.webp" alt="" aria-hidden="true" />
         <div ref={moonGroupRef} className="proof-moon-group" aria-hidden="true">
           <div ref={haloRef} className="proof-moon-halo" />
           <div ref={raysRef} className="proof-moon-rays" />
-          <img ref={moonRef} className="proof-moon" src="/images/Moon.png" alt="" />
+          <img ref={moonRef} className="proof-moon" src="/images/Moon 1.webp" alt="" />
         </div>
         <img
           ref={mountainCoverRef}
           className="proof-mountain-cover"
-          src="/images/mountain-st.png"
+          src="/images/mountain-st 1.webp"
           alt=""
           aria-hidden="true"
         />
         <img
           ref={mountainRef}
           className="proof-mountain"
-          src="/images/mountain-st.png"
+          src="/images/mountain-st 1.webp"
           alt=""
           aria-hidden="true"
         />
-        <img ref={starsRef} className="proof-stars" src="/images/Stars.png" alt="" aria-hidden="true" />
+        <img ref={starsRef} className="proof-stars" src="/images/Stars 1.webp" alt="" aria-hidden="true" />
         <div className="proof-color-wash" aria-hidden="true" />
         <div className="proof-grain" aria-hidden="true" />
         <div className="proof-grid" aria-hidden="true" />

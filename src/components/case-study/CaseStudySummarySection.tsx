@@ -111,7 +111,7 @@ export default function CaseStudySummarySection() {
             <Image
               key={item}
               className="case-study-summary-image"
-              src="/images/Rectangle 4305.png"
+              src="/images/Rectangle 4305 1.webp"
               width={870}
               height={750}
               alt=""

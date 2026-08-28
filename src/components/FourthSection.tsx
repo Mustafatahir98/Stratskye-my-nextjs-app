@@ -66,11 +66,11 @@ export default function FourthSection() {
           will-change: transform;
         }
         .fourth-shutter-left {
-          background-image: url("/images/left-shutter.png");
+          background-image: url("/images/left-shutter 1.webp");
           transform-origin: left center;
         }
         .fourth-shutter-right {
-          background-image: url("/images/right-shutter.png");
+          background-image: url("/images/right-shutter 1.webp");
           transform-origin: right center;
         }
       `}</style>

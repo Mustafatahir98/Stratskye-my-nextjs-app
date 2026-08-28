@@ -5,9 +5,9 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const frames = [
-  "/images/work-with-us-1.png",
-  "/images/work-with-us-2.png",
-  "/images/work-with-us-3.png",
+  "/images/work-with-us-1 1.webp",
+  "/images/work-with-us-2 1.webp",
+  "/images/word-with-us-3 1.webp",
 ];
 
 const mobileWays = [

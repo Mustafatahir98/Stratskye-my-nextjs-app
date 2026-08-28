@@ -150,11 +150,11 @@ export default function FifthSection() {
           pointer-events: none;
         }
         .fifth-shutter-left {
-          background-image: url("/images/left-shutter.png");
+          background-image: url("/images/left-shutter 1.webp");
           transform-origin: left center;
         }
         .fifth-shutter-right {
-          background-image: url("/images/right-shutter.png");
+          background-image: url("/images/right-shutter 1.webp");
           transform-origin: right center;
         }
         .fs-crosshair::before,
@@ -459,7 +459,7 @@ export default function FifthSection() {
             <div className="fs-intro-connector">
                 <img
                     ref={lineRef}
-                    src="/images/Line 90.png"
+                    src="/images/Line 90 1.webp"
                     alt="Connecting Line"
                     className="h-full w-auto object-contain origin-top drop-shadow-[0_0_12px_rgba(255,255,255,0.35)]"
                 />
@@ -471,14 +471,14 @@ export default function FifthSection() {
                 {/* Outer Ring */}
                 <img
                     ref={bottomRingOuterRef}
-                    src="/images/Ellipse 6.png"
+                    src="/images/Ellipse 6 1.webp"
                     alt="Bottom Ring Outer"
                     className="absolute inset-0 w-full h-full object-contain"
                 />
                 {/* Inner Ring */}
                 <img
                     ref={bottomRingInnerRef}
-                    src="/images/IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII.png"
+                    src="/images/IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII 1.webp"
                     alt="Bottom Ring Inner"
                     className="fs-bottom-ring-inner absolute object-contain"
                 />
@@ -492,7 +492,7 @@ export default function FifthSection() {
                 />
                 <img
                     ref={animateLogoRef}
-                    src="/images/stratskye-animate.png"
+                    src="/images/stratskye-animate 1.webp"
                     alt="Animated Logo"
                     className="absolute inset-[-20%] w-[140%] h-[140%] object-contain"
                     style={{ willChange: "transform, opacity" }}

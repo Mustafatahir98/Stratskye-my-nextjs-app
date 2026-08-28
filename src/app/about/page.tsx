@@ -23,8 +23,8 @@ const aboutPageSchema = `{
       "logo": {
         "@type": "ImageObject",
         "@id": "https://stratskye.com/#logo",
-        "url": "https://stratskye.com/images/Logo%20Container.png",
-        "contentUrl": "https://stratskye.com/images/Logo%20Container.png",
+        "url": "https://stratskye.com/images/Logo%20Container%201.webp",
+        "contentUrl": "https://stratskye.com/images/Logo%20Container%201.webp",
         "caption": "Stratskye logo"
       },
       "email": "admin@stratskye.com",
@@ -85,7 +85,7 @@ const aboutPageSchema = `{
       "@id": "https://stratskye.com/#professional-service",
       "name": "Stratskye",
       "url": "https://stratskye.com/",
-      "image": "https://stratskye.com/images/Logo%20Container.png",
+      "image": "https://stratskye.com/images/Logo%20Container%201.webp",
       "email": "admin@stratskye.com",
       "description": "Stratskye is a remote professional service provider offering B2B growth marketing, positioning, LinkedIn content strategy, SEO, technical website work, social media management, email marketing, lead generation, copywriting, and podcast and media placement for technical B2B companies.",
       "parentOrganization": {
@@ -977,7 +977,7 @@ export default function AboutPage() {
           <div className="about-hero-copy about-reveal">
             <Image
               className="about-signature about-reveal"
-              src="/images/StratSkye.png"
+              src="/images/StratSkye 1.webp"
               width={403}
               height={126}
               alt="Stratskye"
@@ -1000,7 +1000,7 @@ export default function AboutPage() {
         <div className="about-hero-media about-reveal">
           <Image
             className="about-hero-image"
-            src="/images/About-main.png"
+            src="/images/About-main 1.webp"
             width={1328}
             height={560}
             alt="Abstract glass wave with orange and blue light"
@@ -1035,7 +1035,7 @@ export default function AboutPage() {
             <div className="about-figure-frame">
               <Image
                 className="about-figure-image"
-                src="/images/Rectangle 4306.png"
+                src="/images/Rectangle 4306 1.webp"
                 width={760}
                 height={428}
                 alt="Noor and Farjad in a professional setting"

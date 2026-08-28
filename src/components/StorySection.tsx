@@ -403,34 +403,34 @@ export default function StorySection() {
         </svg>
 
         {/* Strings Vertical */}
-        <img src="/images/line.png" alt="" className="string-line-v" style={{ left: "var(--story-left-lane)" }} />
-        <img src="/images/line.png" alt="" className="string-line-v" style={{ left: "var(--story-right-lane)" }} />
+        <img src="/images/line 1.webp" alt="" className="string-line-v" style={{ left: "var(--story-left-lane)" }} />
+        <img src="/images/line 1.webp" alt="" className="string-line-v" style={{ left: "var(--story-right-lane)" }} />
 
         {/* Strings Horizontal (Faded in GSAP) */}
         <div className="story-horizontal-track" style={{ top: "var(--story-top-lane)" }} />
         <div className="story-horizontal-track" style={{ top: "var(--story-bottom-lane)" }} />
-        <img src="/images/line.png" alt="" className="story-string-h story-horizontal-track" style={{ top: "var(--story-top-lane)", transform: "rotate(90deg)" }} />
-        <img src="/images/line.png" alt="" className="story-string-h story-horizontal-track" style={{ top: "var(--story-bottom-lane)", transform: "rotate(90deg)" }} />
+        <img src="/images/line 1.webp" alt="" className="story-string-h story-horizontal-track" style={{ top: "var(--story-top-lane)", transform: "rotate(90deg)" }} />
+        <img src="/images/line 1.webp" alt="" className="story-string-h story-horizontal-track" style={{ top: "var(--story-bottom-lane)", transform: "rotate(90deg)" }} />
 
         {/* ENTRY Curves */}
-        <img src="/images/curved-string-large.png" alt="" className="curve-img story-curve-right" style={{ top: "var(--story-top-lane)", left: "var(--story-left-lane)", transform: "translate(0%, 0%)" }} />
-        <img src="/images/curved-string-small.png" alt="" className="curve-img story-curve-right" style={{ top: "var(--story-bottom-lane)", right: "var(--story-left-lane)", transform: "translate(0%, -100%) rotate(180deg)" }} />
+        <img src="/images/curved-string-large 1.webp" alt="" className="curve-img story-curve-right" style={{ top: "var(--story-top-lane)", left: "var(--story-left-lane)", transform: "translate(0%, 0%)" }} />
+        <img src="/images/curved-string-small 1.webp" alt="" className="curve-img story-curve-right" style={{ top: "var(--story-bottom-lane)", right: "var(--story-left-lane)", transform: "translate(0%, -100%) rotate(180deg)" }} />
         
         {/* EXIT Curves */}
-        <img src="/images/curved-string-large.png" alt="" className="curve-img story-curve-left" style={{ top: "var(--story-top-lane)", right: "var(--story-left-lane)", transform: "translate(0%, -100%) rotate(-90deg)" }} />
-        <img src="/images/curved-string-small.png" alt="" className="curve-img story-curve-left" style={{ top: "var(--story-bottom-lane)", left: "var(--story-left-lane)", transform: "translate(-100%, 0%) rotate(90deg)" }} />
+        <img src="/images/curved-string-large 1.webp" alt="" className="curve-img story-curve-left" style={{ top: "var(--story-top-lane)", right: "var(--story-left-lane)", transform: "translate(0%, -100%) rotate(-90deg)" }} />
+        <img src="/images/curved-string-small 1.webp" alt="" className="curve-img story-curve-left" style={{ top: "var(--story-bottom-lane)", left: "var(--story-left-lane)", transform: "translate(-100%, 0%) rotate(90deg)" }} />
 
         {/* Story Sequence Balls */}
         <span className="story-ball-left" aria-hidden="true">
-          <img src="/images/smallball.png" alt="" className="story-ball-image" />
+          <img src="/images/smallball 1.webp" alt="" className="story-ball-image" />
         </span>
         <span className="story-ball-right" aria-hidden="true">
-          <img src="/images/smallball.png" alt="" className="story-ball-image" />
+          <img src="/images/smallball 1.webp" alt="" className="story-ball-image" />
         </span>
 
-        <img src="/images/layer-2.png" alt="" className="story-icon story-icon-2 story-icon-desktop" />
-        <img src="/images/layer-3.png" alt="" className="story-icon story-icon-3 story-icon-desktop" />
-        <img src="/images/layer-4.png" alt="" className="story-icon story-icon-4 story-icon-desktop" />
+        <img src="/images/layer-2 1.webp" alt="" className="story-icon story-icon-2 story-icon-desktop" />
+        <img src="/images/layer-3 1.webp" alt="" className="story-icon story-icon-3 story-icon-desktop" />
+        <img src="/images/layer-4 1.webp" alt="" className="story-icon story-icon-4 story-icon-desktop" />
         <div className="story-icon story-icon-5 story-dunk" aria-hidden="true">
           <span className="dunk-impact" />
           <span className="dunk-speed-line" />
@@ -445,7 +445,7 @@ export default function StorySection() {
             <span className="dunk-net-line" />
             <span className="dunk-net-line" />
           </span>
-          <img src="/images/layer-5.png" alt="" className="story-dunk-ball" />
+          <img src="/images/layer-5 1.webp" alt="" className="story-dunk-ball" />
         </div>
 
         {/* Text Sequences */}
@@ -459,17 +459,17 @@ export default function StorySection() {
         </div>
 
         <div className="story-text story-text-2">
-          <img src="/images/layer-2.png" alt="" className="story-icon story-icon-2 story-icon-mobile" />
+          <img src="/images/layer-2 1.webp" alt="" className="story-icon story-icon-2 story-icon-mobile" />
           <h2 className="story-heading">You just finished a <span className="text-orange">demo.</span></h2>
         </div>
 
         <div className="story-text story-text-3">
-          <img src="/images/layer-3.png" alt="" className="story-icon story-icon-3 story-icon-mobile" />
+          <img src="/images/layer-3 1.webp" alt="" className="story-icon story-icon-3 story-icon-mobile" />
           <h2 className="story-heading">The Technical Lead was <span className="text-orange text-italic">nodding.</span></h2>
         </div>
 
         <div className="story-text story-text-4">
-          <img src="/images/layer-4.png" alt="" className="story-icon story-icon-4 story-icon-mobile" />
+          <img src="/images/layer-4 1.webp" alt="" className="story-icon story-icon-4 story-icon-mobile" />
           <h2 className="story-heading">They called it a <span className="text-orange text-italic">game-changer</span></h2>
         </div>
 
