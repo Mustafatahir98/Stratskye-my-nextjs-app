@@ -403,7 +403,7 @@ export default function HeroSection() {
         preload="auto"
         aria-hidden="true"
       >
-        <source src="/images/Stratskye-Hero.mp4" type="video/mp4" />
+        <source src="/images/Stratskye-Hero-main.mp4" type="video/mp4" />
       </video>
 
       <div className="hero-color-fx" aria-hidden="true" />
