@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import styles from "../case-study.module.css";
 
@@ -73,6 +74,19 @@ const crawlMetrics = [
   ["Crawl requests", "~3,700", "~15,000", "+11,300"],
   ["Total download size", "~111M", "~1.09B", "Substantial increase"],
   ["Referring domains", "270", "210", "Quality cleanup"],
+];
+
+const outreachEvidence = [
+  { src: "/images/Milhousing Network/job title filter.PNG", width: 347, height: 602, alt: "Prospecting filters targeting strategic initiatives, partnerships, business development, and growth job titles", caption: "Decision-maker job-title targeting" },
+  { src: "/images/Milhousing Network/prospect-pipeline.PNG", width: 1049, height: 408, alt: "Verified sponsor prospect pipeline focused on business development and partnership managers", caption: "Qualified sponsor prospect pipeline" },
+];
+
+const seoEvidence = [
+  { src: "/images/Milhousing Network/search performance baseline period.PNG", width: 983, height: 449, alt: "Starting Google Search Console period showing 276 clicks, 85,600 impressions, and an average position of 36.9", caption: "Starting search performance", wide: false },
+  { src: "/images/Milhousing Network/Search perforamnce current period.PNG", width: 984, height: 459, alt: "Current Google Search Console period showing 1,990 clicks, 792,000 impressions, and an average position of 10.3", caption: "Current search performance", wide: false },
+  { src: "/images/Milhousing Network/crawl stats.PNG", width: 965, height: 393, alt: "Google crawl statistics showing 15,000 requests and 1.09 gigabytes downloaded", caption: "Current crawl activity", wide: true },
+  { src: "/images/Milhousing Network/independent domain authority snapshot.PNG", width: 1053, height: 170, alt: "Earlier independent authority snapshot showing AI visibility, organic traffic, keywords, referring domains, and backlinks", caption: "Earlier domain authority snapshot", wide: false },
+  { src: "/images/Milhousing Network/ida-current period.PNG", width: 1064, height: 171, alt: "Current independent authority snapshot showing AI visibility, organic traffic, keywords, referring domains, and backlinks", caption: "Current domain authority snapshot", wide: false },
 ];
 
 const outcomes = [
@@ -192,6 +206,14 @@ export default function MilHousingNetworkCaseStudyPage() {
               insurance and one in home improvement. Their identities remain
               generalized to respect client and partnership confidentiality.
             </p>
+            <div className={`${styles.evidenceGrid} ${styles.targetingEvidenceGrid}`}>
+              {outreachEvidence.map((item) => (
+                <figure className={`${styles.evidenceCard} ${styles.evidenceCardDark}`} key={item.src}>
+                  <Image src={item.src} width={item.width} height={item.height} sizes="(max-width: 900px) calc(100vw - 48px), 760px" alt={item.alt} />
+                  <figcaption>{item.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -265,6 +287,14 @@ export default function MilHousingNetworkCaseStudyPage() {
               Referring domains declined intentionally as lower-value links were
               pruned in favor of a quality-over-quantity authority profile.
             </p>
+            <div className={styles.evidenceGrid}>
+              {seoEvidence.map((item) => (
+                <figure className={`${styles.evidenceCard} ${item.wide ? styles.evidenceCardWide : ""}`} key={item.src}>
+                  <Image src={item.src} width={item.width} height={item.height} sizes="(max-width: 900px) calc(100vw - 48px), 624px" alt={item.alt} />
+                  <figcaption>{item.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
         </section>
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import styles from "../case-study.module.css";
 
@@ -67,6 +68,30 @@ const seoMetrics = [
   ["Clicks", "323", "485", "+162"],
   ["Impressions", "7,100", "111,000", "+103,900"],
   ["Average position", "12.2", "8.7", "+3.5"],
+];
+
+const audienceEvidence = [
+  { src: "/images/M1 Performance/linkedin engagement.PNG", width: 696, height: 598, alt: "LinkedIn analytics showing 75,735 social engagements", caption: "LinkedIn engagement", wide: false },
+  { src: "/images/M1 Performance/linkedin content impression.PNG", width: 680, height: 599, alt: "LinkedIn content analytics showing 7,120,391 impressions", caption: "LinkedIn content impressions", wide: false },
+  { src: "/images/M1 Performance/Follower growth.PNG", width: 800, height: 667, alt: "LinkedIn analytics showing follower growth to 19,192 total followers", caption: "LinkedIn follower growth", wide: true },
+];
+
+const inflectionEvidence = [
+  { src: "/images/M1 Performance/content performance june to nov.PNG", width: 405, height: 352, alt: "LinkedIn content performance from June to November showing 1,983,966 impressions", caption: "Content performance before refinement", wide: false },
+  { src: "/images/M1 Performance/content performance nov onwards.PNG", width: 390, height: 346, alt: "LinkedIn content performance from November onward showing 5,340,691 impressions", caption: "Content performance after refinement", wide: false },
+  { src: "/images/M1 Performance/newsletter performance dashboard.PNG", width: 846, height: 357, alt: "Newsletter dashboard showing a 66.30 percent open rate, 31.09 percent click rate, and 4,837 emails sent", caption: "Newsletter performance dashboard", wide: true },
+];
+
+const websiteEvidence = [
+  { src: "/images/M1 Performance/site-performance-website.PNG", width: 1012, height: 764, alt: "Lighthouse report showing the M1 Performance website scoring 98 for performance and 100 in accessibility, best practices, and SEO", caption: "Website performance after launch" },
+  { src: "/images/M1 Performance/secure payments.PNG", width: 616, height: 629, alt: "Secure registration and payment form built for M1 Performance", caption: "Secure application and payment flow" },
+];
+
+const searchEvidence = [
+  { src: "/images/M1 Performance/search based line period.PNG", width: 795, height: 334, alt: "Starting Google Search Console period showing 323 clicks, 7,100 impressions, and an average position of 12.2", caption: "Starting search performance", wide: false },
+  { src: "/images/M1 Performance/search current period.PNG", width: 832, height: 322, alt: "Current Google Search Console period showing 485 clicks, 111,000 impressions, and an average position of 8.7", caption: "Current search performance", wide: false },
+  { src: "/images/M1 Performance/crawl activity.PNG", width: 806, height: 360, alt: "Google crawl activity showing 3,300 requests and 184 megabytes downloaded", caption: "Google crawl activity", wide: false },
+  { src: "/images/M1 Performance/independent domain authority snapshot.PNG", width: 827, height: 146, alt: "Independent SEO authority snapshot showing AI visibility, authority score, organic traffic, referring domains, and backlinks", caption: "Independent domain authority snapshot", wide: false },
 ];
 
 const outcomes = [
@@ -188,6 +213,14 @@ export default function M1PerformanceCaseStudyPage() {
               <p><strong>+334%</strong> LinkedIn impression growth</p>
               <p><strong>+66%</strong> follower growth year over year</p>
             </div>
+            <div className={styles.evidenceGrid}>
+              {audienceEvidence.map((item) => (
+                <figure className={`${styles.evidenceCard} ${styles.evidenceCardDark} ${item.wide ? styles.evidenceCardWide : ""}`} key={item.src}>
+                  <Image src={item.src} width={item.width} height={item.height} sizes="(max-width: 900px) calc(100vw - 48px), 624px" alt={item.alt} />
+                  <figcaption>{item.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -220,6 +253,14 @@ export default function M1PerformanceCaseStudyPage() {
                 </tbody>
               </table>
             </div>
+            <div className={styles.evidenceGrid}>
+              {inflectionEvidence.map((item) => (
+                <figure className={`${styles.evidenceCard} ${item.wide ? styles.evidenceCardWide : ""}`} key={item.src}>
+                  <Image src={item.src} width={item.width} height={item.height} sizes="(max-width: 900px) calc(100vw - 48px), 624px" alt={item.alt} />
+                  <figcaption>{item.caption}</figcaption>
+                </figure>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -245,6 +286,14 @@ export default function M1PerformanceCaseStudyPage() {
             </div>
             <div className={styles.callout}>
               <span>Site performance</span><strong>No prior site → 95</strong><small>Built from scratch</small>
+            </div>
+            <div className={styles.evidenceGrid}>
+              {websiteEvidence.map((item) => (
+                <figure className={styles.evidenceCard} key={item.src}>
+                  <Image src={item.src} width={item.width} height={item.height} sizes="(max-width: 900px) calc(100vw - 48px), 624px" alt={item.alt} />
+                  <figcaption>{item.caption}</figcaption>
+                </figure>
+              ))}
             </div>
           </div>
         </section>
@@ -272,6 +321,14 @@ export default function M1PerformanceCaseStudyPage() {
                   ))}
                 </tbody>
               </table>
+            </div>
+            <div className={styles.evidenceGrid}>
+              {searchEvidence.map((item) => (
+                <figure className={`${styles.evidenceCard} ${item.wide ? styles.evidenceCardWide : ""}`} key={item.src}>
+                  <Image src={item.src} width={item.width} height={item.height} sizes="(max-width: 900px) calc(100vw - 48px), 624px" alt={item.alt} />
+                  <figcaption>{item.caption}</figcaption>
+                </figure>
+              ))}
             </div>
           </div>
         </section>
