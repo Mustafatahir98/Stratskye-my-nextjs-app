@@ -93,6 +93,24 @@ const staticRoutes: MetadataRoute.Sitemap = [
     priority: 0.7,
   },
   {
+    url: `${SITE_URL}/case-study/acctaxco`,
+    lastModified: new Date("2026-09-01T00:00:00+05:00"),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  },
+  {
+    url: `${SITE_URL}/case-study/m1-performance`,
+    lastModified: new Date("2026-09-01T00:00:00+05:00"),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  },
+  {
+    url: `${SITE_URL}/case-study/milhousing-network`,
+    lastModified: new Date("2026-09-01T00:00:00+05:00"),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  },
+  {
     url: `${SITE_URL}/blog`,
     lastModified: LAST_MODIFIED,
     changeFrequency: "weekly",

@@ -7,7 +7,7 @@ import { Clock } from "lucide-react";
 
 const menuItems = [
   { label: "Home", href: "/" },
-  { label: "Work", href: "/work" },
+  { label: "Case Studies", href: "/case-study" },
   { label: "Services", href: "/services" },
   { label: "Articles", href: "/blog" },
   { label: "About", href: "/about" },
