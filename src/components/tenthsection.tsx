@@ -1,8 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef } from "react";
 
 const ductTape = "/images/8 1 1.webp";
 const hangingLogo = "/images/stratskye-animate 1.webp";
@@ -16,63 +14,9 @@ export default function TenthSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const itemRefs = useRef<(HTMLElement | HTMLImageElement | null)[]>([]);
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      gsap.set(itemRefs.current, { autoAlpha: 0, y: 28, filter: "blur(8px)" });
-
-      gsap.to(itemRefs.current, {
-        autoAlpha: 1,
-        y: 0,
-        filter: "blur(0px)",
-        duration: 0.9,
-        stagger: 0.09,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 70%",
-          once: true,
-        },
-      });
-
-      gsap.set(".tenth-hanging-group", {
-        rotate: -5.5,
-        transformOrigin: "50% 0%",
-      });
-
-      gsap.to(".tenth-hanging-group", {
-        rotate: 7,
-        x: 12,
-        duration: 4.8,
-        yoyo: true,
-        repeat: -1,
-        ease: "sine.inOut",
-      });
-
-      gsap.fromTo(
-        ".tenth-bg-image",
-        { yPercent: -2, scale: 1.04 },
-        {
-          yPercent: 2,
-          scale: 1.08,
-          ease: "none",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: 1,
-          },
-        }
-      );
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <section ref={sectionRef} className="tenth-section post-shutter-section relative z-20 w-full overflow-hidden">
-      <img className="tenth-bg-image" src={sectionBg} alt="" aria-hidden="true" />
+      <img loading="lazy" decoding="async" className="tenth-bg-image" src={sectionBg} alt="" aria-hidden="true" />
       <div className="tenth-bg-dim" aria-hidden="true" />
       <div className="tenth-grid" aria-hidden="true" />
 
@@ -84,7 +28,7 @@ export default function TenthSection() {
           className="tenth-tape-wrap"
         >
           <span className="tenth-top-string" aria-hidden="true" />
-          <img src={ductTape} alt="" className="tenth-tape" />
+          <img loading="lazy" decoding="async" src={ductTape} alt="" className="tenth-tape" />
         </div>
 
         <div
@@ -113,7 +57,7 @@ export default function TenthSection() {
         >
           <span className="tenth-connector tenth-connector-left" aria-hidden="true" />
           <span className="tenth-connector tenth-connector-right" aria-hidden="true" />
-          <img src={hangingLogo} alt="Stratskye hanging logo" className="tenth-logo-orb" />
+          <img loading="lazy" decoding="async" src={hangingLogo} alt="Stratskye hanging logo" className="tenth-logo-orb" />
         </div>
 
         <div
@@ -136,8 +80,8 @@ export default function TenthSection() {
           }}
           className="tenth-wordmark"
         >
-          <img src={wordmarkIcon} alt="" className="tenth-wordmark-icon" />
-          <img src={wordmarkText} alt="Stratskye" className="tenth-wordmark-text" />
+          <img loading="lazy" decoding="async" src={wordmarkIcon} alt="" className="tenth-wordmark-icon" />
+          <img loading="lazy" decoding="async" src={wordmarkText} alt="Stratskye" className="tenth-wordmark-text" />
         </div>
 
         <div

@@ -10,6 +10,7 @@ import EightSection from "@/components/EightSection";
 import NinethSection from "@/components/NinethSection";
 import NewsletterPopup from "@/components/NewsletterPopup";
 import TenthSection from "@/components/tenthsection";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata: Metadata = {
   title: "B2B Tech Marketing Agency for SaaS & AI Growth - Stratskye",
@@ -274,6 +275,7 @@ const homePageSchema = `{
 export default function Home() {
   return (
     <div className="main-wrapper relative w-full overflow-hidden bg-[#0d1326] selection:bg-orange-500/30">
+      <SmoothScroll />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: homePageSchema }}

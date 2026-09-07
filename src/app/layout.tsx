@@ -1,10 +1,8 @@
 import type { Metadata } from "next";
 import { Google_Sans_Flex } from "next/font/google";
 import Script from "next/script";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 // Yahan dhyan dein: brackets { } nahi lagane kyunke humne 'default' export kiya hai
-import SmoothScroll from "../components/SmoothScroll";
 import SiteHeader from "../components/SiteHeader";
 import PageFooter from "../components/PageFooter";
 import RouteLoadRecovery from "../components/RouteLoadRecovery";
@@ -12,11 +10,13 @@ import RouteLoadRecovery from "../components/RouteLoadRecovery";
 const googleSansFlex = Google_Sans_Flex({
   subsets: ["latin"],
   weight: "variable",
-  axes: ["GRAD", "ROND", "opsz", "wdth"],
+  // Only include extra axes used at non-default values by the design.
+  axes: ["opsz", "wdth"],
   variable: "--font-google-sans-flex",
-  display: "block",
-  fallback: [],
-  adjustFontFallback: false,
+  // Keep slow connections readable without a late font swap moving/repainting text.
+  display: "optional",
+  preload: false,
+  fallback: ["Arial", "sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -41,21 +41,43 @@ export default function RootLayout({
       >
         <RouteLoadRecovery />
         <SiteHeader />
-        <SmoothScroll>
-          {children}
-          <PageFooter />
-        </SmoothScroll>
+        {children}
+        <PageFooter />
       </body>
-      <Script id="microsoft-clarity" strategy="afterInteractive">
+      <Script id="deferred-analytics" strategy="afterInteractive">
         {`
-          (function(c,l,a,r,i,t,y){
-              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-          })(window, document, "clarity", "script", "xqci3z1pbc");
+          (() => {
+            let loaded = false;
+            const loadTracking = () => {
+              if (loaded) return;
+              loaded = true;
+              ['pointerdown', 'keydown', 'touchstart'].forEach((event) =>
+                window.removeEventListener(event, loadTracking)
+              );
+
+              window.dataLayer = window.dataLayer || [];
+              window.gtag = function(){ window.dataLayer.push(arguments); };
+              window.gtag('js', new Date());
+              window.gtag('config', 'G-1KJFEWE0ZE');
+              const ga = document.createElement('script');
+              ga.async = true;
+              ga.src = 'https://www.googletagmanager.com/gtag/js?id=G-1KJFEWE0ZE';
+              document.head.appendChild(ga);
+
+              (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+              })(window, document, 'clarity', 'script', 'xqci3z1pbc');
+            };
+
+            ['pointerdown', 'keydown', 'touchstart'].forEach((event) =>
+              window.addEventListener(event, loadTracking, { once: true, passive: true })
+            );
+            window.setTimeout(loadTracking, 10000);
+          })();
         `}
       </Script>
-      <GoogleAnalytics gaId="G-1KJFEWE0ZE" />
     </html>
   );
 }

@@ -39,6 +39,15 @@ body {
   font-family: "Google Sans Flex";
 }
 
+/* The variable display font is large. Keep mobile's first render fast and stable. */
+@media (max-width: 767px) {
+  body,
+  body * {
+    font-family: Arial, sans-serif !important;
+    font-variation-settings: normal !important;
+  }
+}
+
 .main-wrapper,
 section,
 .pin-spacer {

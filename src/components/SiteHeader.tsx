@@ -419,6 +419,7 @@ export default function SiteHeader() {
         <Link
           className="logo"
           href="/"
+          prefetch={false}
           onClick={() => {
             setMenuOpen(false);
             setServicesOpen(false);
@@ -437,6 +438,7 @@ export default function SiteHeader() {
                   <Link
                     className={`nav-link ${isActive ? "is-active" : ""}`}
                     href={item.href}
+                    prefetch={false}
                     onClick={() => handleMenuItemClick(item.href)}
                   >
                     {item.label}
@@ -449,6 +451,7 @@ export default function SiteHeader() {
                             <Link
                               className={`nav-service-link ${pathname === service.href ? "is-active" : ""}`}
                               href={service.href}
+                              prefetch={false}
                               onClick={() => handleMenuItemClick(service.href)}
                             >
                               {service.label}
@@ -467,6 +470,7 @@ export default function SiteHeader() {
                 key={item.href}
                 className={`nav-link ${isActive ? "is-active" : ""}`}
                 href={item.href}
+                prefetch={false}
                 onClick={() => handleMenuItemClick(item.href)}
               >
                 {item.label}
@@ -534,6 +538,7 @@ export default function SiteHeader() {
                               <Link
                                 className={`menu-service-link ${pathname === item.href ? "is-active" : ""}`}
                                 href={item.href}
+                                prefetch={false}
                                 onClick={() => handleMenuItemClick(item.href)}
                               >
                                 All Services
@@ -544,6 +549,7 @@ export default function SiteHeader() {
                                 <Link
                                   className={`menu-service-link ${pathname === service.href ? "is-active" : ""}`}
                                   href={service.href}
+                                  prefetch={false}
                                   onClick={() => handleMenuItemClick(service.href)}
                                 >
                                   {service.label}
@@ -563,6 +569,7 @@ export default function SiteHeader() {
                   <Link
                     className={`menu-link ${isActive ? "is-active" : ""}`}
                     href={item.href}
+                    prefetch={false}
                     onClick={() => handleMenuItemClick(item.href)}
                   >
                     {item.label}

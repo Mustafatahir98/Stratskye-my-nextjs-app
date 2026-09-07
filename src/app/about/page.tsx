@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import AboutAnimations from "@/components/AboutAnimations";
 
 export const metadata: Metadata = {
   title: "About Stratskye - B2B Tech Marketing Agency",
@@ -409,15 +408,17 @@ export default function AboutPage() {
           width: min(100%, 1180px);
           margin: 0 auto;
         }
+        .about-animate-section {
+          content-visibility: auto;
+          contain-intrinsic-size: auto 900px;
+        }
         .about-wide-shell {
           width: min(100%, 1328px);
         }
         .about-reveal,
         .about-team-image,
         .about-outcome-card {
-          opacity: 0;
-          transform: translateY(28px);
-          filter: blur(8px);
+          opacity: 1;
         }
         .about-hero {
           display: grid;
@@ -963,7 +964,6 @@ export default function AboutPage() {
           }
         }
       `}</style>
-      <AboutAnimations />
 
       <section className="about-shell about-animate-section">
         <div className="about-hero">
@@ -1003,6 +1003,7 @@ export default function AboutPage() {
             src="/images/About-main 1.webp"
             width={1328}
             height={560}
+            sizes="(max-width: 1328px) 100vw, 1328px"
             alt="Abstract glass wave with orange and blue light"
             priority
           />
