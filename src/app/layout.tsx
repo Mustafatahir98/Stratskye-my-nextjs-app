@@ -10,12 +10,10 @@ import RouteLoadRecovery from "../components/RouteLoadRecovery";
 const googleSansFlex = Google_Sans_Flex({
   subsets: ["latin"],
   weight: "variable",
-  // Only include extra axes used at non-default values by the design.
   axes: ["opsz", "wdth"],
   variable: "--font-google-sans-flex",
-  // Keep slow connections readable without a late font swap moving/repainting text.
-  display: "optional",
-  preload: false,
+  display: "swap",
+  preload: true,
   fallback: ["Arial", "sans-serif"],
 });
 

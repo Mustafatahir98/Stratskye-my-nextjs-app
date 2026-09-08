@@ -36,16 +36,7 @@ body {
   overflow-x: hidden;
   overscroll-behavior-x: none;
   touch-action: pan-y;
-  font-family: "Google Sans Flex";
-}
-
-/* The variable display font is large. Keep mobile's first render fast and stable. */
-@media (max-width: 767px) {
-  body,
-  body * {
-    font-family: Arial, sans-serif !important;
-    font-variation-settings: normal !important;
-  }
+  font-family: var(--font-google-sans-flex), "Google Sans Flex", Arial, sans-serif;
 }
 
 .main-wrapper,
