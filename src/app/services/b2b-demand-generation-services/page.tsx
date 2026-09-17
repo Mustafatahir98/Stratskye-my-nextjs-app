@@ -188,8 +188,8 @@ const relatedServices = [
   ["Named-account targeting", "Account-Based Marketing", "/services"],
   ["Lead nurture", "Email Marketing", "/services"],
   ["Organic demand capture", "Inbound Marketing Services", "/services"],
-  ["Founder visibility", "LinkedIn Marketing Services", "/services"],
-  ["Expert authority", "Thought Leadership Marketing", "/services"],
+  ["Founder visibility", "LinkedIn Marketing Services", "/services/linkedin-marketing-services"],
+  ["Expert authority", "Thought Leadership Marketing", "/services/thought-leadership-marketing"],
   ["Previous outcomes", "Work / Case Studies", "/work"],
   ["Delivery details", "Our Approach", "/our-approach"],
 ];
@@ -413,7 +413,7 @@ export default function B2BDemandGenerationServicesPage() {
                   <div className={styles.serviceCardTop}><span>{service.number}</span><Icon size={24} strokeWidth={1.6} /></div>
                   <h3>{service.title}</h3>
                   <p>{service.role}</p>
-                  <Link href="/contact-form">Explore {service.title} <ArrowUpRight size={17} /></Link>
+                  <Link href={service.title === "LinkedIn Marketing Services" ? "/services/linkedin-marketing-services" : service.title === "Thought Leadership Marketing" ? "/services/thought-leadership-marketing" : "/contact-form"}>Explore {service.title} <ArrowUpRight size={17} /></Link>
                 </article>
               );
             })}

@@ -318,7 +318,8 @@
 .finalCta { min-height: 760px; display: flex; align-items: center; text-align: center; background: radial-gradient(circle at 50% 50%, #182c55, #091126 70%); }
 .finalGlow { left: 50%; top: 50%; transform: translate(-50%, -50%); }
 .ctaInner { position: relative; z-index: 1; max-width: 910px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
-.ctaInner h2 { margin: 0; font-size: clamp(48px, 7vw, 86px); line-height: .96; letter-spacing: -.055em; font-weight: 620; }
+.ctaInner .eyebrow { margin-bottom: 18px; }
+.ctaInner h2 { margin: 0; font-size: clamp(48px, 7vw, 86px); line-height: .70; letter-spacing: -.055em; font-weight: 620; }
 .ctaInner > p { max-width: 730px; margin: 28px 0 0; color: rgba(255,255,255,.64); font-size: 17px; line-height: 1.65; }
 .ctaInner .primaryButton { margin-top: 36px; }
 .ctaInner .proofLine { margin-top: 18px; max-width: none; }

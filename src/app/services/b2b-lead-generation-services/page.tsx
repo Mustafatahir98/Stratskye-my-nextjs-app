@@ -171,7 +171,7 @@ const relatedServices = [
   ["Ongoing nurture", "Email Marketing", "/services"],
   ["Organic demand capture", "Inbound Marketing Services", "/services"],
   ["Broader awareness before capture", "B2B Demand Generation Services", "/services"],
-  ["Founder authority for outreach", "Thought Leadership Marketing", "/services"],
+  ["Founder authority for outreach", "Thought Leadership Marketing", "/services/thought-leadership-marketing"],
   ["Previous outcomes", "Work / Case Studies", "/work"],
   ["Delivery details", "Our Approach", "/our-approach"],
 ];

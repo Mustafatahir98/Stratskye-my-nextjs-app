@@ -151,7 +151,7 @@ const relatedServices = [
   ["Organic discovery beyond content", "Inbound Marketing Services", "/services"],
   ["Named-account content", "Account-Based Marketing", "/services"],
   ["Lifecycle nurture", "Email Marketing", "/services"],
-  ["Broader LinkedIn strategy", "LinkedIn Marketing Services", "/services"],
+  ["Broader LinkedIn strategy", "LinkedIn Marketing Services", "/services/linkedin-marketing-services"],
   ["Pipeline capture", "B2B Lead Generation Services", "/services/b2b-lead-generation-services"],
   ["Previous outcomes", "Work / Case Studies", "/work"],
   ["Delivery details", "Our Approach", "/our-approach"],

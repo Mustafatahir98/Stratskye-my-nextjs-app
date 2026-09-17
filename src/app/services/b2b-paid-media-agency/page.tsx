@@ -167,8 +167,8 @@ const relatedServices = [
   ["Named-account targeting", "Account-Based Marketing", "/services"],
   ["Lead nurture", "Email Marketing", "/services"],
   ["Organic demand capture", "Inbound Marketing Services", "/services"],
-  ["Founder or executive visibility", "LinkedIn Marketing Services", "/services"],
-  ["Expert content for campaign authority", "Thought Leadership Marketing", "/services/b2b-content-marketing-services"],
+  ["Founder or executive visibility", "LinkedIn Marketing Services", "/services/linkedin-marketing-services"],
+  ["Expert content for campaign authority", "Thought Leadership Marketing", "/services/thought-leadership-marketing"],
   ["Previous outcomes", "Work / Case Studies", "/work"],
   ["Delivery details", "Our Approach", "/our-approach"],
 ];

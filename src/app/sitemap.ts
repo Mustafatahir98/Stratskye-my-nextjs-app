@@ -15,6 +15,18 @@ type WordPressPost = {
 
 const staticRoutes: MetadataRoute.Sitemap = [
   {
+    url: `${SITE_URL}/services/thought-leadership-marketing`,
+    lastModified: new Date("2026-09-17T00:00:00+05:00"),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  },
+  {
+    url: `${SITE_URL}/services/linkedin-marketing-services`,
+    lastModified: new Date("2026-09-17T00:00:00+05:00"),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  },
+  {
     url: `${SITE_URL}/`,
     lastModified: LAST_MODIFIED,
     changeFrequency: "daily",

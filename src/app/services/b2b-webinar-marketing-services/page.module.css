@@ -1,0 +1,228 @@
+.breadcrumb {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 40px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 13px;
+}
+
+.breadcrumb a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover,
+.breadcrumb a:focus-visible,
+.textLink:focus-visible {
+  color: #f26e35;
+}
+
+.title {
+  font-size: clamp(42px, 4.7vw, 68px) !important;
+  line-height: 1.03 !important;
+}
+
+.gap {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 16px;
+  padding: 26px 0;
+  border-bottom: 1px solid #0d162f25;
+}
+
+.gap > span {
+  color: #ba461b;
+  font-size: 12px;
+}
+
+.gap h3 {
+  font-size: 21px;
+  margin: 0 0 10px;
+}
+
+.gap p {
+  color: #596277;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.heroCopy {
+  margin-top: 20px;
+  color: #bdc4d4;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.heroButtons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+  margin-top: 32px;
+}
+
+.heroButtons > a,
+.centerButton > a,
+.primaryButton,
+.secondaryButton {
+  white-space: nowrap;
+}
+
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 17px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.secondaryButton:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #f26e35;
+}
+
+.secondaryButton:focus-visible {
+  outline: 2px solid #f26e35;
+  outline-offset: 4px;
+}
+
+.proof {
+  margin-top: 22px;
+  color: #bdc4d4;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.note {
+  max-width: 850px;
+  margin-top: 28px;
+  color: rgba(255, 255, 255, 0.74);
+  line-height: 1.75;
+  font-size: 18px;
+}
+
+.darkSection {
+  color: #fff;
+}
+
+.darkSection h2,
+.darkSection h3,
+.darkSection strong {
+  color: #fff;
+}
+
+.darkSection p,
+.darkSection li {
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.darkSection article {
+  color: #fff;
+}
+
+.darkTable span,
+.darkTable strong {
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.darkTable > div:first-child span {
+  color: #f26e35;
+}
+
+.darkTable {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.darkTable > div {
+  border-bottom-color: rgba(255, 255, 255, 0.14);
+}
+
+.darkTable > div:not(:first-child):hover {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.finalCta h2 {
+  max-width: 1080px;
+  line-height: 0.94;
+  letter-spacing: -0.035em;
+  word-spacing: 0.08em;
+  text-wrap: balance;
+}
+
+.finalEyebrow {
+  color: rgba(255, 255, 255, 0.76);
+  letter-spacing: 0.18em;
+}
+
+.finalCopy {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+  color: #cf501d;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.faqAction {
+  margin-top: 36px;
+}
+
+.centerButton {
+  display: flex;
+  justify-content: center;
+  margin-top: 38px;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: #f26e35;
+  color: white;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 700;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.primaryButton:hover {
+  transform: translateY(-1px);
+  background: #d95522;
+}
+
+@media (max-width: 560px) {
+  .title {
+    font-size: clamp(38px, 10.5vw, 58px) !important;
+  }
+
+  .heroButtons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .heroButtons > a,
+  .centerButton > a,
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+}

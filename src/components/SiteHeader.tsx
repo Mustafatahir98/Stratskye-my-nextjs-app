@@ -18,6 +18,9 @@ const menuItems = [
 const servicePages = [
   { label: "B2B Lead Generation", href: "/services/b2b-lead-generation-services" },
   { label: "B2B Demand Generation", href: "/services/b2b-demand-generation-services" },
+  { label: "LinkedIn Marketing", href: "/services/linkedin-marketing-services", child: true },
+  { label: "Thought Leadership", href: "/services/thought-leadership-marketing", child: true },
+  { label: "Webinar Marketing", href: "/services/b2b-webinar-marketing-services", child: true },
   { label: "B2B Content Marketing", href: "/services/b2b-content-marketing-services" },
   { label: "Marketing Automation", href: "/services/b2b-marketing-automation-services" },
   { label: "B2B Paid Media", href: "/services/b2b-paid-media-agency" },
@@ -278,6 +281,7 @@ export default function SiteHeader() {
         .nav-service-link::after { content: "↗"; color: #f26e35; font-size: 14px; opacity: 0; transform: translate(-4px, 4px); transition: opacity 0.18s ease, transform 0.18s ease; }
         .nav-service-link:hover, .nav-service-link:focus-visible, .nav-service-link.is-active { color: #fff; background: rgba(255,255,255,0.08); outline: none; transform: translateX(2px); }
         .nav-service-link:hover::after, .nav-service-link:focus-visible::after, .nav-service-link.is-active::after { opacity: 1; transform: translate(0, 0); }
+        .nav-service-link.service-child, .menu-service-link.service-child { padding-left: 24px; font-size: 12px; border-left: 1px solid #f26e35; margin-left: 10px; }
         .nav-center { position: absolute; left: 32%; right: 32%; height: 100%; display: flex; align-items: center; justify-content: center; gap: 18px; font-size: 11px; font-weight: 600; font-family: "Google Sans Flex"; letter-spacing: 0.15em; color: rgba(255, 255, 255, 0.95); text-transform: uppercase; mix-blend-mode: difference; white-space: nowrap; transition: opacity 0.22s ease; }
         .nav-location { max-width: 190px; overflow: hidden; text-overflow: ellipsis; }
         .nav-time { display: inline-flex; align-items: center; gap: 8px; color: rgb(254 215 170); }
@@ -449,7 +453,7 @@ export default function SiteHeader() {
                         {servicePages.map((service) => (
                           <li key={service.href}>
                             <Link
-                              className={`nav-service-link ${pathname === service.href ? "is-active" : ""}`}
+                              className={`nav-service-link ${service.child ? "service-child" : ""} ${pathname === service.href ? "is-active" : ""}`}
                               href={service.href}
                               prefetch={false}
                               onClick={() => handleMenuItemClick(service.href)}
@@ -547,7 +551,7 @@ export default function SiteHeader() {
                             {servicePages.map((service) => (
                               <li key={service.href}>
                                 <Link
-                                  className={`menu-service-link ${pathname === service.href ? "is-active" : ""}`}
+                                  className={`menu-service-link ${service.child ? "service-child" : ""} ${pathname === service.href ? "is-active" : ""}`}
                                   href={service.href}
                                   prefetch={false}
                                   onClick={() => handleMenuItemClick(service.href)}
