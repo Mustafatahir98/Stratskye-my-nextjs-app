@@ -1,0 +1,68 @@
+.breadcrumb {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 38px;
+  color: #bac2d3;
+  font-size: 13px;
+}
+
+.breadcrumb a { color: inherit; text-decoration: none; }
+.breadcrumb a:hover { color: #f26e35; }
+.breadcrumb a:focus-visible { outline: 2px solid #f26e35; outline-offset: 5px; }
+
+.title {
+  font-size: clamp(43px, 4.8vw, 70px) !important;
+  line-height: 1.01 !important;
+}
+
+.heroCopy {
+  max-width: 720px;
+  margin: 18px 0 0;
+  color: #bdc4d4;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.problemGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 36px;
+  margin-top: 54px;
+  border-top: 1px solid rgba(13, 22, 47, .18);
+}
+
+.problem {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 16px;
+  padding: 27px 0;
+  border-bottom: 1px solid rgba(13, 22, 47, .18);
+}
+
+.problem > span { color: #ba461b; font-size: 11px; }
+.problem h3 { margin: 0 0 9px; font-size: 21px; font-weight: 620; text-transform: capitalize; }
+.problem p { margin: 0; color: #596277; line-height: 1.68; }
+.deliverable { min-height: 285px; }
+.deliverable h3 { margin-top: 48px; font-size: clamp(25px, 2.5vw, 36px); }
+
+.darkNote,
+.lightNote {
+  max-width: 900px;
+  margin: 30px 0 0;
+  padding-left: 20px;
+  border-left: 3px solid #f26e35;
+  line-height: 1.7;
+}
+
+.darkNote { color: rgba(255, 255, 255, .62); }
+.lightNote { color: #596277; }
+.inlineCta { margin-top: 38px; }
+
+@media (max-width: 700px) {
+  .title { font-size: clamp(38px, 10.5vw, 58px) !important; }
+  .problemGrid { grid-template-columns: 1fr; gap: 0; }
+  .deliverable { min-height: 300px; }
+}

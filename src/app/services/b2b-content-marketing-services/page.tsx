@@ -273,7 +273,7 @@ export default function B2BContentMarketingServicesPage() {
       <section className={styles.servicesSection}>
         <div className={styles.shell}>
           <SectionIntro eyebrow="Content workstreams" title="B2B content marketing services we provide" copy="Not every engagement uses all eleven. Stratskye scopes what fits your gaps." />
-          <div className={styles.serviceGrid}>{subservices.map((service, index) => { const Icon = service.icon; return <article className={`${styles.serviceCard} ${index === subservices.length - 1 ? styles.serviceCardWide : ""}`} key={service.title}><div className={styles.serviceCardTop}><span>{service.number}</span><Icon size={24} strokeWidth={1.6} /></div><h3>{service.title}</h3><p>{service.role}</p><Link href="/contact-form">Explore {service.title} <ArrowUpRight size={17} /></Link></article>; })}</div>
+          <div className={styles.serviceGrid}>{subservices.map((service, index) => { const Icon = service.icon; const href = service.title === "White Paper Writing Services" ? "/services/white-paper-writing-services" : "/contact-form"; return <article className={`${styles.serviceCard} ${index === subservices.length - 1 ? styles.serviceCardWide : ""}`} key={service.title}><div className={styles.serviceCardTop}><span>{service.number}</span><Icon size={24} strokeWidth={1.6} /></div><h3>{service.title}</h3><p>{service.role}</p><Link href={href}>Explore {service.title} <ArrowUpRight size={17} /></Link></article>; })}</div>
         </div>
       </section>
 

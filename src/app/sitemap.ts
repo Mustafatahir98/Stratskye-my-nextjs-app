@@ -15,6 +15,24 @@ type WordPressPost = {
 
 const staticRoutes: MetadataRoute.Sitemap = [
   {
+    url: `${SITE_URL}/services/white-paper-writing-services`,
+    lastModified: new Date("2026-09-18T00:00:00+05:00"),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  },
+  {
+    url: `${SITE_URL}/services/lead-generation-landing-pages`,
+    lastModified: new Date("2026-09-18T00:00:00+05:00"),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  },
+  {
+    url: `${SITE_URL}/services/linkedin-lead-generation-services`,
+    lastModified: new Date("2026-09-18T00:00:00+05:00"),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  },
+  {
     url: `${SITE_URL}/services/thought-leadership-marketing`,
     lastModified: new Date("2026-09-17T00:00:00+05:00"),
     changeFrequency: "monthly",

@@ -64,24 +64,28 @@ const subservices = [
     title: "LinkedIn Lead Generation Services",
     role: "Decision-maker discovery, credible outreach, relationship-led follow-up",
     icon: Users,
+    href: "/services/linkedin-lead-generation-services",
   },
   {
     number: "02",
     title: "Lead Generation Landing Pages",
     role: "Focused conversion paths with message match and lead routing",
     icon: MousePointerClick,
+    href: "/services/lead-generation-landing-pages",
   },
   {
     number: "03",
     title: "Outbound Lead Generation Services",
     role: "ICP-led prospecting, sequenced messaging, sales handoff",
     icon: Mail,
+    href: "/contact-form",
   },
   {
     number: "04",
     title: "B2B Contact List Building",
     role: "Segmented account and contact lists, researched and verified",
     icon: Database,
+    href: "/contact-form",
   },
 ];
 
@@ -392,7 +396,7 @@ export default function B2BLeadGenerationServicesPage() {
                   </div>
                   <h3>{service.title}</h3>
                   <p>{service.role}</p>
-                  <Link href="/contact-form">
+                  <Link href={service.href}>
                     Explore {service.title} <ArrowUpRight size={17} />
                   </Link>
                 </article>

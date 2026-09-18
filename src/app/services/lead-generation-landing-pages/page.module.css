@@ -1,0 +1,34 @@
+.breadcrumb { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 38px; color: #bac2d3; font-size: 13px; }
+.breadcrumb a { color: inherit; text-decoration: none; }
+.breadcrumb a:hover { color: #f26e35; }
+.breadcrumb a:focus-visible, .secondaryLink:focus-visible { outline: 2px solid #f26e35; outline-offset: 5px; }
+.title { font-size: clamp(42px, 4.55vw, 67px) !important; line-height: 1.02 !important; }
+.heroCopy { max-width: 720px; margin: 18px 0 0; color: #bdc4d4; font-size: 17px; line-height: 1.7; }
+.heroVisual img { object-position: 57% center; }
+.secondaryLink { display: inline-flex; align-items: center; gap: 10px; color: white; text-decoration: none; font-size: 14px; font-weight: 650; }
+.secondaryLink:hover { color: #f26e35; }
+
+.gapGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 38px; margin-top: 54px; border-top: 1px solid rgba(13,22,47,.18); }
+.gapCard { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 16px; padding: 28px 0; border-bottom: 1px solid rgba(13,22,47,.18); }
+.gapCard:last-child { grid-column: 1 / -1; max-width: calc(50% - 19px); }
+.gapCard > span { color: #ba461b; font-size: 11px; }
+.gapCard h3 { margin: 0 0 9px; font-size: 21px; font-weight: 620; }
+.gapCard p { margin: 0; color: #596277; line-height: 1.68; }
+.deliverable { min-height: 280px; }
+.deliverable h3 { margin-top: 48px; font-size: clamp(25px, 2.5vw, 36px); }
+.analysisVisual img { object-position: center; }
+.imageCaption { position: absolute; z-index: 2; left: 25px; right: 25px; bottom: 25px; padding: 24px; border: 1px solid rgba(255,255,255,.2); border-radius: 18px; background: rgba(8,16,34,.76); backdrop-filter: blur(14px); }
+.imageCaption span { display: block; margin-bottom: 8px; color: rgba(255,255,255,.55); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+.imageCaption strong { font-size: clamp(18px, 2vw, 25px); }
+.inlineCta { margin-top: 38px; }
+.darkNote, .lightNote { max-width: 920px; margin: 32px 0 0; padding-left: 20px; border-left: 3px solid #f26e35; line-height: 1.7; }
+.darkNote { color: rgba(255,255,255,.62); }
+.lightNote { color: #596277; }
+
+@media (max-width: 700px) {
+  .title { font-size: clamp(37px, 10.1vw, 55px) !important; }
+  .gapGrid { grid-template-columns: 1fr; gap: 0; }
+  .gapCard:last-child { grid-column: auto; max-width: none; }
+  .deliverable { min-height: 300px; }
+  .secondaryLink { min-height: 40px; }
+}

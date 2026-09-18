@@ -17,11 +17,14 @@ const menuItems = [
 
 const servicePages = [
   { label: "B2B Lead Generation", href: "/services/b2b-lead-generation-services" },
+  { label: "LinkedIn Lead Generation", href: "/services/linkedin-lead-generation-services", child: true },
+  { label: "Lead Generation Landing Pages", href: "/services/lead-generation-landing-pages", child: true },
   { label: "B2B Demand Generation", href: "/services/b2b-demand-generation-services" },
   { label: "LinkedIn Marketing", href: "/services/linkedin-marketing-services", child: true },
   { label: "Thought Leadership", href: "/services/thought-leadership-marketing", child: true },
   { label: "Webinar Marketing", href: "/services/b2b-webinar-marketing-services", child: true },
   { label: "B2B Content Marketing", href: "/services/b2b-content-marketing-services" },
+  { label: "White Paper Writing", href: "/services/white-paper-writing-services", child: true },
   { label: "Marketing Automation", href: "/services/b2b-marketing-automation-services" },
   { label: "B2B Paid Media", href: "/services/b2b-paid-media-agency" },
   { label: "B2B SEO", href: "/services/b2b-seo-services" },
