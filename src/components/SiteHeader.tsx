@@ -25,7 +25,10 @@ const servicePages = [
   { label: "Webinar Marketing", href: "/services/b2b-webinar-marketing-services", child: true },
   { label: "B2B Content Marketing", href: "/services/b2b-content-marketing-services" },
   { label: "White Paper Writing", href: "/services/white-paper-writing-services", child: true },
+  { label: "Case Study Writing", href: "/services/b2b-case-study-writing-services", child: true },
   { label: "Marketing Automation", href: "/services/b2b-marketing-automation-services" },
+  { label: "Workflow Automation", href: "/services/marketing-workflow-automation", child: true },
+  { label: "CRM Integration", href: "/services/crm-integration-services", child: true },
   { label: "B2B Paid Media", href: "/services/b2b-paid-media-agency" },
   { label: "B2B SEO", href: "/services/b2b-seo-services" },
 ];
@@ -232,24 +235,6 @@ export default function SiteHeader() {
     };
   }, []);
 
-  useEffect(() => {
-    if (!menuOpen) return;
-
-    const closeMenuOnScrollStart = () => {
-      setMenuOpen(false);
-      setServicesOpen(false);
-    };
-    const listenerOptions = { capture: true, passive: true } as AddEventListenerOptions;
-
-    window.addEventListener("wheel", closeMenuOnScrollStart, listenerOptions);
-    window.addEventListener("touchmove", closeMenuOnScrollStart, listenerOptions);
-
-    return () => {
-      window.removeEventListener("wheel", closeMenuOnScrollStart, listenerOptions);
-      window.removeEventListener("touchmove", closeMenuOnScrollStart, listenerOptions);
-    };
-  }, [menuOpen]);
-
   const handleMenuItemClick = (href: string) => {
     setMenuOpen(false);
     setServicesOpen(false);
@@ -318,10 +303,13 @@ export default function SiteHeader() {
         .menu-link.is-active::before { content: ""; position: absolute; left: -18px; top: 50%; width: 8px; height: 8px; border-radius: 50%; background: #f26e35; transform: translateY(-50%); }
         .menu-services { position: relative; }
         .menu-services-flyout { position: static; width: 100%; max-height: 0; overflow: hidden; visibility: hidden; opacity: 0; pointer-events: none; transition: max-height 0.34s cubic-bezier(.22,1,.36,1), opacity 0.2s ease, visibility 0.2s ease; }
-        .menu-services:hover .menu-services-flyout, .menu-services:focus-within .menu-services-flyout, .menu-services.is-open .menu-services-flyout { max-height: 360px; visibility: visible; opacity: 1; pointer-events: auto; }
-        .menu-services-toggle { width: 100%; justify-content: flex-start; border: 0; background: transparent; font-family: inherit; text-align: left; cursor: pointer; }
-        .menu-services-chevron { display: none; position: absolute; top: 50%; right: -38px; width: 9px; height: 9px; border-right: 1px solid #fff; border-bottom: 1px solid #fff; pointer-events: none; filter: drop-shadow(0 1px 1px rgba(10,17,40,0.35)); transform: translateY(-65%) rotate(45deg); transition: transform 0.25s ease; }
-        .menu-services.is-open .menu-services-chevron { transform: translateY(-35%) rotate(225deg); }
+        .menu-services:hover .menu-services-flyout, .menu-services:focus-within .menu-services-flyout, .menu-services.is-open .menu-services-flyout { max-height: 720px; visibility: visible; opacity: 1; pointer-events: auto; }
+        .menu-services-heading { display: flex; align-items: center; }
+        .menu-services-heading .menu-link { flex: 1; }
+        .menu-services-toggle { display: grid; place-items: center; flex: 0 0 44px; width: 44px; height: 44px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+        .menu-services-toggle:focus-visible { outline: 2px solid #f26e35; outline-offset: 2px; }
+        .menu-services-chevron { width: 11px; height: 11px; border-right: 2px solid #0a1128; border-bottom: 2px solid #0a1128; transform: translateY(-3px) rotate(45deg); transition: transform 0.25s ease; }
+        .menu-services.is-open .menu-services-chevron { transform: translateY(3px) rotate(225deg); }
         .menu-services-card { padding: 6px 0 8px 18px; }
         .menu-service-link { display: flex; align-items: center; min-height: 31px; padding: 4px 0; color: #777b8e; font-size: 14px; font-weight: 600; line-height: 1.2; text-decoration: none; transition: color 0.18s ease, transform 0.18s ease; }
         .menu-service-link:hover, .menu-service-link:focus-visible, .menu-service-link.is-active { color: #0a1128; outline: none; transform: translateX(3px); }
@@ -400,9 +388,8 @@ export default function SiteHeader() {
             font-size: clamp(32px, 10.5vw, 48px);
             line-height: 0.95;
           }
-          .menu-services:hover .menu-services-flyout, .menu-services:focus-within .menu-services-flyout { max-height: 0; overflow: hidden; visibility: hidden; opacity: 0; pointer-events: none; }
-          .menu-services.is-open .menu-services-flyout { max-height: 360px; visibility: visible; opacity: 1; pointer-events: auto; }
-          .menu-services-chevron { display: block; }
+          .menu-services:hover:not(.is-open) .menu-services-flyout, .menu-services:focus-within:not(.is-open) .menu-services-flyout { max-height: 0; overflow: hidden; visibility: hidden; opacity: 0; pointer-events: none; }
+          .menu-services.is-open .menu-services-flyout { max-height: 720px; visibility: visible; opacity: 1; pointer-events: auto; }
           .menu-services-card { padding: 4px 0 6px 18px; }
           .menu-service-link { min-height: 29px; padding: 3px 0; font-size: 13px; }
           .menu-social { margin-top: 18px; padding-top: 0; flex: 0 0 auto; }
@@ -528,16 +515,12 @@ export default function SiteHeader() {
                 return (
                   <li key={item.href}>
                     <div className={`menu-services ${servicesOpen ? "is-open" : ""}`}>
-                      <button
-                        type="button"
-                        className={`menu-link menu-services-toggle ${isActive ? "is-active" : ""}`}
-                        aria-expanded={servicesOpen}
-                        aria-controls="overlay-services-menu"
-                        onClick={() => setServicesOpen((open) => !open)}
-                      >
-                        <span>{item.label}</span>
-                        <span className="menu-services-chevron" aria-hidden="true" />
-                      </button>
+                      <div className="menu-services-heading">
+                        <Link className={`menu-link ${isActive ? "is-active" : ""}`} href={item.href} prefetch={false} onClick={() => handleMenuItemClick(item.href)}>{item.label}</Link>
+                        <button type="button" className="menu-services-toggle" aria-label={servicesOpen ? "Close services submenu" : "Open services submenu"} aria-expanded={servicesOpen} aria-controls="overlay-services-menu" onClick={() => setServicesOpen((open) => !open)}>
+                          <span className="menu-services-chevron" aria-hidden="true" />
+                        </button>
+                      </div>
                       <div id="overlay-services-menu" className="menu-services-flyout">
                         <div className="menu-services-card">
                           <ul className="nav-services-list">

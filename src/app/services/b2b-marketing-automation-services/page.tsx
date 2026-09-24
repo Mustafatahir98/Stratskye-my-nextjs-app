@@ -385,7 +385,7 @@ export default function B2BMarketingAutomationServicesPage() {
                 <article className={`${styles.serviceCard} ${index === subservices.length - 1 ? styles.serviceCardWide : ""}`} key={service.title}>
                   <div className={styles.serviceCardTop}><span>{service.number}</span><Icon size={24} strokeWidth={1.6} /></div>
                   <h3>{service.title}</h3><p>{service.role}</p>
-                  <Link href="/contact-form">Explore {service.title} <ArrowUpRight size={17} /></Link>
+                  <Link href={service.title === "Marketing Workflow Automation" ? "/services/marketing-workflow-automation" : service.title === "CRM Integration Services" ? "/services/crm-integration-services" : "/contact-form"}>Explore {service.title} <ArrowUpRight size={17} /></Link>
                 </article>
               );
             })}
