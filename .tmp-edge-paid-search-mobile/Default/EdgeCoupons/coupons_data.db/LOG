@@ -1,0 +1,5 @@
+2026/09/25-12:45:57.721 105c Creating DB C:\Users\Mustafa Tahir\stratskye\.tmp-edge-paid-search-mobile\Default\EdgeCoupons/coupons_data.db since it was missing.
+2026/09/25-12:45:57.765 105c Reusing MANIFEST C:\Users\Mustafa Tahir\stratskye\.tmp-edge-paid-search-mobile\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/09/25-12:45:58.923 2330 Level-0 table #5: started
+2026/09/25-12:45:58.934 2330 Level-0 table #5: 683273 bytes OK
+2026/09/25-12:45:58.955 2330 Delete type=0 #3

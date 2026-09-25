@@ -1,0 +1,40 @@
+{
+   "action": {
+      "default_icon": {
+         "16": "/dist/assets/img/mining16.png",
+         "32": "/dist/assets/img/mining32.png",
+         "48": "/dist/assets/img/mining48.png"
+      },
+      "default_popup": "/dist/index.html#/popup",
+      "default_title": "Data Miner"
+   },
+   "author": "Software Innovation Lab, LLC",
+   "background": {
+      "service_worker": "bg_script_dm.js"
+   },
+   "content_security_policy": {
+      "extension_pages": "script-src 'self' ; object-src 'self'; img-src * data:; "
+   },
+   "description": "Data Scraper extracts data out of HTML web pages and imports it into Microsoft Excel spreadsheets",
+   "icons": {
+      "128": "/dist/assets/img/mining128.png",
+      "16": "/dist/assets/img/mining16.png",
+      "19": "/dist/assets/img/mining19.png",
+      "24": "/dist/assets/img/mining24.png",
+      "32": "/dist/assets/img/mining32.png",
+      "36": "/dist/assets/img/mining36.png",
+      "38": "/dist/assets/img/mining38.png",
+      "48": "/dist/assets/img/mining48.png",
+      "64": "/dist/assets/img/mining64.png",
+      "96": "/dist/assets/img/mining96.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA9MGZv05ZiadLhIR2jIF7kGjkSr0ngmW50X2sH4za6Ao7AWkbdWYC/rtGv2x9KWUfN1F9Rti/o3o3xnTcDsIu9snYU4y1T84+SkAQvK6KjQCMrHbnOQSRNWYjnPC3vA7bgdvQaHi7fiNlCehXZicU8ksMxwtmre7qcImAbiGnf/OijJqxglNOhtDszXUpqOfrn4wHvG9JnP7zBHACsqQpDVwvn0s/pAz64xwy8ijsWWT7G6jd3yan5QOrG3JZcW3q4mw2FaAGFskyymhR9Bqg/HNWea2G+n7xOOKZk1q210OPWCshhMtteLlvgIQ9voEh6DeqhHMa2gs9MenG+pjpRwIDAQAB",
+   "manifest_version": 3,
+   "name": "Data Scraper - Easy Web Scraping",
+   "optional_host_permissions": [ "http://*/", "https://*/", "file://*/*" ],
+   "optional_permissions": [ "tabs", "notifications", "downloads", "clipboardWrite", "pageCapture" ],
+   "permissions": [ "activeTab", "contextMenus", "storage", "scripting", "unlimitedStorage" ],
+   "short_name": "Data Scraper",
+   "update_url": "https://edge.microsoft.com/extensionwebstorebase/v1/crx",
+   "version": "5.8.91"
+}

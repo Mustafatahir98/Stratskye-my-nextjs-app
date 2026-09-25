@@ -316,7 +316,7 @@ export default function B2BPaidMediaAgencyPage() {
       <section className={styles.servicesSection}>
         <div className={styles.shell}>
           <SectionIntro eyebrow="Paid media workstreams" title="B2B paid media services we provide" copy="Not every engagement uses all eight. Stratskye scopes what fits your buyers and budget." />
-          <div className={styles.serviceGrid}>{subservices.map((service) => { const Icon = service.icon; return <article className={styles.serviceCard} key={service.title}><div className={styles.serviceCardTop}><span>{service.number}</span><Icon size={24} strokeWidth={1.6} /></div><h3>{service.title}</h3><p>{service.role}</p><Link href="/contact-form">Explore {service.title} <ArrowUpRight size={17} /></Link></article>; })}</div>
+          <div className={styles.serviceGrid}>{subservices.map((service) => { const Icon = service.icon; const href = service.title === "Paid Search Management Services" ? "/services/paid-search-management-services" : service.title === "LinkedIn Ads Management Services" ? "/services/linkedin-ads-management-services" : "/contact-form"; return <article className={styles.serviceCard} key={service.title}><div className={styles.serviceCardTop}><span>{service.number}</span><Icon size={24} strokeWidth={1.6} /></div><h3>{service.title}</h3><p>{service.role}</p><Link href={href}>Explore {service.title} <ArrowUpRight size={17} /></Link></article>; })}</div>
         </div>
       </section>
 

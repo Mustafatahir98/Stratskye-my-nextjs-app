@@ -1,0 +1,1193 @@
+@import '_variables';
+
+@font-face {
+    font-family: logofont;
+    src: url(../fonts/AbadiMTStd-CondBold.otf) format('opentype');
+}
+
+html {
+    // NOTE: This makes 1 rem = 10 pixels
+    /////////////////////////////////////
+    font-size: 62.5%;
+}
+
+body {
+    background-color: $color-content-background; // #fff8f8; ffe9e9
+    font-family:
+        Helvetica,
+        Arial,
+        -apple-system,
+        'Segoe UI',
+        Roboto,
+        sans-serif,
+        'Apple Color Emoji',
+        'Segoe UI Emoji',
+        'Segoe UI Symbol';
+    font-size: 1.3rem;
+}
+
+body a {
+    color: $color-clickable;
+    cursor: pointer;
+}
+
+body .p-toast {
+    margin-top: 3rem;
+    box-shadow: 0 0.3rem 0.6rem 0 rgba(0, 0, 0, 0.16);
+
+    .p-toast-message {
+        margin-bottom: 0;
+    }
+}
+
+//h2 1.5
+//h3 1.2
+
+.green {
+    color: $color-ok;
+}
+.red {
+    color: red;
+}
+.recipe-not-working {
+    color: $color-recipe-not-working !important;
+}
+
+.premium {
+    color: $color-premium;
+    font-size: 1.2em;
+    vertical-align: middle;
+}
+
+////////texts
+.text1 {
+    font-size: 2em; //2.8rem; //h1
+}
+.text2 {
+    font-size: 1.5em; //2.1rem; // h2
+}
+.text3 {
+    font-size: 1.2em; //1.7rem; // h3
+}
+.text4 {
+    font-size: 1em; //1.4rem; // h4 //normal text size
+}
+.text5 {
+    font-size: 0.7em; // h5 // smaller than normal text
+}
+
+.text1b {
+    font-size: 2em; //2.8rem; //2em; //2.8rem; //
+    font-weight: bold;
+}
+.text2b {
+    font-size: 1.5em; //2.1rem; //  1.5em; //h2 size
+    font-weight: bold;
+}
+.text3b {
+    font-size: 1.2em; //1.7rem; //1.2em;
+    font-weight: bold;
+}
+.text4b {
+    font-size: 1em; //1.4rem; //  1em;
+    font-weight: bold;
+}
+
+.fluidwidth {
+    flex: 1 1 auto;
+}
+.fullwidth {
+    width: 100%;
+}
+
+// body .p-radiobutton .p-radiobutton-box {
+//     line-height: 2.0rem;
+// }
+
+h1 {
+    margin-block-start: 0.3em;
+    margin-block-end: 0.3em;
+}
+
+.hr-fading {
+    height: $one;
+    background-color: #e5e5e5;
+    border: none;
+    margin-top: 1.5rem;
+}
+
+.dm-blockable {
+    position: relative;
+
+    .dm-blocker {
+        position: absolute;
+        width: calc(100% + 1rem);
+        height: calc(100% + 1rem);
+        margin: 0px;
+        top: -0.5rem;
+        left: -0.5rem;
+        background-color: #f5f5f5;
+        z-index: 120;
+        opacity: 0.9;
+        padding-top: 1.5rem;
+        text-align: center;
+    }
+
+    .dm-blocked {
+        filter: blur($one);
+    }
+}
+
+.hoverhelp {
+    border-bottom: 2px dotted $color-clickable;
+    cursor: help;
+}
+
+.imagewrapper {
+    text-align: center;
+    img {
+        border: $one solid #c1c1c1;
+        box-shadow: 0.2rem 0.2rem 0.5rem #888;
+    }
+    .caption {
+        font-style: italic;
+        padding: 0.2rem;
+    }
+}
+
+.imagewrapper-flat {
+    text-align: center;
+    .caption {
+        font-style: italic;
+        padding: 0.2rem;
+    }
+}
+
+.sm-btn {
+    margin: 0 0.3rem;
+}
+
+.sm-btn.p-button.p-button-text-icon-left .p-button-text {
+    font-size: 0.86em; //1.2rem; //1.2rem
+    padding: 0.4rem 0.4rem 0.4rem 2.5rem;
+}
+
+.sm-btn.p-button.p-button-icon-only .p-button-text {
+    font-size: 0.86em; //1.2rem; //1.2rem
+    padding: 0.4rem;
+}
+
+.sm-btn.p-button.p-togglebutton {
+    font-size: 0.86em; //1.2rem; //1.2rem
+}
+
+.thin-button.p-button {
+    padding: 0.2rem 0.5rem;
+}
+
+.white-button.p-button {
+    background-color: white;
+}
+
+.icon-button.p-button {
+    padding: 0;
+    font-size: 1.3em !important; //1.8rem !important;
+    width: inherit;
+}
+
+.small-button {
+    color: $color-clickable;
+    font-size: 0.7em; // 1rem;
+    margin: 0 0.4rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.6rem;
+
+    border: $one solid #999;
+    box-shadow: $one $one 0.2rem #888;
+
+    white-space: nowrap;
+
+    strong {
+        padding: 0.2rem;
+    }
+
+    //active has to be defined after hover otherwise it's overridden
+    &:hover {
+        color: #333; // #0069d9;
+        cursor: pointer;
+    }
+
+    &:active {
+        color: black;
+        // transform-origin: center;
+        // transform: scale(1.2);
+    }
+
+    &--delete {
+        color: red;
+    }
+
+    &.disabled {
+        color: $color-disabled;
+
+        &:hover {
+            color: $color-disabled;
+            cursor: initial;
+        }
+    }
+}
+
+.name-value {
+    display: grid;
+    grid-template-columns: [results-left] auto [results-mid] 1fr [results-right];
+    grid-gap: 0.2rem;
+    align-items: flex-start;
+    white-space: nowrap;
+
+    &__rowtitle {
+        grid-column: results-left / results-mid;
+
+        padding: 0.8rem;
+        font-size: 1em;
+        font-weight: bolder;
+    }
+
+    &__rowvalue {
+        grid-column: results-mid / results-right;
+        background-color: transparent;
+
+        display: flex;
+        align-items: center;
+        align-self: normal;
+        flex-wrap: wrap;
+
+        > * {
+            margin-right: 1rem;
+        }
+
+        &--padded {
+            background-color: $color-row-value;
+            padding: 0.8rem;
+        }
+    }
+}
+
+.invalid-feedback {
+    grid-column: results-left / results-right;
+    color: red;
+    margin: 1rem 0;
+}
+
+.url-panel {
+    padding: 0 1rem 1rem 1rem;
+    border: solid $one #e1e1e1;
+}
+
+.readerErrorMessage {
+    max-height: 25.6rem;
+    max-width: auto;
+    overflow-y: scroll;
+    overflow-x: auto;
+    padding: 0.5rem;
+}
+
+hr.hr-fading {
+    height: 0.8rem;
+    background-image: linear-gradient(90deg, #ddd, transparent);
+    border: 0;
+    height: 0.2rem;
+}
+
+.tab-headline-big {
+    font-size: 1.8em;
+    // margin: 1em 0;
+
+    .small {
+        font-size: 0.6em;
+        margin-top: 1rem;
+    }
+    .medium {
+        font-size: 0.8em;
+        margin-top: 1rem;
+    }
+}
+
+.tab-headline {
+    font-size: 1.4em;
+    // margin: 1.3em 0;
+    .small {
+        font-size: 0.6em;
+        margin-top: 1rem;
+    }
+    .medium {
+        font-size: 0.8em;
+        margin-top: 1rem;
+    }
+}
+
+.viewer-page-wrapper {
+    padding: 1rem 1rem 0 1rem;
+    min-width: 77.8rem;
+}
+
+.card {
+    background: #ffffff;
+    padding: 1em;
+    box-shadow:
+        0 0.2rem $one $one rgb(0 0 0 / 20%),
+        0 $one $one 0 rgb(0 0 0 / 14%),
+        0 $one 0.3rem 0 rgb(0 0 0 / 12%);
+    border-radius: 0.4rem;
+    margin-bottom: 1em;
+
+    h3 {
+        font-size: 1.4em;
+        padding: 0;
+        margin: 0 0 1rem 0;
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+/////////////////////////////PrimeNG overrides////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////
+///////global settings
+.p-inline-message {
+    background-color: red;
+    .p-inline-message {
+        font-size: 1em; //1.4rem;
+    }
+}
+
+.p-component {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+.p-radiobutton {
+    .p-radiobutton-box {
+        border: 0.3rem solid #ced4da;
+
+        .p-radiobutton-icon {
+            background-color: unset; //#ffffff
+        }
+        &.p-highlight {
+            border-color: #ced4da;
+        }
+    }
+}
+
+.wideTooltip.p-tooltip .p-tooltip-text {
+    width: 30rem;
+}
+
+.smallTooltip.ui-tooltip .ui-tooltip-text {
+    padding: 0.8rem 0.4rem;
+}
+
+.p-datatable {
+    .p-datatable-thead,
+    .p-datatable-thead tr th {
+        background-color: inherit;
+        text-align: left;
+        border: $one solid #dee2e6;
+        transition: box-shadow 0.15s;
+    }
+
+    .p-datatable-tbody > tr,
+    .p-datatable-tbody > tr:nth-child(even) {
+        background-color: white;
+
+        td {
+            text-align: left;
+            border: $one solid #dee2e6;
+            padding: 1.2rem;
+        }
+    }
+
+    .p-datatable-tbody {
+        .not-expanded-row {
+            width: 20rem;
+
+            overflow: hidden;
+            white-space: nowrap;
+            cursor: pointer;
+            // background-color: red;
+        }
+
+        .expanded-row {
+            // background-color: greenyellow;
+            width: 20rem;
+
+            overflow: hidden !important;
+            white-space: initial !important;
+            overflow-wrap: anywhere;
+        }
+    }
+
+    .p-paginator {
+        text-align: right;
+    }
+
+    .p-paginator-bottom {
+        background-color: #f5f5f5;
+    }
+
+    .p-paginator .p-paginator-element.p-disabled {
+        color: lightgray;
+    }
+
+    .p-dropdown {
+        vertical-align: top;
+    }
+
+    .p-datatable-scrollable-body {
+        padding-bottom: 1.5rem;
+    }
+
+    .p-column-resizer {
+        background-color: gray;
+    }
+}
+
+.p-button {
+    .p-button-label {
+        white-space: nowrap;
+    }
+}
+
+.p-dropdown {
+    .p-dropdown-panel {
+        box-shadow: 0.2rem 0.2rem 0.5rem #888;
+    }
+
+    .p-dropdown-label-container {
+        width: 100%;
+    }
+    .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+        padding: 1rem;
+        border-bottom: $one solid lightgray;
+        background-color: #f5f5f5;
+        text-align: left;
+
+        &:hover {
+            background-color: #ddd !important;
+            color: black !important;
+        }
+
+        &.p-highlight {
+            background-color: #ccc;
+            color: black;
+        }
+    }
+
+    .p-inputtext {
+        font-size: inherit;
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////
+/////specific settings
+
+.review-launcher.p-button {
+    width: 3rem;
+}
+
+.avatar-checked.p-avatar {
+    background-color: $color-ok;
+    border: 1px solid $color-ok;
+
+    .p-avatar-text,
+    .p-avatar-icon {
+        color: white;
+        font-size: 1em; //1.4rem;
+    }
+}
+.avatar-unchecked.p-avatar {
+    background-color: white;
+    border: 1px solid red;
+
+    .p-avatar-text,
+    .p-avatar-icon {
+        color: red;
+        font-size: 1.2em; //1.4rem;
+    }
+
+    &.small {
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+}
+.avatar-number.p-avatar {
+    background-color: transparent;
+    border: 1px solid $color-clickable;
+
+    .p-avatar-text {
+        color: $color-clickable;
+        font-size: 1.2em; //0.93em; //1.3rem;
+    }
+    .p-avatar-icon {
+        color: $color-clickable;
+        font-size: 1em; //0.79em; // 1.1rem;
+    }
+}
+
+.shell-confirm-dialog.p-confirmdialog {
+    min-width: 60rem;
+}
+
+.shell-confirm-dialog.p-confirmdialog {
+    min-width: 60rem;
+}
+
+// NOTE: see page and subpage variations below
+.viewer-tabview.p-tabview {
+    .p-tabview-panels {
+        background-color: $color-content-background; //white;
+        border-top: $one solid #888;
+        margin-top: -$one;
+        padding: 1rem 0.5rem 0.5rem 0.5rem;
+    }
+
+    .p-tabview-nav {
+        padding: 0.8rem 0 0 1rem;
+        background-color: $color-content-background;
+
+        flex-wrap: nowrap;
+        // overflow-x: auto;
+
+        li {
+            flex: 0 0 auto;
+
+            .p-tabview-nav-link {
+                background-color: #ddd;
+                border-bottom: $one solid #888;
+                margin-right: 0.3rem;
+                margin-left: 0.3rem;
+                height: 3.7rem;
+
+                border-top-left-radius: 0.8rem;
+                border-top-right-radius: 0.8rem;
+
+                &:focus {
+                    outline: none;
+                    box-shadow: none;
+                }
+
+                a {
+                    padding: 0.5rem 1rem;
+
+                    font-weight: bold;
+                    color: $color-clickable;
+
+                    span {
+                        vertical-align: middle;
+                    }
+                }
+            }
+
+            &.p-disabled {
+                .p-tabview-nav-link {
+                    background-color: #888;
+                    color: #333 !important;
+
+                    .p-avatar {
+                        border: $one solid #333;
+                        .p-avatar-text {
+                            color: #333;
+                        }
+                    }
+                }
+            }
+
+            &.p-highlight {
+                .p-tabview-nav-link {
+                    background-color: $color-content-background;
+                    border: $one solid #888;
+                    border-bottom-color: $color-content-background;
+                    color: black; //
+                }
+            }
+        }
+    }
+}
+
+.page-tabview.p-tabview {
+    .p-tabview-panels {
+        padding: 0.5rem 2rem;
+    }
+}
+.subpage-tabview.p-tabview {
+    .p-tabview-panels {
+        padding: 1rem;
+    }
+}
+
+////////topbar//////////
+.shell-menubar.p-menubar {
+    border: 0;
+    padding: 0;
+    margin-top: 1rem;
+    background-color: inherit;
+
+    //submenu container
+    .p-submenu-list {
+        background-color: $color-menu-background;
+        width: 101%;
+    }
+
+    //submenu item
+    .p-menuitem.p-menuitem-active > .p-menuitem-link {
+        background: $color-menu-background;
+    }
+
+    .p-menuitem {
+        background-color: $color-menu-background; //good
+        width: 16rem;
+
+        // //this is the <a> element
+        .p-menuitem-link {
+            background-color: $color-menu-background;
+            // justify-content: center;
+
+            .p-menuitem-icon,
+            .p-menuitem-text,
+            .p-submenu-icon {
+                color: $color-menu-text !important;
+            }
+
+            &:hover,
+            &:focus {
+                background-color: $color-menu-background;
+                outline: none;
+                box-shadow: none;
+
+                .p-menuitem-icon,
+                .p-menuitem-text,
+                .p-submenu-icon {
+                    color: $color-menu-text !important;
+                    font-weight: bold !important;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 96rem) {
+    .p-menubar .p-menubar-button {
+        color: white;
+    }
+    .p-menubar .p-menubar-button:hover {
+        color: yellow;
+    }
+    .p-menubar .p-menubar-root-list {
+        background: unset;
+        border: unset;
+        align-items: flex-end;
+    }
+    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover {
+        background: $color-menu-background; //#e9ecef;
+    }
+    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-text {
+        color: $color-menu-hover-text; //#212529;
+    }
+    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-menuitem-icon {
+        color: $color-menu-hover-text; //#212529;
+    }
+    .p-menubar .p-menubar-root-list > .p-menuitem > .p-menuitem-link:not(.p-disabled):hover .p-submenu-icon {
+        color: $color-menu-hover-text; //#212529;
+    }
+}
+
+///////sidebar///////////
+.shell-menu.p-menu {
+    border: 0;
+    padding: 0;
+    width: $length-sidebar-menu;
+    //IMPORTANT: this changes the width of the content which we pass into contentWidth to some components
+    min-width: 10rem;
+
+    background-color: $color-menu-background;
+
+    // the <li> element
+    .p-menuitem {
+        // font-size: 1rem; //1.0 em; //1.4rem;
+        // background-color: red; // $color-menu-background;
+        &.p-focus {
+            // background-color: blue; // $color-menu-background;
+            font-weight: bold;
+        }
+    }
+
+    .p-menuitem-icon {
+        margin-left: 0.2rem;
+        margin-right: 0.5rem;
+        font-size: 1.3em; //1.6rem;
+    }
+
+    // heading section
+    .p-submenu-header {
+        background-color: $color-menu-submenu-background;
+        color: $color-menu-submenu-text;
+        font-size: 1.1em; //1.6rem;
+        margin-top: 2rem;
+        padding-left: 0.86em; //1.2rem;
+    }
+
+    .p-menuitem-content {
+        background-color: unset; //otherwise it shows up as white background on keyboard up and down selections
+    }
+
+    // first heading
+    .p-submenu-header:nth-child(1) {
+        background-color: $color-sidebar-background;
+    }
+
+    // the <a> element
+    .p-menuitem-link {
+        padding: 0.8rem 0.8rem;
+
+        .p-menuitem-icon,
+        .p-menuitem-text {
+            color: $color-menu-text !important;
+            font-size: 1.1em;
+        }
+
+        &:hover,
+        &:focus {
+            background-color: $color-sidebar-background;
+
+            .p-menuitem-icon,
+            .p-menuitem-text {
+                color: $color-menu-text !important;
+                font-weight: bold !important;
+            }
+
+            outline: none;
+            box-shadow: none;
+        }
+
+        // this is the selected one
+        &.p-menuitem-link-active {
+            background-color: $color-menu-background-active;
+            .p-menuitem-icon,
+            .p-menuitem-text {
+                color: $color-menu-hover-text !important;
+                font-weight: bold !important;
+            }
+        }
+    }
+}
+
+.jobslist.p-listbox {
+    width: 30rem;
+    // max-width: 45.0rem;
+
+    .p-listbox-list {
+        max-height: 25rem;
+    }
+    .p-listbox-list-wrapper {
+        @include scrollbar;
+    }
+}
+
+.jobsettings.p-accordion {
+    .p-accordion-header-link {
+        color: $color-clickable;
+        font-size: 1em; //1.4rem;
+    }
+}
+
+///////// Collection //////////
+.collectionlist.p-dropdown {
+    max-width: calc(100vw - 70px);
+    width: 50rem;
+
+    .p-overlay {
+        z-index: 10;
+        max-width: calc(100vw - 70px);
+    }
+
+    // NOTE: couldn't get this to work. The dropdown is not wide enough in the viewer but too if
+    // I change this it messes up RC so I'm leaving it out for now
+    // to limit the width of the dropdown
+    // .p-dropdown-panel {
+    //     // max-width: calc(100vw - 70px);
+    //     width: 50rem;
+    //     // width: 100%;
+    // }
+
+    .p-dropdown-label {
+        text-wrap: wrap;
+        margin-right: 15px;
+        // text-overflow: ellipsis; // didn't work
+    }
+
+    //always show scrollbar
+    .p-dropdown-items-wrapper {
+        @include scrollbar;
+    }
+}
+
+.column-list.p-dropdown {
+    .p-dropdown-panel {
+        width: 50rem;
+        max-width: calc(100vw - 70px);
+    }
+}
+
+/////////// Recipe list /////////////
+.searchtype-selection.p-dropdown {
+    .p-dropdown-panel {
+        width: 65rem;
+    }
+}
+
+.popup-quicklist.p-dataview {
+    margin-top: 1.5rem;
+    border-bottom: $one solid #dddddd;
+
+    .p-dataview-emptymessage {
+        padding-top: 1.5rem;
+        padding-bottom: 4.5rem;
+        background-color: white;
+    }
+
+    .p-dataview-content {
+        > .p-grid > div {
+            border: none;
+            padding-top: 0.1rem;
+        }
+
+        background-color: white;
+        // background-color: #f5f5f5;
+        border-top: none;
+        border-right: $one #d4d4d4 solid;
+        border-left: $one #d4d4d4 solid;
+        border-bottom: $one #d4d4d4 solid;
+
+        padding: 0.5rem 0.5rem 0 0.5rem;
+
+        max-height: 19rem;
+        min-height: 15rem;
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+        > .p-grid {
+            margin-top: 0;
+        }
+
+        @include scrollbar;
+    }
+
+    .p-dataview-header {
+        background-color: inherit;
+        border: none;
+        padding: 0 0 0 0;
+    }
+}
+
+.recipelist.p-dataview {
+    .p-dataview-content {
+        background-color: white;
+        border-top: none;
+        border-right: $one $color-section-border solid;
+        border-left: $one $color-section-border solid;
+        border-bottom: $one $color-section-border solid;
+        padding: 0.5rem;
+        // padding-right: 0.5rem;
+    }
+
+    .p-dataview-header {
+        background-color: inherit;
+        border: none;
+        padding: 0;
+    }
+}
+
+.reader-menu.p-menu {
+    width: 25rem;
+}
+
+// .runtable.p-datatable {
+//     .p-datatable-scrollable-body {
+//         @include scrollbar;
+//     }
+// }
+
+.popup-preview.p-datatable {
+    .p-datatable-body {
+        @include scrollbar;
+    }
+    .p-datatable-tbody > tr,
+    .p-datatable-tbody > tr:nth-child(even) {
+        background-color: #fafafa;
+
+        td {
+            text-align: left;
+            border: $one solid #dee2e6;
+            padding: 0.5rem;
+        }
+    }
+}
+
+.download-options.p-overlaypanel {
+    background-color: #f8fcff;
+    border: $one solid $color-clickable;
+    box-shadow: 1px 9px 8px 4px grey;
+
+    &:before {
+        // border-color: #007ad900;
+        border-bottom-color: $color-clickable;
+    }
+    .p-overlaypanel-content {
+        width: 45rem;
+    }
+}
+
+.recipe-run.p-splitbutton {
+    // .p-button {
+    //     // border: .1rem solid #dee2e6;
+    //     color: #212529;
+    //     background: white; // #efefef;
+    // }
+
+    // .p-button:enabled:hover {
+    //     background: rgba(33, 150, 243, 0.04);
+    // }
+    .p-splitbutton-menubutton {
+        color: $color-clickable;
+        background-color: white;
+    }
+
+    .p-menu {
+        // left: inherit !important;
+        // left: 0px;
+        width: max-content;
+        box-shadow: 1px 8px 9px 2px grey;
+
+        .p-menuitem .p-menuitem-link {
+            padding: 0.8rem 1.5rem;
+        }
+    }
+}
+
+.form-binder.p-card {
+    background-color: #eee;
+    margin: 1rem;
+
+    .p-card-header {
+        padding: 1rem;
+        // background-color: red;
+    }
+    .p-card-body {
+        padding: 0rem 1rem 1rem 1rem;
+        // background-color: green;
+    }
+}
+
+.formfill-card.p-card {
+    background-color: #e8e8f7;
+}
+
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+///////////////////////////////RC common stuff////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
+
+//other RC UI common stuff
+.video-container {
+    margin-left: 1rem;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+.teach-ico {
+    width: 13rem;
+}
+
+.word-break {
+    word-break: break-all;
+}
+
+.gray {
+    color: #bbb;
+}
+
+.row-center {
+    text-align: center;
+}
+
+.row-pull-apart {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.row-flex-center {
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.warn-color {
+    color: #bb7700;
+}
+
+.rc-settings.p-splitbutton {
+    .p-button {
+        // color: black;
+        // background: lightgray;
+        // border: inherit; //.1rem solid #607D8B;
+
+        // border: .1rem solid #dee2e6;
+        color: #212529;
+        background: white; // #efefef;
+    }
+
+    .p-button:enabled:hover {
+        background: rgba(33, 150, 243, 0.04);
+    }
+
+    .p-menu {
+        left: inherit !important;
+        right: 0px;
+        width: max-content;
+        .p-menuitem .p-menuitem-link {
+            padding: 0.8rem 1.5rem;
+        }
+    }
+}
+
+.rc-cleanup.p-dropdown {
+    width: 100%;
+
+    //always show scrollbar
+    .p-dropdown-items-wrapper {
+        @include scrollbar;
+    }
+
+    .p-dropdown-label-container {
+        width: 100%;
+    }
+
+    .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+        padding: 0.4rem 1rem;
+    }
+}
+
+.review-dialog.p-dialog {
+    // border-radius: 4px;
+    box-shadow: none;
+    // border: 1px solid rgba(0, 0, 0, 0.2);
+    border: none;
+}
+
+.show-data-dialog.p-dialog {
+    overflow: scroll;
+    max-height: 100%;
+}
+
+.rc-easytabview.p-tabview {
+    .p-tabview-panels {
+        border: $one solid #dddddd;
+        border-top: none;
+        padding: 1rem;
+    }
+}
+
+.rc-easyselector.p-dialog {
+    background-color: white;
+    width: 90%;
+
+    .p-dialog-content {
+        background-color: white;
+        padding: 1rem;
+        // font-size: 1.3rem;
+        line-height: 1.6rem;
+
+        @include scrollbar;
+    }
+    .p-dialog-header {
+        padding: 0.5em;
+        background-color: $color-clickable;
+
+        .p-dialog-title {
+            // background-color: red;
+            font-size: 1.1em; // 1.6rem;
+            color: white;
+        }
+
+        .p-dialog-header-close-icon {
+            font-size: 1.5em; //2.1rem;
+            color: white;
+        }
+    }
+
+    .p-dialog-footer {
+        background-color: #eee;
+        border-top: $one #bbb solid;
+        // margin: .5rem;
+        // border-radius: .5rem;
+    }
+}
+
+.rc-advanced-settings.p-fieldset {
+    .p-fieldset-legend {
+        background-color: white;
+    }
+    .p-fieldset-content {
+        padding: 0;
+    }
+}
+.rc-scrape.p-accordion {
+    .p-accordion-tab {
+        margin-bottom: 0.5rem;
+    }
+}
+
+.rc-advanced-accordion.p-accordion {
+    .p-accordion-header {
+        padding: 0;
+
+        > a {
+            padding: 0.8rem 0.5rem;
+            font-size: 1em; //1.4rem;
+        }
+    }
+}
+
+.rc-easyaccordion.p-accordion {
+    .p-accordion-header {
+        padding: 0;
+        // margin-bottom: 1.0rem;
+
+        > a {
+            font-size: 1.1em; // 1.6rem; // 1.8rem;
+            padding: 0.8rem 0.5rem;
+        }
+    }
+
+    .p-accordion-content {
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-top: none;
+    }
+}
+
+.rc-action {
+    padding: 1rem;
+
+    &__selector {
+        display: flex;
+        flex-grow: 1;
+        margin-right: 1rem;
+
+        input {
+            width: 100%;
+        }
+    }
+}

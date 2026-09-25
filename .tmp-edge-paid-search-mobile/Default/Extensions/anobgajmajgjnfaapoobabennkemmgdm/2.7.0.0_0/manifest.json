@@ -1,0 +1,42 @@
+{
+   "-ms-preload": {
+      "backgroundScript": "backgroundScriptsAPIBridge.js",
+      "contentScript": "contentScriptsAPIBridge.js"
+   },
+   "author": "Joao Marques",
+   "background": {
+      "page": "background.html",
+      "persistent": true
+   },
+   "browser_action": {
+      "default_icon": {
+         "20": "img/ysense_icon_20.png",
+         "40": "img/ysense_icon_40.png"
+      },
+      "default_popup": "popup.html",
+      "default_title": "ySense Addon"
+   },
+   "content_scripts": [ {
+      "js": [ "js/listen.js" ],
+      "matches": [ "*://*.clixsense.com/*", "*://*.ysense.com/*" ]
+   } ],
+   "description": "Keep track of your account status and receive alerts of new earning opportunities.",
+   "homepage_url": "https://www.ysense.com/addon",
+   "icons": {
+      "128": "img/ysense_icon_128.png",
+      "150": "img/ysense_icon_150.png",
+      "20": "img/ysense_icon_20.png",
+      "25": "img/ysense_icon_25.png",
+      "30": "img/ysense_icon_30.png",
+      "40": "img/ysense_icon_40.png",
+      "50": "img/ysense_icon_50.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlEXnmJpiqMVFkePjtm7CT6B4IfCHJfvGeVBEkzrZWzjzRCYi8Qwo+J/F+7mC4RqK+0+ReOux4yFLhlaVS60U3BbpJZQm1L7R2ol9w+JL8HIaNnShoyFgHwI4zbYAHLuxg4exsbUyTIjbhY/gZHp59n5qoFUUXSIVnZEr4qOPJ9m6+uSVdP8lS//Z1odx3crXJIgVOJi1acnYJh3njAcaTaDTo47gKMLv7EfVo10R2z2WrjQUYudeUoI6szY9Tk7pUQC/nerCUdAB80rZgWKT94oovGi/2BZbDQ3PbOr71Hj/Etklcg6Jpx/WeFguHPM+5+m1a5tBMfsphmUQ+rG/uQIDAQAB",
+   "manifest_version": 2,
+   "name": "ySense Addon",
+   "permissions": [ "storage", "tabs", "activeTab", "notifications", "*://*/" ],
+   "short_name": "ySenseAddon",
+   "update_url": "https://edge.microsoft.com/extensionwebstorebase/v1/crx",
+   "version": "2.7.0.0",
+   "web_accessible_resources": [ "img/ysense_icon_48.png" ]
+}

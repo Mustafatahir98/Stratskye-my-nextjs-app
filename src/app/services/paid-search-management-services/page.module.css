@@ -1,0 +1,37 @@
+.breadcrumb { position: relative; z-index: 1; display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 38px; color: #bac2d3; font-size: 13px; }
+.breadcrumb a { color: inherit; text-decoration: none; }
+.breadcrumb a:hover { color: #f26e35; }
+.title { font-size: clamp(42px, 4.5vw, 68px) !important; line-height: 1.02 !important; }
+.heroCopy { max-width: 710px; margin: 18px 0 0; color: #bdc4d4; font-size: 17px; line-height: 1.7; }
+.heroVisual, .researchVisual { min-height: 0 !important; aspect-ratio: 4 / 5; }
+.heroVisual img, .researchVisual img { object-fit: contain !important; object-position: center; }
+.secondaryLink { display: inline-flex; align-items: center; gap: 10px; color: white; text-decoration: none; font-size: 14px; font-weight: 650; }
+.secondaryLink:hover { color: #f26e35; }
+.secondaryLink:focus-visible, .breadcrumb a:focus-visible { outline: 2px solid #f26e35; outline-offset: 5px; }
+.gapGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 38px; margin-top: 54px; border-top: 1px solid rgba(13,22,47,.18); }
+.gapCard { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 16px; padding: 28px 0; border-bottom: 1px solid rgba(13,22,47,.18); }
+.gapCard > span, .deliverableNumber { color: #f26e35; font-size: 11px; }
+.gapCard h3, .deliverableRow h3 { margin: 0 0 9px; font-size: 21px; font-weight: 620; }
+.gapCard p { margin: 0; color: #596277; line-height: 1.68; }
+.deliverableList { margin-top: 56px; border-top: 1px solid rgba(255,255,255,.14); }
+.deliverableRow { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 18px; align-items: start; padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,.14); }
+.deliverableRow p { margin: 0; color: rgba(255,255,255,.58); line-height: 1.6; }
+.deliverableRow > strong { color: rgba(255,255,255,.72); font-size: 13px; line-height: 1.5; font-weight: 550; }
+.researchVisual img { object-position: center; }
+.imageCaption { position: absolute; z-index: 2; left: 25px; right: 25px; bottom: 25px; padding: 24px; border: 1px solid rgba(255,255,255,.2); border-radius: 18px; background: rgba(8,16,34,.76); backdrop-filter: blur(14px); }
+.imageCaption span { display: block; margin-bottom: 8px; color: rgba(255,255,255,.55); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+.imageCaption strong { font-size: clamp(18px, 2vw, 25px); }
+.inlineCta { margin-top: 38px; }
+.inputBlock { margin-top: 68px; }
+.inputBlock > h3 { margin: 0 0 24px; font-size: clamp(27px, 3vw, 40px); font-weight: 600; }
+.inputBlock :global(strong) { color: white; }
+.inputBlock :global(span) { color: rgba(255,255,255,.62); }
+.inputBlock :global(div) { border-color: rgba(255,255,255,.14); }
+.lightNote { max-width: 920px; margin: 32px 0 0; padding-left: 20px; border-left: 3px solid #f26e35; color: #596277; line-height: 1.7; }
+@media (max-width: 700px) {
+  .title { font-size: clamp(37px, 10vw, 55px) !important; }
+  .gapGrid { grid-template-columns: 1fr; }
+  .deliverableRow { grid-template-columns: 30px 1fr; gap: 12px; }
+  .deliverableRow > strong { grid-column: 2; }
+  .secondaryLink { min-height: 40px; }
+}

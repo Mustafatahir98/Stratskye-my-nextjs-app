@@ -30,6 +30,8 @@ const servicePages = [
   { label: "Workflow Automation", href: "/services/marketing-workflow-automation", child: true },
   { label: "CRM Integration", href: "/services/crm-integration-services", child: true },
   { label: "B2B Paid Media", href: "/services/b2b-paid-media-agency" },
+  { label: "Paid Search Management", href: "/services/paid-search-management-services", child: true },
+  { label: "LinkedIn Ads Management", href: "/services/linkedin-ads-management-services", child: true },
   { label: "B2B SEO", href: "/services/b2b-seo-services" },
 ];
 

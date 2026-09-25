@@ -1,0 +1,117 @@
+{
+   "checksum": "2b978eeb51a67b73559968a3131fc1f4",
+   "roots": {
+      "bookmark_bar": {
+         "children": [ {
+            "date_added": "13209039410750166",
+            "date_last_used": "0",
+            "guid": "5a6ea663-2c3c-4c80-95b3-6795c444c435",
+            "id": "9",
+            "name": "FBR| Federal Board of Revenue - Government of Pakistan",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://www.fbr.gov.pk/",
+            "visit_count": 0
+         }, {
+            "date_added": "13209039458463994",
+            "date_last_used": "0",
+            "guid": "4805e313-609a-4246-891b-73ec6644cc77",
+            "id": "10",
+            "name": "Assets Inquiry",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://iris.fbr.gov.pk/public/txpAILogin.xhtml",
+            "visit_count": 0
+         }, {
+            "date_added": "13308281840089747",
+            "date_last_used": "0",
+            "guid": "3e33a7c1-84bc-4466-8733-569db7f3e3bd",
+            "id": "11",
+            "name": "Assistant Store/Franchise Manager",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://pk.indeed.com/rc/clk?jk=a40bd82569316989&fccid=2e630d1568bae29d&vjs=3",
+            "visit_count": 0
+         }, {
+            "date_added": "13406146424931664",
+            "date_last_used": "0",
+            "guid": "c205c291-5f77-4fd1-9ba7-2515d1b7d8c7",
+            "id": "12",
+            "name": "Claude",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://claude.ai/new",
+            "visit_count": 1
+         } ],
+         "date_added": "13434795953262796",
+         "date_last_used": "0",
+         "date_modified": "13406146424931664",
+         "guid": "0bc5d13f-2cba-5d74-951f-3f233fe6c908",
+         "id": "1",
+         "name": "Favorites bar",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "other": {
+         "children": [  ],
+         "date_added": "13434795953262796",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "82b081ec-3dd3-529c-8475-ab6c344590dd",
+         "id": "2",
+         "name": "Other favorites",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "synced": {
+         "children": [ {
+            "date_added": "13177655567299067",
+            "date_last_used": "0",
+            "guid": "d423becf-afd0-419e-8445-36ae2b2c9384",
+            "id": "7",
+            "name": "Suzuki Liana RXi 2008 for Sale in Bahawalpur",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "http://www.gari.pk/used-cars/suzuki-liana-2008-for-sale-in-bahawalpur-62783/",
+            "visit_count": 0
+         }, {
+            "date_added": "13180605885939124",
+            "date_last_used": "0",
+            "guid": "fb6e022b-5de0-4403-ab12-799c74e74667",
+            "id": "8",
+            "name": "What does the battery light on the dashboard mean? | HowStuffWorks",
+            "show_icon": false,
+            "source": "sync",
+            "type": "url",
+            "url": "https://auto.howstuffworks.com/question324.htm",
+            "visit_count": 0
+         } ],
+         "date_added": "13434795953262796",
+         "date_last_used": "0",
+         "date_modified": "13180605885939124",
+         "guid": "4cf2e351-0e85-532b-bb37-df045d8f8d0f",
+         "id": "3",
+         "name": "Mobile favorites",
+         "source": "unknown",
+         "type": "folder"
+      },
+      "workspaces_v2": {
+         "children": [  ],
+         "date_added": "13434795953262796",
+         "date_last_used": "0",
+         "date_modified": "0",
+         "guid": "75aa6670-344f-549d-b742-660f029506ab",
+         "id": "5",
+         "name": "Workspaces",
+         "source": "unknown",
+         "type": "folder"
+      }
+   },
+   "sync_metadata": "CkEKHgiIgQISCCXTgtegAQAAKg4QABgBIAAoBTAAOABAABIAKhg1ZTVvSmJoWXBwMm1rcFloQTgvVllRPT1IA6AGDBKOAQgFEokBChx3UkJyWkwrNlBBOWF2S2dqTlA3SlhETGNmdnM9EiQ2ZjM3MjgwMy01OTdmLTU2YTEtODU5Ny0xZDM3M2U4YmY0MjgYACAAKAAw3PW1kZ8zOIT4tZGfM0CE+LWRnzNKHG5teDY1c1FEdnhJOFRnRWV2K0ErbnR0b1NuND1aAGUAAAAAwj4CYAASrAEICxKnAQocallZSElxeFRuSU9Ta3BYbDQ1bEVjQTZRVEVnPRIkM2UzM2E3YzEtODRiYy00NDY2LTg3MzMtNTY5ZGI3ZjNlM2JkGAAgACgAMJfD3ZbwMDiTxt2W8DBAk8bdlvAwShxDWDljN1pURjFuMUN6dkl5K2YxdlZtY1VJRlU9Wh4iHExQY3IyNHpTdGtYM0JocHhaaVVTb3diWWtuRT1lAAAAAMI+AmAFEqwBCAwSpwEKHDdOa29iK0RPQ0hjbGRHams4TlZoV1JGT1Axcz0SJGMyMDVjMjkxLTVmNzctNGZkMS05YmE3LTI1MTVkMWI3ZDhjNxgAIAAoADDEkojfojM4zZuI36IzQM2biN+iM0ocbit5NGNLVWp5cHNMdGRBSlQ0bzUzcGNIbUlNPVoeIhxlN1VVYUdhTDhiaWRSL1libmFDdVJvRTM0RUk9ZQn0chLCPgJgBRKsAQgKEqcBChxhTStER01wQllEcVZFelZvQVdjc2tVUHdZVEE9EiQ0ODA1ZTMxMy02MDlhLTQyNDYtODkxYi03M2VjNjY0NGNjNzcYACAAKAAwlMPdlvAwOMXF3ZbwMEDFxd2W8DBKHFBYV2lBdjJvRytmYkttbUdVWVpUd1ZqS3lsbz1aHiIcRU5vbHJ4MHc3dzRVVXprYmtlT1NtU0hMQUVBPWUAAAAAwj4CYAUSrQEICBKoAQocN2RRZTRMMkJFVEhPdk5ISmw3dDFTT2xLenNzPRIkZmI2ZTAyMmItNWRlMC00NDAzLWFiMTItNzk5Yzc0ZTc0NjY3GAAgACgAMJPD3ZbwMDi2xd2W8DBAtsXdlvAwShwveFFmVTNFb2FJM2FQSkJleDVhcU9QMlhraW89Wh8iHbhXVlF4Q1k4Z0dvTHR4VFFOZnIyKzdqWkMvOUk9ZZxttRfCPgJgBRKsAQgHEqcBChx0c1hBRHZuMjhSZUZvQzR1UlVOR28vR1dkQzA9EiRkNDIzYmVjZi1hZmQwLTQxOWUtODQ0NS0zNmFlMmIyYzkzODQYACAAKAAwlcPdlvAwOOXF3ZbwMEDlxd2W8DBKHDFMdm1pTjVYMWMycHA2SEpEak5XaHlaaUg0WT1aHiIccUMwSmUvQ0I1R2pKeCtLUHUrVzFlRjd3WHVFPWUAAAAAwj4CYAUSrAEICRKnAQocY2VwNDFHQzBHL09ZdHRqNUZtQm9sTkZQZVFjPRIkNWE2ZWE2NjMtMmMzYy00YzgwLTk1YjMtNjc5NWM0NDRjNDM1GAAgACgAMPilzbOwMTj0xd2W8DBA9MXdlvAwShxzSXNrYjJwRGhzdjNmU3JQUWtrYjZWUlJ5SzA9Wh4iHEVFbXlmYmQxclVmNGN3N282NFlncFdENE5Udz1lnQ2vx8I+AmAFEo4BCAESiQEKHHl4Si82ZnZrZWNyN2twNUVRekI0dFdMcGRiRT0SJDVlZjRmZmM0LTBiNGQtNThlYi04NjQ1LWY0ODhiMmVkMTI5ZBgAIAAoADCmpJ2Tpi842tiI0OsvQNrYiNDrL0ocYVJDV0xnaEY5YjVJbnFLSUR2dUovanZRa0ZjPVoAZQAAAADCPgJgABKOAQgCEokBChxZY1NUb252RVNQd3FDczRMMmNyVmh2NjhMOTg9EiQ3ZWM0Y2UwNS05OTllLTU5ODMtOTc5Yy00ZmYyZTdmY2Y5MDIYACAAKAAwpqSdk6YvOKjZiNDrL0Co2YjQ6y9KHG9QVmtod0JSYlY2NUtDV1IyK0lPTkhXb091OD1aAGUAAAAAwj4CYAASjgEIAxKJAQocbmpnRHU4OGVDcnZYcDg2cEQ3ZkhHY3FGcDg4PRIkZjJiMzNmMjEtMGMxOC01ZjRkLWJlOGQtNWU3NWM2NDM0MjI4GAAgACgAMKaknZOmLzi42YjQ6y9AuNmI0OsvShx5ek5CMDFjbjU0QTdjUlUwdVQrL1BnbVR0VW89WgBlAAAAAMI+AmAAMAA4AA==",
+   "version": 1
+}
