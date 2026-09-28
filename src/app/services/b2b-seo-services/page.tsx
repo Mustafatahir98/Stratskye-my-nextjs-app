@@ -253,7 +253,7 @@ export default function B2BSeoServicesPage() {
       <section className={styles.servicesSection}>
         <div className={styles.shell}>
           <SectionIntro eyebrow="SEO workstreams" title="B2B SEO services we provide" copy="Not every engagement uses all of these. Stratskye scopes what your site and buyers actually need." />
-          <div className={styles.serviceGrid}>{subservices.map((service) => { const Icon = service.icon; return <article className={styles.serviceCard} key={service.title}><div className={styles.serviceCardTop}><span>{service.number}</span><Icon size={24} strokeWidth={1.6} /></div><h3>{service.title}</h3><p>{service.role}</p><Link href="/contact-form">Explore {service.title} <ArrowUpRight size={17} /></Link></article>; })}</div>
+          <div className={styles.serviceGrid}>{subservices.map((service) => { const Icon = service.icon; return <article className={styles.serviceCard} key={service.title}><div className={styles.serviceCardTop}><span>{service.number}</span><Icon size={24} strokeWidth={1.6} /></div><h3>{service.title}</h3><p>{service.role}</p><Link href={service.title === "Link Building Services" ? "/services/link-building-services" : "/contact-form"}>Explore {service.title} <ArrowUpRight size={17} /></Link></article>; })}</div>
         </div>
       </section>
 

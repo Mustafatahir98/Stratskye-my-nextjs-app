@@ -123,6 +123,12 @@ const staticRoutes: MetadataRoute.Sitemap = [
     priority: 0.8,
   },
   {
+    url: `${SITE_URL}/services/link-building-services/`,
+    lastModified: new Date("2026-09-28T00:00:00+05:00"),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  },
+  {
     url: `${SITE_URL}/about`,
     lastModified: LAST_MODIFIED,
     changeFrequency: "daily",

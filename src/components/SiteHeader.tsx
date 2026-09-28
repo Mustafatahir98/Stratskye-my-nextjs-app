@@ -33,6 +33,7 @@ const servicePages = [
   { label: "Paid Search Management", href: "/services/paid-search-management-services", child: true },
   { label: "LinkedIn Ads Management", href: "/services/linkedin-ads-management-services", child: true },
   { label: "B2B SEO", href: "/services/b2b-seo-services" },
+  { label: "Link Building Services", href: "/services/link-building-services", child: true },
 ];
 
 const socialItems = [
